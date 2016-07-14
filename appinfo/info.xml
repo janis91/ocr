@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<info>
+    <id>ocr</id>
+    <name>OCR</name>
+    <description>OCR processing for images and PDF with tesseract-ocr and OCRmyPDF.</description>
+    <licence>AGPL</licence>
+    <author>Janis Koehr</author>
+    <version>0.0.1</version>
+    <namespace>Ocr</namespace>
+    <types>
+        <filesystem/>
+    </types>
+    <documentation>
+        <user>https://github.com/janis91/ocr/wiki/</user>
+        <admin>https://github.com/janis91/ocr/wiki/</admin>
+    </documentation>
+    <category>tool</category>
+
+    <website>https://github.com/janis91/ocr/</website>
+
+    <bugs>https://github.com/janis91/ocr/issues</bugs>
+
+    <repository type="git">https://github.com/janis91/ocr.git</repository>
+
+    <ocsid>1234</ocsid>
+
+    <dependencies>
+        <php min-version="5.6"/>
+        <database>pgsql</database>
+        <command os="linux">ocrmypdf</command>
+        <command os="linux">tesseract-ocr</command>
+        <os>Linux</os>
+        <owncloud min-version="9" />
+    </dependencies>
+</info>
