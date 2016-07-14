@@ -1,4 +1,7 @@
 # Ocr
+
+This software is absolutely alpha and should not be integrated in any production environment.
+
 Place this app in **owncloud/apps/**
 
 ## Building the app
