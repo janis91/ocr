@@ -30,6 +30,6 @@
         <command os="linux">ocrmypdf</command>
         <command os="linux">tesseract-ocr</command>
         <os>Linux</os>
-        <owncloud min-version="9" />
+        <owncloud min-version="9" max-version="9"/>
     </dependencies>
 </info>
