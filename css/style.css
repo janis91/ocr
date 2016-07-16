@@ -1,3 +1,25 @@
-#hello {
-	color: red;
+#ocrDropdown{
+	display:block;
+	position:absolute;
+	right:0;
+	margin-right:7em;
+	padding:0.5em;
+	background:#eee;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	border-bottom-right-radius:1em;
+	border-bottom-left-radius:1em;
+	z-index:100;
+}
+.action, .selectedActions a, #logout { opacity:1; -webkit-transition:0; -moz-transition:0; -o-transition:0; transition:0; }
+.ocr{
+	margin-top:1.5em;
+	margin-right:9em;
+	top:1em;
+}
+#ocrDropdown label{ font-weight:normal; }
+#ocrForm {
+	margin: 0;
+	padding: 0;
 }

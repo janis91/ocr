@@ -11,42 +11,68 @@
 
 namespace OCA\Ocr\Controller;
 
-use OCP\IRequest;
-use OCP\AppFramework\Http\TemplateResponse;
-use OCP\AppFramework\Http\DataResponse;
-use OCP\AppFramework\Controller;
+use \OCP\IRequest;
+use \OCP\AppFramework\Http;
+use \OCP\AppFramework\Controller;
+use \OCP\IL10N;
 
 class OcrController extends Controller {
 
-
 	private $userId;
+	private $l;
 
-	public function __construct($AppName, IRequest $request, $UserId){
+	public function __construct($AppName, IRequest $request, $UserId, IL10N $l){
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
+		$this->l = $l;
+	}
+
+
+
+	/**
+	 * @NoAdminRequired
+	 * @param string $srcDir
+	 * @param string $srcFile - semicolon separated filenames
+	 * @param string $srcFileType - image or pdf
+	 * @return Http\JSONResponse
+	 */
+	public function process($srcDir, $srcFile, $srcFileType) {
+
+		return Http\JSONResponse::setData('');
+
 	}
 
 	/**
-	 * CAUTION: the @Stuff turns off security checks; for this page no admin is
-	 *          required and no CSRF check. If you don't know what CSRF is, read
-	 *          it up in the docs or you might create a security hole. This is
-	 *          basically the only required method to add this exemption, don't
-	 *          add it to any other method if you don't exactly know what it does
-	 *
+	 * Get languages supported by installed tesseract. (Version has to be at least 3.02.02)
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
+	 * @return Http\JSONResponse
 	 */
-	public function index() {
-		$params = ['user' => $this->userId];
-		return new TemplateResponse('ocr', 'main', $params);  // templates/main.php
-	}
+	public function languages(){
+		$success = 0;
+		exec('tesseract --list-langs 2>&1', $result, $success);
+		if ($success == 0 && count($result) != "Array[0]") {
+			if (is_array($result)) {
+				$traineddata = $result;
+			} else {
+				$traineddata = explode(' ', $result);
+			}
 
-	/**
-	 * Simply method that posts back the payload of the request
-	 * @NoAdminRequired
-	 */
-	public function doEcho($echo) {
-		return new DataResponse(['echo' => $echo]);
+			$tds = array();
+			foreach ($traineddata as $td) {
+				$tdname = trim($td);
+				if (strlen($tdname) == 3) {
+					array_push($tds, $tdname);
+				}
+			}
+			$availableLanguages = array('languages' => $tds);
+			
+			return new JSONResponse($availableLanguages);
+
+
+		} else {
+			// error
+		}
+
 	}
 
 

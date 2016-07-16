@@ -11,8 +11,11 @@
 
 namespace OCA\Ocr\AppInfo;
 
-use OCP\AppFramework\App;
+use OCP\Util;
 
 //TODO: only include it if Files app is active
-\OCP\Util::addScript( 'ocr', "script" );
-\OCP\Util::addStyle('ocr', 'style');
+$eventDispatcher = \OC::$server->getEventDispatcher();
+$eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function() {
+	Util::addScript('ocr', "script");
+	Util::addStyle('ocr', 'style');
+});
