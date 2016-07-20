@@ -19,6 +19,7 @@
  */
 return [
     'routes' => [
-	   ['name' => 'ocr#index', 'url' => '/ocr', 'verb' => 'POST'],
+		['name' => 'ocr#process', 'url' => '/process', 'verb' => 'GET'],
+		['name' => 'ocr#languages', 'url' => '/languages', 'verb' => 'GET'],
     ]
 ];
