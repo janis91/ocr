@@ -1,4 +1,4 @@
-# OCR (0.6.1 beta)
+# OCR (0.6.2-beta)
 **This software is in beta phase and should not be integrated in any production environment. If you want to test it and give feedback, please open an issue. Thank You!**
 Nextcloud OCR processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud 9.
 The app uses tesseract-ocr and OCRmyPDF in order to process images (png, jpeg, tiff) and PDF (currently not all PDF-types are supported, for more information see [here](https://github.com/jbarlow83/OCRmyPDF)) and save the output file to the same folder in nextcloud.

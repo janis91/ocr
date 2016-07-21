@@ -1,4 +1,8 @@
 #Changelog
+
+nextcloud-ocr (0.6.2-beta)
+* **Bugfix**: Fixed a strange behaviour with the update of the filelist after processing. Fixed the loading image (has changed in nextcloud).
+
 nextcloud-ocr (0.6.1 beta)
 * **Organizational**: Recognizing the movement from Owncloud 9 to Nextcloud 9, I decided to change the apps runtime to Nextcloud. It seems that this will be the more "Open" future cloud.
 
