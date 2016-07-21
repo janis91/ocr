@@ -23,3 +23,7 @@
 	margin: 0;
 	padding: 0;
 }
+#notification-progress-fix{
+	padding-left: 21px;
+	background-position: left center;
+}

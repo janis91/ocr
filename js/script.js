@@ -145,14 +145,12 @@
 				srcDir: dir,
 				language: language
 			}
-
-			//TODO: lock the Screen or at least disable the OCR fileactions. Also Show a work in progress rotating image
 			$.ajax({
 				url: url,
 				method: 'GET',
 				dataType: "json",
 				data: data,
-				beforeSend: OCA.Ocr.App.processing(true),
+				beforeSend: OCA.Ocr.App.processing(true), //show WIP status and disable fileactions
 			}).done(function( json ) {
 				if(json.success){
 					OCA.Ocr.App.processing(false);
@@ -168,8 +166,7 @@
 					});
 				}
 				// TODO: is there an alternative method which is lighter?
-				OCA.Files.App.destroy();
-				OCA.Files.App.initialize();
+				OC.reload();
 			}).fail(function(){
 				OCA.Ocr.App.processing(false);
 				$('.fileactions').show();
@@ -183,7 +180,7 @@
 		 */
 		processing: function(go){
 			if (go){
-				OC.Notification.showTemporary('<span class="icon icon-loading-small"></span>&nbsp;<span>'+t('ocr','PROCESSING')+'</span>',{timeout: 0, isHTML: true});
+				OC.Notification.showTemporary('<div id="notification-progress-fix" class="loading-small">'+t('ocr','PROCESSING')+'</div>',{timeout: 0, isHTML: true});
 				$('.fileactions').hide();
 			}else{
 				OC.Notification.hide();
