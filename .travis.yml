@@ -1,7 +1,6 @@
 language: php
 php:
   - 5.6
-  - 7
 
 env:
   global:
@@ -19,8 +18,12 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install gearman gearman-job-server gearman-server gearman-tools
   - pecl install gearman
+  - sudo apt-get install zlib1g-dev libjpeg-dev ghostscript qpdf unpaper libfreetype6-dev libtiff-dev gcc g++
   - sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
-  - sudo apt-get install zlib1g-dev libjpeg-dev ghostscript qpdf unpaper python3-pip python3-pil python3-pytest python3-reportlab python3-all-dev
+  - sudo apt-get install python3 python3-setuptools python3-all-dev python3-all python3-pip python3-pil python3-pytest python3-reportlab
+  - sudo easy_install3 pip
+  - sudo pip3 install --user git+https://github.com/python-imaging/Pillow
+  
   - pip3 install ocrmypdf
   - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
   - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
