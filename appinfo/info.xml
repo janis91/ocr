@@ -1,35 +1,37 @@
 <?xml version="1.0"?>
-<info>
-    <id>ocr</id>
-    <name>OCR</name>
-    <description>OCR processing for images and PDF with tesseract-ocr and OCRmyPDF.</description>
-    <licence>AGPL</licence>
-    <author>Janis Koehr</author>
-    <version>0.6.1</version>
-    <namespace>Ocr</namespace>
-    <types>
-        <filesystem/>
-    </types>
-    <documentation>
-        <user>https://github.com/janis91/ocr/wiki/</user>
-        <admin>https://github.com/janis91/ocr/wiki/</admin>
-    </documentation>
-    <category>tool</category>
-
-    <website>https://github.com/janis91/ocr/</website>
-
-    <bugs>https://github.com/janis91/ocr/issues</bugs>
-
-    <repository type="git">https://github.com/janis91/ocr.git</repository>
-
-    <ocsid>1234</ocsid>
-
-    <dependencies>
-        <php min-version="5.6"/>
-        <database>pgsql</database>
-        <command os="linux">ocrmypdf</command>
-        <command os="linux">tesseract-ocr</command>
-        <os>Linux</os>
-        <owncloud min-version="9" max-version="9"/>
-    </dependencies>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+<id>ocr</id>
+<name>OCR</name>
+<summary lang="en">OCR processing for images and PDF with tesseract-ocr and OCRmyPDF.</summary>
+<summary lang="de">OCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF</summary>
+<description lang="en"># Description\nOCR processing for images and PDF with tesseract-ocr and OCRmyPDF.</description>
+<description lang="de"># Beschreibung\nOCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF</description>
+<version>0.8.3</version>
+<licence>agpl</licence>
+<author>Janis Koehr</author>
+<namespace>Ocr</namespace>
+<documentation>
+    <user>https://janis91.github.io/ocr/</user>
+    <admin>https://github.com/janis91/ocr/wiki</admin>
+    <developer>https://github.com/janis91/ocr/wiki</developer>
+</documentation>
+<category>tools</category>
+<website>https://janis91.github.io/ocr/</website>
+<bugs>https://github.com/janis91/ocr/issues</bugs>
+<repository type="git">https://github.com/janis91/ocr.git</repository>
+<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc1.png</screenshot>
+<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
+<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
+<dependencies>
+    <php min-version="5.6" max-version="7" min-int-size="32" />
+    <lib>gearman</lib>
+    <command>ocrmypdf</command>
+    <command>tesseract</command>
+    <database>pgsql</database>
+    <database>mysql</database>
+    <database>sqlite</database>
+    <owncloud min-version="9.1" max-version="9.2"/>
+    <nextcloud min-version="10" max-version="11" />
+</dependencies>
 </info>

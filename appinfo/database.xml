@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<database>
+	<name>*dbname*</name>
+	<create>true</create>
+	<overwrite>false</overwrite>
+	<charset>utf8</charset>
+	<!--
+	CREATE TABLE ocr_status (
+	id INT(8) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	status TEXT,
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+	-->
+	<table>
+		<name>*dbprefix*ocr_status</name>
+		<declaration>
+			<field>
+				<name>id</name>
+				<type>integer</type>
+				<notnull>true</notnull>
+				<autoincrement>true</autoincrement>
+				<unsigned>true</unsigned>
+				<primary>true</primary>
+				<length>8</length>
+			</field>
+			<field>
+				<name>status</name>
+				<type>text</type>
+				<length>10</length>
+				<default></default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>file_id</name>
+				<type>integer</type>
+				<length>10</length>
+				<default></default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>new_name</name>
+				<type>text</type>
+				<length>255</length>
+				<default></default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>temp_file</name>
+				<type>text</type>
+				<length>255</length>
+				<default></default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>type</name>
+				<type>text</type>
+				<length>5</length>
+				<default></default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>user_id</name>
+				<type>text</type>
+				<length>200</length>
+				<default></default>
+				<notnull>true</notnull>
+			</field>
+		</declaration>
+	</table>
+</database>

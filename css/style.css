@@ -12,18 +12,70 @@
 	border-bottom-left-radius:1em;
 	z-index:100;
 }
-.action, .selectedActions a, #logout { opacity:1; -webkit-transition:0; -moz-transition:0; -o-transition:0; transition:0; }
-.ocr{
-	margin-top:1.5em;
-	margin-right:9em;
-	top:1em;
+/* Selcted Files Actions Button */
+tr .action:not(.permanent),
+.selectedActionsOCR a {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	opacity: 0;
 }
-#ocrDropdown label{ font-weight:normal; }
-#ocrForm {
-	margin: 0;
-	padding: 0;
+tr:hover .action,
+tr:focus .action,
+tr .action.permanent,
+.selectedActionsOCR a {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	opacity: .5;
 }
-#notification-progress-fix{
-	padding-left: 21px;
-	background-position: left center;
+tr:hover .action:hover,
+tr:focus .action:focus,
+.selectedActionsOCR a:hover,
+.selectedActionsOCR a:focus,
+.header-action:hover,
+.header-action:focus {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	opacity: 1;
+}
+
+.selectedActionsOCR {
+	position: absolute;
+	top: 0;
+	right: 100px;
+}
+.selectedActionsOCR a {
+	display: inline;
+	font-size: 11px;
+	line-height: 50px;
+	padding: 18px 5px;
+}
+.selectedActionsOCR a.hidden {
+	display: none;
+}
+.selectedActionsOCR a img {
+	position:relative;
+	vertical-align: text-bottom;
+	margin-bottom: -1px;
+}
+
+html.ie8 .column-mtime .selectedActionsOCR {
+	top: -95px;
+}
+
+#filestable .filename .action .icon,
+#filestable .selectedActionsOCR a .icon,
+#controls .actions .button .icon {
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 16px 16px;
+}
+
+#filestable .filename .action .icon.hidden,
+#filestable .selectedActionsOCR a .icon.hidden,
+#controls .actions .button .icon.hidden {
+	display: none;
+}
+
+#filestable .filename .action .icon.loading,
+#filestable .selectedActionsOCR a .icon.loading,
+#controls .actions .button .icon.loading {
+	width: 15px;
+	height: 15px;
 }

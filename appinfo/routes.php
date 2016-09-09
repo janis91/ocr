@@ -1,6 +1,6 @@
 <?php
 /**
- * ownCloud - ocr
+ * nextCloud - ocr
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -19,7 +19,8 @@
  */
 return [
     'routes' => [
-		['name' => 'ocr#process', 'url' => '/process', 'verb' => 'GET'],
-		['name' => 'ocr#languages', 'url' => '/languages', 'verb' => 'GET'],
+		['name' => 'ocr#process', 'url' => '/', 'verb' => 'POST'],
+		['name' => 'ocr#languages', 'url' => '/', 'verb' => 'GET'],
+		['name' => 'ocr#status', 'url' => '/status', 'verb' => 'GET'],
     ]
 ];
