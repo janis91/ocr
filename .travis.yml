@@ -16,8 +16,8 @@ branches:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install gearman gearman-job-server gearman-server gearman-tools libgearman*
-  - pecl install gearman
+  - sudo apt-get install gearman gearman-job-server gearman-server gearman-tools libgearman-dev
+  - pecl install -f gearman-1.0.1
   - sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
   - sudo touch /usr/bin/ocrmypdf
   - sudo chmod +x /usr/bin/ocrmypdf
