@@ -196,7 +196,7 @@
 					self.togglePendingState(false);
 					setTimeout($.proxy(self.loopForStatus,self), 4500);
 				}else{
-					if(self._ocr.getStatus().processed > 0) self.updateFileList();
+					if(self._ocr.getStatus().processed > 0) { self.updateFileList(); }
 					self.togglePendingState(false);
 				}
 			}).fail(function(message){
