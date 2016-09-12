@@ -1,5 +1,8 @@
 #Changelog
 
+nextcloud-ocr (0.8.5-beta)
+* **Feature**: Requested transifex translation and prepared the files for it.
+
 nextcloud-ocr (0.8.3-beta)
 * **Feature**: Now a asynchronous processing of multiple files is in place brought by gearman server.
 * **Enhancement**: Completely reworked all code in order to get more performance, testing capability, travis-ci integration and much more.
