@@ -11,4 +11,8 @@
 
 namespace OCA\Ocr\AppInfo;
 
-$app = new \OCA\Ocr\AppInfo\Application();
+use OCA\Ocr\Command\CompleteOCR;
+
+$app = new Application();
+$container = $app->getContainer();
+$application->add($container->query(CompleteOCR::class));

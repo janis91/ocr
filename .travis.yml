@@ -1,53 +1,75 @@
-sudo: required
-dist: trusty
 language: php
 php:
-    - 5.6
-    - 7
-env:
-    global:
-        - CORE_BRANCH=stable9
-    matrix:
-        - DB=pgsql
+  - 5.6
 
-matrix:
-    allow_failures:
-        - env: DB=pgsql CORE_BRANCH=master
-    include:
-        - php: 5.6
-          env: DB=sqlite
-        - php: 5.6
-          env: DB=mysql
-        - php: 5.6
-          env: DB=pgsql CORE_BRANCH=master
-    fast_finish: true
+env:
+  global:
+    - CORE_BRANCH=master
+    - APP_NAME=ocr
+  matrix:
+    - DB=sqlite
+
+branches:
+  only:
+    - master
+    - /^stable\d+(\.\d+)?$/
 
 before_install:
-    # install firefox and enable a display for running JavaScript tests
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
-    - sudo apt-get update
-    - sudo apt-get -y install python3-setuptools firefox mariadb-server
-    - sudo easy_install3 requests ocdev
-    - nvm install 5.9
-    - npm install -g npm@latest
-    - make
-    # install core
-    - cd ../
-    - ocdev setup core --dir owncloud --branch $CORE_BRANCH --no-history
-    - mv ocr owncloud/apps/
+  - sudo apt-get -qq update
+  - sudo apt-get install gearman gearman-job-server gearman-server gearman-tools libgearman-dev
+  - pecl install -f gearman-1.0.1
+  - sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
+  - sudo touch /usr/bin/ocrmypdf
+  - sudo chmod +x /usr/bin/ocrmypdf
+  - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+  - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
 
-before_script:
-    - createuser -U travis -s oc_autotest
-    - mysql -u root -e 'create database oc_autotest;'
-    - mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"
-    - mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"
-    - cd owncloud
-    - mkdir data
-    - ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database $DB --database-pass=''
-    - ./occ app:enable ocr
-    - ocdev server &
-    - cd apps/ocr
+  # Add some output debugging information
+  - cd ../server
+  - ./occ check
+  - ./occ status
+  - ./occ app:list
+  - ./occ app:enable $APP_NAME
+  - ./occ app:list
 
 script:
-    - make test
+  - cd apps/$APP_NAME/
+
+  # Test the app
+  - sh -c "if [ '$JSTESTS' != '1' -a '$CODECHECK' = '1' ]; then find . -name \*.php -exec php -l \"{}\" \;; fi"
+  - cd ../../
+  - sh -c "if [ '$JSTESTS' != '1' -a '$CODECHECK' = '1' ]; then ./occ app:check-code $APP_NAME -c private -c strong-comparison; fi"
+  - sh -c "if [ '$JSTESTS' != '1' -a '$CODECHECK' = '2' ]; then ./occ app:check-code $APP_NAME -c deprecation; fi"
+  - cd apps/$APP_NAME/
+
+  # Run unit and integration tests from test directory
+  - cd tests/
+
+  # Run phpunit unit tests
+  - sh -c "if [ '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' ]; then phpunit --configuration phpunit.xml; fi"
+
+  # Run phpunit integration tests
+# - sh -c "if [ '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' ]; then phpunit --configuration phpunit.integration.xml; fi"
+
+  # Create coverage report
+  - sh -c "if [ '$RUNONCE' = '1' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
+  - sh -c "if [ '$RUNONCE' = '1' ]; then php ocular.phar code-coverage:upload --format=php-clover clover.xml; fi"
+  - cd ../
+  # Run Javascript unit tests
+#  - cd js/
+#  - sh -c "if [ '$JSTESTS' = '1' ]; then npm install --deps; node_modules/karma/bin/karma start karma.config.js --single-run; fi"
+#  - cd ../../
+
+matrix:
+  include:
+    - php: 5.6
+      env: DB=mysql;RUNONCE=1
+    - php: 5.6
+      env: DB=pgsql
+    - php: 5.6
+      env: DB=mysql;CODECHECK=1
+    - php: 5.6
+      env: DB=mysql;CODECHECK=2
+  allow_failures:
+    - env: DB=mysql;CODECHECK=2
+fast_finish: true

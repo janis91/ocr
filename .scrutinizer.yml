@@ -1,0 +1,14 @@
+filter:
+    excluded_paths:
+        - 'js/jquery*'
+        - 'l10n/*'
+        - 'tests/*'
+        - '*.min.js'
+
+imports:
+    - javascript
+    - php
+
+tools:
+    external_code_coverage:
+        timeout: 7200 # Timeout in seconds: 2 hours

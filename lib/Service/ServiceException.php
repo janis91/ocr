@@ -8,7 +8,12 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2016
  */
+namespace OCA\Ocr\Service;
 
-namespace OCA\Ocr\AppInfo;
+use Exception;
 
-$app = new \OCA\Ocr\AppInfo\Application();
+/**
+ * Class ServiceException
+ * @package OCA\Ocr\Service
+ */
+class ServiceException extends Exception {}

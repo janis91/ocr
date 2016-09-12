@@ -1,5 +1,14 @@
 #Changelog
 
+nextcloud-ocr (0.8.3-beta)
+* **Feature**: Now a asynchronous processing of multiple files is in place brought by gearman server.
+* **Enhancement**: Completely reworked all code in order to get more performance, testing capability, travis-ci integration and much more.
+* **Bugfix**: Many bugs have been fix (maybe there are some remaining, so please open issues!).
+* **Organizational**: Nextcloud 10 and 11 are the target of this app now.
+
+nextcloud-ocr (0.7.0-beta)
+* **Enhancement**: PSR compatible folder structure. better loose coupling. integrated gearman for workflow.
+
 nextcloud-ocr (0.6.2-beta)
 * **Bugfix**: Fixed a strange behaviour with the update of the filelist after processing. Fixed the loading image (has changed in nextcloud).
 

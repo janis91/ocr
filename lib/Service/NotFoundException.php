@@ -8,7 +8,10 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2016
  */
+namespace OCA\Ocr\Service;
 
-namespace OCA\Ocr\AppInfo;
-
-$app = new \OCA\Ocr\AppInfo\Application();
+/**
+ * Class NotFoundException
+ * @package OCA\Ocr\Service
+ */
+class NotFoundException extends ServiceException {}
