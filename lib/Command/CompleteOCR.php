@@ -26,7 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @package OCA\Ocr\Command
  */
-class CompleteOCR extends Command  {
+class CompleteOCR extends Command {
 
 	/**
 	 * @var OcrService
@@ -67,21 +67,21 @@ class CompleteOCR extends Command  {
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$statusId = $input->getArgument('status-id');
 		$failed = $input->getArgument('failed');
-		try{
-			if($failed === 'false'){
+		try {
+			if ($failed === 'false') {
 				$failed = false;
-			}elseif ($failed === 'true'){
+			}elseif ($failed === 'true') {
 				$failed = true;
-			}else{
+			} else {
 				throw new ServiceException('Wrong Arguments.');
 			}
 			$this->ocrService->complete($statusId, $failed);
-		} catch(Exception $e){
-			if($e instanceof MultipleObjectsReturnedException || $e instanceof DoesNotExistException) {
+		} catch (Exception $e) {
+			if ($e instanceof MultipleObjectsReturnedException || $e instanceof DoesNotExistException) {
 				$output->writeln('<error>Could not complete ocr for status id ' . $statusId .
 					': ' . $e->getMessage() .
 					'</error> ');
-			}else{
+			} else {
 				$output->writeln('<error>Unexpected error for status id ' . $statusId .
 					': ' . $e->getMessage() .
 					'</error> ');

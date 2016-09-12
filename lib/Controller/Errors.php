@@ -30,10 +30,10 @@ trait Errors {
 	 * @param Closure $callback
 	 * @return DataResponse
 	 */
-	protected function handleNotFound (Closure $callback) {
+	protected function handleNotFound(Closure $callback) {
 		try {
 			return new DataResponse($callback());
-		} catch(NotFoundException $e) {
+		} catch (NotFoundException $e) {
 			return new DataResponse($e->getMessage(), Http::STATUS_NOT_FOUND);
 		}
 	}

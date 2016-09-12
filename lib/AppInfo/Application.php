@@ -64,7 +64,7 @@ class Application extends App {
 		/**
 		 * Register the Gearman Worker Service
 		 */
-		$container->registerService('GearmanWorkerService', function (IAppContainer $c){
+		$container->registerService('GearmanWorkerService', function(IAppContainer $c) {
 			/** @var \OC\Server $server */
 			$server = $c->query('ServerContainer');
 			return new GearmanWorkerService(
@@ -94,7 +94,7 @@ class Application extends App {
 				$server->getConfig(),
 				$c->query('GearmanWorkerService'),
 				$c->query('OcrStatusMapper'),
-				new View('/'.$c->query('CurrentUID').'/files'),
+				new View('/' . $c->query('CurrentUID') . '/files'),
 				$c->query('CurrentUID'),
 				$server->getLogger()
 			);
