@@ -7,7 +7,7 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2016
  */
-(function (OC, window, $, undefined) {
+(function (OC, window, $) {
 	'use strict';
 	/** global: OCA */
 	if (!OCA.Ocr) {
@@ -46,7 +46,7 @@
 		 */
 		destroy: function () {
 			var self = this;
-			this._view.destroy();
+			self._view.destroy();
 		}
 	};
 /**
@@ -59,7 +59,7 @@ $(document).ready(function () {
 	if(!OCA.Files){ // we don't have the files app, so ignore anything
 		return;
 	}
-	if(/(public)\.php/i.exec(window.location.href)!=null){
+	if(/(public)\.php/i.exec(window.location.href)!==null){
 		return; // escape when the requested file is public.php
 	}
 	/** global: OCA */

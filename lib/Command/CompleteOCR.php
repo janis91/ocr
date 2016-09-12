@@ -12,7 +12,6 @@
 namespace OCA\Ocr\Command;
 
 use Exception;
-use OCA\Ocr\Service\NotFoundException;
 use OCA\Ocr\Service\OcrService;
 use OCA\Ocr\Service\ServiceException;
 use OCP\AppFramework\Db\DoesNotExistException;
@@ -89,5 +88,4 @@ class CompleteOCR extends Command  {
 			}
 		}
 	}
-
 }

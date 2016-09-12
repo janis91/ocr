@@ -128,10 +128,11 @@
 		renderDropdown: function(){
 			var self = this;
 			self.destroyDropdown();
+			/** global: Handlebars */
 			var template = Handlebars.compile(TEMPLATE_OCR_DROPDOWN);
 			var noMatches = true;
 			var languages = self._ocr.getLanguages();
-			if(languages.length > 0 && typeof languages !== undefined){ noMatches = false }
+			if(languages.length > 0 && typeof languages !== undefined){ noMatches = false; }
 			return template({languages: languages, noMatches: noMatches});
 		},
 		renderFileAction: function (file, path, type, mimetype) {
@@ -141,8 +142,7 @@
 			var files = [{name: file, path: path, type: type, mimetype: mimetype}];
 			self.setSelectedFiles(files);
 		},
-		//FIXME: sometimes (eg after recreating the files app) the button still shows and has strange behavior
-		toggleSelectedActionButton: function (e) {
+		toggleSelectedActionButton: function () {
 			var self = this;
 			var selectedActionButton = $('.selectedActionsOCR');
 			var selFiles = OCA.Files.App.fileList.getSelectedFiles();
@@ -170,7 +170,7 @@
 				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + pendingcount + ' ' + t('ocr','currently pending OCR requests.') + '</span>';
 			}
 			if(pendingcount > 0 || force){
-				if (self._row !== undefined) OC.Notification.hide(self._row);
+				if (self._row !== undefined) { OC.Notification.hide(self._row); }
 				self._row = OC.Notification.showHtml(html);
 			}else{
 				if (self._row !== undefined){
@@ -190,9 +190,9 @@
 		loopForStatus: function () {
 			var self = this;
 			$.when(self._ocr.checkStatus()).done(function(){
-				if(self._ocr.getStatus().failed > 0) self.notifyError('OCR processing for one or more files failed. For details please contact your administrator.');
+				if(self._ocr.getStatus().failed > 0) { self.notifyError('OCR processing for one or more files failed. For details please contact your administrator.'); }
 				if(self._ocr.getStatus().pending > 0){
-					if(self._ocr.getStatus().processed > 0) self.updateFileList();
+					if(self._ocr.getStatus().processed > 0) { self.updateFileList(); }
 					self.togglePendingState(false);
 					setTimeout($.proxy(self.loopForStatus,self), 4500);
 				}else{
@@ -239,6 +239,7 @@
 				return false;
 			});
 			// Register checkbox events
+			/** global: _ */
 			OCA.Files.App.fileList.$fileList.on('change', 'td.filename>.selectCheckBox', _.bind(self.toggleSelectedActionButton, this));
 			OCA.Files.App.fileList.$el.find('.select-all').click(_.bind(self.toggleSelectedActionButton, this));
 		}

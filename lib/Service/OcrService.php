@@ -15,7 +15,6 @@ use Exception;
 use OC\Files\View;
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Db\OcrStatusMapper;
-use OCP\AppFramework\Http\JSONResponse;
 use OCP\Files;
 use OCP\IConfig;
 use OCP\ILogger;
@@ -137,7 +136,7 @@ class OcrService {
 	public function process($language, $files) {
 		try {
 			$this->logger->debug('Will now process files: '.json_encode($files) . ' with language: ' . json_encode($language), ['app' => 'ocr']);
-			// Check if $files and $language not empty
+			// Check if files and language not empty
 			if(!empty($files) && !empty($language) && in_array($language, $this->listLanguages())){
 				// get the array with full fileinfo
 				$fileInfo = $this->buildFileInfo($files);
@@ -309,13 +308,14 @@ class OcrService {
 		try {
 			$fileArray = array();
 			foreach ($files as $file) {
+				// Check if anything is missing and file type is correct
 				if ((!empty($file['path']) || !empty($file['directory'])) && $file['type'] === 'file') {
-					if(empty($file['path'])){ $file['path'] = $file['directory']; } //Because new updated files have the property directory instead of path
-					if($file['path'] === '/'){
-						$path = ''. '/' . $file['name'];
-					}else{
-						$path = $file['path']. '/' . $file['name'];
+					if(empty($file['path'])){
+						//Because new updated files have the property directory instead of path
+						$file['path'] = $file['directory'];
 					}
+					// get correct path
+					$path = $this->getCorrectPath($file);
 					$fileInfo = $this->view->getFileInfo($path);
 					if (!$fileInfo || !in_array($fileInfo->getMimetype(), $this::ALLOWED_MIMETYPES)) {
 						$this->logger->debug('Getting FileInfo did not work or not included in the ALLOWED_MIMETYPES array.', ['app' => 'ocr']);
@@ -333,6 +333,20 @@ class OcrService {
 	}
 
 	/**
+	 * Returns the correct path based on delivered file variable
+	 * @param $file
+	 * @return string
+	 */
+	private function getCorrectPath($file){
+		if($file['path'] === '/'){
+			$path = ''. '/' . $file['name'];
+		}else{
+			$path = $file['path']. '/' . $file['name'];
+		}
+		return $path;
+	}
+
+	/**
 	 * Inits the Gearman client and sends the task to the background worker (async)
 	 * @param $type
 	 * @param $datadirectory
@@ -343,7 +357,7 @@ class OcrService {
 	 */
 	private function sendGearmanJob($type, $datadirectory, $path, $tempFile, $language, $status, $occDir){
 		try {
-			if(!$this->workerService->workerExists()){
+			if($this->workerService->workerExists() === false){
 				throw new NotFoundException('No gearman worker exists.');
 			}
 			$this->statusMapper->insert($status);
@@ -359,6 +373,7 @@ class OcrService {
 				'statusid' => $status->getId(),
 				'occdir' => $occDir
 			)));
+			$this->logger->debug('Gearman Client output: '.json_encode($result), ['app' => 'ocr']);
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}
