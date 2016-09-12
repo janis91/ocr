@@ -4,8 +4,8 @@ $worker = new GearmanWorker();
 $worker->addServer('127.0.0.1',4730);
 
 $worker->addFunction(/**
-					 * @param GearmanJob $job
-					 */
+ * @param GearmanJob $job
+ */
 	"ocr", function(GearmanJob $job) {
 	$workload = json_decode($job->workload());
 	if($workload->type === 'tess'){
@@ -16,11 +16,11 @@ $worker->addFunction(/**
 		if ($success === 0 && !isset($_out[1])) {
 			//occ command which puts the file and cleans the tempfile
 			exec('php '.$workload->occdir.'/occ ocr:complete '.$workload->statusid.' false');
-		}else{
+		} else{
 			//update status failed.
 			exec('php '.$workload->occdir.'/occ ocr:complete '.$workload->statusid.' true');
 		}
-	}else{
+	} else{
 		//ocrmypdf
 		$command = 'ocrmypdf "' . $workload->datadirectory . $workload->path . '" "' . $workload->tempfile . '" -l ' . $workload->language . ' --skip-text';
 		$success = -1;
@@ -29,7 +29,7 @@ $worker->addFunction(/**
 		if ($success === 0 && !isset($_out[0])) {
 			//occ command which puts the file and cleans the tempfile
 			exec('php '.$workload->occdir.'/occ ocr:complete '.$workload->statusid.' false');
-		}else{
+		} else{
 			//update status failed.
 			exec('php '.$workload->occdir.'/occ ocr:complete '.$workload->statusid.' true');
 		}

@@ -36,7 +36,7 @@ class OcrStatusMapper extends Mapper {
 	 * @param $id
 	 * @return \OCP\AppFramework\Db\Entity
 	 */
-	public function find($id){
+	public function find($id) {
 		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE id = ?';
 		return $this->findEntity($sql, [$id]);
 	}

@@ -97,7 +97,7 @@ class OcrService {
 	 *
 	 * @return array Languages
 	 */
-	public function listLanguages(){
+	public function listLanguages() {
 		try {
 			$success = -1;
 			$this->logger->debug('Fetching languages. ', ['app' => 'ocr']);
@@ -115,12 +115,12 @@ class OcrService {
 						array_push($languages, $tdname);
 					}
 				}
-				$this->logger->debug('Fetched languages: '.json_encode($languages), ['app' => 'ocr']);
+				$this->logger->debug('Fetched languages: ' . json_encode($languages), ['app' => 'ocr']);
 				return $languages;
 			} else {
 				throw new NotFoundException('No languages found.');
 			}
-		}catch(Exception $e){
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}
@@ -129,18 +129,18 @@ class OcrService {
 	 * Processes and prepares the files for ocr.
 	 * Sends the stuff to the gearman client in order to ocr async.
 	 *
-	 * @param $language
+	 * @param string $language
 	 * @param array $files
 	 * @return string
 	 */
 	public function process($language, $files) {
 		try {
-			$this->logger->debug('Will now process files: '.json_encode($files) . ' with language: ' . json_encode($language), ['app' => 'ocr']);
+			$this->logger->debug('Will now process files: ' . json_encode($files) . ' with language: ' . json_encode($language), ['app' => 'ocr']);
 			// Check if files and language not empty
-			if(!empty($files) && !empty($language) && in_array($language, $this->listLanguages())){
+			if (!empty($files) && !empty($language) && in_array($language, $this->listLanguages())) {
 				// get the array with full fileinfo
 				$fileInfo = $this->buildFileInfo($files);
-				foreach ($fileInfo as $fInfo){
+				foreach ($fileInfo as $fInfo) {
 					// Check if filelock existing
 					// TODO: FileLock maybe \OC\Files\View::lockFile()
 					// get new name for saving purpose
@@ -150,9 +150,9 @@ class OcrService {
 					$tempFile = $this->tempM->getTemporaryFile();
 
 					// set the gearman running type
-					if($fInfo->getMimetype() === $this::MIMETYPE_PDF){
+					if ($fInfo->getMimetype() === $this::MIMETYPE_PDF) {
 						$ftype = 'mypdf';
-					}else{
+					} else {
 						$ftype = 'tess';
 					}
 
@@ -164,10 +164,10 @@ class OcrService {
 					$this->sendGearmanJob($ftype, $this->config->getSystemValue('datadirectory'), $fInfo->getPath(), $tempFile, $language, $status, \OC::$SERVERROOT);
 				}
 				return 'PROCESSING';
-			}else{
+			} else {
 				throw new NotFoundException('Empty parameters.');
 			}
-		}catch(Exception $e){
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}
@@ -178,7 +178,7 @@ class OcrService {
 	 *
 	 * @return string
 	 */
-	public function status(){
+	public function status() {
 		try {
 			// TODO: release lock
 			$processed = $this->handleProcessed();
@@ -188,7 +188,7 @@ class OcrService {
 			$pending = count($this->statusMapper->findAllPending($this->userId));
 
 			return ['processed' => $processed, 'failed' => $failed, 'pending' => $pending];
-		}catch (Exception $e){
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}
@@ -198,20 +198,20 @@ class OcrService {
 	 * the gearman worker should call it automatically after each processing step.
 	 *
 	 * @param $statusId
-	 * @param $failed
+	 * @param boolean $failed
 	 */
-	public function complete($statusId, $failed){
-		try{
+	public function complete($statusId, $failed) {
+		try {
 			$status = $this->statusMapper->find($statusId);
-			if(!$failed) {
+			if (!$failed) {
 				$status->setStatus('PROCESSED');
 				$this->statusMapper->update($status);
-			}else{
+			} else {
 				$status->setStatus('FAILED');
 				$this->statusMapper->update($status);
 			}
-		} catch (Exception $e){
-			if ($e instanceof NotFoundException){
+		} catch (Exception $e) {
+			if ($e instanceof NotFoundException) {
 				$status->setStatus('FAILED');
 				$this->statusMapper->update($status);
 				$this->handleException($e);
@@ -226,28 +226,28 @@ class OcrService {
 	 *
 	 * @return int
 	 */
-	private function handleProcessed(){
+	private function handleProcessed() {
 		try {
 			$this->logger->debug('Find processed ocr files and put them to the right dirs.', ['app' => 'ocr']);
 			$processed = $this->statusMapper->findAllProcessed($this->userId);
 			foreach ($processed as $status) {
-				if ($status->getType() === 'tess' && file_exists($status->getTempFile().'.txt')) {
+				if ($status->getType() === 'tess' && file_exists($status->getTempFile() . '.txt')) {
 					//Save the tmp file with newname
-					$this->view->file_put_contents($status->getNewName(), file_get_contents($status->getTempFile() . '.txt'));// need .txt because tesseract saves it like this
+					$this->view->file_put_contents($status->getNewName(), file_get_contents($status->getTempFile() . '.txt')); // need .txt because tesseract saves it like this
 					// Cleaning temp files
 					$this->statusMapper->delete($status);
 					exec('rm ' . $status->getTempFile() . '.txt');
 				} elseif ($status->getType() === 'mypdf' && file_exists($status->getTempFile())) {
 					//Save the tmp file with newname
-					$this->view->file_put_contents($status->getNewName(), file_get_contents($status->getTempFile()));// don't need to extend with .pdf / it uses the tmp file to save
+					$this->view->file_put_contents($status->getNewName(), file_get_contents($status->getTempFile())); // don't need to extend with .pdf / it uses the tmp file to save
 					$this->statusMapper->delete($status);
 					exec('rm ' . $status->getTempFile());
-				}else{
+				} else {
 					throw new NotFoundException('Temp file does not exist.');
 				}
 			}
 			return count($processed);
-		}catch (Exception $e){
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}
@@ -257,7 +257,7 @@ class OcrService {
 	 *
 	 * @return array
 	 */
-	private function handleFailed(){
+	private function handleFailed() {
 		try {
 			$failed = $this->statusMapper->findAllFailed($this->userId);
 			foreach ($failed as $status) {
@@ -266,9 +266,9 @@ class OcrService {
 				// clean from db
 				$this->statusMapper->delete($status);
 			}
-			$this->logger->debug('Following status objects failed: '.json_encode($failed), ['app' => 'ocr']);
+			$this->logger->debug('Following status objects failed: ' . json_encode($failed), ['app' => 'ocr']);
 			return $failed;
-		}catch (Exception $e){
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}
@@ -280,19 +280,19 @@ class OcrService {
 	 * @param Files\FileInfo $fileInfo
 	 * @return string
 	 */
-	private function buildNewName(Files\FileInfo $fileInfo){
+	private function buildNewName(Files\FileInfo $fileInfo) {
 		// get rid of the .png or .pdf and so on
-		$fileName = substr($fileInfo->getName(),0,-4);
+		$fileName = substr($fileInfo->getName(), 0, -4);
 		// eliminate the file name from the path
-		$filePath = str_replace($fileInfo->getName(),'',$fileInfo->getPath());
+		$filePath = str_replace($fileInfo->getName(), '', $fileInfo->getPath());
 		// and get the path on top of the user/files/ dir
-		$filePath = str_replace('/'.$this->userId.'/files','',$filePath);
-		if($fileInfo->getMimetype() === $this::MIMETYPE_PDF){
+		$filePath = str_replace('/' . $this->userId . '/files', '', $filePath);
+		if ($fileInfo->getMimetype() === $this::MIMETYPE_PDF) {
 			// PDFs:
-			return Files::buildNotExistingFileName($filePath, $fileName.'_OCR.pdf');
+			return Files::buildNotExistingFileName($filePath, $fileName . '_OCR.pdf');
 		} else {
 			// IMAGES:
-			return Files::buildNotExistingFileName($filePath, $fileName.'_OCR.txt');
+			return Files::buildNotExistingFileName($filePath, $fileName . '_OCR.txt');
 		}
 	}
 
@@ -304,13 +304,13 @@ class OcrService {
 	 * @return array of Files\FileInfo
 	 * @throws NotFoundException
 	 */
-	private function buildFileInfo(array $files){
+	private function buildFileInfo(array $files) {
 		try {
 			$fileArray = array();
 			foreach ($files as $file) {
 				// Check if anything is missing and file type is correct
 				if ((!empty($file['path']) || !empty($file['directory'])) && $file['type'] === 'file') {
-					if(empty($file['path'])){
+					if (empty($file['path'])) {
 						//Because new updated files have the property directory instead of path
 						$file['path'] = $file['directory'];
 					}
@@ -337,33 +337,34 @@ class OcrService {
 	 * @param $file
 	 * @return string
 	 */
-	private function getCorrectPath($file){
-		if($file['path'] === '/'){
-			$path = ''. '/' . $file['name'];
-		}else{
-			$path = $file['path']. '/' . $file['name'];
+	private function getCorrectPath($file) {
+		if ($file['path'] === '/') {
+			$path = '' . '/' . $file['name'];
+		} else {
+			$path = $file['path'] . '/' . $file['name'];
 		}
 		return $path;
 	}
 
 	/**
 	 * Inits the Gearman client and sends the task to the background worker (async)
-	 * @param $type
+	 * @param string $type
 	 * @param $datadirectory
 	 * @param $path
 	 * @param $tempFile
 	 * @param $language
 	 * @param $statusId
+	 * @param OcrStatus $status
 	 */
-	private function sendGearmanJob($type, $datadirectory, $path, $tempFile, $language, $status, $occDir){
+	private function sendGearmanJob($type, $datadirectory, $path, $tempFile, $language, $status, $occDir) {
 		try {
-			if($this->workerService->workerExists() === false){
+			if ($this->workerService->workerExists() === false) {
 				throw new NotFoundException('No gearman worker exists.');
 			}
 			$this->statusMapper->insert($status);
 			// Gearman thing
 			$client = new \GearmanClient();
-			$client->addServer('127.0.0.1',4730);
+			$client->addServer('127.0.0.1', 4730);
 			$result = $client->doBackground("ocr", json_encode(array(
 				'type' => $type,
 				'datadirectory' => $datadirectory,
@@ -373,7 +374,7 @@ class OcrService {
 				'statusid' => $status->getId(),
 				'occdir' => $occDir
 			)));
-			$this->logger->debug('Gearman Client output: '.json_encode($result), ['app' => 'ocr']);
+			$this->logger->debug('Gearman Client output: ' . json_encode($result), ['app' => 'ocr']);
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}

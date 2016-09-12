@@ -38,9 +38,9 @@ class GearmanWorkerService {
 	/**
 	 * Checks if a worker is active and registered at the Gearman Job Server.
 	 * returns false if not.
-	 * @return bool
+	 * @return boolean|null
 	 */
-	public function workerExists(){
+	public function workerExists() {
 		try {
 			$checkCommand = 'gearadmin -h 127.0.0.1 -p 4730 --workers 2>&1';
 			exec($checkCommand, $result, $success);
@@ -48,15 +48,15 @@ class GearmanWorkerService {
 				throw new NotFoundException('Gearman worker detection failed.');
 			}
 			// look into the resulting array. 3 because first row is the ps checking command, second row is the grep command separated from the ps and 3rd or more has to be the GearmanOCRWorker.php.
-			foreach ($result as $res){
-				if(strpos($res, 'ocr') !== false){
+			foreach ($result as $res) {
+				if (strpos($res, 'ocr') !== false) {
 					$this->logger->debug('Worker found.', ['app' => 'ocr']);
 					return true;
 				}
 			}
 			$this->logger->debug('No worker found.', ['app' => 'ocr']);
 			return false;
-		} catch (Exception $e){
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}

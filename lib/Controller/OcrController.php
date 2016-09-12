@@ -45,7 +45,7 @@ class OcrController extends Controller {
 	 * @param OcrService $service
 	 * @param $UserId
 	 */
-	public function __construct($AppName, IRequest $request, OcrService $service, $UserId){
+	public function __construct($AppName, IRequest $request, OcrService $service, $UserId) {
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
 		$this->service = $service;
@@ -56,8 +56,8 @@ class OcrController extends Controller {
 	 * @NoAdminRequired
 	 * @return DataResponse
 	 */
-	public function languages(){
-		return $this->handleNotFound(function(){
+	public function languages() {
+		return $this->handleNotFound(function() {
 			return $this->service->listLanguages();
 		});
 	}
@@ -70,7 +70,7 @@ class OcrController extends Controller {
 	 * @return DataResponse
 	 */
 	public function process($language, $files) {
-		return $this->handleNotFound(function () use ($language, $files){
+		return $this->handleNotFound(function() use ($language, $files){
 			return $this->service->process($language, $files);
 		});
 	}
@@ -80,8 +80,8 @@ class OcrController extends Controller {
 	 * @NoAdminRequired
 	 * @return DataResponse
 	 */
-	public function status(){
-		return $this->handleNotFound(function () {
+	public function status() {
+		return $this->handleNotFound(function() {
 			return $this->service->status();
 		});
 	}
