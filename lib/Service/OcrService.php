@@ -112,7 +112,7 @@ class OcrService {
 				$languages = array();
 				foreach ($traineddata as $td) {
 					$tdname = trim($td);
-					if (strlen($tdname) == 3) {
+					if (strlen($tdname) === 3) {
 						array_push($languages, $tdname);
 					}
 				}
@@ -151,7 +151,7 @@ class OcrService {
 					$tempFile = $this->tempM->getTemporaryFile();
 
 					// set the gearman running type
-					if($fInfo->getMimetype() == $this::MIMETYPE_PDF){
+					if($fInfo->getMimetype() === $this::MIMETYPE_PDF){
 						$ftype = 'mypdf';
 					}else{
 						$ftype = 'tess';
@@ -232,13 +232,13 @@ class OcrService {
 			$this->logger->debug('Find processed ocr files and put them to the right dirs.', ['app' => 'ocr']);
 			$processed = $this->statusMapper->findAllProcessed($this->userId);
 			foreach ($processed as $status) {
-				if ($status->getType() == 'tess' && file_exists($status->getTempFile().'.txt')) {
+				if ($status->getType() === 'tess' && file_exists($status->getTempFile().'.txt')) {
 					//Save the tmp file with newname
 					$this->view->file_put_contents($status->getNewName(), file_get_contents($status->getTempFile() . '.txt'));// need .txt because tesseract saves it like this
 					// Cleaning temp files
 					$this->statusMapper->delete($status);
 					exec('rm ' . $status->getTempFile() . '.txt');
-				} elseif ($status->getType() == 'mypdf' && file_exists($status->getTempFile())) {
+				} elseif ($status->getType() === 'mypdf' && file_exists($status->getTempFile())) {
 					//Save the tmp file with newname
 					$this->view->file_put_contents($status->getNewName(), file_get_contents($status->getTempFile()));// don't need to extend with .pdf / it uses the tmp file to save
 					$this->statusMapper->delete($status);
@@ -288,7 +288,7 @@ class OcrService {
 		$filePath = str_replace($fileInfo->getName(),'',$fileInfo->getPath());
 		// and get the path on top of the user/files/ dir
 		$filePath = str_replace('/'.$this->userId.'/files','',$filePath);
-		if($fileInfo->getMimetype() == $this::MIMETYPE_PDF){
+		if($fileInfo->getMimetype() === $this::MIMETYPE_PDF){
 			// PDFs:
 			return Files::buildNotExistingFileName($filePath, $fileName.'_OCR.pdf');
 		} else {
@@ -309,9 +309,9 @@ class OcrService {
 		try {
 			$fileArray = array();
 			foreach ($files as $file) {
-				if ((!empty($file['path']) || !empty($file['directory'])) && $file['type'] == 'file') {
+				if ((!empty($file['path']) || !empty($file['directory'])) && $file['type'] === 'file') {
 					if(empty($file['path'])){ $file['path'] = $file['directory']; } //Because new updated files have the property directory instead of path
-					if($file['path'] == '/'){
+					if($file['path'] === '/'){
 						$path = ''. '/' . $file['name'];
 					}else{
 						$path = $file['path']. '/' . $file['name'];

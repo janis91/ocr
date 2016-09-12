@@ -69,9 +69,9 @@ class CompleteOCR extends Command  {
 		$statusId = $input->getArgument('status-id');
 		$failed = $input->getArgument('failed');
 		try{
-			if($failed == 'false'){
+			if($failed === 'false'){
 				$failed = false;
-			}elseif ($failed == 'true'){
+			}elseif ($failed === 'true'){
 				$failed = true;
 			}else{
 				throw new ServiceException('Wrong Arguments.');
