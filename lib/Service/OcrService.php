@@ -344,13 +344,13 @@ class OcrService {
 	 * Checks a Mimetype for a specific given FileInfo.
 	 * @param Files\FileInfo $fileInfo
 	 */
-	private function checkMimeType(FileInfo $fileInfo){
-		try{
+	private function checkMimeType(FileInfo $fileInfo) {
+		try {
 			if (!$fileInfo || !in_array($fileInfo->getMimetype(), $this::ALLOWED_MIMETYPES)) {
 				$this->logger->debug('Getting FileInfo did not work or not included in the ALLOWED_MIMETYPES array.', ['app' => 'ocr']);
 				throw new NotFoundException($this->l10n->t('Wrong parameters or wrong mimetype.'));
 			}
-		}catch (Exception $e){
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}
