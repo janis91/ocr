@@ -70,7 +70,7 @@ class CompleteOCR extends Command {
 		try {
 			if ($failed === 'false') {
 				$failed = false;
-			}elseif ($failed === 'true') {
+			} elseif ($failed === 'true') {
 				$failed = true;
 			} else {
 				throw new ServiceException('Wrong Arguments.');

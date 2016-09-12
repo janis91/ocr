@@ -68,7 +68,7 @@
 					deferred.reject(jqXHR.responseText);
 				});
 			}else{
-				deferred.reject('Files have wrong mimetypes.');
+				deferred.reject(t('ocr','Files have wrong mimetypes.'));
 			}
 			return deferred.promise();
 		},

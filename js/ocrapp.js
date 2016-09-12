@@ -38,7 +38,7 @@
 			self._ocr.initialize().done(function(){
 				self._view.initialize();
 			}).fail(function (message) {
-				self._view.notifyError('OCR App could not be initialized: ' + message);
+				self._view.notifyError(t('ocr', 'OCR App could not be initialized:') + ' ' + message);
 			});
 		},
 		/**

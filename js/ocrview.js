@@ -160,14 +160,14 @@
 				self.setSelectedFiles([]);
 			}
 		},
-		togglePendingState: function (force) {
+		togglePendingState: function (force, initialcount) {
 			var self = this;
 			var html = '';
 			var pendingcount = self._ocr.getStatus().pending;
 			if(force){
-				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + t('ocr','OCR processing started.') + '</span>';
+				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + n('ocr','OCR started: %n currently pending file in queue.', 'OCR started: %n currently pending files in queue.', initialcount) + '</span>';
 			}else{
-				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + pendingcount + ' ' + t('ocr','currently pending OCR requests.') + '</span>';
+				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + ' ' + n('ocr','OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', pendingcount) + '</span>';
 			}
 			if(pendingcount > 0 || force){
 				if (self._row !== undefined) { OC.Notification.hide(self._row); }
@@ -190,7 +190,7 @@
 		loopForStatus: function () {
 			var self = this;
 			$.when(self._ocr.checkStatus()).done(function(){
-				if(self._ocr.getStatus().failed > 0) { self.notifyError('OCR processing for one or more files failed. For details please contact your administrator.'); }
+				if(self._ocr.getStatus().failed > 0) { self.notifyError(n('ocr', 'OCR processing for %n file failed. For details please contact your administrator.', 'OCR processing for %n files failed. For details please contact your administrator.', self._ocr.getStatus().failed.length)); }
 				if(self._ocr.getStatus().pending > 0){
 					if(self._ocr.getStatus().processed > 0) { self.updateFileList(); }
 					self.togglePendingState(false);
@@ -206,7 +206,7 @@
 		},
 		notifyError: function (message) {
 			/** global: OC */
-			OC.Notification.showHtml('<div>'+t('ocr', message)+'</div>', {timeout: 10, type: 'error'});
+			OC.Notification.showHtml('<div>'+message+'</div>', {timeout: 10, type: 'error'});
 		},
 		registerEvents: function(){
 			var self = this;
@@ -222,12 +222,13 @@
 				var selectedLanguage = $('#ocrLanguage').val();
 				$.when(self._ocr.process(self.getSelectedFiles(), selectedLanguage)).done(function(){
 					self.destroyDropdown();
-					self.setSelectedFiles([]);
+
 					// status monitoring init
-					self.togglePendingState(true);
+					self.togglePendingState(true, self.getSelectedFiles().length);
+					self.setSelectedFiles([]);
 					setTimeout($.proxy(self.loopForStatus,self), 4500);
 				}).fail(function(message){
-					self.notifyError('OCR processing failed: ' + message);
+					self.notifyError(t('ocr', 'OCR processing failed:')+ ' ' + message);
 					self.destroyDropdown();
 				});
 			});
