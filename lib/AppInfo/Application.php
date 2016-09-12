@@ -68,6 +68,7 @@ class Application extends App {
 			/** @var \OC\Server $server */
 			$server = $c->query('ServerContainer');
 			return new GearmanWorkerService(
+				$server->getL10N('ocr'),
 				$server->getLogger()
 			);
 		});
@@ -96,6 +97,7 @@ class Application extends App {
 				$c->query('OcrStatusMapper'),
 				new View('/' . $c->query('CurrentUID') . '/files'),
 				$c->query('CurrentUID'),
+				$server->getL10N('ocr'),
 				$server->getLogger()
 			);
 		});

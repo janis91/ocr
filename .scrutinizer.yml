@@ -4,6 +4,7 @@ filter:
         - 'l10n/*'
         - 'tests/*'
         - '*.min.js'
+        - 'worker/*'
 
 imports:
     - javascript

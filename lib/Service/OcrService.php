@@ -16,7 +16,9 @@ use OC\Files\View;
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Db\OcrStatusMapper;
 use OCP\Files;
+use OCP\Files\FileInfo;
 use OCP\IConfig;
+use OCP\IL10N;
 use OCP\ILogger;
 use OCP\ITempManager;
 
@@ -63,6 +65,11 @@ class OcrService {
 	private $userId;
 
 	/**
+	 * @var IL10N
+	 */
+	private $l10n;
+
+	/**
 	 * Array of allowed mimetypes for ocr processing
 	 */
 	const ALLOWED_MIMETYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff'];
@@ -80,9 +87,16 @@ class OcrService {
 	/**
 	 * OcrService constructor.
 	 *
+	 * @param ITempManager $tempManager
+	 * @param IConfig $config
+	 * @param GearmanWorkerService $workerService
+	 * @param OcrStatusMapper $mapper
+	 * @param View $view
+	 * @param $userId
+	 * @param IL10N $l10n
 	 * @param ILogger $logger
 	 */
-	public function __construct(ITempManager $tempManager, IConfig $config, GearmanWorkerService $workerService, OcrStatusMapper $mapper, View $view, $userId, ILogger $logger) {
+	public function __construct(ITempManager $tempManager, IConfig $config, GearmanWorkerService $workerService, OcrStatusMapper $mapper, View $view, $userId, IL10N $l10n, ILogger $logger) {
 		$this->logger = $logger;
 		$this->tempM = $tempManager;
 		$this->config = $config;
@@ -90,6 +104,7 @@ class OcrService {
 		$this->statusMapper = $mapper;
 		$this->view = $view;
 		$this->userId = $userId;
+		$this->l10n = $l10n;
 	}
 
 	/**
@@ -118,7 +133,7 @@ class OcrService {
 				$this->logger->debug('Fetched languages: ' . json_encode($languages), ['app' => 'ocr']);
 				return $languages;
 			} else {
-				throw new NotFoundException('No languages found.');
+				throw new NotFoundException($this->l10n->t('No languages found.'));
 			}
 		} catch (Exception $e) {
 			$this->handleException($e);
@@ -165,7 +180,7 @@ class OcrService {
 				}
 				return 'PROCESSING';
 			} else {
-				throw new NotFoundException('Empty parameters.');
+				throw new NotFoundException($this->l10n->t('Empty passed parameters.'));
 			}
 		} catch (Exception $e) {
 			$this->handleException($e);
@@ -243,7 +258,7 @@ class OcrService {
 					$this->statusMapper->delete($status);
 					exec('rm ' . $status->getTempFile());
 				} else {
-					throw new NotFoundException('Temp file does not exist.');
+					throw new NotFoundException($this->l10n->t('Temp file does not exist.'));
 				}
 			}
 			return count($processed);
@@ -277,10 +292,10 @@ class OcrService {
 	/**
 	 * Returns a not existing file name for pdf or image processing
 	 *
-	 * @param Files\FileInfo $fileInfo
+	 * @param FileInfo $fileInfo
 	 * @return string
 	 */
-	private function buildNewName(Files\FileInfo $fileInfo) {
+	private function buildNewName(FileInfo $fileInfo) {
 		// get rid of the .png or .pdf and so on
 		$fileName = substr($fileInfo->getName(), 0, -4);
 		// eliminate the file name from the path
@@ -310,24 +325,32 @@ class OcrService {
 			foreach ($files as $file) {
 				// Check if anything is missing and file type is correct
 				if ((!empty($file['path']) || !empty($file['directory'])) && $file['type'] === 'file') {
-					if (empty($file['path'])) {
-						//Because new updated files have the property directory instead of path
-						$file['path'] = $file['directory'];
-					}
 					// get correct path
 					$path = $this->getCorrectPath($file);
 					$fileInfo = $this->view->getFileInfo($path);
-					if (!$fileInfo || !in_array($fileInfo->getMimetype(), $this::ALLOWED_MIMETYPES)) {
-						$this->logger->debug('Getting FileInfo did not work or not included in the ALLOWED_MIMETYPES array.', ['app' => 'ocr']);
-						throw new NotFoundException('Wrong parameters or wrong mimetype.');
-					}
+					$this->checkMimeType($fileInfo);
 					array_push($fileArray, $fileInfo);
 				} else {
-					throw new NotFoundException('Wrong path parameter.');
+					throw new NotFoundException($this->l10n->t('Wrong path parameter.'));
 				}
 			}
 			return $fileArray;
 		} catch (Exception $e) {
+			$this->handleException($e);
+		}
+	}
+
+	/**
+	 * Checks a Mimetype for a specific given FileInfo.
+	 * @param Files\FileInfo $fileInfo
+	 */
+	private function checkMimeType(FileInfo $fileInfo){
+		try{
+			if (!$fileInfo || !in_array($fileInfo->getMimetype(), $this::ALLOWED_MIMETYPES)) {
+				$this->logger->debug('Getting FileInfo did not work or not included in the ALLOWED_MIMETYPES array.', ['app' => 'ocr']);
+				throw new NotFoundException($this->l10n->t('Wrong parameters or wrong mimetype.'));
+			}
+		}catch (Exception $e){
 			$this->handleException($e);
 		}
 	}
@@ -338,6 +361,10 @@ class OcrService {
 	 * @return string
 	 */
 	private function getCorrectPath($file) {
+		if (empty($file['path'])) {
+			//Because new updated files have the property directory instead of path
+			$file['path'] = $file['directory'];
+		}
 		if ($file['path'] === '/') {
 			$path = '' . '/' . $file['name'];
 		} else {
@@ -352,14 +379,14 @@ class OcrService {
 	 * @param $datadirectory
 	 * @param $path
 	 * @param $tempFile
-	 * @param $language
-	 * @param $statusId
+	 * @param string $language
 	 * @param OcrStatus $status
+	 * @param string $occDir
 	 */
 	private function sendGearmanJob($type, $datadirectory, $path, $tempFile, $language, $status, $occDir) {
 		try {
 			if ($this->workerService->workerExists() === false) {
-				throw new NotFoundException('No gearman worker exists.');
+				throw new NotFoundException($this->l10n->t('No gearman worker exists.'));
 			}
 			$this->statusMapper->insert($status);
 			// Gearman thing
