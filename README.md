@@ -1,4 +1,4 @@
-# OCR (0.8.3-beta)
+# OCR (v0.8.3-beta)
 [![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/janis91/ocr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/janis91/ocr/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master)
 
 **This software is in beta phase and should not be integrated in any production environment. If you tested it and want to give feedback, please open an issue. Thank You!**
@@ -16,7 +16,7 @@ The OCR app has some prerequisites:
  - **Linux** server as environment. (tested with debian and ubuntu)
  - **[OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF)** >v2.x (tested with v4.1.3)
  - **[tesseract-ocr](https://github.com/tesseract-ocr/tesseract)** >v3.02.02 with corresponding language files (eg. tesseract-ocr-eng)
- - **[gearman-server](http://gearman.org/)** and **[gearman-php](https://pecl.php.net/package/gearman)** typically these dependencies should be available in most Linux environments vie apt-get or similar package managers. 
+ - **[gearman-server](http://gearman.org/)** and **[gearman-php](https://pecl.php.net/package/gearman)** typically these dependencies should be available in most Linux environments via apt-get or similar package managers. Consider that the php7 version of gearman isn't completely there yet.
  
 Otherwise the app won't work.
 
