@@ -27,15 +27,7 @@ Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) (**Not 
 Please remind, that the app will not work as expected or maybe cannot be even installed as long as the prior mentioned Dependencies are not available.
 
 ## Administration
-After you have installed all dependencies and the app itself, you will have to get the GearmanWorker running in a seperate process (beside your server / nginx / apache). The worker is located in the *worker* directory of the ocr app directory (*server/apps/ocr/worker*). You have to start the file *GearmanOCRWorker.php* with the *php* command like following:
-
-``php GearmanWorker.php``
-
-The worker and the client (your nextcloud server) are configured for the server address 127.0.0.1 port 4730 (this is the standard configuration for gearman-job-server).
-
-**Please make sure, that you start this command with the user of your webserver (the one that runs nextcloud).**
-
-*Also have in mind that you could use something like a cronjob for reinitialization after restart and `nohup` for executing still after you leave the shell or logout.*
+Please read for the related topic in the [wiki](https://github.com/janis91/ocr/wiki).
 
 ## Usage
 The app integrates within the standard _files_ app of Nextcloud.
