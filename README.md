@@ -27,11 +27,14 @@ Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) (**Not 
 Please remind, that the app will not work as expected or maybe cannot be even installed as long as the prior mentioned Dependencies are not available.
 
 ## Administration
-Please read for the related topic in the [wiki](https://github.com/janis91/ocr/wiki).
+Please read the related topics in the [wiki](https://github.com/janis91/ocr/wiki).
 
 ## Usage
 The app integrates within the standard _files_ app of Nextcloud.
+
 In the Nextcloud file list the OCR action is registered as a fileaction like the _delete_ or _download_ action.
+
+Please consider, that sometimes after uploading the site has to be refreshed before processing of the newly uploaded files will work (_Exception: "Wrong path parameter."_).
 
 **Depending on the filesize, especially when processing a pdf, the ocr process is a long running process (tested with 120KB -> 10s). It is absolutely recommended to do nothing with the files which are processed in nextcloud until processing finishes.**
 
