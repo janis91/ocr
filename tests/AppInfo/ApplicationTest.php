@@ -29,6 +29,7 @@ use OCA\Ocr\Tests\TestCase;
 /**
  * Class ApplicationTest
  *
+ * @group DB
  * @package OCA\Ocr\Tests\AppInfo
  */
 class ApplicationTest extends TestCase {
@@ -52,6 +53,8 @@ class ApplicationTest extends TestCase {
 
 	public function queryData() {
 		return array(
+			array('OcrStatusMapper', 'OCA\Ocr\Db\OcrStatusMapper'),
+			array('GearmanWorkerService', 'OCA\Ocr\Service\GearmanWorkerService'),
 			array('OcrService', 'OCA\Ocr\Service\OcrService'),
 			array('OcrController', 'OCP\AppFramework\Controller')
 		);

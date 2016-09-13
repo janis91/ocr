@@ -226,11 +226,6 @@ class OcrService {
 				$this->statusMapper->update($status);
 			}
 		} catch (Exception $e) {
-			if ($e instanceof NotFoundException) {
-				$status->setStatus('FAILED');
-				$this->statusMapper->update($status);
-				$this->handleException($e);
-			}
 			$this->handleException($e);
 		}
 	}

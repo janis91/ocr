@@ -52,7 +52,7 @@ class GearmanWorkerService {
 		try {
 			$checkCommand = 'gearadmin -h 127.0.0.1 -p 4730 --workers 2>&1';
 			exec($checkCommand, $result, $success);
-			if ($success !== 0 && count($result) > 0) {
+			if ($success !== 0) {
 				throw new NotFoundException($this->l10n->t('Gearman worker detection failed.'));
 			}
 			// look into the resulting array. 3 because first row is the ps checking command, second row is the grep command separated from the ps and 3rd or more has to be the GearmanOCRWorker.php.
