@@ -1,8 +1,9 @@
 #Changelog
 
-nextcloud-ocr (0.8.5-beta)
+nextcloud-ocr (0.8.6-beta)
 * **Feature**: Requested transifex translation and prepared the files for it.
 * **Enhancement**: Added tests for methods as long as it was possible. (some service methods cannot be tested, because therefore a completely working environment and real files are required)
+* **Organizational**: Added to appstore.
 
 nextcloud-ocr (0.8.3-beta)
 * **Feature**: Now a asynchronous processing of multiple files is in place brought by gearman server.
