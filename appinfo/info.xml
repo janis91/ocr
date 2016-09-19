@@ -8,8 +8,8 @@
 <summary lang="de">OCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF</summary>
 <description lang="en"><![CDATA[# Description
 
-OCR processing for images and PDF with tesseract-ocr and OCRmyPDF.</description>
-<description lang="de"># Beschreibung
+OCR processing for images and PDF with tesseract-ocr and OCRmyPDF.]]></description>
+<description lang="de"><![CDATA[# Beschreibung
 
 OCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF]]></description>
 <version>0.8.5</version>
