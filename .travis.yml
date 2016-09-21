@@ -65,13 +65,13 @@ script:
 matrix:
   include:
     - php: 5.6
-      env: RUNONCE=1
+      env: DB=pgsql;RUNONCE=1
     - php: 5.6
       env: DB=pgsql
     - php: 5.6
-      env: CODECHECK=1
+      env: DB=pgsql;CODECHECK=1
     - php: 5.6
-      env: CODECHECK=2
+      env: DB=pgsql;CODECHECK=2
   allow_failures:
-    - env: CODECHECK=2
+    - env: DB=pgsql;CODECHECK=2
 fast_finish: true
