@@ -45,9 +45,9 @@ class OcrService {
 	private $config;
 
 	/**
-	 * @var GearmanWorkerService
+	 * @var QueueService
 	 */
-	private $workerService;
+	private $queueService;
 
 	/**
 	 * @var OcrStatusMapper
@@ -89,18 +89,18 @@ class OcrService {
 	 *
 	 * @param ITempManager $tempManager
 	 * @param IConfig $config
-	 * @param GearmanWorkerService $workerService
+	 * @param QueueService $queueService
 	 * @param OcrStatusMapper $mapper
 	 * @param View $view
 	 * @param $userId
 	 * @param IL10N $l10n
 	 * @param ILogger $logger
 	 */
-	public function __construct(ITempManager $tempManager, IConfig $config, GearmanWorkerService $workerService, OcrStatusMapper $mapper, View $view, $userId, IL10N $l10n, ILogger $logger) {
+	public function __construct(ITempManager $tempManager, IConfig $config, QueueService $queueService, OcrStatusMapper $mapper, View $view, $userId, IL10N $l10n, ILogger $logger) {
 		$this->logger = $logger;
 		$this->tempM = $tempManager;
 		$this->config = $config;
-		$this->workerService = $workerService;
+		$this->queueService = $queueService;
 		$this->statusMapper = $mapper;
 		$this->view = $view;
 		$this->userId = $userId;
@@ -142,7 +142,7 @@ class OcrService {
 
 	/**
 	 * Processes and prepares the files for ocr.
-	 * Sends the stuff to the gearman client in order to ocr async.
+	 * Sends the stuff to the client in order to ocr async.
 	 *
 	 * @param string $language
 	 * @param array $files
@@ -164,7 +164,7 @@ class OcrService {
 					// create a temp file for ocr processing purposes
 					$tempFile = $this->tempM->getTemporaryFile();
 
-					// set the gearman running type
+					// set the running type
 					if ($fInfo->getMimetype() === $this::MIMETYPE_PDF) {
 						$ftype = 'mypdf';
 					} else {
@@ -174,9 +174,9 @@ class OcrService {
 					// Create status object
 					$status = new OcrStatus('PENDING', $fInfo->getId(), $newName, $tempFile, $ftype, $this->userId);
 
-					// Init Gearman client and send task / job
-					// Feed the gearman worker
-					$this->sendGearmanJob($ftype, $this->config->getSystemValue('datadirectory'), $fInfo->getPath(), $tempFile, $language, $status, \OC::$SERVERROOT);
+					// Init client and send task / job
+					// Feed the worker
+					$this->queueService->clientSend($status, $this->config->getSystemValue('datadirectory'), $fInfo->getPath(), $language, \OC::$SERVERROOT);
 				}
 				return 'PROCESSING';
 			} else {
@@ -191,6 +191,7 @@ class OcrService {
 	 * A function which returns the JSONResponse for all required status checks and tasks.
 	 * It will check for already processed, pending and failed ocr tasks and return them as needed.
 	 *
+	 * @codeCoverageIgnore
 	 * @return string
 	 */
 	public function status() {
@@ -210,7 +211,7 @@ class OcrService {
 
 	/**
 	 * The command ocr:complete for occ will call this function in order to set the status.
-	 * the gearman worker should call it automatically after each processing step.
+	 * the worker should call it automatically after each processing step.
 	 *
 	 * @param $statusId
 	 * @param boolean $failed
@@ -234,6 +235,7 @@ class OcrService {
 	 * Finishes all Processed files by copying them to the right path and deleteing the temp files.
 	 * Returns the number of processed files.
 	 *
+	 * @codeCoverageIgnore
 	 * @return int
 	 */
 	private function handleProcessed() {
@@ -265,6 +267,7 @@ class OcrService {
 	/**
 	 * Handles all failed orders of ocr processing queue and returns the status objects.
 	 *
+	 * @codeCoverageIgnore
 	 * @return array
 	 */
 	private function handleFailed() {
@@ -286,11 +289,13 @@ class OcrService {
 
 	/**
 	 * Returns a not existing file name for pdf or image processing
+	 * protected as of testing issues with static methods. (Actually
+	 * it will be mocked partially) FIXME: Change this behaviour as soon as the buidlNotExistingFileName function is not static anymore
 	 *
 	 * @param FileInfo $fileInfo
 	 * @return string
 	 */
-	private function buildNewName(FileInfo $fileInfo) {
+	protected function buildNewName(FileInfo $fileInfo) {
 		// get rid of the .png or .pdf and so on
 		$fileName = substr($fileInfo->getName(), 0, -4);
 		// eliminate the file name from the path
@@ -361,45 +366,11 @@ class OcrService {
 			$file['path'] = $file['directory'];
 		}
 		if ($file['path'] === '/') {
-			$path = '' . '/' . $file['name'];
+			$path = $file['path'] . $file['name'];
 		} else {
 			$path = $file['path'] . '/' . $file['name'];
 		}
 		return $path;
-	}
-
-	/**
-	 * Inits the Gearman client and sends the task to the background worker (async)
-	 * @param string $type
-	 * @param $datadirectory
-	 * @param $path
-	 * @param $tempFile
-	 * @param string $language
-	 * @param OcrStatus $status
-	 * @param string $occDir
-	 */
-	private function sendGearmanJob($type, $datadirectory, $path, $tempFile, $language, $status, $occDir) {
-		try {
-			if ($this->workerService->workerExists() === false) {
-				throw new NotFoundException($this->l10n->t('No gearman worker exists.'));
-			}
-			$this->statusMapper->insert($status);
-			// Gearman thing
-			$client = new \GearmanClient();
-			$client->addServer('127.0.0.1', 4730);
-			$result = $client->doBackground("ocr", json_encode(array(
-				'type' => $type,
-				'datadirectory' => $datadirectory,
-				'path' => $path,
-				'tempfile' => $tempFile,
-				'language' => $language,
-				'statusid' => $status->getId(),
-				'occdir' => $occDir
-			)));
-			$this->logger->debug('Gearman Client output: ' . json_encode($result), ['app' => 'ocr']);
-		} catch (Exception $e) {
-			$this->handleException($e);
-		}
 	}
 
 	/**

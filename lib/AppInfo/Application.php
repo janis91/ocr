@@ -15,8 +15,8 @@ namespace OCA\Ocr\AppInfo;
 use OC\Files\View;
 use OCA\Ocr\Controller\OcrController;
 use OCA\Ocr\Db\OcrStatusMapper;
-use OCA\Ocr\Service\GearmanWorkerService;
 use OCA\Ocr\Service\OcrService;
+use OCA\Ocr\Service\QueueService;
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
 use OCP\IContainer;
@@ -62,18 +62,6 @@ class Application extends App {
 		}, false);
 
 		/**
-		 * Register the Gearman Worker Service
-		 */
-		$container->registerService('GearmanWorkerService', function(IAppContainer $c) {
-			/** @var \OC\Server $server */
-			$server = $c->query('ServerContainer');
-			return new GearmanWorkerService(
-				$server->getL10N('ocr'),
-				$server->getLogger()
-			);
-		});
-
-		/**
 		 * Register the Ocr Status mapper
 		 */
 		$container->registerService('OcrStatusMapper', function(IContainer $c) {
@@ -81,6 +69,19 @@ class Application extends App {
 			$server = $c->query('ServerContainer');
 			return new OcrStatusMapper(
 				$server->getDatabaseConnection()
+			);
+		});
+
+		/**
+		 * Register the Queue Service
+		 */
+		$container->registerService('QueueService', function(IAppContainer $c) {
+			/** @var \OC\Server $server */
+			$server = $c->query('ServerContainer');
+			return new QueueService(
+				$c->query('OcrStatusMapper'),
+				$server->getL10N('ocr'),
+				$server->getLogger()
 			);
 		});
 
@@ -93,7 +94,7 @@ class Application extends App {
 			return new OcrService(
 				$server->getTempManager(),
 				$server->getConfig(),
-				$c->query('GearmanWorkerService'),
+				$c->query('QueueService'),
 				$c->query('OcrStatusMapper'),
 				new View('/' . $c->query('CurrentUID') . '/files'),
 				$c->query('CurrentUID'),
