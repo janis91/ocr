@@ -191,6 +191,7 @@ class OcrService {
 	 * A function which returns the JSONResponse for all required status checks and tasks.
 	 * It will check for already processed, pending and failed ocr tasks and return them as needed.
 	 *
+	 * @codeCoverageIgnore
 	 * @return string
 	 */
 	public function status() {
@@ -234,6 +235,7 @@ class OcrService {
 	 * Finishes all Processed files by copying them to the right path and deleteing the temp files.
 	 * Returns the number of processed files.
 	 *
+	 * @codeCoverageIgnore
 	 * @return int
 	 */
 	private function handleProcessed() {
@@ -265,6 +267,7 @@ class OcrService {
 	/**
 	 * Handles all failed orders of ocr processing queue and returns the status objects.
 	 *
+	 * @codeCoverageIgnore
 	 * @return array
 	 */
 	private function handleFailed() {

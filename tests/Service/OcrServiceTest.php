@@ -149,6 +149,7 @@ class OcrServiceTest extends TestCase {
 		$this->service->complete(3, false);
 	}
 
+
 	public function testProcess(){
 		// {"id":325,"name":"peter.pdf","mimetype":"application\/pdf","mtime":1474450696000,"type":"file","size":103819,"etag":"e7195348f44aca1ad8d81ff6c8b6ea43","permissions":27,"hasPreview":false,"path":"\/","tags":[],"sharePermissions":"19"}
 		$files = array (
