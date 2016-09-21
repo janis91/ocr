@@ -45,9 +45,9 @@ class OcrService {
 	private $config;
 
 	/**
-	 * @var GearmanWorkerService
+	 * @var QueueService
 	 */
-	private $workerService;
+	private $queueService;
 
 	/**
 	 * @var OcrStatusMapper
@@ -89,18 +89,18 @@ class OcrService {
 	 *
 	 * @param ITempManager $tempManager
 	 * @param IConfig $config
-	 * @param GearmanWorkerService $workerService
+	 * @param QueueService $queueService
 	 * @param OcrStatusMapper $mapper
 	 * @param View $view
 	 * @param $userId
 	 * @param IL10N $l10n
 	 * @param ILogger $logger
 	 */
-	public function __construct(ITempManager $tempManager, IConfig $config, GearmanWorkerService $workerService, OcrStatusMapper $mapper, View $view, $userId, IL10N $l10n, ILogger $logger) {
+	public function __construct(ITempManager $tempManager, IConfig $config, QueueService $queueService, OcrStatusMapper $mapper, View $view, $userId, IL10N $l10n, ILogger $logger) {
 		$this->logger = $logger;
 		$this->tempM = $tempManager;
 		$this->config = $config;
-		$this->workerService = $workerService;
+		$this->queueService = $queueService;
 		$this->statusMapper = $mapper;
 		$this->view = $view;
 		$this->userId = $userId;
@@ -142,7 +142,7 @@ class OcrService {
 
 	/**
 	 * Processes and prepares the files for ocr.
-	 * Sends the stuff to the gearman client in order to ocr async.
+	 * Sends the stuff to the client in order to ocr async.
 	 *
 	 * @param string $language
 	 * @param array $files
@@ -150,6 +150,9 @@ class OcrService {
 	 */
 	public function process($language, $files) {
 		try {
+			if ($this->queueService->workerExists() === false) {
+				throw new NotFoundException($this->l10n->t('No ocr worker exists.'));
+			}
 			$this->logger->debug('Will now process files: ' . json_encode($files) . ' with language: ' . json_encode($language), ['app' => 'ocr']);
 			// Check if files and language not empty
 			if (!empty($files) && !empty($language) && in_array($language, $this->listLanguages())) {
@@ -164,7 +167,7 @@ class OcrService {
 					// create a temp file for ocr processing purposes
 					$tempFile = $this->tempM->getTemporaryFile();
 
-					// set the gearman running type
+					// set the running type
 					if ($fInfo->getMimetype() === $this::MIMETYPE_PDF) {
 						$ftype = 'mypdf';
 					} else {
@@ -174,9 +177,9 @@ class OcrService {
 					// Create status object
 					$status = new OcrStatus('PENDING', $fInfo->getId(), $newName, $tempFile, $ftype, $this->userId);
 
-					// Init Gearman client and send task / job
-					// Feed the gearman worker
-					$this->sendGearmanJob($ftype, $this->config->getSystemValue('datadirectory'), $fInfo->getPath(), $tempFile, $language, $status, \OC::$SERVERROOT);
+					// Init client and send task / job
+					// Feed the worker
+					$this->queueService->clientSend($status, $this->config->getSystemValue('datadirectory'), $fInfo->getPath(), $language, \OC::$SERVERROOT);
 				}
 				return 'PROCESSING';
 			} else {
@@ -210,7 +213,7 @@ class OcrService {
 
 	/**
 	 * The command ocr:complete for occ will call this function in order to set the status.
-	 * the gearman worker should call it automatically after each processing step.
+	 * the worker should call it automatically after each processing step.
 	 *
 	 * @param $statusId
 	 * @param boolean $failed
@@ -366,40 +369,6 @@ class OcrService {
 			$path = $file['path'] . '/' . $file['name'];
 		}
 		return $path;
-	}
-
-	/**
-	 * Inits the Gearman client and sends the task to the background worker (async)
-	 * @param string $type
-	 * @param $datadirectory
-	 * @param $path
-	 * @param $tempFile
-	 * @param string $language
-	 * @param OcrStatus $status
-	 * @param string $occDir
-	 */
-	private function sendGearmanJob($type, $datadirectory, $path, $tempFile, $language, $status, $occDir) {
-		try {
-			if ($this->workerService->workerExists() === false) {
-				throw new NotFoundException($this->l10n->t('No gearman worker exists.'));
-			}
-			$this->statusMapper->insert($status);
-			// Gearman thing
-			$client = new \GearmanClient();
-			$client->addServer('127.0.0.1', 4730);
-			$result = $client->doBackground("ocr", json_encode(array(
-				'type' => $type,
-				'datadirectory' => $datadirectory,
-				'path' => $path,
-				'tempfile' => $tempFile,
-				'language' => $language,
-				'statusid' => $status->getId(),
-				'occdir' => $occDir
-			)));
-			$this->logger->debug('Gearman Client output: ' . json_encode($result), ['app' => 'ocr']);
-		} catch (Exception $e) {
-			$this->handleException($e);
-		}
 	}
 
 	/**

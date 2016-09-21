@@ -1,13 +1,22 @@
 <?php
-
-$worker = new GearmanWorker();
-$worker->addServer('127.0.0.1', 4730);
-
-$worker->addFunction(/**
- * @param GearmanJob $job
+/**
+ * nextCloud - ocr
+ *
+ * This file is licensed under the Affero General Public License version 3 or
+ * later. See the COPYING file.
+ *
+ * @author Janis Koehr <janiskoehr@icloud.com>
+ * @copyright Janis Koehr 2016
  */
-	"ocr", function(GearmanJob $job) {
-	$workload = json_decode($job->workload());
+
+$queue = msg_get_queue(21671);
+
+$msg_type = NULL;
+$msg = NULL;
+$max_msg_size = 512;
+
+while (msg_receive($queue, 1, $msg_type, $max_msg_size, $msg)) {
+	$workload = json_decode($msg);
 	if ($workload->type === 'tess') {
 		//tesseract
 		$command = 'tesseract "' . $workload->datadirectory . $workload->path . '" "' . $workload->tempfile . '" -l ' . $workload->language;
@@ -34,6 +43,7 @@ $worker->addFunction(/**
 			exec('php ' . $workload->occdir . '/occ ocr:complete ' . $workload->statusid . ' true');
 		}
 	}
-});
-
-while ($worker->work());
+	//finally, reset our msg vars for when we loop and run again
+	$msg_type = NULL;
+	$msg = NULL;
+}

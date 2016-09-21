@@ -24,7 +24,7 @@ class OcrServiceTest extends TestCase {
 
 	private $config;
 
-	private $workerService;
+	private $queueService;
 
 	private $statusMapper;
 
@@ -46,7 +46,7 @@ class OcrServiceTest extends TestCase {
 		$this->config = $this->getMockBuilder('OCP\IConfig')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->workerService = $this->getMockBuilder('OCA\Ocr\Service\GearmanWorkerService')
+		$this->queueService = $this->getMockBuilder('OCA\Ocr\Service\QueueService')
 			->disableOriginalConstructor()
 			->getMock();
 		$this->statusMapper = $this->getMockBuilder('OCA\Ocr\Db\OcrStatusMapper')
@@ -58,12 +58,10 @@ class OcrServiceTest extends TestCase {
 		$this->l10n = $this->getMockBuilder('OCP\IL10N')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->service = new OcrService($this->tempM, $this->config, $this->workerService, $this->statusMapper, $this->view, $this->userId, $this->l10n, $this->logger);
+		$this->service = new OcrService($this->tempM, $this->config, $this->queueService, $this->statusMapper, $this->view, $this->userId, $this->l10n, $this->logger);
 	}
 
 	// FIXME: listLanguages() is not possible to test, because it exec()s things.
-
-	// FIXME: process() is not possbile to test, because it exec()s things and uses gearman client.
 
 	// FIXME: status() is not possbile to test, because it uses global functions like file_exists().
 
@@ -139,5 +137,8 @@ class OcrServiceTest extends TestCase {
 			->will($this->throwException(new NotFoundException('')));
 		$this->service->complete(3, false);
 	}
+
+	// TODO: process()
+
 
 }

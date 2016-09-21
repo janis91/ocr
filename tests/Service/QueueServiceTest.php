@@ -11,24 +11,28 @@
 
 namespace OCA\Ocr\Tests\Service;
 
-use OCA\Ocr\Service\GearmanWorkerService;
+use OCA\Ocr\Service\QueueService;
 use OCA\Ocr\Tests\TestCase;
 
 
-class GearmanWorkerServiceTest extends TestCase {
+class QueueServiceTest extends TestCase {
 
 	private $service;
+	private $statusMapper;
 	private $logger;
 	private $l10n;
 
 	public function setUp() {
+		$this->statusMapper = $this->getMockBuilder('OCA\Ocr\Db\OcrStatusMapper')
+			->disableOriginalConstructor()
+			->getMock();
 		$this->logger = $this->getMockBuilder('OCP\ILogger')
 			->disableOriginalConstructor()
 			->getMock();
 		$this->l10n = $this->getMockBuilder('OCP\IL10N')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->service = new GearmanWorkerService($this->l10n, $this->logger);
+		$this->service = new QueueService($this->statusMapper, $this->l10n, $this->logger);
 	}
 
 	// No Worker exists at the point we test it.
@@ -36,4 +40,5 @@ class GearmanWorkerServiceTest extends TestCase {
 		$this->assertFalse($this->service->workerExists());
 	}
 
+	//TODO: test the clientSend method.
 }

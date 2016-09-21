@@ -1,5 +1,9 @@
 #Changelog
 
+nextcloud-ocr (0.8.7-beta)
+* **Feature**: BREAKING CHANGE: The gearman thing was removed in favor of a simpler queueing method and in order to not having too much dependencies.
+* **Not Suppported anymore**: distributed gearman server thing is not supported anymore. From now on the workers will have to be local (I think this is not a showstopper in most cases - gearman and the lack of support in php7 was)
+
 nextcloud-ocr (0.8.6-beta)
 * **Feature**: Requested transifex translation and prepared the files for it.
 * **Enhancement**: Added tests for methods as long as it was possible. (some service methods cannot be tested, because therefore a completely working environment and real files are required)
