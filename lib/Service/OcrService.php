@@ -286,11 +286,13 @@ class OcrService {
 
 	/**
 	 * Returns a not existing file name for pdf or image processing
+	 * protected as of testing issues with static methods. (Actually
+	 * it will be mocked partially) FIXME: Change this behaviour as soon as the buidlNotExistingFileName function is not static anymore
 	 *
 	 * @param FileInfo $fileInfo
 	 * @return string
 	 */
-	private function buildNewName(FileInfo $fileInfo) {
+	protected function buildNewName(FileInfo $fileInfo) {
 		// get rid of the .png or .pdf and so on
 		$fileName = substr($fileInfo->getName(), 0, -4);
 		// eliminate the file name from the path
@@ -361,7 +363,7 @@ class OcrService {
 			$file['path'] = $file['directory'];
 		}
 		if ($file['path'] === '/') {
-			$path = '' . '/' . $file['name'];
+			$path = $file['path'] . $file['name'];
 		} else {
 			$path = $file['path'] . '/' . $file['name'];
 		}

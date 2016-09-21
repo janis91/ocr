@@ -11,6 +11,7 @@
 
 namespace OCA\Ocr\Tests\Service;
 
+use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Service\QueueService;
 use OCA\Ocr\Tests\TestCase;
 
@@ -21,6 +22,7 @@ class QueueServiceTest extends TestCase {
 	private $statusMapper;
 	private $logger;
 	private $l10n;
+	private $userId = 'john';
 
 	public function setUp() {
 		$this->statusMapper = $this->getMockBuilder('OCA\Ocr\Db\OcrStatusMapper')
@@ -35,5 +37,23 @@ class QueueServiceTest extends TestCase {
 		$this->service = new QueueService($this->statusMapper, $this->l10n, $this->logger);
 	}
 
-	//TODO: test the clientSend method.
+	public function tearDown() {
+		msg_remove_queue(msg_get_queue(21671));
+	}
+
+	//TODO: test the clientSend method. dont forget to remove the queue after this.. to not influence the live env.
+
+	public function testClientSend(){
+		$status = new OcrStatus('PENDING', 235, 'newName', '/tmp/file', 'tess', $this->userId);
+
+		$this->statusMapper->expects($this->once())
+			->method('insert')
+			->with($this->equalTo($status))
+			->will($this->returnValue($status));
+
+		$this->service->clientSend($status, '/data', '/', 'eng', '/server');
+
+	}
+
+
 }
