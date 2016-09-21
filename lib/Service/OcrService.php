@@ -150,9 +150,6 @@ class OcrService {
 	 */
 	public function process($language, $files) {
 		try {
-			if ($this->queueService->workerExists() === false) {
-				throw new NotFoundException($this->l10n->t('No ocr worker exists.'));
-			}
 			$this->logger->debug('Will now process files: ' . json_encode($files) . ' with language: ' . json_encode($language), ['app' => 'ocr']);
 			// Check if files and language not empty
 			if (!empty($files) && !empty($language) && in_array($language, $this->listLanguages())) {

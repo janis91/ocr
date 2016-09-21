@@ -35,10 +35,5 @@ class QueueServiceTest extends TestCase {
 		$this->service = new QueueService($this->statusMapper, $this->l10n, $this->logger);
 	}
 
-	// No Worker exists at the point we test it.
-	public function testWorkerExists() {
-		$this->assertFalse($this->service->workerExists());
-	}
-
 	//TODO: test the clientSend method.
 }

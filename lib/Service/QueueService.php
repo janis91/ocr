@@ -32,19 +32,6 @@ class QueueService {
 	}
 
 	/**
-	 * Checks if a worker is active and registered the message queue.
-	 * returns false if not.
-	 * @return boolean|null
-	 */
-	public function workerExists() {
-		try {
-			return msg_queue_exists(21671);
-		} catch (Exception $e) {
-			$this->handleException($e);
-		}
-	}
-
-	/**
 	 * Inits the client and sends the task to the background worker (async)
 	 *
 	 * @param OcrStatus $status
@@ -55,7 +42,6 @@ class QueueService {
 	 */
 	public function clientSend($status, $datadirectory, $path, $language, $occDir) {
 		try {
-			if($this->workerExists()) {
 				$this->mapper->insert($status);
 				$queue = msg_get_queue(21671);
 				$msg = json_encode(array(
@@ -73,10 +59,6 @@ class QueueService {
 					$this->mapper->delete($status);
 					throw new NotFoundException($this->l10n->t('Could not add files to the ocr processing queue.'));
 				}
-			} else {
-				$this->logger->debug('Worker detection failed after first check was complete: Did you stop the worker in between?', ['app' => 'ocr']);
-				throw new NotFoundException($this->l10n->t('No ocr worker exists.'));
-			}
 		} catch (Exception $e) {
 			exec('rm ' . $status->getTempFile());
 			$this->handleException($e);
