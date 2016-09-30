@@ -160,6 +160,12 @@
 				self.setSelectedFiles([]);
 			}
 		},
+		hideSelectedActionButton: function () {
+			var self = this;
+			var selectedActionButton = $('.selectedActionsOCR');
+			selectedActionButton.addClass('hidden');
+			self.setSelectedFiles([]);
+		},
 		togglePendingState: function (force, initialcount) {
 			var self = this;
 			var html = '';
@@ -182,7 +188,7 @@
 		updateFileList: function () {
 			var self = this;
 			OCA.Files.App.fileList.reload();
-			self.toggleSelectedActionButton('');
+			self.toggleSelectedActionButton();
 		},
 		/**
 		 * Loops as long as there are pending objects
@@ -243,6 +249,7 @@
 			/** global: _ */
 			OCA.Files.App.fileList.$fileList.on('change', 'td.filename>.selectCheckBox', _.bind(self.toggleSelectedActionButton, this));
 			OCA.Files.App.fileList.$el.find('.select-all').click(_.bind(self.toggleSelectedActionButton, this));
+			OCA.Files.App.fileList.$el.find('.delete-selected').click(_.bind(self.hideSelectedActionButton, this));
 		}
 	};
 	/** global: OCA */
