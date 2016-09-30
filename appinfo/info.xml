@@ -7,8 +7,10 @@
 <summary lang="en">Character recoginition for your images and pdf files.</summary>
 <summary lang="de">Schrifterkennung für Bilder (mit Text) und PDF Dateien.</summary>
 <description lang="en"><![CDATA[# Description
-[![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/janis91/ocr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/janis91/ocr/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+
 **This software is in beta phase and should not be integrated in any production environment. If you tested it and want to give feedback, please open an issue. Thank You!**
+
 Nextcloud OCR (optical character recoginition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud 10.
 The app uses tesseract-ocr, OCRmyPDF and a php internal message queueing service in order to process images (png, jpeg, tiff) and PDF (currently not all PDF-types are supported, for more information see [here](https://github.com/jbarlow83/OCRmyPDF)) asynchronously and save the output file to the same folder in nextcloud, so you are able to search in it.
 The source data won&#39;t get lost. Instead:
@@ -26,8 +28,10 @@ The OCR app has some prerequisites:
 
 For further information see the homepage or the appropriate documentation.]]></description>
 <description lang="de"><![CDATA[# Beschreibung
-[![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/janis91/ocr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/janis91/ocr/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+
 **Diese Software befindet sich in der BETA Phase, es wird davon abgeraten sie in produktiven Umgebungen einzusetzen. Wenn Sie Tests durchgeführt haben und Feedback geben möchte, nutzen Sie bitte die github Issues Funktion. Vielen Dank!**
+
 OCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF ermöglicht Ihnen automatische Schrifterkennung direkt in Ihrer Nextcloud 10.
 Die App nutzt Tesseract-ocr, OCRmyPDF und den internen Message Queueing Service von PHP, um so asynchron (im Hintegrund) Bilder (PNG, JPEG, TIFF) und PDFs (aktuell werden nicht alle Typen unterstützt, näheres [hier](https://github.com/jbarlow83/OCRmyPDF)) zu verarbeiten. Das Ergebnis, welches jetzt durchsuchbar, kopierbar und ähnliches ist, wird anschließend im selben Ordner gespeichert, wie die Ursprungsdatei.
 Die Ursuprungsdatei geht dabei nicht verloren:
