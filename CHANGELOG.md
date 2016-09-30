@@ -1,5 +1,8 @@
 #Changelog
 
+nextcloud-ocr (0.8.8-beta)
+* **Bugfix**: Fixed a bug that resulted in still showing the ocr action button, also if there was no file selected. (after file deletion)
+
 nextcloud-ocr (0.8.7-beta)
 * **Feature**: BREAKING CHANGE: The gearman thing was removed in favor of a simpler queueing method and in order to not having too much dependencies.
 * **Not Suppported anymore**: distributed gearman server thing is not supported anymore. From now on the workers will have to be local (I think this is not a showstopper in most cases - gearman and the lack of support in php7 was)
