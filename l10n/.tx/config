@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+lang_map = ja_JP: ja
+
+[nextcloud.janis91-ocr]
+file_filter = <lang>/janis91-ocr.po
+source_file = templates/janis91-ocr.pot
+source_lang = en
+type = PO
