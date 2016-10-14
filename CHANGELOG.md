@@ -1,4 +1,6 @@
 #Changelog
+nextcloud-ocr (1.0.0)
+* **Enhancement**: The app has been tested by some people and it seems stable. Also the translation files are now available.
 
 nextcloud-ocr (0.8.8-beta)
 * **Bugfix**: Fixed a bug that resulted in still showing the ocr action button, also if there was no file selected. (after file deletion)
