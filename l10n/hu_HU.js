@@ -2,6 +2,8 @@ OC.L10N.register(
     "ocr",
     {
     "OCR App could not be initialized:" : "OCR alkalmazás nem inicializálható:",
+    "Files have wrong mimetypes." : "Hibás mime típusú fájlok.",
+    "No languages for tesseract available" : "Nincsenek elérhető nyelvek a Tesseract-hoz",
     "Select" : "Kiválaszt",
     "Process" : "Feldolgozás",
     "OCR" : "OCR",
