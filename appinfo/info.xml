@@ -52,6 +52,7 @@ Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffen
     <developer>https://github.com/janis91/ocr/wiki</developer>
 </documentation>
 <category>tools</category>
+<category>files</category>
 <website>https://janis91.github.io/ocr/</website>
 <bugs>https://github.com/janis91/ocr/issues</bugs>
 <repository type="git">https://github.com/janis91/ocr.git</repository>
