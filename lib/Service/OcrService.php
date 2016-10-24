@@ -180,7 +180,7 @@ class OcrService {
 				}
 				return 'PROCESSING';
 			} else {
-				throw new NotFoundException($this->l10n->t('Empty passed parameters.'));
+				throw new NotFoundException($this->l10n->t('Empty parameters passed.'));
 			}
 		} catch (Exception $e) {
 			$this->handleException($e);
