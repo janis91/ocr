@@ -10,7 +10,6 @@
     "_OCR processing for %n file failed. For details please contact your administrator._::_OCR processing for %n files failed. For details please contact your administrator._" : ["OCR Verarbeitung für %n Datei fehlgeschlagen. Für weitere Informationen kontaktiere den Administrator.","OCR Verarbeitung für %n Dateien fehlgeschlagen. Für weitere Informationen kontaktiere den Administrator."],
     "OCR processing failed:" : "OCR Verarbeitung fehlgeschlagen:",
     "No languages found." : "Keine Sprachen gefunden.",
-    "Empty passed parameters." : "Leere Parameter gesendet.",
     "Temp file does not exist." : "Temporäre Datei existiert nicht.",
     "Wrong path parameter." : "Falscher Pfadparameter.",
     "Wrong parameters or wrong mimetype." : "Falsche Parameter oder falscher Dateityp.",

@@ -12,7 +12,6 @@ OC.L10N.register(
     "_OCR processing for %n file failed. For details please contact your administrator._::_OCR processing for %n files failed. For details please contact your administrator._" : ["OCR zpracování %n souboru selhalo. Pro více informací prosím kontaktujte svého administrátora.","OCR zpracování %n souborů selhalo. Pro více informací prosím kontaktujte svého administrátora.","OCR zpracování %n souborů selhalo. Pro více informací prosím kontaktujte svého administrátora."],
     "OCR processing failed:" : "OCR zpracování selhalo:",
     "No languages found." : "Nenalezeny žádné jazyky.",
-    "Empty passed parameters." : "Prázdné předávané parametry.",
     "Temp file does not exist." : "Odkládací soubor neexistuje.",
     "Wrong path parameter." : "Nesprávný parametr cesty.",
     "Wrong parameters or wrong mimetype." : "Chybné parametry nebo chybný mimetyp.",

@@ -12,7 +12,6 @@ OC.L10N.register(
     "_OCR processing for %n file failed. For details please contact your administrator._::_OCR processing for %n files failed. For details please contact your administrator._" : ["Elaborazione OCR fallita per %n file. Per i dettagli contattare l'amministratore.","Elaborazione OCR fallita per %n files. Per i dettagli contattare l'amministratore."],
     "OCR processing failed:" : "Elaborazione OCR non riuscito:",
     "No languages found." : "Nessuna lingua trovata.",
-    "Empty passed parameters." : "I parametri forniti sono vuoti.",
     "Temp file does not exist." : "Il file temporaneo non esiste.",
     "Wrong path parameter." : "Parametro di percorso errato.",
     "Wrong parameters or wrong mimetype." : "Parametri o tipo MIME errati.",
