@@ -12,6 +12,7 @@ OC.L10N.register(
     "_OCR processing for %n file failed. For details please contact your administrator._::_OCR processing for %n files failed. For details please contact your administrator._" : ["%n fájl OCR feldolgozása nem sikerült. Kérlek lépj kapcsolatba a rendszergazdával a részletekért.","%n fájl OCR feldolgozása nem sikerült. Kérlek lépj kapcsolatba a rendszergazdával a részletekért."],
     "OCR processing failed:" : "OCR feldolgozás sikertelen:",
     "No languages found." : "Nem találhatóak nyelvek.",
+    "Empty parameters passed." : "Üres átadott paraméterek.",
     "Temp file does not exist." : "Az ideiglenes fájl nem létezik.",
     "Wrong path parameter." : "Hibás útvonal paraméter.",
     "Wrong parameters or wrong mimetype." : "Hibás paraméterek vagy hibás mime típus.",
