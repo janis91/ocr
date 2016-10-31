@@ -12,6 +12,7 @@ OC.L10N.register(
     "_OCR processing for %n file failed. For details please contact your administrator._::_OCR processing for %n files failed. For details please contact your administrator._" : ["OCR verwerking voor %n bestand mislukt. Voor meer informatie moet je contact opnemen met je beheerder.","OCR verwerking voor %n bestanden mislukt. Voor meer informatie moet je contact opnemen met je beheerder."],
     "OCR processing failed:" : "OCR verwerking mislukt:",
     "No languages found." : "Geen talen gevonden.",
+    "Empty parameters passed." : "Lege parameters doorgegeven.",
     "Temp file does not exist." : "Tijdelijk bestand bestaat niet.",
     "Wrong path parameter." : "Onjuiste pad-parameter.",
     "Wrong parameters or wrong mimetype." : "Onjuiste parameters of onjuist MIME-type.",
