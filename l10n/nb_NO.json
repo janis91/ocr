@@ -1,0 +1,16 @@
+{ "translations": {
+    "OCR App could not be initialized:" : "OCR App kunne ikke bli aktivert:",
+    "Files have wrong mimetypes." : "Filene har feil mimetyper.",
+    "No languages for tesseract available" : "Ingen språk for Tesseract (OCR) tilgjenngelig",
+    "Select" : "Velg",
+    "Process" : "Behandle",
+    "OCR" : "OCE",
+    "_OCR started: %n currently pending file in queue._::_OCR started: %n currently pending files in queue._" : ["OCR startet: %n fil i køen.","OCR startet: %n filer i køen."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n fil i køen","OCR: %n filer i køen"],
+    "OCR processing failed:" : "OCR behandling feilet:",
+    "No languages found." : "Ingen språk funnet.",
+    "Empty parameters passed." : "Tomme parametre hoppes over.",
+    "Temp file does not exist." : "Midlertidig fil finnes ikke.",
+    "Wrong path parameter." : "Feil parameter for sti."
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
