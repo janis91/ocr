@@ -22,7 +22,7 @@ before_install:
   - sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
   - sudo touch /usr/bin/ocrmypdf
   - sudo chmod +x /usr/bin/ocrmypdf
-  - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+  - wget https://raw.githubusercontent.com/janis91/ocr/travis_ci/master/before_install.sh
   - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
 
   # Add some output debugging information
