@@ -5,13 +5,6 @@ php:
   - 5.6
   - 7
 
-addons:
-  apt:
-    packages:
-    - mysql-server-5.6
-    - mysql-client-core-5.6
-    - mysql-client-5.6
-
 env:
   global:
     - CORE_BRANCH=stable10
@@ -29,7 +22,7 @@ before_install:
   - sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
   - sudo touch /usr/bin/ocrmypdf
   - sudo chmod +x /usr/bin/ocrmypdf
-  - wget https://raw.githubusercontent.com/janis91/ocr/travis_ci/master/before_install.sh
+  - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
   - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
 
   # Add some output debugging information
@@ -73,7 +66,7 @@ matrix:
     - php: 5.6
       env: DB=pgsql;RUNONCE=1
     - php: 5.6
-      env: DB=mysql
+      env: DB=pgsql
     - php: 5.6
       env: DB=pgsql;CODECHECK=1
     - php: 5.6
