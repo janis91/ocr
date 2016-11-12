@@ -28,7 +28,7 @@ if [ "$DB" == "mysql" ] ; then
   mysql -u root -e 'create database oc_autotest;'
   mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY 'owncloud'";
   mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost'";
-  mysql -e "SELECT User FROM mysql.user;"
+  mysql -u root -e "SELECT User FROM mysql.user;"
 fi
 
 if [ "$DB" == "pgsql" ] ; then
