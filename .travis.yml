@@ -1,5 +1,13 @@
-sudo: required
 dist: trusty
+sudo: required
+addons:
+  apt:
+    packages:
+    - mysql-server-5.6
+    - mysql-client-core-5.6
+    - mysql-client-5.6
+    - tesseract-ocr
+    - tesseract-ocr-deu
 language: php
 php:
   - 5.6
@@ -18,11 +26,9 @@ branches:
     - /^stable\d+(\.\d+)?$/
 
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
   - sudo touch /usr/bin/ocrmypdf
   - sudo chmod +x /usr/bin/ocrmypdf
-  - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+  - wget https://raw.githubusercontent.com/janis91/ocr/master/travis_ci/before_install.sh
   - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
 
   # Add some output debugging information
@@ -66,11 +72,11 @@ matrix:
     - php: 5.6
       env: DB=pgsql;RUNONCE=1
     - php: 5.6
-      env: DB=pgsql
+      env: DB=mysql
     - php: 5.6
-      env: DB=pgsql;CODECHECK=1
+      env: DB=mysql;CODECHECK=1
     - php: 5.6
-      env: DB=pgsql;CODECHECK=2
+      env: DB=mysql;CODECHECK=2
   allow_failures:
-    - env: DB=pgsql;CODECHECK=2
+    - env: DB=mysql;CODECHECK=2
 fast_finish: true
