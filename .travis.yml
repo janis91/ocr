@@ -7,7 +7,7 @@ php:
 
 env:
   global:
-    - CORE_BRANCH=master
+    - CORE_BRANCH=stable10
     - APP_NAME=ocr
   matrix:
     - DB=sqlite
@@ -20,7 +20,6 @@ branches:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
-  - tesseract --list-langs
   - sudo touch /usr/bin/ocrmypdf
   - sudo chmod +x /usr/bin/ocrmypdf
   - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
