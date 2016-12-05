@@ -16,6 +16,8 @@ The OCR app has some prerequisites:
  - **[OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF)** &gt;v2.x (tested with v4.1.3 (v4 is recommended))
  - **[tesseract-ocr](https://github.com/tesseract-ocr/tesseract)** &gt;v3.02.02 with corresponding language files (e.g. tesseract-ocr-eng)
 
+**Please consider: The app is and will not working with any activated encryption.**
+
 For further information see the [homepage](http://janis91.github.io/ocr/) or the appropriate documentation in the wiki.
 
 *Hint: OCRmyPDF and tesseract have to be globally available in command-line, so that the server user (eg. www-data, nginx, apache) can execute the commands (eg. tesseract or ocrmypdf).*
