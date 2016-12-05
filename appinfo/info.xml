@@ -23,6 +23,8 @@ The OCR app has some prerequisites:
  - **[OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF)** &gt;v2.x (tested with v4.1.3 (v4 is recommended))
  - **[tesseract-ocr](https://github.com/tesseract-ocr/tesseract)** &gt;v3.02.02 with corresponding language files (e.g. tesseract-ocr-eng)
 
+**Please consider: The app is and will not working with any activated encryption.**
+
 For further information see the homepage or the appropriate documentation.]]></description>
 <description lang="de"><![CDATA[# Beschreibung
 
@@ -40,6 +42,8 @@ Für die OCR App müssen folgende Anforderungen erfüllt sein:
  - **Linux** server als Betriebssystem. (getestet mit Debian 8, Raspbian und Ubuntu 14.04 (Trusty))
  - **[OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF)** &gt;v2.x (getestet mit v4.1.3 (v4 empfohlen))
  - **[tesseract-ocr](https://github.com/tesseract-ocr/tesseract)** &gt;v3.02.02 mit den dazugehörigen Übersetzungs- und Sprachdateien (z. B. tesseract-ocr-deu)
+
+**Bitte beachten: Die App untersützt keine aktivierte Verschlüsselung der Dateien und wird es auch voraussichtlich nicht in der Zukunft.**
 
 Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffende Dokumentation.]]></description>
 <version>1.0.0</version>
