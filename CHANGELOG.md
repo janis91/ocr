@@ -1,4 +1,7 @@
 #Changelog
+nextcloud-ocr (1.0.1)
+* **Enhancement**: The app supports php version 7.1 now.
+
 nextcloud-ocr (1.0.0)
 * **Enhancement**: The app has been tested by some people and it seems stable. Also the translation files are now available.
 
