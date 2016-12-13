@@ -15,7 +15,7 @@ php:
 
 env:
   global:
-    - CORE_BRANCH=stable10
+    - CORE_BRANCH=stable11
     - APP_NAME=ocr
   matrix:
     - DB=sqlite
