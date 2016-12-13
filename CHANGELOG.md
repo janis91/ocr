@@ -1,4 +1,7 @@
 #Changelog
+nextcloud-ocr (2.0.0)
+* **Support**: A new Nextcloud version is online: 11.0 and this app will support it with version 2.0.0.
+
 nextcloud-ocr (1.0.1)
 * **Enhancement**: The app supports php version 7.1 now.
 
