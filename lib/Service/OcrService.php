@@ -121,14 +121,14 @@ class OcrService {
 				if (is_array($result)) {
 					$traineddata = $result;
 				} else {
-					$traineddata = explode(' ', $result);
+					throw new NotFoundException($this->l10n->t('No languages found.'));
 				}
 				$languages = array();
+				array_shift($traineddata); // delete the first element of the array as it is a description of tesseract
+				asort($traineddata); // sort the languages alphabetically
 				foreach ($traineddata as $td) {
-					$tdname = trim($td);
-					if (strlen($tdname) === 3) {
-						array_push($languages, $tdname);
-					}
+					$tdname = trim($td); // strip whitespaces
+					array_push($languages, $tdname); //add to language list
 				}
 				$this->logger->debug('Fetched languages: ' . json_encode($languages), ['app' => 'ocr']);
 				return $languages;
