@@ -69,6 +69,12 @@
 				<default></default>
 				<notnull>true</notnull>
 			</field>
+			<field>
+				<name>error_displayed</name>
+				<type>boolean</type>
+				<default>true</default>
+				<notnull>true</notnull>
+			</field>
 		</declaration>
 	</table>
 </database>

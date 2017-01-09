@@ -14,6 +14,7 @@ namespace OCA\Ocr\AppInfo;
 
 use OC\Files\View;
 use OCA\Ocr\Controller\OcrController;
+use OCA\Ocr\Controller\PersonalSettingsController;
 use OCA\Ocr\Db\OcrStatusMapper;
 use OCA\Ocr\Service\OcrService;
 use OCA\Ocr\Service\QueueService;
@@ -116,6 +117,15 @@ class Application extends App {
 				$c->query('CurrentUID')
 			);
 		});
+
+		/**
+		 * Controller
+		 */
+		$container->registerAlias('PersonalSettingsController', PersonalSettingsController::class);
+	}
+
+	public function registerPersonal(){
+		\OCP\App::registerPersonal($this->getContainer()->getAppName(), 'personal');
 	}
 
 }

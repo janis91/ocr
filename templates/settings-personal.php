@@ -6,11 +6,14 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 
-namespace OCA\Ocr\AppInfo;
+script('ocr', ['ocrpersonalview']);
+script('ocr', ['ocrpersonal']);
+?>
 
-$app = new \OCA\Ocr\AppInfo\Application();
-
-$app->registerPersonal();
+<div id="ocr" class="section">
+	<h2>OCR</h2>
+	<div id="ocr-failed-files-settings"></div>
+</div>

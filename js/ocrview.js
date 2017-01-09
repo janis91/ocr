@@ -171,7 +171,7 @@
 			var html = '';
 			var pendingcount = self._ocr.getStatus().pending;
 			if(force){
-				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + n('ocr','OCR started: %n currently pending file in queue.', 'OCR started: %n currently pending files in queue.', initialcount) + '</span>';
+				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + n('ocr','OCR started: %n new file in queue.', 'OCR started: %n new files in queue.', initialcount) + '</span>';
 			}else{
 				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + ' ' + n('ocr','OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', pendingcount) + '</span>';
 			}
@@ -196,7 +196,7 @@
 		loopForStatus: function () {
 			var self = this;
 			$.when(self._ocr.checkStatus()).done(function(){
-				if(self._ocr.getStatus().failed > 0) { self.notifyError(n('ocr', 'OCR processing for %n file failed. For details please contact your administrator.', 'OCR processing for %n files failed. For details please contact your administrator.', self._ocr.getStatus().failed.length)); }
+				if(self._ocr.getStatus().failed > 0) { self.notifyError(n('ocr', 'OCR processing for %n file failed. For details please go to your personal settings.', 'OCR processing for %n files failed. For details please go to your personal settings.', self._ocr.getStatus().failed.length)); }
 				if(self._ocr.getStatus().pending > 0){
 					if(self._ocr.getStatus().processed > 0) { self.updateFileList(); }
 					self.togglePendingState(false);

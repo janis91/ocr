@@ -172,7 +172,7 @@ class OcrService {
 					}
 
 					// Create status object
-					$status = new OcrStatus('PENDING', $fInfo->getId(), $newName, $tempFile, $ftype, $this->userId);
+					$status = new OcrStatus('PENDING', $fInfo->getId(), $newName, $tempFile, $ftype, $this->userId, false);
 
 					// Init client and send task / job
 					// Feed the worker
@@ -199,11 +199,24 @@ class OcrService {
 			// TODO: release lock
 			$processed = $this->handleProcessed();
 
-			$failed = count($this->handleFailed());
+			$pending = $this->statusMapper->findAllPending($this->userId);
 
-			$pending = count($this->statusMapper->findAllPending($this->userId));
+			$queuecount = $this->queueService->countMessages();
 
-			return ['processed' => $processed, 'failed' => $failed, 'pending' => $pending];
+			$activecount = $this->queueService->countActiveProcesses();
+
+			// if more pending than actually processed or in queue, then there has been an issue with the worker or something: set failed
+			if ($queuecount+$activecount < count($pending)) {
+				foreach ($pending as $stat) {
+					$stat->setStatus('FAILED');
+					$this->statusMapper->update($stat);
+				}
+			}
+
+			// return failed state and set up error
+			$failed = $this->handleFailed();
+
+			return ['processed' => count($processed), 'failed' => count($failed)-$queuecount+$activecount, 'pending' => $queuecount+$activecount];
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}
@@ -232,11 +245,31 @@ class OcrService {
 	}
 
 	/**
+	 * The PersonalSettingsController will have the opportunity to delete failed ocr objects.
+	 *
+	 * @param $statusId
+	 * @return null
+	 */
+	public function deleteFailed($statusId, $userId) {
+		try {
+			$status = $this->statusMapper->find($statusId);
+			if ($status->getUserId() !== $userId) {
+				throw new NotFoundException($this->l10n->t('Cannot delete. Wrong owner.'));
+			} else {
+				$status = $this->statusMapper->delete($status);
+			}
+			return $status;
+		} catch (Exception $e) {
+			$this->handleException($e);
+		}
+	}
+
+	/**
 	 * Finishes all Processed files by copying them to the right path and deleteing the temp files.
 	 * Returns the number of processed files.
 	 *
 	 * @codeCoverageIgnore
-	 * @return int
+	 * @return array
 	 */
 	private function handleProcessed() {
 		try {
@@ -258,7 +291,7 @@ class OcrService {
 					throw new NotFoundException($this->l10n->t('Temp file does not exist.'));
 				}
 			}
-			return count($processed);
+			return $processed;
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}
@@ -276,8 +309,9 @@ class OcrService {
 			foreach ($failed as $status) {
 				// clean the tempfile
 				exec('rm ' . $status->getTempFile());
-				// clean from db
-				$this->statusMapper->delete($status);
+				// set error displayed
+				$status->setErrorDisplayed(true);
+				$this->statusMapper->update($status);
 			}
 			$this->logger->debug('Following status objects failed: ' . json_encode($failed), ['app' => 'ocr']);
 			return $failed;

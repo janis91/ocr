@@ -22,5 +22,7 @@ return [
 		['name' => 'ocr#process', 'url' => '/', 'verb' => 'POST'],
 		['name' => 'ocr#languages', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'ocr#status', 'url' => '/status', 'verb' => 'GET'],
+		['name' => 'PersonalSettings#deleteFailed', 'url' => '/settings/personal', 'verb' => 'DELETE'],
+		['name' => 'PersonalSettings#getFailed', 'url' => '/settings/personal', 'verb' => 'GET']
     ]
 ];

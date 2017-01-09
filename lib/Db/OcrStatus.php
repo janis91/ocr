@@ -28,6 +28,8 @@ use OCP\AppFramework\Db\Entity;
  * @method void setType(string $type)
  * @method string getUserId()
  * @method void setUserId(string $userId)
+ * @method boolean getErrorDisplayed()
+ * @method void setErrorDisplayed(boolean $errorDisplayed)
  */
 class OcrStatus extends Entity {
 
@@ -61,6 +63,12 @@ class OcrStatus extends Entity {
 	 */
 	protected $userId;
 
+
+	/**
+	 * @var boolean
+	 */
+	protected $errorDisplayed;
+
 	/**
 	 * OcrStatus constructor.
 	 *
@@ -70,13 +78,15 @@ class OcrStatus extends Entity {
 	 * @param null $tempFile
 	 * @param null $type
 	 * @param null $userId
+	 * @param null $errorDisplayed
 	 */
-	public function __construct($status = null, $fileId = null, $newName = null, $tempFile = null, $type = null, $userId = null) {
+	public function __construct($status = null, $fileId = null, $newName = null, $tempFile = null, $type = null, $userId = null, $errorDisplayed = null) {
 		$this->setStatus($status);
 		$this->setFileId($fileId);
 		$this->setNewName($newName);
 		$this->setTempFile($tempFile);
 		$this->setType($type);
 		$this->setUserId($userId);
+		$this->setErrorDisplayed($errorDisplayed);
 	}
 }
