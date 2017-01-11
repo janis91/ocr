@@ -1,0 +1,17 @@
+table.ocrsettings {
+    max-width: 550px;
+    white-space: normal;
+}
+
+table.ocrsettings tbody tr {
+    height: 2.5em;
+}
+
+table.ocrsettings td div.ocr-action-delete {
+    width: auto;
+    height: auto;
+}
+
+table.ocrsettings td div.ocr-action-delete:hover {
+
+}

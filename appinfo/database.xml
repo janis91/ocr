@@ -72,7 +72,7 @@
 			<field>
 				<name>error_displayed</name>
 				<type>boolean</type>
-				<default>true</default>
+				<default>false</default>
 				<notnull>true</notnull>
 			</field>
 		</declaration>

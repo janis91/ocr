@@ -72,7 +72,9 @@ class QueueService {
 	}
 
 	/**
+     * TODO: in the future this function could be used to give an admin information
 	 * Counts the messages in the message queue.
+     *
 	 * @return mixed
 	 */
 	public function countMessages() {
@@ -85,7 +87,13 @@ class QueueService {
 		}
 	}
 
-	public function countActiveProcesses() {
+    /**
+     * TODO: in the future this function could be used to give an admin information
+     * Counts the at this point processed files
+     *
+     * @return mixed
+     */
+    public function countActiveProcesses() {
 		try {
 			$stats = msg_stat_queue($this->statusqueue);
 			$this->logger->debug('Current active processing count: ' . json_encode($stats['msg_qnum']), ['app' => 'ocr']);

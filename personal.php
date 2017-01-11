@@ -12,4 +12,4 @@
 $app = new \OCA\Ocr\AppInfo\Application();
 /** @var OCA\Ocr\Controller\PersonalSettingsController */
 $controller = $app->getContainer()->query('PersonalSettingsController');
-return $controller->displayPanel()->render();
+return $controller->displayPanel()->fetchPage();

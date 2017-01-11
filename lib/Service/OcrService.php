@@ -197,26 +197,16 @@ class OcrService {
 	public function status() {
 		try {
 			// TODO: release lock
+
+            // returns user specific processed files
 			$processed = $this->handleProcessed();
 
 			$pending = $this->statusMapper->findAllPending($this->userId);
 
-			$queuecount = $this->queueService->countMessages();
-
-			$activecount = $this->queueService->countActiveProcesses();
-
-			// if more pending than actually processed or in queue, then there has been an issue with the worker or something: set failed
-			if ($queuecount+$activecount < count($pending)) {
-				foreach ($pending as $stat) {
-					$stat->setStatus('FAILED');
-					$this->statusMapper->update($stat);
-				}
-			}
-
-			// return failed state and set up error
+			// return user specific failed state and set up error
 			$failed = $this->handleFailed();
 
-			return ['processed' => count($processed), 'failed' => count($failed)-$queuecount+$activecount, 'pending' => $queuecount+$activecount];
+			return ['processed' => count($processed), 'failed' => count($failed), 'pending' => count($pending)];
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}
@@ -245,12 +235,12 @@ class OcrService {
 	}
 
 	/**
-	 * The PersonalSettingsController will have the opportunity to delete failed ocr objects.
+	 * The PersonalSettingsController will have the opportunity to delete ocr status objects.
 	 *
 	 * @param $statusId
 	 * @return null
 	 */
-	public function deleteFailed($statusId, $userId) {
+	public function deleteStatus($statusId, $userId) {
 		try {
 			$status = $this->statusMapper->find($statusId);
 			if ($status->getUserId() !== $userId) {
@@ -264,6 +254,29 @@ class OcrService {
 		}
 	}
 
+	public function getAllForPersonal($userId) {
+	    try {
+            $status = $this->statusMapper->findAll($userId);
+            $statusNew = array();
+            foreach ($status as $s) {
+                if ($s->getType() === 'tess') {
+                    $newName = str_replace('_OCR.txt', '', $s->getNewName());
+                } elseif ($s->getType() === 'mypdf') {
+                    $newName = str_replace('_OCR.pdf', '', $s->getNewName());
+                }
+                $s->setNewName($newName);
+                $s->setFileId(null);
+                $s->setTempFile(null);
+                $s->setType(null);
+                $s->setErrorDisplayed(null);
+                array_push($statusNew, $s);
+            }
+            return $statusNew;
+        } catch (Exception $e) {
+	        $this->handleException($e);
+        }
+    }
+
 	/**
 	 * Finishes all Processed files by copying them to the right path and deleteing the temp files.
 	 * Returns the number of processed files.
@@ -273,7 +286,7 @@ class OcrService {
 	 */
 	private function handleProcessed() {
 		try {
-			$this->logger->debug('Find processed ocr files and put them to the right dirs.', ['app' => 'ocr']);
+			$this->logger->debug('Check if files were processed by ocr and if so, put them to the right dirs.', ['app' => 'ocr']);
 			$processed = $this->statusMapper->findAllProcessed($this->userId);
 			foreach ($processed as $status) {
 				if ($status->getType() === 'tess' && file_exists($status->getTempFile() . '.txt')) {

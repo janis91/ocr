@@ -44,7 +44,7 @@ class Application extends App {
 		$eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function() {
 			$scripts = array('ocrapp', 'ocrocr', 'ocrview');
 			script('ocr', $scripts);
-			style('ocr', 'style');
+			style('ocr', 'ocrstyle');
 		});
 
 		/**

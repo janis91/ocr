@@ -12,6 +12,7 @@
 namespace OCA\Ocr\Db;
 
 use OCP\AppFramework\Db\Entity;
+use JsonSerializable;
 
 /**
  * Class to represent a ocr status.
@@ -31,7 +32,7 @@ use OCP\AppFramework\Db\Entity;
  * @method boolean getErrorDisplayed()
  * @method void setErrorDisplayed(boolean $errorDisplayed)
  */
-class OcrStatus extends Entity {
+class OcrStatus extends Entity implements JsonSerializable {
 
 	/**
 	 * @var string
@@ -89,4 +90,25 @@ class OcrStatus extends Entity {
 		$this->setUserId($userId);
 		$this->setErrorDisplayed($errorDisplayed);
 	}
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'status' => $this->status,
+            'fileId' => $this->fileId,
+            'newName' => $this->newName,
+            'tempFile' => $this->tempFile,
+            'type' => $this->type,
+            'userId' => $this->userId,
+            'errorDisplayed' => $this->errorDisplayed
+        ];
+    }
 }

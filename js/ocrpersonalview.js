@@ -10,94 +10,90 @@
 
 /* global Backbone, Handlebars */
 (function (OC, Backbone, Handlebars, $) {
-	'use strict';
+    'use strict';
 
-	OC.Settings = OC.Settings || {};
-	OC.Settings.Ocr = OC.Settings.Ocr || {};
+    OC.Settings = OC.Settings || {};
+    OC.Settings.Ocr = OC.Settings.Ocr || {};
 
-	var TEMPLATE = '<div>'
-		+ '    <input type="checkbox" class="checkbox" id="totp-enabled">'
-		+ '    <label for="totp-enabled">' + t('twofactor_totp', 'Enable TOTP') + '</label>'
-		+ '</div>'
-		+ '{{#if secret}}'
-		+ '<div>'
-		+ '    <span>' + t('twofactor_totp', 'This is your new TOTP secret:') + ' {{secret}}</span>'
-		+ '</div>'
-		+ '<div>'
-		+ '    <span>' + t('twofactor_totp', 'Scan this QR code with your TOTP app') + '<span><br>'
-		+ '    <img src="{{qr}}">'
-		+ '    </div>'
-		+ '{{/if}}';
+    var TEMPLATE = '<button id="ocr-search">' + t('ocr', 'Refresh') + '</button>'
+        + '     {{#if enabled}}'
+        + '         <table class="grid ocrsettings">'
+        + '             <thead>'
+        + '                 <tr>'
+        + '                     <th>' + t('ocr', 'Name') + '</th>'
+        + '                     <th>' + t('ocr', 'Status') + '</th>'
+        + '                     <th>' + t('ocr', 'Delete from queue') + '</th>'
+        + '                 </tr>'
+        + '             </thead>'
+        + '             <tbody>'
+        + '                 {{#each status}}'
+        + '                     <tr data-id="{{ id }}">'
+        + '                         <td>{{ newName }}</td>'
+        + '                         <td>{{ status }}</td>'
+        + '                         <td><div id="ocr-delete" class="ocr-action-delete"><span>' + t('ocr', 'Delete') + '</span><span class="icon icon-delete"></span></div></td>'
+        + '                     </tr>'
+        + '                 {{/each}}'
+        + '             </tbody>'
+        + '         </table>'
+        + '     {{else}}'
+        + '         <p>' + t('ocr' , 'No pending or failed OCR items found...') +'</p>'
+        + '     {{/if}}';
 
-	var View = Backbone.View.extend({
-		template: Handlebars.compile(TEMPLATE),
-		_loading: undefined,
-		_enabled: undefined,
-		events: {
-			'change #totp-enabled': '_onToggleEnabled'
-		},
-		initialize: function () {
-			this._load();
-		},
-		render: function (data) {
-			this.$el.html(this.template(data));
-		},
-		_load: function () {
-			this._loading = true;
+    var View;
+    View = Backbone.View.extend({
+        template: Handlebars.compile(TEMPLATE),
+        _loading: undefined,
+        _enabled: undefined,
+        events: {
+            'click #ocr-search': '_load',
+            'click #ocr-delete': '_delete'
+        },
+        initialize: function () {
+            this._load();
+        },
+        render: function (data) {
+            this.$el.html(this.template(data));
+        },
+        _load: function () {
+            this._loading = true;
 
-			var url = OC.generateUrl('/apps/twofactor_totp/settings/state');
-			var loading = $.ajax(url, {
-				method: 'GET',
-			});
+            var url = OC.generateUrl('/apps/ocr/settings/personal');
+            var loading = $.ajax(url, {
+                method: 'GET',
+            });
 
-			var _this = this;
-			$.when(loading).done(function (data) {
-				_this._enabled = data.enabled;
-				_this.$('#totp-enabled').attr('checked', data.enabled);
-			});
-			$.when(loading).always(function () {
-				_this._loading = false;
-			});
-		},
-		_onToggleEnabled: function () {
-			if (this._loading) {
-				// Ignore event
-				return;
-			}
+            var _this = this;
+            $.when(loading).done(function (status) {
+                if (status.length > 0) {
+                    _this._enabled = true;
+                    _this._showTable(status);
+                } else {
+                    _this._enabled = false;
+                    _this._showTable();
+                }
+            });
+            $.when(loading).always(function () {
+                _this._loading = false;
+            });
+        },
+        _delete: function() {
+            if (this._loading) {
+                //ignore when loading
+                return;
+            }
+            var _this = this;
+            console.log('delete');
+            _this._load();
+        },
+        _showTable: function(data) {
+            var _this = this;
+            this.render({
+                enabled: _this._enabled,
+                status: data
+            });
+        }
+    });
 
-			var enabled = this.$('#totp-enabled').is(':checked');
-
-			if (enabled !== this._enabled) {
-				this._loading = true;
-				var url = OC.generateUrl('/apps/twofactor_totp/settings/enable');
-				var updating = $.ajax(url, {
-					method: 'POST',
-					data: {
-						state: enabled
-					}
-				});
-
-				var _this = this;
-				$.when(updating).done(function(data) {
-					_this._enabled = data.enabled;
-					_this._showQr(data);
-					_this.$('#totp-enabled').attr('checked', data.enabled);
-				});
-				$.when(updating).always(function () {
-					_this._loading = false;
-				});
-				this._enabled = enabled;
-			}
-		},
-		_showQr: function(data) {
-			this.render({
-				secret: data.secret,
-				qr: data.qr
-			});
-		}
-	});
-
-	OC.Settings.Ocr.View = View;
+    OC.Settings.Ocr.View = View;
 
 })(OC, Backbone, Handlebars, $);
-// TODO:	n('%n file has failed to process.', '%n files have failed to process.'

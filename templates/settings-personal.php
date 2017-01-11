@@ -8,12 +8,11 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2017
  */
-
-script('ocr', ['ocrpersonalview']);
-script('ocr', ['ocrpersonal']);
+style('ocr', ['ocrpersonal']);
+script('ocr', ['ocrpersonalview', 'ocrpersonal']);
 ?>
 
 <div id="ocr" class="section">
 	<h2>OCR</h2>
-	<div id="ocr-failed-files-settings"></div>
+	<div id="ocr-settings"></div>
 </div>

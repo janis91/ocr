@@ -16,6 +16,7 @@ use OCA\Ocr\Service\OcrService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
+use OCP\Template;
 
 class PersonalSettingsController extends Controller {
 
@@ -29,11 +30,6 @@ class PersonalSettingsController extends Controller {
 	 */
 	private $service;
 
-	/**
-	 * @var OcrStatusMapper
-	 */
-	private $statusMapper;
-
 	use Errors;
 
 	/**
@@ -44,20 +40,20 @@ class PersonalSettingsController extends Controller {
 	 * @param OcrService $service
 	 * @param $UserId
 	 */
-	public function __construct($AppName, IRequest $request, OcrService $service, OcrStatusMapper $statusMapper, $UserId) {
+	public function __construct($AppName, IRequest $request, OcrService $service, $UserId) {
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
 		$this->service = $service;
-		$this->statusMapper = $statusMapper;
 	}
 
-	/**
-	 * @NoAdminRequired
-	 *
-	 * @return TemplateResponse
-	 */
+    /**
+     * @NoAdminRequired
+     *
+     * @return Template
+     */
 	public function displayPanel() {
-		return new TemplateResponse('ocr', 'settings-personal');
+		$tmpl = new Template('ocr', 'settings-personal');
+		return $tmpl;
 	}
 
 	/**
@@ -65,9 +61,9 @@ class PersonalSettingsController extends Controller {
 	 *
 	 * @return \OCP\AppFramework\Http\DataResponse
 	 */
-	public function getFailed() {
+	public function getAll() {
 		return $this->handleNotFound(function () {
-			return $this->statusMapper->findAllFailed($this->userId);
+            return $this->service->getAllForPersonal($this->userId);
 		});
 	}
 
@@ -76,9 +72,9 @@ class PersonalSettingsController extends Controller {
 	 *
 	 * @return \OCP\AppFramework\Http\DataResponse
 	 */
-	public function deleteFailed($id) {
+	public function deleteStatus($id) {
 		return $this->handleNotFound(function () use ($id) {
-			return $this->service->deleteFailed($id, $this->userId);
+			return $this->service->deleteStatus($id, $this->userId);
 		});
 	}
 }

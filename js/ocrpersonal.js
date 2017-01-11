@@ -7,16 +7,17 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2017
  */
+
 (function (OC) {
-	'use strict';
+    'use strict';
 
-	OC.Settings = OC.Settings || {};
-	OC.Settings.Ocr = OC.Settings.Ocr || {};
+    OC.Settings = OC.Settings || {};
+    OC.Settings.Ocr = OC.Settings.Ocr || {};
 
-	$(function () {
-		var view = new OC.Settings.Ocr.View({
-			el: $('#ocr-failed-files-settings')
-		});
-		view.render();
-	});
+    $(function () {
+        var view = new OC.Settings.Ocr.View({
+            el: $('#ocr-settings')
+        });
+        view.render();
+    });
 })(OC);
