@@ -38,10 +38,11 @@ class QueueServiceTest extends TestCase {
 	}
 
 	public function tearDown() {
+		// message queue 1
 		msg_remove_queue(msg_get_queue(21671));
+		// status queue
+		msg_remove_queue(msg_get_queue(27672));
 	}
-
-	//TODO: test the clientSend method. dont forget to remove the queue after this.. to not influence the live env.
 
 	public function testClientSend(){
 		$status = new OcrStatus('PENDING', 235, 'newName', '/tmp/file', 'tess', $this->userId);
@@ -55,5 +56,14 @@ class QueueServiceTest extends TestCase {
 
 	}
 
+	public function testCountMessages() {
+		// as there is no message sent to the message queue yet it should be zero
+		$this->assertEquals($this->service->countMessages(), 0);
+	}
+
+	public function testCountActiveProcesses() {
+		// as there is no message sent to the message queue yet it should be zero
+		$this->assertEquals($this->service->countActiveProcesses(), 0);
+	}
 
 }

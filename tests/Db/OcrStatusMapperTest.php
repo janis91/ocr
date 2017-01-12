@@ -87,9 +87,18 @@ class OcrStatusMapperTest extends MapperTestUtility {
 
 	public function testFindAllFailed(){
 		$rows = $this->twoRows;
-		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ? AND status = ?';
-		$this->setMapperResult($sql, [$this->userId, 'FAILED'], $rows);
+		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ? AND status = ? AND error_displayed = ?';
+		$this->setMapperResult($sql, [$this->userId, 'FAILED', false], $rows);
 		$result = $this->mapper->findAllFailed($this->userId);
 		$this->assertEquals($this->status, $result);
 	}
+
+	public function testFindAll(){
+		$rows = $this->twoRows;
+		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ?';
+		$this->setMapperResult($sql, [$this->userId], $rows);
+		$result = $this->mapper->findAll($this->userId);
+		$this->assertEquals($this->status, $result);
+	}
+
 }

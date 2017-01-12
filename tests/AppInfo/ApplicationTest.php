@@ -56,7 +56,8 @@ class ApplicationTest extends TestCase {
 			array('OcrStatusMapper', 'OCA\Ocr\Db\OcrStatusMapper'),
 			array('QueueService', 'OCA\Ocr\Service\QueueService'),
 			array('OcrService', 'OCA\Ocr\Service\OcrService'),
-			array('OcrController', 'OCP\AppFramework\Controller')
+			array('OcrController', 'OCP\AppFramework\Controller'),
+			array('PersonalSettingsController', 'OCP\AppFramework\Controller')
 		);
 	}
 

@@ -96,7 +96,7 @@
             });
 
             $.when(deleting).done(function(data) {
-                _this._showMsg(t('ocr', 'Following file has been successfully deleted:') + ' "' + data.newName + '"');
+                _this._showMsg(t('ocr', 'Following file has been successfully deleted from the queue:') + ' "' + data.newName + '"');
                 _this._loading = false;
                 _this._load();
             });

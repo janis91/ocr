@@ -70,7 +70,12 @@
         <database>pgsql</database>
         <database>mysql</database>
         <database>sqlite</database>
-        <owncloud min-version="9.2" max-version="9.2"/>
-        <nextcloud min-version="11" max-version="11" />
+        <owncloud min-version="9.1" max-version="9.1"/>
+        <nextcloud min-version="10" max-version="10" />
     </dependencies>
+    <repair-steps>
+        <pre-migration>
+            <step>OCA\Ocr\Migration\DropOldTable</step>
+        </pre-migration>
+    </repair-steps>
 </info>

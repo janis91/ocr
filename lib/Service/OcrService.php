@@ -112,7 +112,7 @@ class OcrService {
 	/**
 	 * Gets the list of all available tesseract-ocr languages.
 	 *
-	 * @return array Languages
+	 * @return string[] Languages
 	 */
 	public function listLanguages() {
 		try {
@@ -240,7 +240,7 @@ class OcrService {
 	 * The PersonalSettingsController will have the opportunity to delete ocr status objects.
 	 *
 	 * @param $statusId
-	 * @return Entity
+	 * @return OcrStatus
 	 */
 	public function deleteStatus($statusId, $userId) {
 		try {
@@ -250,6 +250,7 @@ class OcrService {
 			} else {
 				$status = $this->statusMapper->delete($status);
 			}
+			$status->setNewName($this->removeFileExtension($status));
             $status->setFileId(null);
             $status->setTempFile(null);
             $status->setType(null);
@@ -265,23 +266,25 @@ class OcrService {
 		}
 	}
 
+	/**
+	 * Gets all status objects for a specific user in order to list them on the personal settings page.
+	 *
+	 * @param $userId
+	 * @return array
+	 */
 	public function getAllForPersonal($userId) {
 	    try {
             $status = $this->statusMapper->findAll($userId);
             $statusNew = array();
-            foreach ($status as $s) {
-                if ($s->getType() === 'tess') {
-                    $newName = str_replace('_OCR.txt', '', $s->getNewName());
-                } elseif ($s->getType() === 'mypdf') {
-                    $newName = str_replace('_OCR.pdf', '', $s->getNewName());
-                }
-                $s->setNewName($newName);
-                $s->setFileId(null);
-                $s->setTempFile(null);
-                $s->setType(null);
-                $s->setErrorDisplayed(null);
-                array_push($statusNew, $s);
-            }
+			for ($x = 0; $x < count($status); $x++) {
+				$newName = $this->removeFileExtension($status[$x]);
+				$status[$x]->setNewName($newName);
+				$status[$x]->setFileId(null);
+				$status[$x]->setTempFile(null);
+				$status[$x]->setType(null);
+				$status[$x]->setErrorDisplayed(null);
+				array_push($statusNew, $status[$x]);
+			}
             return $statusNew;
         } catch (Exception $e) {
 	        $this->handleException($e);
@@ -316,6 +319,25 @@ class OcrService {
 				}
 			}
 			return $processed;
+		} catch (Exception $e) {
+			$this->handleException($e);
+		}
+	}
+
+	/**
+	 * Removes ".txt" from the newName of a ocr status
+	 *
+	 * @codeCoverageIgnore
+	 * @param $status OcrStatus
+	 * @return string
+	 */
+	private function removeFileExtension($status) {
+		try {
+			if ($status->getType() === 'tess') {
+				return str_replace('_OCR.txt', '', $status->getNewName());
+			} elseif ($status->getType() === 'mypdf') {
+				return str_replace('_OCR.pdf', '', $status->getNewName());
+			}
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}

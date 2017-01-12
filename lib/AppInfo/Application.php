@@ -124,6 +124,10 @@ class Application extends App {
 		$container->registerAlias('PersonalSettingsController', PersonalSettingsController::class);
 	}
 
+	/**
+	 * Registers the Personal Settings Page for deletion of status objects and such things.
+	 * @codeCoverageIgnore
+	 */
 	public function registerPersonal(){
 		\OCP\App::registerPersonal($this->getContainer()->getAppName(), 'personal');
 	}
