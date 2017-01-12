@@ -14,5 +14,6 @@ script('ocr', ['ocrpersonalview', 'ocrpersonal']);
 
 <div id="ocr" class="section">
 	<h2>OCR</h2>
+    <div id="ocr-msg"></div>
 	<div id="ocr-settings"></div>
 </div>

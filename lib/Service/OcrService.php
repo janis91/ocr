@@ -15,6 +15,8 @@ use Exception;
 use OC\Files\View;
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Db\OcrStatusMapper;
+use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\AppFramework\Db\Entity;
 use OCP\Files;
 use OCP\Files\FileInfo;
 use OCP\IConfig;
@@ -238,7 +240,7 @@ class OcrService {
 	 * The PersonalSettingsController will have the opportunity to delete ocr status objects.
 	 *
 	 * @param $statusId
-	 * @return null
+	 * @return Entity
 	 */
 	public function deleteStatus($statusId, $userId) {
 		try {
@@ -248,9 +250,18 @@ class OcrService {
 			} else {
 				$status = $this->statusMapper->delete($status);
 			}
+            $status->setFileId(null);
+            $status->setTempFile(null);
+            $status->setType(null);
+            $status->setErrorDisplayed(null);
 			return $status;
 		} catch (Exception $e) {
-			$this->handleException($e);
+		    if ($e instanceof DoesNotExistException) {
+		        $ex = new NotFoundException($this->l10n->t('Cannot delete. Wrong id.'));
+                $this->handleException($ex);
+            } else {
+		        $this->handleException($e);
+		    }
 		}
 	}
 

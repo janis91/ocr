@@ -7,11 +7,11 @@ table.ocrsettings tbody tr {
     height: 2.5em;
 }
 
-table.ocrsettings td div.ocr-action-delete {
-    width: auto;
-    height: auto;
+table.ocrsettings td.ocr-action-delete div span.icon.icon-delete {
+    padding-right: 20px;
 }
 
-table.ocrsettings td div.ocr-action-delete:hover {
-
+table.ocrsettings td.ocr-action-delete:hover {
+    font-weight: bold;
+    color: black;
 }

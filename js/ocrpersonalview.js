@@ -15,8 +15,7 @@
     OC.Settings = OC.Settings || {};
     OC.Settings.Ocr = OC.Settings.Ocr || {};
 
-    var TEMPLATE = '<button id="ocr-search">' + t('ocr', 'Refresh') + '</button>'
-        + '     {{#if enabled}}'
+    var TEMPLATE = '{{#if enabled}}'
         + '         <table class="grid ocrsettings">'
         + '             <thead>'
         + '                 <tr>'
@@ -30,14 +29,15 @@
         + '                     <tr data-id="{{ id }}">'
         + '                         <td>{{ newName }}</td>'
         + '                         <td>{{ status }}</td>'
-        + '                         <td><div id="ocr-delete" class="ocr-action-delete"><span>' + t('ocr', 'Delete') + '</span><span class="icon icon-delete"></span></div></td>'
+        + '                         <td class="ocr-action-delete"><div id="ocr-delete"><span>' + t('ocr', 'Delete') + '</span><span class="icon icon-delete"></span></div></td>'
         + '                     </tr>'
         + '                 {{/each}}'
         + '             </tbody>'
         + '         </table>'
         + '     {{else}}'
-        + '         <p>' + t('ocr' , 'No pending or failed OCR items found...') +'</p>'
-        + '     {{/if}}';
+        + '         <p>' + t('ocr' , 'No pending or failed OCR items found.') +'</p>'
+        + '     {{/if}}'
+        + '<button id="ocr-search">' + t('ocr', 'Refresh') + '</button>';
 
     var View;
     View = Backbone.View.extend({
@@ -55,11 +55,15 @@
             this.$el.html(this.template(data));
         },
         _load: function () {
+            if (this._loading) {
+                //ignore when loading
+                return;
+            }
             this._loading = true;
 
             var url = OC.generateUrl('/apps/ocr/settings/personal');
             var loading = $.ajax(url, {
-                method: 'GET',
+                method: 'GET'
             });
 
             var _this = this;
@@ -76,14 +80,32 @@
                 _this._loading = false;
             });
         },
-        _delete: function() {
+        _delete: function(e) {
             if (this._loading) {
                 //ignore when loading
                 return;
             }
+            this._loading = true;
             var _this = this;
-            console.log('delete');
-            _this._load();
+            var url = OC.generateUrl('/apps/ocr/settings/personal');
+            var deleting = $.ajax(url, {
+                method: 'DELETE',
+                data: {
+                    id: $(e.target).closest('tr').data('id')
+                }
+            });
+
+            $.when(deleting).done(function(data) {
+                _this._showMsg(t('ocr', 'Following file has been successfully deleted:') + ' "' + data.newName + '"');
+                _this._loading = false;
+                _this._load();
+            });
+
+            $.when(deleting).fail(function(jqXHR) {
+                _this._showMsg(t('ocr', 'Error during deletion: ') + jqXHR.responseText);
+                _this._loading = false;
+            });
+
         },
         _showTable: function(data) {
             var _this = this;
@@ -91,6 +113,10 @@
                 enabled: _this._enabled,
                 status: data
             });
+        },
+        _showMsg: function (msg) {
+            $('#ocr-msg').text(msg);
+            setTimeout(function() { $('#ocr-msg').text(''); }, 5000);
         }
     });
 
