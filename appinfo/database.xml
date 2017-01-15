@@ -12,7 +12,8 @@
 	new_name TEXT NOT NULL,
 	temp_file TEXT NOT NULL,
 	type TEXT NOT NULL,
-	user_id TEXT NOT NULL
+	user_id TEXT NOT NULL,
+	error_displayed BOOLEAN NOT NULL
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 	-->
 	<table>
@@ -67,6 +68,12 @@
 				<type>text</type>
 				<length>200</length>
 				<default></default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>error_displayed</name>
+				<type>boolean</type>
+				<default>false</default>
 				<notnull>true</notnull>
 			</field>
 		</declaration>

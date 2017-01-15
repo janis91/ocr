@@ -34,17 +34,28 @@ class OcrStatusMapper extends Mapper {
 	 * Find a specific status entity
 	 *
 	 * @param $id
-	 * @return \OCP\AppFramework\Db\Entity
+	 * @return OcrStatus
 	 */
 	public function find($id) {
 		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE id = ?';
 		return $this->findEntity($sql, [$id]);
 	}
 
+    /**
+     * Finds all user specific status entities
+     *
+     * @param $userId
+     * @return OcrStatus[]
+     */
+    public function findAll($userId) {
+        $sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ?';
+        return $this->findEntities($sql, [$userId]);
+    }
+
 	/**
 	 * Finds all status PROCESSED entities for a given userid
 	 * @param $userId
-	 * @return array
+	 * @return OcrStatus[]
 	 */
 	public function findAllProcessed($userId) {
 		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ? AND status = ?';
@@ -54,7 +65,7 @@ class OcrStatusMapper extends Mapper {
 	/**
 	 * Finds all status PENDING entities for a given userid
 	 * @param $userId
-	 * @return array
+	 * @return OcrStatus[]
 	 */
 	public function findAllPending($userId) {
 		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ? AND status = ?';
@@ -64,11 +75,11 @@ class OcrStatusMapper extends Mapper {
 	/**
 	 * Finds all status FAILED entities for a given userid
 	 * @param $userId
-	 * @return array
+	 * @return OcrStatus[]
 	 */
 	public function findAllFailed($userId) {
-		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ? AND status = ?';
-		return $this->findEntities($sql, [$userId, 'FAILED']);
+		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ? AND status = ? AND error_displayed = ?';
+		return $this->findEntities($sql, [$userId, 'FAILED', false]);
 	}
 
 }

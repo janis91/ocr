@@ -25,10 +25,16 @@ class QueueService {
 
 	private $l10n;
 
+	private $queue;
+
+	private $statusqueue;
+
 	public function __construct(OcrStatusMapper $mapper, IL10N $l10n, ILogger $logger) {
 		$this->mapper = $mapper;
 		$this->logger = $logger;
 		$this->l10n = $l10n;
+		$this->queue = msg_get_queue(21671);
+		$this->statusqueue = msg_get_queue(27672);
 	}
 
 	/**
@@ -43,7 +49,7 @@ class QueueService {
 	public function clientSend($status, $datadirectory, $path, $language, $occDir) {
 		try {
 				$this->mapper->insert($status);
-				$queue = msg_get_queue(21671);
+
 				$msg = json_encode(array(
 					'type' => $status->getType(),
 					'datadirectory' => $datadirectory,
@@ -53,7 +59,7 @@ class QueueService {
 					'statusid' => $status->getId(),
 					'occdir' => $occDir
 				));
-				if (msg_send($queue, 1, $msg)) {
+				if (msg_send($this->queue, 1, $msg)) {
 					$this->logger->debug('Client message: ' . json_encode($msg), ['app' => 'ocr']);
 				} else {
 					$this->mapper->delete($status);
@@ -61,6 +67,38 @@ class QueueService {
 				}
 		} catch (Exception $e) {
 			exec('rm ' . $status->getTempFile());
+			$this->handleException($e);
+		}
+	}
+
+	/**
+     * TODO: in the future this function could be used to give an admin information
+	 * Counts the messages in the message queue.
+     *
+	 * @return mixed
+	 */
+	public function countMessages() {
+		try {
+			$stats = msg_stat_queue($this->queue);
+			$this->logger->debug('Current message count: ' . json_encode($stats['msg_qnum']), ['app' => 'ocr']);
+			return $stats['msg_qnum'];
+		} catch (Exception $e) {
+			$this->handleException($e);
+		}
+	}
+
+    /**
+     * TODO: in the future this function could be used to give an admin information
+     * Counts the at this point processed files
+     *
+     * @return mixed
+     */
+    public function countActiveProcesses() {
+		try {
+			$stats = msg_stat_queue($this->statusqueue);
+			$this->logger->debug('Current active processing count: ' . json_encode($stats['msg_qnum']), ['app' => 'ocr']);
+			return $stats['msg_qnum'];
+		} catch (Exception $e) {
 			$this->handleException($e);
 		}
 	}

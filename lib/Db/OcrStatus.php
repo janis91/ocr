@@ -12,6 +12,7 @@
 namespace OCA\Ocr\Db;
 
 use OCP\AppFramework\Db\Entity;
+use JsonSerializable;
 
 /**
  * Class to represent a ocr status.
@@ -28,8 +29,10 @@ use OCP\AppFramework\Db\Entity;
  * @method void setType(string $type)
  * @method string getUserId()
  * @method void setUserId(string $userId)
+ * @method boolean getErrorDisplayed()
+ * @method void setErrorDisplayed(boolean $errorDisplayed)
  */
-class OcrStatus extends Entity {
+class OcrStatus extends Entity implements JsonSerializable {
 
 	/**
 	 * @var string
@@ -61,6 +64,12 @@ class OcrStatus extends Entity {
 	 */
 	protected $userId;
 
+
+	/**
+	 * @var boolean
+	 */
+	protected $errorDisplayed;
+
 	/**
 	 * OcrStatus constructor.
 	 *
@@ -70,13 +79,36 @@ class OcrStatus extends Entity {
 	 * @param null $tempFile
 	 * @param null $type
 	 * @param null $userId
+	 * @param null $errorDisplayed
 	 */
-	public function __construct($status = null, $fileId = null, $newName = null, $tempFile = null, $type = null, $userId = null) {
+	public function __construct($status = null, $fileId = null, $newName = null, $tempFile = null, $type = null, $userId = null, $errorDisplayed = null) {
 		$this->setStatus($status);
 		$this->setFileId($fileId);
 		$this->setNewName($newName);
 		$this->setTempFile($tempFile);
 		$this->setType($type);
 		$this->setUserId($userId);
+		$this->setErrorDisplayed($errorDisplayed);
 	}
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'status' => $this->status,
+            'fileId' => $this->fileId,
+            'newName' => $this->newName,
+            'tempFile' => $this->tempFile,
+            'type' => $this->type,
+            'userId' => $this->userId,
+            'errorDisplayed' => $this->errorDisplayed
+        ];
+    }
 }

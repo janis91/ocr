@@ -1,4 +1,4 @@
-# OCR (v2.0.0)
+# OCR (v2.1.0)
 [![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/janis91/ocr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/janis91/ocr/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 Nextcloud OCR (optical character recoginition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud 10.
@@ -24,6 +24,9 @@ For further information see the [homepage](http://janis91.github.io/ocr/) or the
 
 ## Installation
 Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download/clone the git repository and place the content in **nextcloud/apps/ocr/**.
+
+**Please consider: The app will not work as long as the OCRWorker isn't running. (more information in the [wiki](https://github.com/janis91/ocr/wiki))**
+
 Please remind, that the app will not work as expected or maybe cannot be even installed as long as the prior mentioned Dependencies are not available.
 
 ## Administration and Usage

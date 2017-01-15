@@ -10,6 +10,8 @@
  */
 
 $queue = msg_get_queue(21671);
+$statusqueue = msg_get_queue(27672);
+$tempmsg = "1";
 
 $msg_type = NULL;
 $msg = NULL;
@@ -17,6 +19,7 @@ $max_msg_size = 512;
 
 while (msg_receive($queue, 1, $msg_type, $max_msg_size, $msg)) {
 	$workload = json_decode($msg);
+	msg_send($statusqueue, 1, $tempmsg);
 	if ($workload->type === 'tess') {
 		//tesseract
 		$command = 'tesseract "' . $workload->datadirectory . $workload->path . '" "' . $workload->tempfile . '" -l ' . $workload->language;
@@ -44,6 +47,9 @@ while (msg_receive($queue, 1, $msg_type, $max_msg_size, $msg)) {
 		}
 	}
 	//finally, reset our msg vars for when we loop and run again
+	$msg_type = NULL;
+	$msg = NULL;
+	msg_receive($statusqueue,1, $msg_type, $max_msg_size, $msg);
 	$msg_type = NULL;
 	$msg = NULL;
 }

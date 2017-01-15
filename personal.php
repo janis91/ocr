@@ -6,11 +6,10 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 
-namespace OCA\Ocr\AppInfo;
-
 $app = new \OCA\Ocr\AppInfo\Application();
-
-$app->registerPersonal();
+/** @var OCA\Ocr\Controller\PersonalSettingsController */
+$controller = $app->getContainer()->query('PersonalSettingsController');
+return $controller->displayPanel()->fetchPage();

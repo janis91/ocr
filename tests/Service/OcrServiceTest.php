@@ -15,6 +15,7 @@ use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Service\NotFoundException;
 use OCA\Ocr\Service\OcrService;
 use OCA\Ocr\Tests\TestCase;
+use OCP\AppFramework\Db\DoesNotExistException;
 
 
 class OcrServiceTest extends TestCase {
@@ -73,8 +74,97 @@ class OcrServiceTest extends TestCase {
 		$this->assertTrue(in_array('eng',$result));
 	}
 
+	public function testDeleteStatus() {
+		$status = OcrStatus::fromRow([
+			'id' => 3,
+			'status' => 'PENDING',
+			'file_id' => 4,
+			'new_name' => 'new_OCR.txt',
+			'temp_file' => 'temp',
+			'user_id' => $this->userId,
+			'type' => 'tess',
+			'errorDisplayed' => false
+		]);
+
+		$expected = OcrStatus::fromRow([
+			'id' => 3,
+			'status' => 'PENDING',
+			'file_id' => null,
+			'new_name' => 'new',
+			'temp_file' => null,
+			'user_id' => $this->userId,
+			'type' => null,
+			'errorDisplayed' => null
+		]);
+
+		$this->statusMapper->expects($this->once())
+			->method('find')
+			->with($this->equalTo(3))
+			->will($this->returnValue($status));
+
+		$this->statusMapper->expects($this->once())
+			->method('delete')
+			->with($this->equalTo($status))
+			->will($this->returnValue($status));
+
+		$result = $this->service->deleteStatus(3, $this->userId);
+
+		$this->assertEquals($expected->getId(), $result->getId());
+		$this->assertEquals($expected->getNewName(), $result->getNewName());
+		$this->assertEquals($expected->getType(), $result->getType());
+		$this->assertEquals($expected->getUserId(), $result->getUserId());
+	}
+
+	/**
+	 * @expectedException \OCA\Ocr\Service\NotFoundException
+	 */
+	public function testDeleteStatusDoesNotExist() {
+		$this->statusMapper->expects($this->once())
+			->method('find')
+			->with($this->equalTo(3))
+			->will($this->throwException(new DoesNotExistException('')));
+
+
+		$result = $this->service->deleteStatus(3, $this->userId);
+	}
 
 	// FIXME: status() is not possbile to test, because it uses global functions like file_exists().
+
+	public function testGetAllForPersonal() {
+		$status = array(OcrStatus::fromRow([
+			'id' => 3,
+			'status' => 'PENDING',
+			'file_id' => 4,
+			'new_name' => 'new_OCR.txt',
+			'temp_file' => 'temp',
+			'user_id' => $this->userId,
+			'type' => 'tess',
+			'errorDisplayed' => false
+		]));
+
+		$expected = array(OcrStatus::fromRow([
+			'id' => 3,
+			'status' => 'PENDING',
+			'file_id' => null,
+			'new_name' => 'new',
+			'temp_file' => null,
+			'user_id' => $this->userId,
+			'type' => null,
+			'errorDisplayed' => null
+		]));
+
+		$this->statusMapper->expects($this->once())
+			->method('findAll')
+			->with($this->equalTo($this->userId))
+			->will($this->returnValue($status));
+
+		$result = $this->service->getAllForPersonal($this->userId);
+
+		$this->assertEquals($expected[0]->getId(), $result[0]->getId());
+		$this->assertEquals($expected[0]->getNewName(), $result[0]->getNewName());
+		$this->assertEquals($expected[0]->getType(), $result[0]->getType());
+		$this->assertEquals($expected[0]->getUserId(), $result[0]->getUserId());
+	}
 
 	/**
 	 * returns nothing
@@ -87,7 +177,8 @@ class OcrServiceTest extends TestCase {
 			'new_name' => 'new',
 			'temp_file' => 'temp',
 			'user_id' => $this->userId,
-			'type' => 'tess'
+			'type' => 'tess',
+			'errorDisplayed' => false
 		]);
 
 		$this->statusMapper->expects($this->once())
@@ -118,7 +209,8 @@ class OcrServiceTest extends TestCase {
 			'new_name' => 'new',
 			'temp_file' => 'temp',
 			'user_id' => $this->userId,
-			'type' => 'tess'
+			'type' => 'tess',
+			'errorDisplayed' => false
 		]);
 
 		$this->statusMapper->expects($this->once())
@@ -195,7 +287,7 @@ class OcrServiceTest extends TestCase {
 			->with($this->equalTo($fileInfo))
 			->will($this->returnValue('newName'));
 
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId);
+		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
 
 		$this->tempM->expects($this->once())
 			->method('getTemporaryFile')
@@ -257,7 +349,7 @@ class OcrServiceTest extends TestCase {
 			->with($this->equalTo($fileInfo))
 			->will($this->returnValue('newName'));
 
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId);
+		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
 
 		$this->tempM->expects($this->any())
 			->method('getTemporaryFile')
@@ -334,7 +426,7 @@ class OcrServiceTest extends TestCase {
 			->with($this->equalTo($fileInfo))
 			->will($this->returnValue('newName'));
 
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId);
+		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
 
 		$this->tempM->expects($this->any())
 			->method('getTemporaryFile')
@@ -411,7 +503,7 @@ class OcrServiceTest extends TestCase {
 			->with($this->equalTo($fileInfo))
 			->will($this->returnValue('newName'));
 
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId);
+		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
 
 		$this->tempM->expects($this->any())
 			->method('getTemporaryFile')

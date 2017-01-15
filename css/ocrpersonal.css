@@ -1,0 +1,17 @@
+table.ocrsettings {
+    max-width: 550px;
+    white-space: normal;
+}
+
+table.ocrsettings tbody tr {
+    height: 2.5em;
+}
+
+table.ocrsettings td.ocr-action-delete div span.icon.icon-delete {
+    padding-right: 20px;
+}
+
+table.ocrsettings td.ocr-action-delete:hover {
+    font-weight: bold;
+    color: black;
+}

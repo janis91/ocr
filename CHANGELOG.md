@@ -1,4 +1,7 @@
 #Changelog
+nextcloud-ocr (2.1.0)
+* **Bugfix**: Couple of bugfixes including the never ending status update bug (#35). Also deu-frak and other unusal languages are now supported (#37).
+
 nextcloud-ocr (2.0.0)
 * **Support**: A new Nextcloud version is online: 11.0 and this app will support it with version 2.0.0.
 

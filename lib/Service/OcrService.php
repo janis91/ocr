@@ -15,6 +15,8 @@ use Exception;
 use OC\Files\View;
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Db\OcrStatusMapper;
+use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\AppFramework\Db\Entity;
 use OCP\Files;
 use OCP\Files\FileInfo;
 use OCP\IConfig;
@@ -110,7 +112,7 @@ class OcrService {
 	/**
 	 * Gets the list of all available tesseract-ocr languages.
 	 *
-	 * @return array Languages
+	 * @return string[] Languages
 	 */
 	public function listLanguages() {
 		try {
@@ -172,7 +174,7 @@ class OcrService {
 					}
 
 					// Create status object
-					$status = new OcrStatus('PENDING', $fInfo->getId(), $newName, $tempFile, $ftype, $this->userId);
+					$status = new OcrStatus('PENDING', $fInfo->getId(), $newName, $tempFile, $ftype, $this->userId, false);
 
 					// Init client and send task / job
 					// Feed the worker
@@ -197,13 +199,16 @@ class OcrService {
 	public function status() {
 		try {
 			// TODO: release lock
+
+            // returns user specific processed files
 			$processed = $this->handleProcessed();
 
-			$failed = count($this->handleFailed());
+			$pending = $this->statusMapper->findAllPending($this->userId);
 
-			$pending = count($this->statusMapper->findAllPending($this->userId));
+			// return user specific failed state and set up error
+			$failed = $this->handleFailed();
 
-			return ['processed' => $processed, 'failed' => $failed, 'pending' => $pending];
+			return ['processed' => count($processed), 'failed' => count($failed), 'pending' => count($pending)];
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}
@@ -232,15 +237,70 @@ class OcrService {
 	}
 
 	/**
+	 * The PersonalSettingsController will have the opportunity to delete ocr status objects.
+	 *
+	 * @param $statusId
+	 * @return OcrStatus
+	 */
+	public function deleteStatus($statusId, $userId) {
+		try {
+			$status = $this->statusMapper->find($statusId);
+			if ($status->getUserId() !== $userId) {
+				throw new NotFoundException($this->l10n->t('Cannot delete. Wrong owner.'));
+			} else {
+				$status = $this->statusMapper->delete($status);
+			}
+			$status->setNewName($this->removeFileExtension($status));
+            $status->setFileId(null);
+            $status->setTempFile(null);
+            $status->setType(null);
+            $status->setErrorDisplayed(null);
+			return $status;
+		} catch (Exception $e) {
+		    if ($e instanceof DoesNotExistException) {
+		        $ex = new NotFoundException($this->l10n->t('Cannot delete. Wrong id.'));
+                $this->handleException($ex);
+            } else {
+		        $this->handleException($e);
+		    }
+		}
+	}
+
+	/**
+	 * Gets all status objects for a specific user in order to list them on the personal settings page.
+	 *
+	 * @param $userId
+	 * @return array
+	 */
+	public function getAllForPersonal($userId) {
+	    try {
+            $status = $this->statusMapper->findAll($userId);
+            $statusNew = array();
+			for ($x = 0; $x < count($status); $x++) {
+				$newName = $this->removeFileExtension($status[$x]);
+				$status[$x]->setNewName($newName);
+				$status[$x]->setFileId(null);
+				$status[$x]->setTempFile(null);
+				$status[$x]->setType(null);
+				$status[$x]->setErrorDisplayed(null);
+				array_push($statusNew, $status[$x]);
+			}
+            return $statusNew;
+        } catch (Exception $e) {
+	        $this->handleException($e);
+        }
+    }
+
+	/**
 	 * Finishes all Processed files by copying them to the right path and deleteing the temp files.
 	 * Returns the number of processed files.
 	 *
 	 * @codeCoverageIgnore
-	 * @return int
+	 * @return array
 	 */
 	private function handleProcessed() {
 		try {
-			$this->logger->debug('Find processed ocr files and put them to the right dirs.', ['app' => 'ocr']);
+			$this->logger->debug('Check if files were processed by ocr and if so, put them to the right dirs.', ['app' => 'ocr']);
 			$processed = $this->statusMapper->findAllProcessed($this->userId);
 			foreach ($processed as $status) {
 				if ($status->getType() === 'tess' && file_exists($status->getTempFile() . '.txt')) {
@@ -258,7 +318,26 @@ class OcrService {
 					throw new NotFoundException($this->l10n->t('Temp file does not exist.'));
 				}
 			}
-			return count($processed);
+			return $processed;
+		} catch (Exception $e) {
+			$this->handleException($e);
+		}
+	}
+
+	/**
+	 * Removes ".txt" from the newName of a ocr status
+	 *
+	 * @codeCoverageIgnore
+	 * @param $status OcrStatus
+	 * @return string
+	 */
+	private function removeFileExtension($status) {
+		try {
+			if ($status->getType() === 'tess') {
+				return str_replace('_OCR.txt', '', $status->getNewName());
+			} elseif ($status->getType() === 'mypdf') {
+				return str_replace('_OCR.pdf', '', $status->getNewName());
+			}
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}
@@ -276,8 +355,9 @@ class OcrService {
 			foreach ($failed as $status) {
 				// clean the tempfile
 				exec('rm ' . $status->getTempFile());
-				// clean from db
-				$this->statusMapper->delete($status);
+				// set error displayed
+				$status->setErrorDisplayed(true);
+				$this->statusMapper->update($status);
 			}
 			$this->logger->debug('Following status objects failed: ' . json_encode($failed), ['app' => 'ocr']);
 			return $failed;
