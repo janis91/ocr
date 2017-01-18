@@ -14,6 +14,7 @@ OC.L10N.register(
     "Select" : "Sélectionner",
     "Process" : "Exécuter",
     "OCR" : "OCR",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR lancé : %n nouveaux fichiers en attente.","OCR : %n fichiers en attente de traitement."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR : %n fichier en attente d'être traité.","OCR : %n fichiers en attente d'être traités."],
     "OCR processing failed:" : "Le traitement OCR a échoué :",
     "No languages found." : "Pas de langage trouvé.",
