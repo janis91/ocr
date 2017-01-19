@@ -16,6 +16,7 @@ OC.L10N.register(
     "OCR" : "OCR",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR lancé : %n nouveaux fichiers en attente.","OCR : %n fichiers en attente de traitement."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR : %n fichier en attente d'être traité.","OCR : %n fichiers en attente d'être traités."],
+    "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Le traitement OCR a échoué pour %n fichier. Pour plus de détails, veuillez consulter vos paramètres personnels.","Le traitement OCR a échoué pour %n fichiers. Pour plus de détails, veuillez consulter vos paramètres personnels."],
     "OCR processing failed:" : "Le traitement OCR a échoué :",
     "No languages found." : "Pas de langage trouvé.",
     "Empty parameters passed." : "Les paramètres données sont vides.",
