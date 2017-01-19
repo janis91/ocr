@@ -87,7 +87,7 @@
 		checkMimeTypes: function (selectedFiles) {
 			var correct = true;
 			selectedFiles.forEach(function(file){
-				if(file.type != 'file' || $.inArray(file.mimetype, OCR_ALLOWED_MIMETYPES) == -1){
+				if($.inArray(file.mimetype, OCR_ALLOWED_MIMETYPES) == -1){
 					correct = false;
 				}
 			});

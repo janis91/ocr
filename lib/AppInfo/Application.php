@@ -15,7 +15,9 @@ namespace OCA\Ocr\AppInfo;
 use OC\Files\View;
 use OCA\Ocr\Controller\OcrController;
 use OCA\Ocr\Controller\PersonalSettingsController;
+use OCA\Ocr\Db\FileMapper;
 use OCA\Ocr\Db\OcrStatusMapper;
+use OCA\Ocr\Db\ShareMapper;
 use OCA\Ocr\Service\OcrService;
 use OCA\Ocr\Service\QueueService;
 use OCP\AppFramework\App;
@@ -74,6 +76,28 @@ class Application extends App {
 		});
 
 		/**
+		 * Register the File mapper
+		 */
+		$container->registerService('FileMapper', function(IContainer $c) {
+			/** @var \OC\Server $server */
+			$server = $c->query('ServerContainer');
+			return new FileMapper(
+				$server->getDatabaseConnection()
+			);
+		});
+
+		/**
+		 * Register the Share mapper
+		 */
+		$container->registerService('ShareMapper', function(IContainer $c) {
+			/** @var \OC\Server $server */
+			$server = $c->query('ServerContainer');
+			return new ShareMapper(
+				$server->getDatabaseConnection()
+			);
+		});
+
+		/**
 		 * Register the Queue Service
 		 */
 		$container->registerService('QueueService', function(IAppContainer $c) {
@@ -81,6 +105,7 @@ class Application extends App {
 			$server = $c->query('ServerContainer');
 			return new QueueService(
 				$c->query('OcrStatusMapper'),
+				$server->getConfig(),
 				$server->getL10N('ocr'),
 				$server->getLogger()
 			);
@@ -94,9 +119,10 @@ class Application extends App {
 			$server = $c->query('ServerContainer');
 			return new OcrService(
 				$server->getTempManager(),
-				$server->getConfig(),
 				$c->query('QueueService'),
 				$c->query('OcrStatusMapper'),
+				$c->query('FileMapper'),
+				$c->query('ShareMapper'),
 				new View('/' . $c->query('CurrentUID') . '/files'),
 				$c->query('CurrentUID'),
 				$server->getL10N('ocr'),

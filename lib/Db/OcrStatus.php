@@ -19,10 +19,10 @@ use JsonSerializable;
  *
  * @method string getStatus()
  * @method void setStatus(string $status)
- * @method integer getFileId()
- * @method void setFileId(integer $fileId)
- * @method string getNewName()
- * @method void setNewName(string $newName)
+ * @method string getSource()
+ * @method void setSource(integer $source)
+ * @method string getTarget()
+ * @method void setTarget(string $target)
  * @method string getTempFile()
  * @method void setTempFile(string $tempFile)
  * @method string getType()
@@ -40,14 +40,14 @@ class OcrStatus extends Entity implements JsonSerializable {
 	protected $status;
 
 	/**
-	 * @var integer
+	 * @var string
 	 */
-	protected $fileId;
+	protected $source;
 
 	/**
 	 * @var string
 	 */
-	protected $newName;
+	protected $target;
 
 	/**
 	 * @var string
@@ -74,17 +74,17 @@ class OcrStatus extends Entity implements JsonSerializable {
 	 * OcrStatus constructor.
 	 *
 	 * @param null $status
-	 * @param null $fileId
-	 * @param null $newName
+	 * @param null $source
+	 * @param null $target
 	 * @param null $tempFile
 	 * @param null $type
 	 * @param null $userId
 	 * @param null $errorDisplayed
 	 */
-	public function __construct($status = null, $fileId = null, $newName = null, $tempFile = null, $type = null, $userId = null, $errorDisplayed = null) {
+	public function __construct($status = null, $source = null, $target = null, $tempFile = null, $type = null, $userId = null, $errorDisplayed = null) {
 		$this->setStatus($status);
-		$this->setFileId($fileId);
-		$this->setNewName($newName);
+		$this->setSource($source);
+		$this->setTarget($target);
 		$this->setTempFile($tempFile);
 		$this->setType($type);
 		$this->setUserId($userId);
@@ -103,8 +103,8 @@ class OcrStatus extends Entity implements JsonSerializable {
         return [
             'id' => $this->id,
             'status' => $this->status,
-            'fileId' => $this->fileId,
-            'newName' => $this->newName,
+            'source' => $this->source,
+            'target' => $this->target,
             'tempFile' => $this->tempFile,
             'type' => $this->type,
             'userId' => $this->userId,

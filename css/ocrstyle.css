@@ -35,6 +35,11 @@ tr:focus .action:focus,
 	opacity: 1;
 }
 
+.icon.icon-loading-small.ocr-row-adjustment {
+	padding-top: 2px;
+	line-height: 2em;
+}
+
 .selectedActionsOCR {
 	position: absolute;
 	top: 0;

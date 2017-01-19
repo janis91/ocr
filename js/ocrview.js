@@ -79,10 +79,9 @@
 				altText: t('ocr', 'OCR'),
 				iconClass: 'icon-external',
 				actionHandler: function (filename, context) {
-					var path = context.dir || context.fileList.getCurrentDirectory();
+					var id = context.$file.attr('data-id');
 					var mimetype = context.fileActions.getCurrentMimeType();
-					var type = context.fileActions.getCurrentType();
-					self.renderFileAction(filename, path, type, mimetype);
+					self.renderFileAction(id, filename, mimetype);
 				}
 			});
 			/**
@@ -97,10 +96,9 @@
 				altText: t('ocr', 'OCR'),
 				iconClass: 'icon-external',
 				actionHandler: function (filename, context) {
-					var path = context.dir || context.fileList.getCurrentDirectory();
+					var id = context.$file.attr('data-id');
 					var mimetype = context.fileActions.getCurrentMimeType();
-					var type = context.fileActions.getCurrentType();
-					self.renderFileAction(filename, path, type, mimetype);
+					self.renderFileAction(id, filename, mimetype);
 				}
 			});
 		},
@@ -135,11 +133,11 @@
 			if(languages.length > 0 && typeof languages !== undefined){ noMatches = false; }
 			return template({languages: languages, noMatches: noMatches});
 		},
-		renderFileAction: function (file, path, type, mimetype) {
+		renderFileAction: function (id, file, mimetype) {
 			var self = this;
 			var html = self.renderDropdown();
 			$(html).appendTo($('tr').filterAttr('data-file',file).find('td.filename'));
-			var files = [{name: file, path: path, type: type, mimetype: mimetype}];
+			var files = [{id: id, mimetype: mimetype}];
 			self.setSelectedFiles(files);
 		},
 		toggleSelectedActionButton: function () {
@@ -171,9 +169,9 @@
 			var html = '';
 			var pendingcount = self._ocr.getStatus().pending;
 			if(force){
-				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + n('ocr','OCR started: %n new file in queue.', 'OCR started: %n new files in queue.', initialcount) + '</span>';
+				html = '<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span>' + n('ocr','OCR started: %n new file in queue.', 'OCR started: %n new files in queue.', initialcount) + '</span>';
 			}else{
-				html = '<span class="icon icon-loading-small"></span>&nbsp;<span>' + ' ' + n('ocr','OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', pendingcount) + '</span>';
+				html = '<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span>' + ' ' + n('ocr','OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', pendingcount) + '</span>';
 			}
 			if(pendingcount > 0 || force){
 				if (self._row !== undefined) { OC.Notification.hide(self._row); }
@@ -196,7 +194,7 @@
 		loopForStatus: function () {
 			var self = this;
 			$.when(self._ocr.checkStatus()).done(function(){
-				if(self._ocr.getStatus().failed > 0) { self.notifyError(n('ocr', 'OCR processing for %n file failed. For details please go to your personal settings.', 'OCR processing for %n files failed. For details please go to your personal settings.', self._ocr.getStatus().failed.length)); }
+				if(self._ocr.getStatus().failed > 0) { self.notifyError(n('ocr', 'OCR processing for %n file failed. For details please go to your personal settings.', 'OCR processing for %n files failed. For details please go to your personal settings.', self._ocr.getStatus().failed)); }
 				if(self._ocr.getStatus().pending > 0){
 					if(self._ocr.getStatus().processed > 0) { self.updateFileList(); }
 					self.togglePendingState(false);

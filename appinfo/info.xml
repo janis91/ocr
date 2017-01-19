@@ -45,7 +45,7 @@
     **Bitte beachten: Die App untersützt keine aktivierte Verschlüsselung der Dateien und wird es auch voraussichtlich nicht in der Zukunft. Außerdem muss ein aktiver OCRWorker Prozess gestartet sein (Details im Wiki).**
 
     Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffende Dokumentation.]]></description>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
     <licence>agpl</licence>
     <author>Janis Koehr</author>
     <namespace>Ocr</namespace>
@@ -69,8 +69,8 @@
         <database>pgsql</database>
         <database>mysql</database>
         <database>sqlite</database>
-        <owncloud min-version="9.2" max-version="9.2"/>
-        <nextcloud min-version="11" max-version="11" />
+        <owncloud min-version="9.1" max-version="9.1"/>
+        <nextcloud min-version="10" max-version="10" />
     </dependencies>
     <repair-steps>
         <pre-migration>

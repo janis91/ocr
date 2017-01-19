@@ -27,7 +27,7 @@
         + '             <tbody>'
         + '                 {{#each status}}'
         + '                     <tr data-id="{{ id }}">'
-        + '                         <td>{{ newName }}</td>'
+        + '                         <td>{{ target }}</td>'
         + '                         <td>{{ status }}</td>'
         + '                         <td class="ocr-action-delete"><div id="ocr-delete"><span>' + t('ocr', 'Delete') + '</span><span class="icon icon-delete"></span></div></td>'
         + '                     </tr>'
@@ -96,7 +96,7 @@
             });
 
             $.when(deleting).done(function(data) {
-                _this._showMsg(t('ocr', 'Following file has been successfully deleted from the queue:') + ' "' + data.newName + '"');
+                _this._showMsg(t('ocr', 'Following file has been successfully deleted from the queue:') + ' "' + data.target + '"');
                 _this._loading = false;
                 _this._load();
             });

@@ -8,8 +8,8 @@
 	CREATE TABLE ocr_status (
 	id INT(8) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	status TEXT NOT NULL,
-	file_id INT(10) NOT NULL,
-	new_name TEXT NOT NULL,
+	source TEXT NOT NULL,
+	target TEXT NOT NULL,
 	temp_file TEXT NOT NULL,
 	type TEXT NOT NULL,
 	user_id TEXT NOT NULL,
@@ -36,14 +36,14 @@
 				<notnull>true</notnull>
 			</field>
 			<field>
-				<name>file_id</name>
-				<type>integer</type>
-				<length>10</length>
+				<name>source</name>
+				<type>text</type>
+				<length>255</length>
 				<default></default>
 				<notnull>true</notnull>
 			</field>
 			<field>
-				<name>new_name</name>
+				<name>target</name>
 				<type>text</type>
 				<length>255</length>
 				<default></default>
