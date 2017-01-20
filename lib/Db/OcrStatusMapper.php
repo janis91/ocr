@@ -41,16 +41,16 @@ class OcrStatusMapper extends Mapper {
 		return $this->findEntity($sql, [$id]);
 	}
 
-    /**
-     * Finds all user specific status entities
-     *
-     * @param $userId
-     * @return OcrStatus[]
-     */
-    public function findAll($userId) {
-        $sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ?';
-        return $this->findEntities($sql, [$userId]);
-    }
+	/**
+	 * Finds all user specific status entities
+	 *
+	 * @param $userId
+	 * @return OcrStatus[]
+	 */
+	public function findAll($userId) {
+		$sql = 'SELECT * FROM *PREFIX*ocr_status WHERE user_id = ?';
+		return $this->findEntities($sql, [$userId]);
+	}
 
 	/**
 	 * Finds all status PROCESSED entities for a given userid
