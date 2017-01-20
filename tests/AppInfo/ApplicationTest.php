@@ -54,6 +54,8 @@ class ApplicationTest extends TestCase {
 	public function queryData() {
 		return array(
 			array('OcrStatusMapper', 'OCA\Ocr\Db\OcrStatusMapper'),
+			array('FileMapper', 'OCA\Ocr\Db\FileMapper'),
+			array('ShareMapper', 'OCA\Ocr\Db\ShareMapper'),
 			array('QueueService', 'OCA\Ocr\Service\QueueService'),
 			array('OcrService', 'OCA\Ocr\Service\OcrService'),
 			array('OcrController', 'OCP\AppFramework\Controller'),

@@ -391,7 +391,7 @@ class OcrService {
 	 * @return File[]
 	 * @throws NotFoundException
 	 */
-	private function buildFileInfo(array $files) {
+	private function buildFileInfo($files) {
 		try {
 			$fileArray = array();
 			foreach ($files as $file) {

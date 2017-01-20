@@ -11,8 +11,6 @@
 
 namespace OCA\Ocr\Tests\Db;
 
-
-
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Db\OcrStatusMapper;
 

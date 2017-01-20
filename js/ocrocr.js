@@ -56,6 +56,7 @@
 			var self = this;
 			var deferred = $.Deferred();
 			if(self.checkMimeTypes(selectedFiles)){
+				selectedFiles = self._shrinkData(selectedFiles);
 				var data = {language: selectedLanguage, files: selectedFiles};
 				$.ajax({
 					url: self._baseUrl,
@@ -92,6 +93,11 @@
 				}
 			});
 			return correct;
+		},
+		_shrinkData: function(files) {
+			return files.map(function(file){
+				return {id: file.id};
+			});
 		},
 		initialize: function () {
 			var self = this;
