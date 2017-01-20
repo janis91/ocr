@@ -46,11 +46,11 @@ class PersonalSettingsController extends Controller {
 		$this->service = $service;
 	}
 
-    /**
-     * @NoAdminRequired
-     *
-     * @return Template
-     */
+	/**
+	 * @NoAdminRequired
+	 *
+	 * @return Template
+	 */
 	public function displayPanel() {
 		$tmpl = new Template('ocr', 'settings-personal');
 		return $tmpl;
@@ -63,7 +63,7 @@ class PersonalSettingsController extends Controller {
 	 */
 	public function getAll() {
 		return $this->handleNotFound(function () {
-            return $this->service->getAllForPersonal($this->userId);
+			return $this->service->getAllForPersonal($this->userId);
 		});
 	}
 
@@ -73,7 +73,7 @@ class PersonalSettingsController extends Controller {
 	 * @return \OCP\AppFramework\Http\DataResponse
 	 */
 	public function deleteStatus($id) {
-		return $this->handleNotFound(function () use ($id) {
+		return $this->handleNotFound(function() use ($id) {
 			return $this->service->deleteStatus($id, $this->userId);
 		});
 	}

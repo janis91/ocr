@@ -154,7 +154,7 @@ class Application extends App {
 	 * Registers the Personal Settings Page for deletion of status objects and such things.
 	 * @codeCoverageIgnore
 	 */
-	public function registerPersonal(){
+	public function registerPersonal() {
 		\OCP\App::registerPersonal($this->getContainer()->getAppName(), 'personal');
 	}
 
