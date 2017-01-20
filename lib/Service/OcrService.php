@@ -308,6 +308,7 @@ class OcrService {
 	 * Returns a not existing file name for pdf or image processing
 	 * protected as of testing issues with static methods. (Actually
 	 * it will be mocked partially) FIXME: Change this behaviour as soon as the buidlNotExistingFileName function is not static anymore
+	 * @codeCoverageIgnore
 	 *
 	 * @param File $fileInfo
 	 * @return string
@@ -347,6 +348,7 @@ class OcrService {
 	 * Returns a not existing file name for pdf or image processing
 	 * protected as of testing issues with static methods. (Actually
 	 * it will be mocked partially) FIXME: Change this behaviour as soon as the buidlNotExistingFileName function is not static anymore
+	 * @codeCoverageIgnore
 	 *
 	 * @param File $fileInfo
 	 * @return string
