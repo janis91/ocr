@@ -73,13 +73,13 @@ class OcrStatus extends Entity implements JsonSerializable {
 	/**
 	 * OcrStatus constructor.
 	 *
-	 * @param null $status
-	 * @param null $source
-	 * @param null $target
+	 * @param string $status
+	 * @param string $source
+	 * @param string $target
 	 * @param null $tempFile
-	 * @param null $type
+	 * @param string $type
 	 * @param null $userId
-	 * @param null $errorDisplayed
+	 * @param boolean $errorDisplayed
 	 */
 	public function __construct($status = null, $source = null, $target = null, $tempFile = null, $type = null, $userId = null, $errorDisplayed = null) {
 		$this->setStatus($status);
@@ -91,24 +91,24 @@ class OcrStatus extends Entity implements JsonSerializable {
 		$this->setErrorDisplayed($errorDisplayed);
 	}
 
-    /**
-     * Specify data which should be serialized to JSON
-     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
-     * @since 5.4.0
-     */
-    function jsonSerialize()
-    {
-        return [
-            'id' => $this->id,
-            'status' => $this->status,
-            'source' => $this->source,
-            'target' => $this->target,
-            'tempFile' => $this->tempFile,
-            'type' => $this->type,
-            'userId' => $this->userId,
-            'errorDisplayed' => $this->errorDisplayed
-        ];
-    }
+	/**
+	 * Specify data which should be serialized to JSON
+	 * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	function jsonSerialize()
+	{
+		return [
+			'id' => $this->id,
+			'status' => $this->status,
+			'source' => $this->source,
+			'target' => $this->target,
+			'tempFile' => $this->tempFile,
+			'type' => $this->type,
+			'userId' => $this->userId,
+			'errorDisplayed' => $this->errorDisplayed
+		];
+	}
 }

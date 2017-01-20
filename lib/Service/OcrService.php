@@ -169,7 +169,7 @@ class OcrService {
 					$source = $fInfo->getPath();
 					if ($this->checkSharedWithInitiator($fInfo)) {
 						// Shared Item
-						$source = str_replace('home::','',$fInfo->getStoragename()) . '/' . $source;
+						$source = str_replace('home::', '', $fInfo->getStoragename()) . '/' . $source;
 						$target = $this->buildTargetForShared($fInfo);
 					} else {
 						// Not Shared
@@ -212,7 +212,7 @@ class OcrService {
 		try {
 			// TODO: release lock
 
-            // returns user specific processed files
+			// returns user specific processed files
 			$processed = $this->handleProcessed();
 
 			$pending = $this->statusMapper->findAllPending($this->userId);
@@ -252,6 +252,7 @@ class OcrService {
 	 * The PersonalSettingsController will have the opportunity to delete ocr status objects.
 	 *
 	 * @param $statusId
+	 * @param string $userId
 	 * @return OcrStatus
 	 */
 	public function deleteStatus($statusId, $userId) {
@@ -263,31 +264,31 @@ class OcrService {
 				$status = $this->statusMapper->delete($status);
 			}
 			$status->setTarget($this->removeFileExtension($status));
-            $status->setSource(null);
-            $status->setTempFile(null);
-            $status->setType(null);
-            $status->setErrorDisplayed(null);
+			$status->setSource(null);
+			$status->setTempFile(null);
+			$status->setType(null);
+			$status->setErrorDisplayed(null);
 			return $status;
 		} catch (Exception $e) {
-		    if ($e instanceof DoesNotExistException) {
-		        $ex = new NotFoundException($this->l10n->t('Cannot delete. Wrong id.'));
-                $this->handleException($ex);
-            } else {
-		        $this->handleException($e);
-		    }
+			if ($e instanceof DoesNotExistException) {
+				$ex = new NotFoundException($this->l10n->t('Cannot delete. Wrong id.'));
+				$this->handleException($ex);
+			} else {
+				$this->handleException($e);
+			}
 		}
 	}
 
 	/**
 	 * Gets all status objects for a specific user in order to list them on the personal settings page.
 	 *
-	 * @param $userId
+	 * @param string $userId
 	 * @return array
 	 */
 	public function getAllForPersonal($userId) {
-	    try {
-            $status = $this->statusMapper->findAll($userId);
-            $statusNew = array();
+		try {
+			$status = $this->statusMapper->findAll($userId);
+			$statusNew = array();
 			for ($x = 0; $x < count($status); $x++) {
 				$newName = $this->removeFileExtension($status[$x]);
 				$status[$x]->setTarget($newName);
@@ -297,11 +298,11 @@ class OcrService {
 				$status[$x]->setErrorDisplayed(null);
 				array_push($statusNew, $status[$x]);
 			}
-            return $statusNew;
-        } catch (Exception $e) {
-	        $this->handleException($e);
-        }
-    }
+			return $statusNew;
+		} catch (Exception $e) {
+			$this->handleException($e);
+		}
+	}
 
 	/**
 	 * Returns a not existing file name for pdf or image processing
@@ -313,7 +314,7 @@ class OcrService {
 	 */
 	protected function buildTargetForShared(File $fileInfo) {
 		try {
-			$share = $this->shareMapper->find($fileInfo->getFileid(), $this->userId, str_replace('home::','',$fileInfo->getStoragename()));
+			$share = $this->shareMapper->find($fileInfo->getFileid(), $this->userId, str_replace('home::', '', $fileInfo->getStoragename()));
 
 			// get rid of the .png or .pdf and so on
 			$fileName = substr($share->getFileTarget(), 0, -4); // '/thedom.png' => '/thedom' || '/Test/thedom.png' => '/Test/thedom'
@@ -362,7 +363,7 @@ class OcrService {
 			$filePath = str_replace('files', '', $filePath); // 'files/Test/' => '/Test/' || 'files/' => '/'
 
 			// remove the last slash
-			$filePath = substr_replace($filePath,'',strrpos($filePath,'/'),strlen('/')); // '/Test/' => '/Test' || '/' => ''
+			$filePath = substr_replace($filePath, '', strrpos($filePath, '/'), strlen('/')); // '/Test/' => '/Test' || '/' => ''
 
 			// replace the first slash
 			$pos = strpos($filePath, '/');
@@ -429,12 +430,12 @@ class OcrService {
 
 	/**
 	 * @param File $fileInfo
-	 * @return bool
+	 * @return boolean|null
 	 */
 	private function checkSharedWithInitiator($fileInfo) {
 		try {
-			$owner = str_replace('home::','',$fileInfo->getStoragename());
-			if ($this->userId === $owner){
+			$owner = str_replace('home::', '', $fileInfo->getStoragename());
+			if ($this->userId === $owner) {
 				// user is owner (no shared file)
 				return false;
 			} else {
@@ -488,7 +489,7 @@ class OcrService {
 	 */
 	private function removeFileExtension($status) {
 		try {
-			return substr($status->getTarget(), 0, strrpos($status->getTarget(),'_OCR'));
+			return substr($status->getTarget(), 0, strrpos($status->getTarget(), '_OCR'));
 		} catch (Exception $e) {
 			$this->handleException($e);
 		}
