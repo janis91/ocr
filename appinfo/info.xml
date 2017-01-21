@@ -50,7 +50,7 @@ Für die OCR App müssen folgende Anforderungen erfüllt sein:
 
 Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffende Dokumentation.
 ]]></description>
-    <version>2.3.0</version>
+    <version>1.2.0</version>
     <licence>agpl</licence>
     <author>Janis Koehr</author>
     <namespace>Ocr</namespace>
@@ -69,14 +69,14 @@ Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffen
     <screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
     <screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
     <dependencies>
-        <php min-version="5.6" max-version="7.1" min-int-size="32" />
+        <php min-version="5.6" max-version="7" min-int-size="32" />
         <command>ocrmypdf</command>
         <command>tesseract</command>
         <database>pgsql</database>
         <database>mysql</database>
         <database>sqlite</database>
-        <owncloud min-version="9.2" max-version="9.2"/>
-        <nextcloud min-version="11" max-version="11" />
+        <owncloud min-version="9.1" max-version="9.1"/>
+        <nextcloud min-version="10" max-version="10" />
     </dependencies>
     <repair-steps>
         <pre-migration>
