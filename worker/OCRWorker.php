@@ -22,7 +22,7 @@ while (msg_receive($queue, 1, $msg_type, $max_msg_size, $msg)) {
 	msg_send($statusqueue, 1, $tempmsg);
 	if ($workload->type === 'tess') {
 		//tesseract
-		$command = 'tesseract "' . $workload->datadirectory . $workload->path . '" "' . $workload->tempfile . '" -l ' . $workload->language;
+		$command = 'tesseract "' . $workload->source . '" "' . $workload->tempfile . '" -l ' . $workload->language;
 		$success = -1;
 		exec($command, $_out, $success);
 		if ($success === 0 && !isset($_out[1])) {
@@ -34,7 +34,7 @@ while (msg_receive($queue, 1, $msg_type, $max_msg_size, $msg)) {
 		}
 	} else {
 		//ocrmypdf
-		$command = 'ocrmypdf "' . $workload->datadirectory . $workload->path . '" "' . $workload->tempfile . '" -l ' . $workload->language . ' --skip-text';
+		$command = 'ocrmypdf "' . $workload->source . '" "' . $workload->tempfile . '" -l ' . $workload->language . ' --skip-text';
 		$success = -1;
 		exec($command, $_out, $success);
 		// Command successful and no error by tesseract (line[0] is 'Tesseract Open Source OCR Engine v3.03 with Leptonica' line[1] should not exist)

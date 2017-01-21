@@ -14,46 +14,77 @@ namespace OCA\Ocr\Service;
 use Exception;
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Db\OcrStatusMapper;
+use OCP\IConfig;
 use OCP\IL10N;
 use OCP\ILogger;
 
+/**
+ * Class QueueService
+ *
+ * @package OCA\Ocr\Service
+ */
 class QueueService {
 
+	/**
+	 * @var IConfig
+	 */
+	private $config;
+
+	/**
+	 * @var OcrStatusMapper
+	 */
 	private $mapper;
 
+	/**
+	 * @var ILogger
+	 */
 	private $logger;
 
+	/**
+	 * @var IL10N
+	 */
 	private $l10n;
 
+	/**
+	 * @var resource
+	 */
 	private $queue;
 
+	/**
+	 * @var resource
+	 */
 	private $statusqueue;
 
-	public function __construct(OcrStatusMapper $mapper, IL10N $l10n, ILogger $logger) {
+	/**
+	 * QueueService constructor.
+	 *
+	 * @param OcrStatusMapper $mapper
+	 * @param IConfig $config
+	 * @param IL10N $l10n
+	 * @param ILogger $logger
+	 */
+	public function __construct(OcrStatusMapper $mapper, IConfig $config, IL10N $l10n, ILogger $logger) {
 		$this->mapper = $mapper;
 		$this->logger = $logger;
 		$this->l10n = $l10n;
 		$this->queue = msg_get_queue(21671);
 		$this->statusqueue = msg_get_queue(27672);
+		$this->config = $config;
 	}
 
 	/**
 	 * Inits the client and sends the task to the background worker (async)
 	 *
 	 * @param OcrStatus $status
-	 * @param string $datadirectory
-	 * @param string $path
 	 * @param string $language
 	 * @param string $occDir
 	 */
-	public function clientSend($status, $datadirectory, $path, $language, $occDir) {
+	public function clientSend($status, $language, $occDir) {
 		try {
 				$this->mapper->insert($status);
-
 				$msg = json_encode(array(
 					'type' => $status->getType(),
-					'datadirectory' => $datadirectory,
-					'path' => $path,
+					'source' => $this->config->getSystemValue('datadirectory') . '/' . $status->getSource(),
 					'tempfile' => $status->getTempFile(),
 					'language' => $language,
 					'statusid' => $status->getId(),
@@ -67,14 +98,16 @@ class QueueService {
 				}
 		} catch (Exception $e) {
 			exec('rm ' . $status->getTempFile());
+			$status->setStatus('FAILED');
+			$this->mapper->update($status);
 			$this->handleException($e);
 		}
 	}
 
 	/**
-     * TODO: in the future this function could be used to give an admin information
+	 * TODO: in the future this function could be used to give an admin information
 	 * Counts the messages in the message queue.
-     *
+	 *
 	 * @return mixed
 	 */
 	public function countMessages() {
@@ -87,13 +120,13 @@ class QueueService {
 		}
 	}
 
-    /**
-     * TODO: in the future this function could be used to give an admin information
-     * Counts the at this point processed files
-     *
-     * @return mixed
-     */
-    public function countActiveProcesses() {
+	/**
+	 * TODO: in the future this function could be used to give an admin information
+	 * Counts the at this point processed files
+	 *
+	 * @return mixed
+	 */
+	public function countActiveProcesses() {
 		try {
 			$stats = msg_stat_queue($this->statusqueue);
 			$this->logger->debug('Current active processing count: ' . json_encode($stats['msg_qnum']), ['app' => 'ocr']);

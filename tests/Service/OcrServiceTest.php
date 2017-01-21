@@ -11,6 +11,7 @@
 
 namespace OCA\Ocr\Tests\Service;
 
+use OCA\Ocr\Db\File;
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Service\NotFoundException;
 use OCA\Ocr\Service\OcrService;
@@ -30,6 +31,10 @@ class OcrServiceTest extends TestCase {
 
 	private $statusMapper;
 
+	private $fileMapper;
+
+	private $shareMapper;
+
 	private $view;
 
 	private $userId = 'john';
@@ -45,13 +50,16 @@ class OcrServiceTest extends TestCase {
 		$this->tempM = $this->getMockBuilder('OCP\ITempManager')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->config = $this->getMockBuilder('OCP\IConfig')
-			->disableOriginalConstructor()
-			->getMock();
 		$this->queueService = $this->getMockBuilder('OCA\Ocr\Service\QueueService')
 			->disableOriginalConstructor()
 			->getMock();
 		$this->statusMapper = $this->getMockBuilder('OCA\Ocr\Db\OcrStatusMapper')
+			->disableOriginalConstructor()
+			->getMock();
+		$this->fileMapper = $this->getMockBuilder('OCA\Ocr\Db\FileMapper')
+			->disableOriginalConstructor()
+			->getMock();
+		$this->shareMapper = $this->getMockBuilder('OCA\Ocr\Db\ShareMapper')
 			->disableOriginalConstructor()
 			->getMock();
 		$this->view = $this->getMockBuilder('OC\Files\View')
@@ -61,10 +69,9 @@ class OcrServiceTest extends TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		//FIXME: only necessary because of the static function buildNotExistingFileName... change if not necessary anymore
 		$this->service = $this->getMockBuilder('OCA\Ocr\Service\OcrService')
-			->setConstructorArgs([$this->tempM, $this->config, $this->queueService, $this->statusMapper, $this->view, $this->userId, $this->l10n, $this->logger])
-			->setMethods(array('buildNewName'))
+			->setConstructorArgs([$this->tempM, $this->queueService, $this->statusMapper, $this->fileMapper, $this->shareMapper, $this->view, $this->userId, $this->l10n, $this->logger])
+			->setMethods(array('buildTarget', 'buildTargetForShared'))
 			->getMock();
 	}
 
@@ -78,8 +85,8 @@ class OcrServiceTest extends TestCase {
 		$status = OcrStatus::fromRow([
 			'id' => 3,
 			'status' => 'PENDING',
-			'file_id' => 4,
-			'new_name' => 'new_OCR.txt',
+			'source' => 'new.png',
+			'target' => 'new_OCR.txt',
 			'temp_file' => 'temp',
 			'user_id' => $this->userId,
 			'type' => 'tess',
@@ -89,8 +96,8 @@ class OcrServiceTest extends TestCase {
 		$expected = OcrStatus::fromRow([
 			'id' => 3,
 			'status' => 'PENDING',
-			'file_id' => null,
-			'new_name' => 'new',
+			'source' => null,
+			'target' => 'new',
 			'temp_file' => null,
 			'user_id' => $this->userId,
 			'type' => null,
@@ -110,7 +117,7 @@ class OcrServiceTest extends TestCase {
 		$result = $this->service->deleteStatus(3, $this->userId);
 
 		$this->assertEquals($expected->getId(), $result->getId());
-		$this->assertEquals($expected->getNewName(), $result->getNewName());
+		$this->assertEquals($expected->getTarget(), $result->getTarget());
 		$this->assertEquals($expected->getType(), $result->getType());
 		$this->assertEquals($expected->getUserId(), $result->getUserId());
 	}
@@ -134,8 +141,8 @@ class OcrServiceTest extends TestCase {
 		$status = array(OcrStatus::fromRow([
 			'id' => 3,
 			'status' => 'PENDING',
-			'file_id' => 4,
-			'new_name' => 'new_OCR.txt',
+			'source' => 'new.png',
+			'target' => 'new_OCR.txt',
 			'temp_file' => 'temp',
 			'user_id' => $this->userId,
 			'type' => 'tess',
@@ -145,8 +152,8 @@ class OcrServiceTest extends TestCase {
 		$expected = array(OcrStatus::fromRow([
 			'id' => 3,
 			'status' => 'PENDING',
-			'file_id' => null,
-			'new_name' => 'new',
+			'source' => null,
+			'target' => 'new',
 			'temp_file' => null,
 			'user_id' => $this->userId,
 			'type' => null,
@@ -161,7 +168,7 @@ class OcrServiceTest extends TestCase {
 		$result = $this->service->getAllForPersonal($this->userId);
 
 		$this->assertEquals($expected[0]->getId(), $result[0]->getId());
-		$this->assertEquals($expected[0]->getNewName(), $result[0]->getNewName());
+		$this->assertEquals($expected[0]->getTarget(), $result[0]->getTarget());
 		$this->assertEquals($expected[0]->getType(), $result[0]->getType());
 		$this->assertEquals($expected[0]->getUserId(), $result[0]->getUserId());
 	}
@@ -170,16 +177,7 @@ class OcrServiceTest extends TestCase {
 	 * returns nothing
 	 */
 	public function testComplete(){
-		$status = OcrStatus::fromRow([
-			'id' => 3,
-			'status' => 'PENDING',
-			'file_id' => 4,
-			'new_name' => 'new',
-			'temp_file' => 'temp',
-			'user_id' => $this->userId,
-			'type' => 'tess',
-			'errorDisplayed' => false
-		]);
+		$status = new OcrStatus('PENDING','new.png','new_OCR.txt','temp','tess',$this->userId,false);
 
 		$this->statusMapper->expects($this->once())
 			->method('find')
@@ -202,16 +200,7 @@ class OcrServiceTest extends TestCase {
 	 * returns nothing
 	 */
 	public function testCompleteSetFailed(){
-		$status = OcrStatus::fromRow([
-			'id' => 3,
-			'status' => 'PENDING',
-			'file_id' => 4,
-			'new_name' => 'new',
-			'temp_file' => 'temp',
-			'user_id' => $this->userId,
-			'type' => 'tess',
-			'errorDisplayed' => false
-		]);
+		$status = new OcrStatus('PENDING','new.png','new_OCR.txt','temp','tess',$this->userId,false);
 
 		$this->statusMapper->expects($this->once())
 			->method('find')
@@ -242,75 +231,74 @@ class OcrServiceTest extends TestCase {
 	}
 
 
-	public function testProcess(){
-		// {"id":325,"name":"peter.pdf","mimetype":"application\/pdf","mtime":1474450696000,"type":"file","size":103819,"etag":"e7195348f44aca1ad8d81ff6c8b6ea43","permissions":27,"hasPreview":false,"path":"\/","tags":[],"sharePermissions":"19"}
+	public function testProcessShared(){
+		// {"id":325}
 		$files = array (
 			0 => array(
-			'id' => 325,
-			'name' => 'picture.png',
-			'mimetype' => 'image/png',
-			'mtime' => 1474450696000,
-			'type' => 'file',
-			'size' => 103819,
-			'etag' => 'e7195348f44aca1ad8d81ff6c8b6ea43',
-			'permissions' => 27,
-			'hasPreview' => false,
-			'path' => '/',
-			'tags' =>
-				array (
-				),
-			'sharePermissions' => '19',
+			'id' => 325
 		));
 
-		$fileInfo = $this->getMockBuilder('OC\Files\FileInfo')
-			->disableOriginalConstructor()
-			->getMock();
+		$fileArray = array(new File(325, 'path', 'new.png', 'image/png', 'home::admin'));
 
-		$fileInfo->expects($this->any())
-			->method('getId')
-			->will($this->returnValue(325));
+		$this->fileMapper->expects($this->once())
+			->method('find')
+			->with($this->equalTo($files[0]['id']))
+			->will($this->returnValue($fileArray[0]));
 
-		$fileInfo->expects($this->any())
-			->method('getPath')
-			->will($this->returnValue('/'));
-
-		$fileInfo->expects($this->any())
-			->method('getMimeType')
-			->will($this->returnValue('image/png'));
-
-		$fileInfo->expects($this->any())
-			->method('getName')
-			->will($this->returnValue('picture.png'));
-
-		$this->service->expects($this->any())
-			->method('buildNewName')
-			->with($this->equalTo($fileInfo))
-			->will($this->returnValue('newName'));
-
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
+		$this->service->expects($this->once())
+			->method('buildTargetForShared')
+			->with($this->equalTo($fileArray[0]))
+			->will($this->returnValue('new_OCR.txt'));
 
 		$this->tempM->expects($this->once())
 			->method('getTemporaryFile')
 			->will($this->returnValue('/tmp/file'));
 
+		$status = new OcrStatus('PENDING', 'admin/path', 'new_OCR.txt', '/tmp/file', 'tess', $this->userId, false);
+
 		$this->queueService->expects($this->once())
 			->method('clientSend')
 			->with($this->equalTo($status),
-				$this->equalTo('/data'),
-				$this->equalTo($fileInfo->getPath()),
 				$this->equalTo('eng'),
 				$this->equalTo(\OC::$SERVERROOT))
 			->will($this->returnValue(true));
 
-		$this->view->expects($this->once())
-			->method('getFileInfo')
-			->with($this->equalTo('/picture.png'))
-			->will($this->returnValue($fileInfo));
+		$result = $this->service->process('eng', $files);
 
-		$this->config->expects($this->once())
-			->method('getSystemValue')
-			->with($this->equalTo('datadirectory'))
-			->will($this->returnValue('/data'));
+		$this->assertEquals('PROCESSING', $result);
+	}
+
+	public function testProcessNotShared(){
+		// {"id":325}
+		$files = array (
+			0 => array(
+				'id' => 325
+			));
+
+		$fileArray = array(new File(325, 'path', 'new.png', 'image/png', 'home::john'));
+
+		$this->fileMapper->expects($this->once())
+			->method('find')
+			->with($this->equalTo($files[0]['id']))
+			->will($this->returnValue($fileArray[0]));
+
+		$this->service->expects($this->once())
+			->method('buildTarget')
+			->with($this->equalTo($fileArray[0]))
+			->will($this->returnValue('new_OCR.txt'));
+
+		$this->tempM->expects($this->once())
+			->method('getTemporaryFile')
+			->will($this->returnValue('/tmp/file'));
+
+		$status = new OcrStatus('PENDING', 'john/path', 'new_OCR.txt', '/tmp/file', 'tess', $this->userId, false);
+
+		$this->queueService->expects($this->once())
+			->method('clientSend')
+			->with($this->equalTo($status),
+				$this->equalTo('eng'),
+				$this->equalTo(\OC::$SERVERROOT))
+			->will($this->returnValue(true));
 
 		$result = $this->service->process('eng', $files);
 
@@ -320,215 +308,42 @@ class OcrServiceTest extends TestCase {
 	/**
 	 * @expectedException \OCA\Ocr\Service\NotFoundException
 	 */
-	public function testProcessEmptyPassedParameters(){
-		// {"id":325,"name":"peter.pdf","mimetype":"application\/pdf","mtime":1474450696000,"type":"file","size":103819,"etag":"e7195348f44aca1ad8d81ff6c8b6ea43","permissions":27,"hasPreview":false,"path":"\/","tags":[],"sharePermissions":"19"}
+	public function testProcessWrongParameters(){
 		$files = array ();
 
-		$fileInfo = $this->getMockBuilder('OC\Files\FileInfo')
-			->disableOriginalConstructor()
-			->getMock();
-
-		$fileInfo->expects($this->any())
-			->method('getId')
-			->will($this->returnValue(325));
-
-		$fileInfo->expects($this->any())
-			->method('getPath')
-			->will($this->returnValue('/'));
-
-		$fileInfo->expects($this->any())
-			->method('getMimeType')
-			->will($this->returnValue('image/png'));
-
-		$fileInfo->expects($this->any())
-			->method('getName')
-			->will($this->returnValue('picture.png'));
-
-		$this->service->expects($this->any())
-			->method('buildNewName')
-			->with($this->equalTo($fileInfo))
-			->will($this->returnValue('newName'));
-
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
-
-		$this->tempM->expects($this->any())
-			->method('getTemporaryFile')
-			->will($this->returnValue('/tmp/file'));
-
-		$this->queueService->expects($this->any())
-			->method('clientSend')
-			->with($this->equalTo($status),
-				$this->equalTo('/data'),
-				$this->equalTo($fileInfo->getPath()),
-				$this->equalTo('eng'),
-				$this->equalTo(\OC::$SERVERROOT))
-			->will($this->returnValue(true));
-
-		$this->view->expects($this->any())
-			->method('getFileInfo')
-			->with($this->equalTo('/picture.png'))
-			->will($this->returnValue($fileInfo));
-
-		$this->config->expects($this->any())
-			->method('getSystemValue')
-			->with($this->equalTo('datadirectory'))
-			->will($this->returnValue('/data'));
-
 		$this->service->process('eng', $files);
-
 	}
 
 	/**
 	 * @expectedException \OCA\Ocr\Service\NotFoundException
 	 */
-	public function testProcessEmptyPassedParametersTwo(){
-		// {"id":325,"name":"peter.pdf","mimetype":"application\/pdf","mtime":1474450696000,"type":"file","size":103819,"etag":"e7195348f44aca1ad8d81ff6c8b6ea43","permissions":27,"hasPreview":false,"path":"\/","tags":[],"sharePermissions":"19"}
+	public function testProcessWrongMimetypes(){
+		// {"id":325}
 		$files = array (
 			0 => array(
-				'id' => 325,
-				'name' => 'picture.png',
-				'mimetype' => 'image/png',
-				'mtime' => 1474450696000,
-				'type' => 'file',
-				'size' => 103819,
-				'etag' => 'e7195348f44aca1ad8d81ff6c8b6ea43',
-				'permissions' => 27,
-				'hasPreview' => false,
-				'path' => '/',
-				'tags' =>
-					array (
-					),
-				'sharePermissions' => '19',
+				'id' => 325
 			));
 
-		$fileInfo = $this->getMockBuilder('OC\Files\FileInfo')
-			->disableOriginalConstructor()
-			->getMock();
+		$fileArray = array(new File(325, 'path', 'new.png', 'application/xhtml', 'home::admin'));
 
-		$fileInfo->expects($this->any())
-			->method('getId')
-			->will($this->returnValue(325));
+		$this->fileMapper->expects($this->once())
+			->method('find')
+			->with($this->equalTo($files[0]['id']))
+			->will($this->returnValue($fileArray[0]));
 
-		$fileInfo->expects($this->any())
-			->method('getPath')
-			->will($this->returnValue('/'));
-
-		$fileInfo->expects($this->any())
-			->method('getMimeType')
-			->will($this->returnValue('image/png'));
-
-		$fileInfo->expects($this->any())
-			->method('getName')
-			->will($this->returnValue('picture.png'));
-
-		$this->service->expects($this->any())
-			->method('buildNewName')
-			->with($this->equalTo($fileInfo))
-			->will($this->returnValue('newName'));
-
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
-
-		$this->tempM->expects($this->any())
-			->method('getTemporaryFile')
-			->will($this->returnValue('/tmp/file'));
-
-		$this->queueService->expects($this->any())
-			->method('clientSend')
-			->with($this->equalTo($status),
-				$this->equalTo('/data'),
-				$this->equalTo($fileInfo->getPath()),
-				$this->equalTo('eng'),
-				$this->equalTo(\OC::$SERVERROOT))
-			->will($this->returnValue(true));
-
-		$this->view->expects($this->any())
-			->method('getFileInfo')
-			->with($this->equalTo('/picture.png'))
-			->will($this->returnValue($fileInfo));
-
-		$this->config->expects($this->any())
-			->method('getSystemValue')
-			->with($this->equalTo('datadirectory'))
-			->will($this->returnValue('/data'));
+		$this->service->process('eng', $files);
+	}
+	/**
+	 * @expectedException \OCA\Ocr\Service\NotFoundException
+	 */
+	public function testProcessWrongParametersTwo(){
+		// {"id":325}
+		$files = array (
+			0 => array(
+				'id' => 325
+			));
 
 		$this->service->process('', $files);
-
-	}
-
-
-	/**
-	 * @expectedException \OCA\Ocr\Service\NotFoundException
-	 */
-	public function testProcessWrongPath(){
-		// {"id":325,"name":"peter.pdf","mimetype":"application\/pdf","mtime":1474450696000,"type":"file","size":103819,"etag":"e7195348f44aca1ad8d81ff6c8b6ea43","permissions":27,"hasPreview":false,"path":"\/","tags":[],"sharePermissions":"19"}
-		$files = array (
-			0 => array(
-				'id' => 325,
-				'name' => 'picture.png',
-				'mimetype' => 'image/png',
-				'mtime' => 1474450696000,
-				'type' => 'file',
-				'size' => 103819,
-				'etag' => 'e7195348f44aca1ad8d81ff6c8b6ea43',
-				'permissions' => 27,
-				'hasPreview' => false,
-				'tags' =>
-					array (
-					),
-				'sharePermissions' => '19',
-			));
-
-		$fileInfo = $this->getMockBuilder('OC\Files\FileInfo')
-			->disableOriginalConstructor()
-			->getMock();
-
-		$fileInfo->expects($this->any())
-			->method('getId')
-			->will($this->returnValue(325));
-
-		$fileInfo->expects($this->any())
-			->method('getPath')
-			->will($this->returnValue('/'));
-
-		$fileInfo->expects($this->any())
-			->method('getMimeType')
-			->will($this->returnValue('image/png'));
-
-		$fileInfo->expects($this->any())
-			->method('getName')
-			->will($this->returnValue('picture.png'));
-
-		$this->service->expects($this->any())
-			->method('buildNewName')
-			->with($this->equalTo($fileInfo))
-			->will($this->returnValue('newName'));
-
-		$status = new OcrStatus('PENDING', $fileInfo->getId(), 'newName', '/tmp/file', 'tess', $this->userId, false);
-
-		$this->tempM->expects($this->any())
-			->method('getTemporaryFile')
-			->will($this->returnValue('/tmp/file'));
-
-		$this->queueService->expects($this->any())
-			->method('clientSend')
-			->with($this->equalTo($status),
-				$this->equalTo('/data'),
-				$this->equalTo($fileInfo->getPath()),
-				$this->equalTo('eng'),
-				$this->equalTo(\OC::$SERVERROOT))
-			->will($this->returnValue(true));
-
-		$this->view->expects($this->any())
-			->method('getFileInfo')
-			->with($this->equalTo('/picture.png'))
-			->will($this->returnValue($fileInfo));
-
-		$this->config->expects($this->any())
-			->method('getSystemValue')
-			->with($this->equalTo('datadirectory'))
-			->will($this->returnValue('/data'));
-
-		$this->service->process('eng', $files);
 
 	}
 }

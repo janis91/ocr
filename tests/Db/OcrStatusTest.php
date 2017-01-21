@@ -21,8 +21,8 @@ class OcrStatusTest extends TestCase {
 		$status = new OcrStatus();
 		$status->setId(3);
 		$status->setStatus('status');
-		$status->setFileId(4);
-		$status->setNewName('new');
+		$status->setSource('source');
+		$status->setTarget('target');
 		$status->setTempFile('temp');
 		$status->setUserId('john');
 		$status->setType('type');
@@ -30,8 +30,8 @@ class OcrStatusTest extends TestCase {
 
 		$this->assertEquals(3, $status->getId());
 		$this->assertEquals('status', $status->getStatus());
-		$this->assertEquals(4, $status->getFileId());
-		$this->assertEquals('new', $status->getNewName());
+		$this->assertEquals('source', $status->getSource());
+		$this->assertEquals('target', $status->getTarget());
 		$this->assertEquals('temp', $status->getTempFile());
 		$this->assertEquals('john', $status->getUserId());
 		$this->assertEquals('type', $status->getType());
@@ -42,8 +42,8 @@ class OcrStatusTest extends TestCase {
 		$status = new OcrStatus();
 		$status->setId(3);
 		$status->setStatus('status');
-		$status->setFileId(4);
-		$status->setNewName('new');
+		$status->setSource('source');
+		$status->setTarget('target');
 		$status->setTempFile('temp');
 		$status->setUserId('john');
 		$status->setType('type');
@@ -52,8 +52,8 @@ class OcrStatusTest extends TestCase {
 		$this->assertEquals([
 			'id' => 3,
 			'status' => 'status',
-			'fileId' => 4,
-			'newName' => 'new',
+			'source' => 'source',
+			'target' => 'target',
 			'tempFile' => 'temp',
 			'userId' => 'john',
 			'type' => 'type',

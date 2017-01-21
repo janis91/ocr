@@ -44,7 +44,7 @@ class DropOldTable implements IRepairStep {
 	 */
 	public function run(IOutput $output) {
 		$output->startProgress(1);
-		if ($this->connection->tableExists('ocr_status')){
+		if ($this->connection->tableExists('ocr_status')) {
 			$this->connection->dropTable('ocr_status');
 		}
 		$output->advance(1, "Drop old database table: ocr_status");

@@ -56,6 +56,7 @@
 			var self = this;
 			var deferred = $.Deferred();
 			if(self.checkMimeTypes(selectedFiles)){
+				selectedFiles = self._shrinkData(selectedFiles);
 				var data = {language: selectedLanguage, files: selectedFiles};
 				$.ajax({
 					url: self._baseUrl,
@@ -87,11 +88,16 @@
 		checkMimeTypes: function (selectedFiles) {
 			var correct = true;
 			selectedFiles.forEach(function(file){
-				if(file.type != 'file' || $.inArray(file.mimetype, OCR_ALLOWED_MIMETYPES) == -1){
+				if($.inArray(file.mimetype, OCR_ALLOWED_MIMETYPES) == -1){
 					correct = false;
 				}
 			});
 			return correct;
+		},
+		_shrinkData: function(files) {
+			return files.map(function(file){
+				return {id: file.id};
+			});
 		},
 		initialize: function () {
 			var self = this;
