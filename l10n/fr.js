@@ -7,6 +7,7 @@ OC.L10N.register(
     "Status" : "État",
     "Delete from queue" : "Supprimé de la liste d'attente",
     "Delete" : "Supprimer",
+    "No pending or failed OCR items found." : "Aucun élément OCR en attente ou en échec n'a été trouvé.",
     "Refresh" : "Rafraîchir",
     "Following file has been successfully deleted from the queue:" : "Le fichier suivant a été supprimé de la liste d'attente :",
     "Error during deletion: " : "Erreur lors de la suppression :",
@@ -23,8 +24,6 @@ OC.L10N.register(
     "Cannot delete. Wrong owner." : "Impossible de supprimer. Mauvais propriétaire.",
     "Cannot delete. Wrong id." : "Impossible de supprimer. Mauvais id.",
     "Temp file does not exist." : "Le fichier temporaire n'existe pas.",
-    "Wrong path parameter." : "Chemin incorrect.",
-    "Wrong parameters or wrong mimetype." : "Mauvais paramètres ou mauvais type de fichier.",
     "Could not add files to the ocr processing queue." : "Impossible d'ajouter le fichier à la liste de traitement OCR."
 },
 "nplurals=2; plural=(n > 1);");

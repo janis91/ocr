@@ -24,8 +24,6 @@ OC.L10N.register(
     "Cannot delete. Wrong owner." : "Não removido. Dono errado.",
     "Cannot delete. Wrong id." : "Não deletado. Id errado.",
     "Temp file does not exist." : "O arquivo temporário não existe.",
-    "Wrong path parameter." : "Parâmetro de caminho errado.",
-    "Wrong parameters or wrong mimetype." : "Parâmetros errados ou tipo mime errado.",
     "Could not add files to the ocr processing queue." : "Não foi possível adicionar arquivos à fila de processamento do ocr."
 },
 "nplurals=2; plural=(n > 1);");

@@ -24,8 +24,6 @@ OC.L10N.register(
     "Cannot delete. Wrong owner." : "Kan inte radera. Fel ägare.",
     "Cannot delete. Wrong id." : "Kan inte radera. Fel ID.",
     "Temp file does not exist." : "Temporär fil finns ej.",
-    "Wrong path parameter." : "Fel väg.",
-    "Wrong parameters or wrong mimetype." : "Felaktiga parametrar eller fel mimetyp.",
     "Could not add files to the ocr processing queue." : "Det gick inte att lägga till filer i OCR-behandlingskön."
 },
 "nplurals=2; plural=(n != 1);");

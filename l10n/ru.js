@@ -24,8 +24,6 @@ OC.L10N.register(
     "Cannot delete. Wrong owner." : "Невозможно удалить. Неверный владелец.",
     "Cannot delete. Wrong id." : "Невозможно удалить. Неверный id.",
     "Temp file does not exist." : "Временный файл не существует.",
-    "Wrong path parameter." : "Неверный параметр пути.",
-    "Wrong parameters or wrong mimetype." : "Неверные параметры или mime- тип.",
     "Could not add files to the ocr processing queue." : "Не удается добавить файлы в очередь обработки ОРС."
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

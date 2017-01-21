@@ -24,8 +24,6 @@ OC.L10N.register(
     "Cannot delete. Wrong owner." : "Kan niet verwijderen. Verkeerde eigenaar.",
     "Cannot delete. Wrong id." : "Kan niet verwijderen. Verkeerde id.",
     "Temp file does not exist." : "Tijdelijk bestand bestaat niet.",
-    "Wrong path parameter." : "Onjuiste pad-parameter.",
-    "Wrong parameters or wrong mimetype." : "Onjuiste parameters of onjuist MIME-type.",
     "Could not add files to the ocr processing queue." : "Kon geen bestanden toevoegen aan de OCR wachtrij."
 },
 "nplurals=2; plural=(n != 1);");
