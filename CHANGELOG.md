@@ -1,5 +1,5 @@
 #Changelog
-nextcloud-ocr (2.2.0)
+nextcloud-ocr (2.2.0 / 1.1.0)
 * **Feature**: A new app icon has been created and new screenshots are ready.
 * **Bugfix**: As of #36 the app didn't handle shared files correctly. This is fixed now.
 

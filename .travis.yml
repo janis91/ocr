@@ -11,11 +11,11 @@ addons:
 language: php
 php:
   - 5.6
-  - 7.1
+  - 7
 
 env:
   global:
-    - CORE_BRANCH=stable11
+    - CORE_BRANCH=stable10
     - APP_NAME=ocr
   matrix:
     - DB=sqlite
