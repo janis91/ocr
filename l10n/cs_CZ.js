@@ -23,6 +23,8 @@ OC.L10N.register(
     "Empty parameters passed." : "Předány prázdné parametry.",
     "Cannot delete. Wrong owner." : "Nemohu smazat. Neplatný vlastník.",
     "Cannot delete. Wrong id." : "Nemohu smazat. Neplatné id.",
+    "Wrong parameter." : "Chybný parametr.",
+    "Wrong mimetype." : "Chybný MIME Typ.",
     "Temp file does not exist." : "Odkládací soubor neexistuje.",
     "Could not add files to the ocr processing queue." : "Nelze přidat soubory do ocr fronty pro zpracování."
 },
