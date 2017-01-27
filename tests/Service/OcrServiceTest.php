@@ -193,7 +193,7 @@ class OcrServiceTest extends TestCase {
 			->with($this->equalTo($updatedStatus))
 			->will($this->returnValue($updatedStatus));
 
-		$this->service->complete(3, false);
+		$this->service->complete(3, false, null);
 	}
 
 	/**
@@ -216,7 +216,7 @@ class OcrServiceTest extends TestCase {
 			->with($this->equalTo($updatedStatus))
 			->will($this->returnValue($updatedStatus));
 
-		$this->service->complete(3, true);
+		$this->service->complete(3, true, 'error');
 	}
 
 	/**
@@ -227,7 +227,7 @@ class OcrServiceTest extends TestCase {
 			->method('find')
 			->with($this->equalTo(3))
 			->will($this->throwException(new NotFoundException('')));
-		$this->service->complete(3, false);
+		$this->service->complete(3, false, null);
 	}
 
 
@@ -259,11 +259,11 @@ class OcrServiceTest extends TestCase {
 		$this->queueService->expects($this->once())
 			->method('clientSend')
 			->with($this->equalTo($status),
-				$this->equalTo('eng'),
+				$this->equalTo(['eng']),
 				$this->equalTo(\OC::$SERVERROOT))
 			->will($this->returnValue(true));
 
-		$result = $this->service->process('eng', $files);
+		$result = $this->service->process(['eng'], $files);
 
 		$this->assertEquals('PROCESSING', $result);
 	}
@@ -296,11 +296,11 @@ class OcrServiceTest extends TestCase {
 		$this->queueService->expects($this->once())
 			->method('clientSend')
 			->with($this->equalTo($status),
-				$this->equalTo('eng'),
+				$this->equalTo(['eng']),
 				$this->equalTo(\OC::$SERVERROOT))
 			->will($this->returnValue(true));
 
-		$result = $this->service->process('eng', $files);
+		$result = $this->service->process(['eng'], $files);
 
 		$this->assertEquals('PROCESSING', $result);
 	}
@@ -311,7 +311,7 @@ class OcrServiceTest extends TestCase {
 	public function testProcessWrongParameters(){
 		$files = array ();
 
-		$this->service->process('eng', $files);
+		$this->service->process(['eng'], $files);
 	}
 
 	/**
@@ -331,7 +331,7 @@ class OcrServiceTest extends TestCase {
 			->with($this->equalTo($files[0]['id']))
 			->will($this->returnValue($fileArray[0]));
 
-		$this->service->process('eng', $files);
+		$this->service->process(['eng'], $files);
 	}
 	/**
 	 * @expectedException \OCA\Ocr\Service\NotFoundException

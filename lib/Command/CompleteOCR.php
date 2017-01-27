@@ -6,7 +6,7 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 
 namespace OCA\Ocr\Command;
@@ -16,6 +16,7 @@ use OCA\Ocr\Service\OcrService;
 use OCA\Ocr\Service\ServiceException;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
+use OCP\ILogger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -56,6 +57,11 @@ class CompleteOCR extends Command {
 				InputArgument::REQUIRED,
 				'failed, boolean'
 			)
+			->addArgument(
+				'error-message',
+				InputArgument::OPTIONAL,
+				'error message, string'
+			)
 			->setDescription('Console API for completion of the ocr processing of a file');
 	}
 
@@ -69,15 +75,17 @@ class CompleteOCR extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$statusId = $input->getArgument('status-id');
 		$failed = $input->getArgument('failed');
+		$errorMessage = $input->getArgument('error-message');
 		try {
 			if ($failed === 'false') {
 				$failed = false;
 			} elseif ($failed === 'true') {
 				$failed = true;
+				$errorMessage = null;
 			} else {
 				throw new ServiceException('Wrong Arguments.');
 			}
-			$this->ocrService->complete($statusId, $failed);
+			$this->ocrService->complete($statusId, $failed, $errorMessage);
 		} catch (Exception $e) {
 			if ($e instanceof MultipleObjectsReturnedException || $e instanceof DoesNotExistException) {
 				$output->writeln('<error>Could not complete ocr for status id ' . $statusId .

@@ -6,7 +6,7 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 
 namespace OCA\Ocr\Service;
@@ -76,22 +76,22 @@ class QueueService {
 	 * Inits the client and sends the task to the background worker (async)
 	 *
 	 * @param OcrStatus $status
-	 * @param string $language
+	 * @param string[] $languages
 	 * @param string $occDir
 	 */
-	public function clientSend($status, $language, $occDir) {
+	public function clientSend($status, $languages, $occDir) {
 		try {
 				$this->mapper->insert($status);
 				$msg = json_encode(array(
 					'type' => $status->getType(),
 					'source' => $this->config->getSystemValue('datadirectory') . '/' . $status->getSource(),
 					'tempfile' => $status->getTempFile(),
-					'language' => $language,
+					'languages' => $languages,
 					'statusid' => $status->getId(),
 					'occdir' => $occDir
 				));
 				if (msg_send($this->queue, 1, $msg)) {
-					$this->logger->debug('Client message: ' . json_encode($msg), ['app' => 'ocr']);
+					$this->logger->debug('Client message: ' . $msg, ['app' => 'ocr']);
 				} else {
 					$this->mapper->delete($status);
 					throw new NotFoundException($this->l10n->t('Could not add files to the ocr processing queue.'));

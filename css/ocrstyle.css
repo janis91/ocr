@@ -12,6 +12,12 @@
 	border-bottom-left-radius:1em;
 	z-index:100;
 }
+#ocrDropdown .select2-container {
+	margin: 5px;
+}
+#ocrDropdown .select2-container a {
+	padding: 0;
+}
 /* Selcted Files Actions Button */
 tr .action:not(.permanent),
 .selectedActionsOCR a {

@@ -56,7 +56,7 @@ class QueueServiceTest extends TestCase {
 			->with($this->equalTo($status))
 			->will($this->returnValue($status));
 
-		$this->service->clientSend($status, 'eng', '/server');
+		$this->service->clientSend($status, ['eng'], '/server');
 
 	}
 

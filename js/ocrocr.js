@@ -5,7 +5,7 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 (function() {
 
@@ -52,12 +52,12 @@
 			});
 			return deferred.promise();
 		},
-		process: function(selectedFiles, selectedLanguage){
+		process: function(selectedFiles, selectedLanguages){
 			var self = this;
 			var deferred = $.Deferred();
 			if(self.checkMimeTypes(selectedFiles)){
 				selectedFiles = self._shrinkData(selectedFiles);
-				var data = {language: selectedLanguage, files: selectedFiles};
+				var data = {languages: selectedLanguages, files: selectedFiles};
 				$.ajax({
 					url: self._baseUrl,
 					method: 'POST',
