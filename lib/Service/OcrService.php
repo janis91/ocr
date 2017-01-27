@@ -6,7 +6,7 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 
 namespace OCA\Ocr\Service;
@@ -150,15 +150,15 @@ class OcrService {
 	 * Processes and prepares the files for ocr.
 	 * Sends the stuff to the client in order to ocr async.
 	 *
-	 * @param string $language
+	 * @param string[] $languages
 	 * @param array $files
 	 * @return string
 	 */
-	public function process($language, $files) {
+	public function process($languages, $files) {
 		try {
-			$this->logger->debug('Will now process files: ' . json_encode($files) . ' with language: ' . json_encode($language), ['app' => 'ocr']);
+			$this->logger->debug('Will now process files: ' . json_encode($files) . ' with languages: ' . json_encode($languages), ['app' => 'ocr']);
 			// Check if files and language not empty
-			if (!empty($files) && !empty($language) && in_array($language, $this->listLanguages())) {
+			if (!empty($files) && !empty($languages) && count(array_diff($languages, $this->listLanguages())) == 0) {
 
 				$fileInfo = $this->buildFileInfo($files);
 
@@ -190,7 +190,7 @@ class OcrService {
 					$status = new OcrStatus('PENDING', $source, $target, $tempFile, $ftype, $this->userId, false);
 					// Init client and send task / job
 					// Feed the worker
-					$this->queueService->clientSend($status, $language, \OC::$SERVERROOT);
+					$this->queueService->clientSend($status, $languages, \OC::$SERVERROOT);
 				}
 				return 'PROCESSING';
 			} else {
@@ -230,10 +230,11 @@ class OcrService {
 	 * The command ocr:complete for occ will call this function in order to set the status.
 	 * the worker should call it automatically after each processing step.
 	 *
-	 * @param $statusId
+	 * @param integer $statusId
 	 * @param boolean $failed
+	 * @param string $errorMessage
 	 */
-	public function complete($statusId, $failed) {
+	public function complete($statusId, $failed, $errorMessage) {
 		try {
 			$status = $this->statusMapper->find($statusId);
 			if (!$failed) {
@@ -242,6 +243,7 @@ class OcrService {
 			} else {
 				$status->setStatus('FAILED');
 				$this->statusMapper->update($status);
+				$this->logger->error($errorMessage, ['app' => 'ocr']);
 			}
 		} catch (Exception $e) {
 			$this->handleException($e);

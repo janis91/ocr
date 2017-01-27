@@ -5,25 +5,17 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 (function() {
-	/**
-	 * Constructor of the View object.
-	 * This will update the different parts of the html.
-	 * @param ocr
-	 * @param filehandler
-	 * @constructor
-	 */
+
 
 	// Handlebarsjs template
 	var TEMPLATE_OCR_DROPDOWN = '<div id="ocrDropdown" class="ocrUserInterface">'+
 		'{{#if noMatches}}'+
 		t('ocr', 'No languages for tesseract available')+
 		'{{else}}'+
-		t('ocr', 'Select')+
-		':'+
-		'<select id="ocrLanguage">'+
+		'<select id="ocrLanguage" class="multiselect" multiple="multiple">'+
 		'{{#each languages}}'+
 		'<option value="{{this}}">{{this}}</option>'+
 		'{{/each}}'+
@@ -41,6 +33,12 @@
 		'</a>'+
 		'</span>';
 
+	/**
+	 * Constructor of the View object.
+	 * This will update the different parts of the html.
+	 * @param ocr
+	 * @constructor
+	 */
 	var View = function (ocr) {
 		this._ocr = ocr;
 		this._selectedFiles = [];
@@ -137,6 +135,13 @@
 			var self = this;
 			var html = self.renderDropdown();
 			$(html).appendTo($('tr').filterAttr('data-file',file).find('td.filename'));
+			$("#ocrLanguage").select2({
+				width: 'element',
+				placeholder: t('ocr', 'Select language'),
+				formatNoMatches: function(){
+					return t('ocr', 'No matches found.');
+				}
+			});
 			var files = [{id: id, mimetype: mimetype}];
 			self.setSelectedFiles(files);
 		},
@@ -223,8 +228,8 @@
 			});
 			// Register submit action
 			$(document).on('click', '#processOCR', function(){
-				var selectedLanguage = $('#ocrLanguage').val();
-				$.when(self._ocr.process(self.getSelectedFiles(), selectedLanguage)).done(function(){
+				var selectedLanguages = $('#ocrLanguage').select2('val');
+				$.when(self._ocr.process(self.getSelectedFiles(), selectedLanguages)).done(function(){
 					self.destroyDropdown();
 
 					// status monitoring init
@@ -240,6 +245,13 @@
 			$(document).on('click', '#selectedFilesOCR', function(){
 				var html = self.renderDropdown();
 				$(html).appendTo($('tr').find('th.column-name'));
+				$("#ocrLanguage").select2({
+					width: 'element',
+					placeholder: t('ocr', 'Select language'),
+					formatNoMatches: function(){
+						return t('ocr', 'No matches found.');
+					}
+				});
 				self.setSelectedFiles(OCA.Files.App.fileList.getSelectedFiles());
 				return false;
 			});

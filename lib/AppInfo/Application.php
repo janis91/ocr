@@ -6,7 +6,7 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 
 namespace OCA\Ocr\AppInfo;
@@ -47,6 +47,9 @@ class Application extends App {
 			$scripts = array('ocrapp', 'ocrocr', 'ocrview');
 			script('ocr', $scripts);
 			style('ocr', 'ocrstyle');
+			// if not loaded before - load select2 for multi select languages
+			vendor_script('select2/select2');
+			vendor_style('select2/select2');
 		});
 
 		/**

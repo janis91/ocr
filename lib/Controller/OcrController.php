@@ -65,13 +65,13 @@ class OcrController extends Controller {
 	/**
 	 * Processing the srcFile(s)
 	 * @NoAdminRequired
-	 * @param string $language - deu, eng...
+	 * @param string[] $languages - deu, eng...
 	 * @param array $files
 	 * @return DataResponse
 	 */
-	public function process($language, $files) {
-		return $this->handleNotFound(function() use ($language, $files){
-			return $this->service->process($language, $files);
+	public function process($languages, $files) {
+		return $this->handleNotFound(function() use ($languages, $files){
+			return $this->service->process($languages, $files);
 		});
 	}
 

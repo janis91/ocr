@@ -6,7 +6,7 @@
  * later. See the COPYING file.
  *
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2016
+ * @copyright Janis Koehr 2017
  */
 
 namespace OCA\Ocr\Tests\Command;
@@ -20,7 +20,7 @@ class CompleteOCRTest extends TestCase {
 
 	private $command;
 
-	private $args = ['status-id', 'failed'];
+	private $args = ['status-id', 'failed', 'error-message'];
 
 	protected function setUp() {
 		parent::setUp();
@@ -41,8 +41,8 @@ class CompleteOCRTest extends TestCase {
 
 	public function testArguments() {
 		$actual = $this->command->getDefinition()->getArguments();
+
 		foreach ($actual as $actArg) {
-			$this->assertTrue($actArg->isRequired());
 			$this->assertTrue(in_array($actArg->getName(), $this->args));
 		}
 	}
