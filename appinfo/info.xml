@@ -50,7 +50,7 @@ Für die OCR App müssen folgende Anforderungen erfüllt sein:
 
 Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffende Dokumentation.
 ]]></description>
-    <version>1.1.0</version>
+    <version>2.3.0</version>
     <licence>agpl</licence>
     <author>Janis Koehr</author>
     <namespace>Ocr</namespace>

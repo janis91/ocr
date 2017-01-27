@@ -158,7 +158,7 @@ class OcrService {
 		try {
 			$this->logger->debug('Will now process files: ' . json_encode($files) . ' with languages: ' . json_encode($languages), ['app' => 'ocr']);
 			// Check if files and language not empty
-			if (!empty($files) && !empty($languages) && count(array_diff($languages, $this->listLanguages())) == 0) {
+			if (!empty($files) && !empty($languages) && count(array_diff($languages, $this->listLanguages())) === 0) {
 
 				$fileInfo = $this->buildFileInfo($files);
 
