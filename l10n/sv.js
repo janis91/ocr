@@ -12,7 +12,6 @@ OC.L10N.register(
     "Following file has been successfully deleted from the queue:" : "Följande fil raderades framgångsrikt från kön:",
     "Error during deletion: " : "Ett fel uppstod vid radering:",
     "No languages for tesseract available" : "Inga språk för tesserakt tillgänglig",
-    "Select" : "Välj",
     "Process" : "Process",
     "OCR" : "OCR",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR startade: %n nya filer i kön.","OCR startade: %n nya filer i kön."],

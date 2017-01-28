@@ -12,7 +12,6 @@ OC.L10N.register(
     "Following file has been successfully deleted from the queue:" : "Следующие файлы были успешно удалены из очереди:",
     "Error during deletion: " : "Во время удаления произошла ошибка:",
     "No languages for tesseract available" : "Нет доступных для программы tessaract языков",
-    "Select" : "Выбор",
     "Process" : "Процесс",
     "OCR" : "ОРС",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["ОРС запущено: в очереди %n новый файл.","ОРС запущено: в очереди %n новых файлов.","ОРС запущено: в очереди %n новых файлов.","ОРС запущено: в очереди %n новых файлов."],

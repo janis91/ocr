@@ -12,7 +12,6 @@ OC.L10N.register(
     "Following file has been successfully deleted from the queue:" : "Het volgende bestand is succesvol verwijderd uit de wachtrij:",
     "Error during deletion: " : "Fout bij verwijderen:",
     "No languages for tesseract available" : "Geen talen voor tesseract beschikbaar",
-    "Select" : "Selecteren",
     "Process" : "Proces",
     "OCR" : "OCR",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR gestart: %n nieuw bestand in de wachtrij.","OCR gestart: %n nieuwe bestanden in de wachtrij."],

@@ -12,7 +12,6 @@ OC.L10N.register(
     "Following file has been successfully deleted from the queue:" : "Následující soubory byly úspěšně smazány z fronty:",
     "Error during deletion: " : "Chyba během mazání:",
     "No languages for tesseract available" : "Nejsou dostupné žádné jazyky pro tesseract",
-    "Select" : "Vybrat",
     "Process" : "Proces",
     "OCR" : "OCR",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR spuštěno: %n čekající soubor ve frontě.","OCR spuštěno: %n čekající soubory ve frontě.","OCR spuštěno: %n čekajících souborů ve frontě."],

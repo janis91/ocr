@@ -12,7 +12,6 @@ OC.L10N.register(
     "Following file has been successfully deleted from the queue:" : "Os seguintes arquivos foram deletados da fila com sucesso:",
     "Error during deletion: " : "Erro durante remoção:",
     "No languages for tesseract available" : "Sem idiomas disponíveis para tesseract",
-    "Select" : "Selecionar",
     "Process" : "Processo",
     "OCR" : "OCR",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR iniciados: %n novo arquivo fila.","OCR iniciados: %n novos arquivos fila."],
