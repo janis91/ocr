@@ -12,6 +12,8 @@
     "No languages for tesseract available" : "Sem idiomas disponíveis para tesseract",
     "Process" : "Processo",
     "OCR" : "OCR",
+    "Select language" : "Selecione o Idioma",
+    "No matches found." : "Nenhuma equivalência encontrada.",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR iniciados: %n novo arquivo fila.","OCR iniciados: %n novos arquivos fila."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n arquivos atualmente pendentes na fila.","OCR: %n arquivos atualmente pendentes na fila."],
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Processamento de OCR para %n arquivo falhou. Para mais informações, vá em configurações pessoais.","Processamento de OCR para %n arquivos falhou. Para mais informações, vá em configurações pessoais."],

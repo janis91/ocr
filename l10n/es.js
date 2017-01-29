@@ -14,6 +14,8 @@ OC.L10N.register(
     "No languages for tesseract available" : "No hay idiomas disponibles para tesseract",
     "Process" : "Proceso",
     "OCR" : "OCR",
+    "Select language" : "Seleccione idioma ",
+    "No matches found." : "No se encontraron coincidencias.",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR iniciado: %n archivo nuevo en la cola.","OCR iniciado: %n archivos nuevos en la cola."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: actualmente hay %n fichero pendiente en la cola.","OCR: actualmente hay %n ficheros pendientes en la cola."],
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["El proceso OCR falló para %n archivo. Para detalles, por favor acude a tu configuración personal.","El proceso OCR falló para %n archivos. Para detalles, por favor acude a tu configuración personal."],
