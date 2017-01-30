@@ -62,7 +62,7 @@ class PersonalSettingsController extends Controller {
 	 * @return \OCP\AppFramework\Http\DataResponse
 	 */
 	public function getAll() {
-		return $this->handleNotFound(function () {
+		return $this->handleNotFound(function() {
 			return $this->service->getAllForPersonal($this->userId);
 		});
 	}
