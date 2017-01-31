@@ -1,7 +1,7 @@
 OC.L10N.register(
     "ocr",
     {
-    "OCR App could not be initialized:" : "OCR App konnte nicht initialisiert werden:",
+    "OCR App could not be initialized:" : "Schrifterkennung konnte nicht initialisiert werden:",
     "Files have wrong mimetypes." : "Dateien sind vom falschen Typ.",
     "Name" : "Name",
     "Status" : "Status",
