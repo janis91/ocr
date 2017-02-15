@@ -21,6 +21,7 @@ OC.L10N.register(
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Proces OCR dla %n pliku nie udał się. Po szczegóły udaj się do swoich ustawień.","Proces OCR dla %n plików nie udał się. Po szczegóły udaj się do swoich ustawień.","Proces OCR dla %n plików nie udał się. Po szczegóły udaj się do swoich ustawień."],
     "OCR processing failed:" : "Proces OCR nie udał się:",
     "No languages found." : "Nie znaleziono żadnych języków.",
+    "Empty parameters passed." : "Wpisano puste parametry",
     "Cannot delete. Wrong owner." : "Nie można usunąć. Błędny właściciel.",
     "Cannot delete. Wrong id." : "Nie można usunąć. Błędne id.",
     "Wrong parameter." : "Błędny parametr.",
