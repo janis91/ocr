@@ -81,7 +81,7 @@ abstract class MapperTestUtility extends TestCase {
 	 * @param array $arguments the expected arguments for the prepare query
 	 * method
 	 * @param array $returnRows the rows that should be returned for the result
-	 * of the database query. If not provided, it wont be assumed that fetch
+	 * of the database query. If not provided, it won't be assumed that fetch
 	 * will be called on the result
 	 */
 	protected function setMapperResult($sql, $arguments=array(), $returnRows=array(),
