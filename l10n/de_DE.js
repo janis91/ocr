@@ -15,7 +15,7 @@ OC.L10N.register(
     "Process" : "Verarbeiten",
     "OCR" : "Schrifterkennung",
     "Select language" : "Sprache wählen",
-    "No matches found." : "Keine Übereinstimmungen",
+    "No matches found." : "Keine Übereinstimmungen gefunden.",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["Schrifterkennung gestartet: %n neue Datei in der Warteschlange.","Schrifterkennung gestartet: %n neue Dateien in der Warteschlange."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["Schrifterkennung: %n Datei in der Warteschlange.","Schrifterkennung: %n Dateien in der Warteschlange."],
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Schrifterkennung für %n Datei fehlgeschlagen. Für weitere Informationen sehen Sie in Ihren persönlichen Einstellungen nach.","Schrifterkennung für %n Dateien fehlgeschlagen. Für weitere Informationen sehen Sie in Ihren persönlichen Einstellungen nach."],
