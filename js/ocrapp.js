@@ -42,7 +42,7 @@
 			});
 		},
 		/**
-		 * Destroy function. Deregisters everthing and destroys the Ocr app.
+		 * Destroy function. Deregisters everything and destroys the Ocr app.
 		 */
 		destroy: function () {
 			var self = this;
