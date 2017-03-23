@@ -2,7 +2,7 @@ OC.L10N.register(
     "ocr",
     {
     "OCR App could not be initialized:" : "Schrifterkennung konnte nicht initialisiert werden:",
-    "Files have wrong mimetypes." : "Dateien sind vom falschen Typ.",
+    "Files have wrong mimetypes." : "Dateien haben falschen MIME-Typ.",
     "Name" : "Name",
     "Status" : "Status",
     "Delete from queue" : "Aus der Warteschlange löschen",
@@ -27,6 +27,6 @@ OC.L10N.register(
     "Wrong parameter." : "Falscher Parameter.",
     "Wrong mimetype." : "Falscher Dateityp.",
     "Temp file does not exist." : "Temporäre Datei existiert nicht.",
-    "Could not add files to the ocr processing queue." : "Konnte die Datei(en) nicht zur Warteschlange der Schrifterkennung hinzufügen."
+    "Could not add files to the ocr processing queue." : "Konnte die Dateien nicht zur Warteschlange der Schrifterkennung hinzufügen."
 },
 "nplurals=2; plural=(n != 1);");
