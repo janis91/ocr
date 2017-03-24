@@ -1,0 +1,26 @@
+{ "translations": {
+    "OCR App could not be initialized:" : "OCR alkalmazás nem inicializálható:",
+    "Files have wrong mimetypes." : "Hibás mime típusú fájlok.",
+    "Name" : "Név",
+    "Status" : "Állapot",
+    "Delete from queue" : "Törlés a sorból",
+    "Delete" : "Törlés",
+    "No pending or failed OCR items found." : "Nincsenek folyamatban lévő vagy sikertelen OCR elemek.",
+    "Refresh" : "Frissítés",
+    "Error during deletion: " : "Hiba a törlés közben:",
+    "No languages for tesseract available" : "Nincsenek elérhető nyelvek a Tesseract-hoz",
+    "Process" : "Feldolgozás",
+    "OCR" : "OCR",
+    "Select language" : "Nyel választás",
+    "No matches found." : "Nem található egyezés.",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR elindítva: %n új fájl van a sorban.","OCR elindítva: %n új fájl van a sorban."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: jelenleg %n fájl van a sorban.","OCR: jelenleg %n fájl van a sorban."],
+    "OCR processing failed:" : "OCR feldolgozás sikertelen:",
+    "No languages found." : "Nem találhatóak nyelvek.",
+    "Empty parameters passed." : "Üres átadott paraméterek.",
+    "Wrong parameter." : "Hibás paraméter.",
+    "Wrong mimetype." : "Hibás mime típus.",
+    "Temp file does not exist." : "Az ideiglenes fájl nem létezik.",
+    "Could not add files to the ocr processing queue." : "Nem sikerült fájlokat hozzáadni az OCR feldolgozási sorhoz."
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
