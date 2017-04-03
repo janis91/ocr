@@ -1,0 +1,24 @@
+{ "translations": {
+    "Files have wrong mimetypes." : "Tiedostoilla on väärät mimetyypit",
+    "Name" : "Nimi",
+    "Status" : "Tila",
+    "Delete from queue" : "Poista jonosta",
+    "Delete" : "Poista",
+    "Refresh" : "Päivitä",
+    "Following file has been successfully deleted from the queue:" : "Seuraava tiedosto on onnistuneesti poistettu jonosta:",
+    "Error during deletion: " : "Virhe poistettaessa:",
+    "No languages for tesseract available" : "Yhtään kieltä ei saatavilla tesseraktia varten",
+    "Process" : "Käsittely",
+    "OCR" : "OCR",
+    "Select language" : "Valitse kieli",
+    "No matches found." : "Vastaavuuksia ei löytynyt",
+    "OCR processing failed:" : "OCR käsittely epäonnistui",
+    "No languages found." : "Kieliä ei löytynyt.",
+    "Empty parameters passed." : "Tyhjiä parametreja",
+    "Cannot delete. Wrong owner." : "Ei voida poistaa. Väärä omistaja.",
+    "Cannot delete. Wrong id." : "Ei voida poistaa. Väärä id.",
+    "Wrong parameter." : "Väärä paramteri.",
+    "Wrong mimetype." : "Väärä mime-tyyppi.",
+    "Temp file does not exist." : "Väliaikaistiedostoa ei ole olemassa."
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
