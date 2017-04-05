@@ -1,7 +1,7 @@
 OC.L10N.register(
     "ocr",
     {
-    "OCR App could not be initialized:" : "La aplicación de OCR no pudo ser inicializada:",
+    "OCR App could not be initialized:" : "No fue posible inicializar la aplicación de OCR:",
     "Files have wrong mimetypes." : "Los archios tienen los tipos MIME incorrectos. ",
     "Name" : "Nombre",
     "Status" : "Estatus",
@@ -26,6 +26,7 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "No fue posible borrar. Id equivocado.",
     "Wrong parameter." : "Parámetro equivocado.",
     "Wrong mimetype." : "Tipo MIME equivocado",
-    "Temp file does not exist." : "El archivo temporal no existe."
+    "Temp file does not exist." : "El archivo temporal no existe.",
+    "Could not add files to the ocr processing queue." : "No fue posible agregar los archivos a la cola de procesamiento de ocr."
 },
 "nplurals=2; plural=(n != 1);");
