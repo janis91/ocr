@@ -2,7 +2,7 @@ OC.L10N.register(
     "ocr",
     {
     "OCR App could not be initialized:" : "No se ha podido iniciar la aplicación de OCR:",
-    "Files have wrong mimetypes." : "Ficheros con los mimetype mal.",
+    "Files have wrong mimetypes." : "Los archivos tiene los tipos MIME equivocados.",
     "Name" : "Nombre",
     "Status" : "Estado",
     "Delete from queue" : "Eliminar de la cola",
@@ -17,7 +17,7 @@ OC.L10N.register(
     "Select language" : "Seleccione idioma ",
     "No matches found." : "No se encontraron coincidencias.",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR iniciado: %n archivo nuevo en la cola.","OCR iniciado: %n archivos nuevos en la cola."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: actualmente hay %n fichero pendiente en la cola.","OCR: actualmente hay %n ficheros pendientes en la cola."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: actualmente hay %n fichero pendiente en la cola.","OCR: actualmente hay %n archivos pendientes en la cola."],
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["El proceso OCR falló para %n archivo. Para detalles, por favor acude a tu configuración personal.","El proceso OCR falló para %n archivos. Para detalles, por favor acude a tu configuración personal."],
     "OCR processing failed:" : "Procesado OCR ha fallado:",
     "No languages found." : "No se encontró los idiomas.",
@@ -26,7 +26,7 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "No se puede eliminar. Id errónea.",
     "Wrong parameter." : "Parámetro erróneo.",
     "Wrong mimetype." : "Mimetype erróneo.",
-    "Temp file does not exist." : "Fichero temporal no existe.",
-    "Could not add files to the ocr processing queue." : "No se ha podido añadir ficheros en la cola de procesamiento OCR"
+    "Temp file does not exist." : "Archivo temporal no existe.",
+    "Could not add files to the ocr processing queue." : "No se ha podido añadir archivos a la cola de procesamiento OCR"
 },
 "nplurals=2; plural=(n != 1);");

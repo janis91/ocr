@@ -8,6 +8,7 @@ OC.L10N.register(
     "Delete from queue" : "Slett fra kø",
     "Delete" : "Slett",
     "Refresh" : "Oppdater",
+    "Following file has been successfully deleted from the queue:" : "Følgende fil har blitt slettet fra køa:",
     "Error during deletion: " : "Feil ved sletting:",
     "No languages for tesseract available" : "Ingen språk for Tesseract (OCR) tilgjenngelig",
     "Process" : "Behandle",
