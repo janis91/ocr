@@ -7,6 +7,7 @@ OC.L10N.register(
     "Status" : "Status",
     "Delete from queue" : "Slett fra kø",
     "Delete" : "Slett",
+    "No pending or failed OCR items found." : "Ingen ventende eller mislykkede OCR-elementer funnet.",
     "Refresh" : "Oppdater",
     "Following file has been successfully deleted from the queue:" : "Følgende fil har blitt slettet fra køa:",
     "Error during deletion: " : "Feil ved sletting:",
