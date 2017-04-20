@@ -1,7 +1,7 @@
 OC.L10N.register(
     "ocr",
     {
-    "OCR App could not be initialized:" : "O aplicativo OCR não pode ser inicializado:",
+    "OCR App could not be initialized:" : "O aplicativo OCR não pôde ser inicializado:",
     "Files have wrong mimetypes." : "Os arquivos têm tipos de mime errados.",
     "Name" : "Nome",
     "Status" : "Estado",
@@ -9,7 +9,7 @@ OC.L10N.register(
     "Delete" : "Excluir",
     "No pending or failed OCR items found." : "Nenhum arquivo pendente ou falha de OCR.",
     "Refresh" : "Atualizar",
-    "Following file has been successfully deleted from the queue:" : "Os seguintes arquivos foram excluidos da fila com sucesso:",
+    "Following file has been successfully deleted from the queue:" : "Os seguintes arquivos foram excluidos da fila:",
     "Error during deletion: " : "Erro durante a exclusão:",
     "No languages for tesseract available" : "Sem idiomas disponíveis para tesseract",
     "Process" : "Processo",

@@ -16,6 +16,7 @@ OC.L10N.register(
     "OCR" : "OCE",
     "Select language" : "Velg språk",
     "No matches found." : "Ingen treff.",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR startet: %n ny fil i køen.","OCR startet: %n nye filer i køen."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n fil i køen","OCR: %n filer i køen"],
     "OCR processing failed:" : "OCR behandling feilet:",
     "No languages found." : "Ingen språk funnet.",
