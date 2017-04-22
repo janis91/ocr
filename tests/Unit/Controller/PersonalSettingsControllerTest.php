@@ -9,11 +9,11 @@
  * @copyright Janis Koehr 2017
  */
 
-namespace OCA\Ocr\Tests\Controller;
+namespace OCA\Ocr\Tests\Unit\Controller;
 
 use OCA\Ocr\Controller\PersonalSettingsController;
 use OCA\Ocr\Service\NotFoundException;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCP\AppFramework\Http;
 use OCP\Template;
 

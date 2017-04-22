@@ -9,13 +9,13 @@
  * @copyright Janis Koehr 2016
  */
 
-namespace OCA\Ocr\Tests\Service;
+namespace OCA\Ocr\Tests\Unit\Service;
 
 use OCA\Ocr\Db\File;
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Service\NotFoundException;
 use OCA\Ocr\Service\OcrService;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCP\AppFramework\Db\DoesNotExistException;
 
 

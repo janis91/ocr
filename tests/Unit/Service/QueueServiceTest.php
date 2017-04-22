@@ -9,11 +9,11 @@
  * @copyright Janis Koehr 2016
  */
 
-namespace OCA\Ocr\Tests\Service;
+namespace OCA\Ocr\Tests\Unit\Service;
 
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Service\QueueService;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 
 
 class QueueServiceTest extends TestCase {

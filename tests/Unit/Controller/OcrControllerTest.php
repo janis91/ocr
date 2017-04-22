@@ -9,11 +9,11 @@
  * @copyright Janis Koehr 2016
  */
 
-namespace OCA\Ocr\Tests\Controller;
+namespace OCA\Ocr\Tests\Unit\Controller;
 
 use OCA\Ocr\Controller\OcrController;
 use OCA\Ocr\Service\NotFoundException;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCP\AppFramework\Http;
 
 class OcrControllerTest extends TestCase {

@@ -21,16 +21,16 @@
  *
  */
 
-namespace OCA\Ocr\Tests\AppInfo;
+namespace OCA\Ocr\Tests\Unit\AppInfo;
 
 use OCA\Ocr\AppInfo\Application;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 
 /**
  * Class ApplicationTest
  *
  * @group DB
- * @package OCA\Ocr\Tests\AppInfo
+ * @package OCA\Ocr\Tests\Unit\AppInfo
  */
 class ApplicationTest extends TestCase {
 

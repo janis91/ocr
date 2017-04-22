@@ -9,10 +9,10 @@
  * @copyright Janis Koehr 2016
  */
 
-namespace OCA\Ocr\Tests\Migration;
+namespace OCA\Ocr\Tests\Unit\Migration;
 
 use OCA\Ocr\Migration\DropOldTable;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCP\Migration\IOutput;
 use OCP\IDBConnection;
 

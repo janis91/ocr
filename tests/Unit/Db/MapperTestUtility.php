@@ -22,9 +22,9 @@
  *
  */
 
-namespace OCA\Ocr\Tests\Db;
+namespace OCA\Ocr\Tests\Unit\Db;
 
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 
 /**
  * Simple utility class for testing mappers

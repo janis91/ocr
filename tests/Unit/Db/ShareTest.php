@@ -9,10 +9,10 @@
  * @copyright Janis Koehr 2017
  */
 
-namespace OCA\Ocr\Tests\Db;
+namespace OCA\Ocr\Tests\Unit\Db;
 
 use OCA\Ocr\Db\Share;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 
 class ShareTest extends TestCase {
 
