@@ -9,10 +9,10 @@
  * @copyright Janis Koehr 2017
  */
 
-namespace OCA\Ocr\Tests\Db;
+namespace OCA\Ocr\Tests\Unit\Db;
 
 use OCA\Ocr\Db\File;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 
 class FileTest extends TestCase {
 

@@ -9,10 +9,10 @@
  * @copyright Janis Koehr 2017
  */
 
-namespace OCA\Ocr\Tests\Command;
+namespace OCA\Ocr\Tests\Unit\Command;
 
 use OCA\Ocr\Command\CompleteOCR;
-use OCA\Ocr\Tests\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 
 class CompleteOCRTest extends TestCase {
 

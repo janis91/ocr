@@ -9,7 +9,7 @@
  * @copyright Janis Koehr 2016
  */
 
-namespace OCA\Ocr\Tests\Db;
+namespace OCA\Ocr\Tests\Unit\Db;
 
 use OCA\Ocr\Db\OcrStatus;
 use OCA\Ocr\Db\OcrStatusMapper;
