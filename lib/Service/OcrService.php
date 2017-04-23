@@ -123,6 +123,7 @@ class OcrService {
 			$success = -1;
 			$this->logger->debug('Fetching languages. ', ['app' => 'ocr']);
 			exec('tesseract --list-langs 2>&1', $result, $success);
+			$this->logger->debug('Result for list-language command: ' . json_encode($result), ['app' => 'ocr']);
 			if ($success === 0 && count($result) > 0) {
 				if (is_array($result)) {
 					$traineddata = $result;
