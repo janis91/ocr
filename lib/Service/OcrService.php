@@ -476,6 +476,8 @@ class OcrService {
 					$this->statusMapper->delete($status);
 					exec('rm ' . $status->getTempFile());
 				} else {
+					// Delete status before raising an exception to avoid an endless loop.
+					$this->statusMapper->delete($status);
 					throw new NotFoundException($this->l10n->t('Temp file does not exist.'));
 				}
 			}
