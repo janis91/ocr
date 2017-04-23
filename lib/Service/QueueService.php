@@ -67,9 +67,14 @@ class QueueService {
 		$this->mapper = $mapper;
 		$this->logger = $logger;
 		$this->l10n = $l10n;
-		$this->queue = msg_get_queue(21671);
-		$this->statusqueue = msg_get_queue(27672);
 		$this->config = $config;
+		try {
+			$this->queue = msg_get_queue(21671);
+			$this->statusqueue = msg_get_queue(27672);
+		} catch (Exception $e) {
+			$this->logger->debug('It seems that the message queueing capabilities are not available in your local php installation.', ['app' => 'ocr']);
+			$this->handleException($e);
+		}
 	}
 
 	/**
