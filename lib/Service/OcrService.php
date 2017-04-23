@@ -78,7 +78,7 @@ class OcrService {
 	/**
 	 * Array of allowed mimetypes for ocr processing
 	 */
-	const ALLOWED_MIMETYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff'];
+	const ALLOWED_MIMETYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
 
 	/**
 	 * the correct mimetype for a pdf file
@@ -88,7 +88,7 @@ class OcrService {
 	/**
 	 * the only allowed image mimetypes by tesseract
 	 */
-	const MIMETYPES_IMAGE = ['image/png', 'image/jpeg', 'image/tiff'];
+	const MIMETYPES_IMAGE = ['image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
 
 	/**
 	 * OcrService constructor.
@@ -320,7 +320,7 @@ class OcrService {
 			$share = $this->shareMapper->find($fileInfo->getFileid(), $this->userId, str_replace('home::', '', $fileInfo->getStoragename()));
 
 			// get rid of the .png or .pdf and so on
-			$fileName = substr($share->getFileTarget(), 0, -4); // '/thedom.png' => '/thedom' || '/Test/thedom.png' => '/Test/thedom'
+			$fileName = substr($share->getFileTarget(), 0 , (strrpos($share->getFileTarget(), '.'))); // '/thedom.png' => '/thedom' || '/Test/thedom.png' => '/Test/thedom'
 
 			// remove everything in front of and including of the first appearance of a slash from behind
 			$fileName = substr(strrchr($fileName, "/"), 1); // '/thedom' => 'thedom' || '/Test/thedom' => 'thedom'
@@ -358,7 +358,7 @@ class OcrService {
 	protected function buildTarget(File $fileInfo) {
 		try {
 			// get rid of the .png or .pdf and so on
-			$fileName = substr($fileInfo->getName(), 0, -4); // 'thedom.png' => 'thedom'
+			$fileName = substr($fileInfo->getName(), 0 , (strrpos($fileInfo->getName(), '.'))); // 'thedom.png' => 'thedom'
 
 			// eliminate the file name from the path
 			$filePath = str_replace($fileInfo->getName(), '', $fileInfo->getPath()); // 'files/Test/thedom.png' => 'files/Test/' || 'files/thedom.png' => 'files/'

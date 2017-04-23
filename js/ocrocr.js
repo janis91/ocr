@@ -9,7 +9,7 @@
  */
 (function() {
 
-	var OCR_ALLOWED_MIMETYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff'];
+	var OCR_ALLOWED_MIMETYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
 
 	/**
 	 * Constructor of the ocr object.
