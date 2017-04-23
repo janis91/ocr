@@ -94,7 +94,7 @@ class QueueService {
 					$this->logger->debug('Client message: ' . $msg, ['app' => 'ocr']);
 				} else {
 					$this->mapper->delete($status);
-					throw new NotFoundException($this->l10n->t('Could not add files to the ocr processing queue.'));
+					throw new NotFoundException($this->l10n->t('Could not add files to the OCR processing queue.'));
 				}
 		} catch (Exception $e) {
 			exec('rm ' . $status->getTempFile());
