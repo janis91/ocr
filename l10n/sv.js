@@ -24,7 +24,6 @@ OC.L10N.register(
     "Empty parameters passed." : "Tomma parametrar passerade.",
     "Cannot delete. Wrong owner." : "Kan inte radera. Fel ägare.",
     "Cannot delete. Wrong id." : "Kan inte radera. Fel ID.",
-    "Temp file does not exist." : "Temporär fil finns ej.",
-    "Could not add files to the ocr processing queue." : "Det gick inte att lägga till filer i OCR-behandlingskön."
+    "Temp file does not exist." : "Temporär fil finns ej."
 },
 "nplurals=2; plural=(n != 1);");

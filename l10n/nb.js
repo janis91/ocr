@@ -26,7 +26,6 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "Kan ikke slette. Feil ID.",
     "Wrong parameter." : "Feil parameter.",
     "Wrong mimetype." : "Feil MIME-type.",
-    "Temp file does not exist." : "Midlertidig fil finnes ikke.",
-    "Could not add files to the ocr processing queue." : "Kunne ikke legge til filer i OCR-behandlingskøa."
+    "Temp file does not exist." : "Midlertidig fil finnes ikke."
 },
 "nplurals=2; plural=(n != 1);");

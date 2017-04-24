@@ -22,7 +22,6 @@ OC.L10N.register(
     "Empty parameters passed." : "Üres átadott paraméterek.",
     "Wrong parameter." : "Hibás paraméter.",
     "Wrong mimetype." : "Hibás mime típus.",
-    "Temp file does not exist." : "Az ideiglenes fájl nem létezik.",
-    "Could not add files to the ocr processing queue." : "Nem sikerült fájlokat hozzáadni az OCR feldolgozási sorhoz."
+    "Temp file does not exist." : "Az ideiglenes fájl nem létezik."
 },
 "nplurals=2; plural=(n != 1);");

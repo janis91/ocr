@@ -26,7 +26,6 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "Get ekki eytt. Rangt auðkenni.",
     "Wrong parameter." : "Röng færibreyta.",
     "Wrong mimetype." : "Röng MIME-tegund",
-    "Temp file does not exist." : "Bráðabirgðaskrá er ekki til.",
-    "Could not add files to the ocr processing queue." : "Ekki tókst að bæta skrám við í OCR-vinnslubiðröðina."
+    "Temp file does not exist." : "Bráðabirgðaskrá er ekki til."
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

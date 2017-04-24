@@ -26,7 +26,6 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "Kan niet verwijderen. Verkeerde id.",
     "Wrong parameter." : "Verkeerde parameter.",
     "Wrong mimetype." : "Verkeerde mimetype.",
-    "Temp file does not exist." : "Tijdelijk bestand bestaat niet.",
-    "Could not add files to the ocr processing queue." : "Kon geen bestanden toevoegen aan de OCR wachtrij."
+    "Temp file does not exist." : "Tijdelijk bestand bestaat niet."
 },
 "nplurals=2; plural=(n != 1);");

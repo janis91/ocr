@@ -26,7 +26,6 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "Silinemedi. Kod doğru değil.",
     "Wrong parameter." : "Parametre doğru değil.",
     "Wrong mimetype." : "MIME türü doğru değil.",
-    "Temp file does not exist." : "Geçici dosya bulunamadı.",
-    "Could not add files to the ocr processing queue." : "Dosyalar karakter tanıma kuyruğuna eklenemedi."
+    "Temp file does not exist." : "Geçici dosya bulunamadı."
 },
 "nplurals=2; plural=(n > 1);");

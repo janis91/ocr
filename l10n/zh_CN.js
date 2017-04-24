@@ -26,7 +26,6 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "无法删除。ID 错误。",
     "Wrong parameter." : "参数错误。",
     "Wrong mimetype." : "MIME 类型错误。",
-    "Temp file does not exist." : "临时文件不存在。",
-    "Could not add files to the ocr processing queue." : "无法添加文件到 OCR 处理队列。"
+    "Temp file does not exist." : "临时文件不存在。"
 },
 "nplurals=1; plural=0;");

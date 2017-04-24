@@ -26,7 +26,6 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "Nemohu smazat. Neplatné id.",
     "Wrong parameter." : "Chybný parametr.",
     "Wrong mimetype." : "Chybný MIME Typ.",
-    "Temp file does not exist." : "Odkládací soubor neexistuje.",
-    "Could not add files to the ocr processing queue." : "Nelze přidat soubory do ocr fronty pro zpracování."
+    "Temp file does not exist." : "Odkládací soubor neexistuje."
 },
 "nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");
