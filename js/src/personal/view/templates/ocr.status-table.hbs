@@ -1,0 +1,25 @@
+{{#if enabled}}
+<table class="grid ocrsettings">
+    <thead>
+        <tr>
+            <th>{{ tableHeadNameText }}</th>
+            <th>{{ tableHeadStatusText }}</th>
+            <th>{{ tableHeadDeleteFromQueueText }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each status}}
+        <tr data-id="{{ id }}">
+            <td>{{ target }}</td>
+            <td>{{ status }}</td>
+            <td class="ocr-action-delete">
+                <div id="ocr-delete"><span>{{ ../deleteText }}</span><span class="icon icon-delete"></span></div>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<p>{{ noPendingOrFailedText }}</p>
+{{/if}}
+<button id="ocr-search">{{ refreshButtonText }}</button>

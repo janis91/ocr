@@ -1,6 +1,6 @@
 <?php
 /**
- * nextCloud - ocr
+ * Nextcloud - OCR
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -44,8 +44,7 @@ class Application extends App {
 		 */
 		$eventDispatcher = \OC::$server->getEventDispatcher();
 		$eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function() {
-			$scripts = array('ocrapp', 'ocrocr', 'ocrview');
-			script('ocr', $scripts);
+			script('ocr', 'dist/ocrapp');
 			style('ocr', 'ocrstyle');
 			// if not loaded before - load select2 for multi select languages
 			vendor_script('select2/select2');

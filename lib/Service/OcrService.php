@@ -1,6 +1,6 @@
 <?php
 /**
- * nextCloud - OCR
+ * Nextcloud - OCR
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -66,7 +66,7 @@ class OcrService {
 	private $view;
 
 	/**
-	 * @var
+	 * @var userId
 	 */
 	private $userId;
 
@@ -115,7 +115,7 @@ class OcrService {
 
 	/**
 	 * Gets the list of all available tesseract-ocr languages.
-	 *
+	 * TODO: remove and replace by docker behavior
 	 * @return string[] Languages
 	 */
 	public function listLanguages() {
@@ -159,6 +159,7 @@ class OcrService {
 		try {
 			$this->logger->debug('Will now process files: ' . json_encode($files) . ' with languages: ' . json_encode($languages), ['app' => 'ocr']);
 			// Check if files and language not empty
+			// TODO: do not check if languages empty: tesseract does not need a language necassarily.
 			if (!empty($files) && !empty($languages) && count(array_diff($languages, $this->listLanguages())) === 0) {
 
 				$fileInfo = $this->buildFileInfo($files);

@@ -15,3 +15,6 @@ table.ocrsettings td.ocr-action-delete:hover {
     font-weight: bold;
     color: black;
 }
+.nav-icon-ocr {
+	background-image: url('../img/icon/ocr.svg');
+}

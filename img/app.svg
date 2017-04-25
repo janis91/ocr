@@ -1,64 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
-        xmlns:dc="http://purl.org/dc/elements/1.1/"
-        xmlns:cc="http://creativecommons.org/ns#"
-        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:svg="http://www.w3.org/2000/svg"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-        width="32"
-        height="32"
-        id="svg3336"
-        version="1.1"
-        inkscape:version="0.91 r13725"
-        sodipodi:docname="method-draw-image.svg">
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   viewBox="0 0 16 16"
+   width="16"
+   height="16"
+   id="svg3061">
   <metadata
-          id="metadata3353">
+     id="metadata3081">
     <rdf:RDF>
       <cc:Work
-              rdf:about="">
+         rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
-                rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
-          id="defs3351" />
-  <sodipodi:namedview
-          pagecolor="#ffffff"
-          bordercolor="#666666"
-          borderopacity="1"
-          objecttolerance="10"
-          gridtolerance="10"
-          guidetolerance="10"
-          inkscape:pageopacity="0"
-          inkscape:pageshadow="2"
-          inkscape:window-width="1920"
-          inkscape:window-height="1138"
-          id="namedview3349"
-          showgrid="true"
-          showguides="false"
-          inkscape:snap-midpoints="true"
-          inkscape:snap-object-midpoints="true"
-          inkscape:snap-center="true"
-          inkscape:snap-text-baseline="true"
-          inkscape:snap-page="true"
-          inkscape:zoom="10.429825"
-          inkscape:cx="4.0940428"
-          inkscape:cy="24.365201"
-          inkscape:window-x="-8"
-          inkscape:window-y="-8"
-          inkscape:window-maximized="1"
-          inkscape:current-layer="svg3336">
-    <inkscape:grid
-            type="xygrid"
-            id="grid3357" />
-  </sodipodi:namedview>
-  <path
-          style="fill:#ffffff;stroke-dasharray:none"
-          d="M 5 2 C 3.338 2 2 3.338 2 5 L 2 13.962891 C 4.6833864 11.41772 9.8729095 7.3828125 16.017578 7.3828125 C 20.910529 7.3828125 26.938748 11.766254 30 14.275391 L 30 5 C 30 3.338 28.662 2 27 2 L 5 2 z M 16.017578 10.630859 C 12.880037 10.630859 10.324219 13.04013 10.324219 16 C 10.324219 18.95987 12.880037 21.367188 16.017578 21.367188 C 19.155308 21.367187 21.710938 18.958524 21.710938 16 C 21.710938 13.041476 19.155119 10.630859 16.017578 10.630859 z M 12.550781 14 L 19.451172 14 L 19.451172 15 L 12.550781 15 L 12.550781 14 z M 12.548828 16 L 19.449219 16 L 19.449219 17 L 12.548828 17 L 12.548828 16 z M 30 17.722656 C 26.938827 20.232162 20.910659 24.617188 16.017578 24.617188 C 9.8725367 24.617188 4.6832373 20.580706 2 18.035156 L 2 27 C 2 28.662 3.338 30 5 30 L 27 30 C 28.662 30 30 28.662 30 27 L 30 17.722656 z M 12.548828 18 L 19.449219 18 L 19.449219 19 L 12.548828 19 L 12.548828 18 z "
-          id="svg_2" />
+     id="defs3079" />
+  <g
+     transform="scale(0.5,0.5)"
+     id="g3068"
+     style="fill:#ffffff">
+    <title
+       id="title3070">Layer 1</title>
+    <path
+       d="M 16,5.03125 C 9.5525978,5.03125 3.8558962,8.2846475 0,11.25 l 0,9.5 c 3.8558963,2.965725 9.5525984,6.21875 16,6.21875 5.30277,0 11.647299,-3.754987 16,-6.875 l 0,-8.1875 C 27.647299,8.7862366 21.30277,5.03125 16,5.03125 z m 0,4.125 c 4.150823,0 7.53125,3.077919 7.53125,6.84375 0,3.765831 -3.380395,6.84375 -7.53125,6.84375 -4.150825,0 -7.53125,-3.076505 -7.53125,-6.84375 0,-3.767245 3.380427,-6.84375 7.53125,-6.84375 z"
+       id="svg_1"
+       style="fill:#ffffff" />
+    <rect
+       width="9.3121557"
+       height="1.124958"
+       x="11.343922"
+       y="15.437521"
+       id="svg_4"
+       style="fill:#ffffff" />
+    <rect
+       width="9.3121557"
+       height="1.124958"
+       x="11.343922"
+       y="13.499501"
+       id="svg_5"
+       style="fill:#ffffff" />
+    <rect
+       width="9.3121557"
+       height="1.124958"
+       x="11.343922"
+       y="17.312452"
+       id="svg_6"
+       style="fill:#ffffff" />
+    <path
+       d=""
+       id="svg_2"
+       style="fill:#ffffff;stroke-width:0" />
+  </g>
 </svg>

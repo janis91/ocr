@@ -1,6 +1,6 @@
 <?php
 /**
- * nextCloud - ocr
+ * Nextcloud - OCR
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -11,10 +11,8 @@
 
 namespace OCA\Ocr\Controller;
 
-use OCA\Ocr\Db\OcrStatusMapper;
 use OCA\Ocr\Service\OcrService;
 use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
 use OCP\Template;
 

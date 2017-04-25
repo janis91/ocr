@@ -1,4 +1,9 @@
 #Changelog
+nextcloud-ocr (3.0.0-beta.1)
+* **Release**: Now works with NC12. From now on a new Major Release will be released with each major NC version. Older versions will then not be supported anymore (they are still working maybe, but I don't have the time to support those).
+* **Javascript**: Now everything is programmed with typescript and as a result it is much more testable and reliable.
+* **Minor fixes and preparation**: This release is only a beta, as the main part is still WIP. A worker for Docker and with communication over redis will be available with the complete version 3.0.0.
+
 nextcloud-ocr (2.3.0)
 * **Feature**: The app now provides a multi language selection and an advanced logging for the ocr worker.
 * **Bugfix**: The translation has not been applied to all strings before, this is fixed now.
