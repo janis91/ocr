@@ -26,6 +26,7 @@ OC.L10N.register(
     "Cannot delete. Wrong id." : "Impossible de supprimer. Mauvais id.",
     "Wrong parameter." : "Paramètre incorrect.",
     "Wrong mimetype." : "Type MIME incorrect.",
-    "Temp file does not exist." : "Le fichier temporaire n'existe pas."
+    "Temp file does not exist." : "Le fichier temporaire n'existe pas.",
+    "Could not add files to the OCR processing queue." : "Impossible d'ajouter les fichiers à la liste de traitement OCR."
 },
 "nplurals=2; plural=(n > 1);");
