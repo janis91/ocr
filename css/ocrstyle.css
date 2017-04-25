@@ -18,6 +18,9 @@
 #ocrDropdown .select2-container a {
 	padding: 0;
 }
+input.processOCRButton {
+	margin-bottom: 10px;
+}
 /* Selcted Files Actions Button */
 tr .action:not(.permanent),
 .selectedActionsOCR a {
@@ -89,4 +92,12 @@ html.ie8 .column-mtime .selectedActionsOCR {
 #controls .actions .button .icon.loading {
 	width: 15px;
 	height: 15px;
+}
+
+.icon-ocr {
+	background-image: url('../img/icon/ocr.svg');
+}
+
+.pad-for-icon {
+	padding-left: 5px;
 }

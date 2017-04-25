@@ -16,7 +16,7 @@ php:
 
 env:
   global:
-    - CORE_BRANCH=stable11
+    - CORE_BRANCH=stable12
     - APP_NAME=ocr
   matrix:
     - DB=sqlite
@@ -24,13 +24,16 @@ env:
 branches:
   only:
     - master
-    - /^stable\d+(\.\d+)?$/
 
 before_install:
   - sudo touch /usr/bin/ocrmypdf
   - sudo chmod +x /usr/bin/ocrmypdf
   - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
   - . ./before_install.sh $APP_NAME $CORE_BRANCH $DB
+
+  # Add nodejs for javascript testing
+  - nvm install 6
+  - nvm use 6
 
   # Add some output debugging information
   - cd ../server
@@ -40,11 +43,16 @@ before_install:
   - ./occ app:enable $APP_NAME
   - ./occ app:list
 
-  # Setup behat for integration tests
+  # Install javascript dependencies
   - cd apps/$APP_NAME/
-  - cd tests/Integration/
-  - sh -c "if [ '$INTEGRATION' = '1' ]; then composer install; fi"
-  - cd ../../
+  - cd js/
+  - npm install
+  - cd ..
+
+  # Setup behat for integration tests
+  #- cd tests/Integration/
+  #- sh -c "if [ '$INTEGRATION' = '1' ]; then composer install; fi"
+  #- cd ../../
 
 script:
   # Test the app
@@ -59,6 +67,11 @@ script:
   - sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' ]; then phpunit --configuration phpunit.xml; fi"
   - cd ../..
 
+  # Run js unit tests
+  - cd js
+  - sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test; fi"
+  - cd ..
+
   # Integration tests
   #- cd tests/Integration
   #- sh -c "if [ '$INTEGRATION' = '1' ]; then bash run.sh; fi"
@@ -66,8 +79,8 @@ script:
 
   # Create coverage report
   - cd tests/Unit
-  - sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' -a '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
-  - sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' -a '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi"
+  - sh -c "if [ '$COVERAGE' = '1' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
+  - sh -c "if [ '$COVERAGE' = '1' ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi"
   - cd ../..
 
 matrix:
@@ -82,6 +95,10 @@ matrix:
       env: DB=mysql;CODECHECK=2
     - php: 7.0
       env: DB=mysql;INTEGRATION=1
+    - php: 7.0
+      env: DB=mysql;JSTESTS=1
+    - php: 7.0
+      env: DB=mysql;COVERAGE=1
   allow_failures:
     - env: DB=mysql;CODECHECK=2
 fast_finish: true

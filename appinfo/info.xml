@@ -9,11 +9,11 @@
     <description lang="en"><![CDATA[
 # Description
 
-Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud 10.
+Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud.
 The app uses tesseract-ocr, OCRmyPDF and a php internal message queueing service in order to process images (png, jpeg, tiff) and PDF (currently not all PDF-types are supported, for more information see [here](https://github.com/jbarlow83/OCRmyPDF)) asynchronously and save the output file to the same folder in nextcloud, so you are able to search in it.
 The source data won&#39;t get lost. Instead:
  - in case of a PDF a copy will be saved with an extra layer of the processed text, so that you are able to search in it.
- - in case of a image the result of the OCR processing will be saved in a .txt file next to the image (same folder).
+ - in case of an image the result of the OCR processing will be saved in a .txt file next to the image (same folder).
 
 **One big feature is the asynchronous ocr processing brought by the internal php message queueing system (Semaphore functions), which supports workers to handle tasks asynchronous from the rest of nextcloud.**
 
@@ -31,8 +31,8 @@ For further information see the homepage or the appropriate documentation.
     <description lang="de"><![CDATA[
 # Beschreibung
 
-OCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF ermöglicht Ihnen automatische Schrifterkennung direkt in Ihrer Nextcloud 10.
-Die App nutzt Tesseract-ocr, OCRmyPDF und den internen Message Queueing Service von PHP, um so asynchron (im Hintegrund) Bilder (PNG, JPEG, TIFF) und PDFs (aktuell werden nicht alle Typen unterstützt, näheres [hier](https://github.com/jbarlow83/OCRmyPDF)) zu verarbeiten. Das Ergebnis, welches jetzt durchsuchbar, kopierbar und ähnliches ist, wird anschließend im selben Ordner gespeichert, wie die Ursprungsdatei.
+OCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF ermöglicht Ihnen automatische Schrifterkennung direkt in Ihrer Nextcloud.
+Die App nutzt Tesseract-ocr, OCRmyPDF und den internen Message Queueing Service von PHP, um so asynchron (im Hintergrund) Bilder (PNG, JPEG, TIFF) und PDFs (aktuell werden nicht alle Typen unterstützt, näheres [hier](https://github.com/jbarlow83/OCRmyPDF)) zu verarbeiten. Das Ergebnis, welches jetzt durchsuchbar, kopierbar und ähnliches ist, wird anschließend im selben Ordner gespeichert, wie die Ursprungsdatei.
 Die Ursuprungsdatei geht dabei nicht verloren:
  - im Falle einer PDF wird eine Kopie mit einer zusätzlichen Textebene gespeichert, damit sie durchsuchbar und kopierbar wird.
  - im Falle eines Bildes wird das Resultat in einer txt-Datei gespeichert.
@@ -46,11 +46,11 @@ Für die OCR App müssen folgende Anforderungen erfüllt sein:
  - **[OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF)** &gt;v2.x (getestet mit v4.1.3 (v4 empfohlen))
  - **[tesseract-ocr](https://github.com/tesseract-ocr/tesseract)** &gt;v3.02.02 mit den dazugehörigen Übersetzungs- und Sprachdateien (z. B. tesseract-ocr-deu)
 
-**Bitte beachten: Die App untersützt keine aktivierte Verschlüsselung der Dateien und wird es auch voraussichtlich nicht in der Zukunft. Außerdem muss ein aktiver OCRWorker Prozess gestartet sein (Details im Wiki).**
+**Bitte beachten: Die App unterstützt keine aktivierte Verschlüsselung der Dateien und wird es auch voraussichtlich nicht in der Zukunft. Außerdem muss ein aktiver OCRWorker Prozess gestartet sein (Details im Wiki).**
 
 Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffende Dokumentation.
 ]]></description>
-    <version>2.3.0</version>
+    <version>3.0.0-beta.1</version>
     <licence>agpl</licence>
     <author>Janis Koehr</author>
     <namespace>Ocr</namespace>
@@ -70,13 +70,12 @@ Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffen
     <screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
     <dependencies>
         <php min-version="5.6" max-version="7.1" min-int-size="32" />
+        <database>sqlite</database>
+        <database>mysql</database>
+        <database>pgsql</database>
         <command>ocrmypdf</command>
         <command>tesseract</command>
-        <database>pgsql</database>
-        <database>mysql</database>
-        <database>sqlite</database>
-        <owncloud min-version="9.2" max-version="9.2"/>
-        <nextcloud min-version="11" max-version="11" />
+        <nextcloud min-version="12" max-version="12" />
     </dependencies>
     <repair-steps>
         <pre-migration>

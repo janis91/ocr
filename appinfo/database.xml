@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<database>
+<database xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/pear/MDB2_Schema/master/docs/MDB.xsd">
 	<name>*dbname*</name>
 	<create>true</create>
 	<overwrite>false</overwrite>
-	<charset>utf8</charset>
 	<!--
 	CREATE TABLE ocr_status (
 	id INT(8) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -25,7 +25,6 @@
 				<notnull>true</notnull>
 				<autoincrement>true</autoincrement>
 				<unsigned>true</unsigned>
-				<primary>true</primary>
 				<length>8</length>
 			</field>
 			<field>

@@ -55,3 +55,8 @@ nbproject
 /tests/clover.xml
 /tests/js/node_modules
 /tests/autotest*
+
+# JS node_modules and dist
+/js/node_modules
+npm-debug.log
+/js/spec/tsc-out

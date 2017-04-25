@@ -1,6 +1,6 @@
 <?php
 /**
- * nextCloud - ocr
+ * Nextcloud - OCR
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -9,11 +9,10 @@
  * @copyright Janis Koehr 2017
  */
 style('ocr', ['ocrpersonal']);
-script('ocr', ['ocrpersonalview', 'ocrpersonal']);
+script('ocr', ['dist/ocrpersonal']);
 ?>
 
-<div id="ocr" class="section">
+<div id="ocrPersonalSettings" class="section">
 	<h2><?php p($l->t('OCR')); ?></h2>
-    <div id="ocr-msg"></div>
 	<div id="ocr-settings"></div>
 </div>
