@@ -24,6 +24,7 @@
     "Cannot delete. Wrong id." : "Get ekki eytt. Rangt auðkenni.",
     "Wrong parameter." : "Röng færibreyta.",
     "Wrong mimetype." : "Röng MIME-tegund",
-    "Temp file does not exist." : "Bráðabirgðaskrá er ekki til."
+    "Temp file does not exist." : "Bráðabirgðaskrá er ekki til.",
+    "Could not add files to the OCR processing queue." : "Ekki tókst að bæta skrám við í OCR-vinnslubiðröðina."
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }
