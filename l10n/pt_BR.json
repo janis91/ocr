@@ -12,7 +12,7 @@
     "No languages for tesseract available" : "Sem idiomas disponíveis para tesseract",
     "Process" : "Processo",
     "OCR" : "OCR",
-    "Select language" : "Selecione o Idioma",
+    "Select language" : "Selecione o idioma",
     "No matches found." : "Nenhuma equivalência encontrada.",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR iniciados: %n novo arquivo fila.","OCR iniciado: %n novos arquivos na fila."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n arquivos atualmente pendentes na fila.","OCR: %n arquivos atualmente pendentes na fila."],
