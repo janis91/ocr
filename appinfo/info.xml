@@ -1,85 +1,75 @@
 <?xml version="1.0"?>
-<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-    <id>ocr</id>
-    <name lang="en">Optical character recognition (OCR)</name>
-    <name lang="de">Schrifterkennung (OCR)</name>
-    <summary lang="en">Character recognition for your images and pdf files.</summary>
-    <summary lang="de">Schrifterkennung für Bilder (mit Text) und PDF Dateien.</summary>
-    <description lang="en"><![CDATA[
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>ocr</id>
+	<name lang="en">Optical character recognition (OCR)</name>
+	<name lang="de">Schrifterkennung (OCR)</name>
+	<summary lang="en">Character recognition for your images and pdf files.</summary>
+	<summary lang="de">Schrifterkennung für Bilder (mit Text) und PDF Dateien.</summary>
+	<description><![CDATA[
 # Description
 
 Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud.
-The app uses tesseract-ocr, OCRmyPDF and a php internal message queueing service in order to process images (png, jpeg, tiff) and PDF (currently not all PDF-types are supported, for more information see [here](https://github.com/jbarlow83/OCRmyPDF)) asynchronously and save the output file to the same folder in nextcloud, so you are able to search in it.
-The source data won&#39;t get lost. Instead:
- - in case of a PDF a copy will be saved with an extra layer of the processed text, so that you are able to search in it.
- - in case of an image the result of the OCR processing will be saved in a .txt file next to the image (same folder).
-
-**One big feature is the asynchronous ocr processing brought by the internal php message queueing system (Semaphore functions), which supports workers to handle tasks asynchronous from the rest of nextcloud.**
+The app uses a docker container with tesseract-ocr, OCRmyPDF and communicates over redis in order to process images (png, jpeg, tiff) and PDF asynchronously and save the output file to the source folder in nextcloud. That for example enables you to search in it. (Hint: currently not all PDF-types are supported, for more information see [here](https://github.com/jbarlow83/OCRmyPDF))
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
- - **[Nextcloud 10](https://nextcloud.com/)** or higher
+ - **[Nextcloud 12](https://nextcloud.com/)**. For older versions take an older major version of this app.
  - **Linux** server as environment. (tested with Debian 8, Raspbian and Ubuntu 14.04 (Trusty))
- - **[OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF)** &gt;v2.x (tested with v4.1.3 (v4 is recommended))
- - **[tesseract-ocr](https://github.com/tesseract-ocr/tesseract)** &gt;v3.02.02 with corresponding language files (e.g. tesseract-ocr-eng)
+ - **Docker** is used for processing files. tesseract-ocr and OCRmyPDF reside in a docker container.
+ - **php-redis** is used for the communication and has to be a part of your php.
 
-**Please consider: The app will not work with any activated encryption. Also the OCRWorker has to be present as an active process (see wiki for details).**
+## Limitations
+Currently the app is not working with any activated encryption, nor is it working with files shared via external storage or federated sharing. This has to be considered. If one wants to process such a file, it must be copied to the local environment.
 
-For further information see the homepage or the appropriate documentation.
+For further information see the [homepage](https://github.com/janis91/ocr/wiki/Usage) or the appropriate documentation in the wiki.
+
+## Installation
+Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download/clone the git repository and place the content in **nextcloud/apps/ocr/**.
+
+**Please consider: The app will not work as long as the Docker container isn't running. (more information in the [wiki](https://github.com/janis91/ocr/wiki))**
+
+## Administration and Usage
+Please read the related topics in the [wiki](https://github.com/janis91/ocr/wiki).
+
+## Disclaimer
+The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied.
 ]]></description>
-    <description lang="de"><![CDATA[
-# Beschreibung
+	<version>3.0.0-beta.6</version>
+	<licence>agpl</licence>
+	<author>Janis Koehr</author>
+	<namespace>Ocr</namespace>
+	<documentation>
+		<user>https://github.com/janis91/ocr/wiki/Usage</user>
+		<admin>https://github.com/janis91/ocr/wiki</admin>
+		<developer>https://github.com/janis91/ocr/wiki</developer>
+	</documentation>
+	<category>tools</category>
+	<category>files</category>
+	<website>https://github.com/janis91/ocr/wiki/Usage</website>
+	<bugs>https://github.com/janis91/ocr/issues</bugs>
+	<repository type="git">https://github.com/janis91/ocr.git</repository>
+	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc1.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
+	<dependencies>
+		<php min-version="5.6" max-version="7.1" min-int-size="32" />
+		<lib>redis</lib>
+		<database>sqlite</database>
+		<database>mysql</database>
+		<database>pgsql</database>
+		<nextcloud min-version="12" max-version="12" />
+	</dependencies>
+	<repair-steps>
+		<pre-migration>
+			<step>OCA\Ocr\Migration\DropOldTable</step>
+		</pre-migration>
+	</repair-steps>
+	<settings>
+		<admin>OCA\Ocr\Settings\Admin</admin>
+		<admin-section>OCA\Ocr\Settings\Section</admin-section>
+	</settings>
 
-OCR (Automatische Texterkennung) für Bilder (mit Text) und PDF Dateien mithilfe von tesseract-ocr und OCRmyPDF ermöglicht Ihnen automatische Schrifterkennung direkt in Ihrer Nextcloud.
-Die App nutzt Tesseract-ocr, OCRmyPDF und den internen Message Queueing Service von PHP, um so asynchron (im Hintergrund) Bilder (PNG, JPEG, TIFF) und PDFs (aktuell werden nicht alle Typen unterstützt, näheres [hier](https://github.com/jbarlow83/OCRmyPDF)) zu verarbeiten. Das Ergebnis, welches jetzt durchsuchbar, kopierbar und ähnliches ist, wird anschließend im selben Ordner gespeichert, wie die Ursprungsdatei.
-Die Ursuprungsdatei geht dabei nicht verloren:
- - im Falle einer PDF wird eine Kopie mit einer zusätzlichen Textebene gespeichert, damit sie durchsuchbar und kopierbar wird.
- - im Falle eines Bildes wird das Resultat in einer txt-Datei gespeichert.
-
-**Ein großer Vorteil ist, dass das Ausführen und Verarbeiten asynchron im Hintergrund stattfindet. Dies geschieht mithilfe der PHP internernen Unterstützung einer Message Queue (Semaphore Funktionen). Die Aufgaben werden somit getrennt von der Nextcloud in einem eigenen Arbeits-Prozess (Worker) abgearbeitet.**
-
-## Anforderungen und Abhängigkeiten
-Für die OCR App müssen folgende Anforderungen erfüllt sein:
- - **[Nextcloud 10](https://nextcloud.com/)** oder höher
- - **Linux** server als Betriebssystem. (getestet mit Debian 8, Raspbian und Ubuntu 14.04 (Trusty))
- - **[OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF)** &gt;v2.x (getestet mit v4.1.3 (v4 empfohlen))
- - **[tesseract-ocr](https://github.com/tesseract-ocr/tesseract)** &gt;v3.02.02 mit den dazugehörigen Übersetzungs- und Sprachdateien (z. B. tesseract-ocr-deu)
-
-**Bitte beachten: Die App unterstützt keine aktivierte Verschlüsselung der Dateien und wird es auch voraussichtlich nicht in der Zukunft. Außerdem muss ein aktiver OCRWorker Prozess gestartet sein (Details im Wiki).**
-
-Für weiter Informationen besuchen Sie die Homepage oder lesen Sie die zutreffende Dokumentation.
-]]></description>
-    <version>3.0.0-beta.1</version>
-    <licence>agpl</licence>
-    <author>Janis Koehr</author>
-    <namespace>Ocr</namespace>
-    <documentation>
-        <user>https://janis91.github.io/ocr/</user>
-        <admin>https://github.com/janis91/ocr/wiki</admin>
-        <developer>https://github.com/janis91/ocr/wiki</developer>
-    </documentation>
-    <category>tools</category>
-    <category>files</category>
-    <website>https://janis91.github.io/ocr/</website>
-    <bugs>https://github.com/janis91/ocr/issues</bugs>
-    <repository type="git">https://github.com/janis91/ocr.git</repository>
-    <screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc1.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
-    <dependencies>
-        <php min-version="5.6" max-version="7.1" min-int-size="32" />
-        <database>sqlite</database>
-        <database>mysql</database>
-        <database>pgsql</database>
-        <command>ocrmypdf</command>
-        <command>tesseract</command>
-        <nextcloud min-version="12" max-version="12" />
-    </dependencies>
-    <repair-steps>
-        <pre-migration>
-            <step>OCA\Ocr\Migration\DropOldTable</step>
-        </pre-migration>
-    </repair-steps>
 </info>

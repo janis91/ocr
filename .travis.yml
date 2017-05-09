@@ -6,8 +6,6 @@ addons:
     - mysql-server-5.6
     - mysql-client-core-5.6
     - mysql-client-5.6
-    - tesseract-ocr
-    - tesseract-ocr-deu
 language: php
 php:
   - 5.6
@@ -26,8 +24,7 @@ branches:
     - master
 
 before_install:
-  - sudo touch /usr/bin/ocrmypdf
-  - sudo chmod +x /usr/bin/ocrmypdf
+  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
   - . ./before_install.sh $APP_NAME $CORE_BRANCH $DB
 
@@ -42,12 +39,7 @@ before_install:
   - ./occ app:list
   - ./occ app:enable $APP_NAME
   - ./occ app:list
-
-  # Install javascript dependencies
   - cd apps/$APP_NAME/
-  - cd js/
-  - npm install
-  - cd ..
 
   # Setup behat for integration tests
   #- cd tests/Integration/
@@ -67,9 +59,16 @@ script:
   - sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' ]; then phpunit --configuration phpunit.xml; fi"
   - cd ../..
 
-  # Run js unit tests
+  # Install worker deps and run unit tests
+  - cd worker
+  - sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
+  - sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build; fi"
+  - cd ..
+
+  # Install js deps and run unit tests
   - cd js
-  - sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test; fi"
+  - sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
+  - sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build; fi"
   - cd ..
 
   # Integration tests

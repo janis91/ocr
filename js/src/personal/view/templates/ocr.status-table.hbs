@@ -2,16 +2,18 @@
 <table class="grid ocrsettings">
     <thead>
         <tr>
-            <th>{{ tableHeadNameText }}</th>
-            <th>{{ tableHeadStatusText }}</th>
+            <th>{{ tableHeadFileText }}</th>
+            <th>{{ tableHeadJobText }}</th>
+            <th>{{ tableHeadLogText }}</th>
             <th>{{ tableHeadDeleteFromQueueText }}</th>
         </tr>
     </thead>
     <tbody>
-        {{#each status}}
+        {{#each jobs}}
         <tr data-id="{{ id }}">
-            <td>{{ target }}</td>
+            <td>{{ originalFilename }}</td>
             <td>{{ status }}</td>
+            <td>{{ errorLog }}</td>
             <td class="ocr-action-delete">
                 <div id="ocr-delete"><span>{{ ../deleteText }}</span><span class="icon icon-delete"></span></div>
             </td>

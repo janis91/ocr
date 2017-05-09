@@ -11,18 +11,28 @@ declare var OC: any;
  */
 export class Configuration {
     private _statusEndpoint: string = OC.generateUrl('/apps/ocr/status');
-    private _processingEndpoint: string = OC.generateUrl('/apps/ocr');
+    private _jobEndpoint: string = OC.generateUrl('/apps/ocr');
+    private _languagesEndpoint: string = OC.generateUrl('/apps/ocr/languages');
     private _allowedMimetypes: Array<string> = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
+    private _redisEvaluationEndpoint: string = OC.generateUrl('/apps/ocr/redis');
+
+    public get redisEvaluationEndpoint(): string {
+        return this._redisEvaluationEndpoint;
+    }
 
     public get statusEndpoint(): string {
         return this._statusEndpoint;
     }
 
-    public get processingEndpoint(): string {
-        return this._processingEndpoint;
+    public get jobEndpoint(): string {
+        return this._jobEndpoint;
     }
 
     public get allowedMimetypes(): Array<string> {
         return this._allowedMimetypes;
+    }
+
+    public get languagesEndpoint(): string {
+        return this._languagesEndpoint;
     }
 }

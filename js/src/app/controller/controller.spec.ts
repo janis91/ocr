@@ -26,15 +26,15 @@ describe('For the controller', () => {
         cut = new Controller(utilMock, viewMock, httpServiceMock, ocaServiceMock, t, n, documentMock, jqueryMock);
     });
 
-    describe('the init function', () => {
-        it('should init the app correctly.', () => {
+    describe('the startEverything function', () => {
+        it('should start the app correctly.', () => {
             spyOn(cut, 'loadLanguages');
             cut.availableLanguages = ['deu', 'eng'];
             spyOn(cut, 'registerEvents');
             viewMock.renderSelectedFilesActionButton.and.returnValue(true);
             spyOn(cut, 'loopForStatus');
 
-            cut.init();
+            cut.startEverything();
 
             expect(cut.loadLanguages).toHaveBeenCalled();
             expect(cut.registerEvents).toHaveBeenCalled();
@@ -103,7 +103,7 @@ describe('For the controller', () => {
             cut.clickOnProcessButtonEvent();
 
             expect(utilMock.filterFilesWithMimeTypes).toHaveBeenCalledWith(selectedFiles);
-            expect(viewMock.displayError).toHaveBeenCalledWith(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'Mimetype(s) not supported.')}`);
+            expect(viewMock.displayError).toHaveBeenCalledWith(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'MIME type(s) not supported.')}`);
             expect(viewMock.destroyDropdown).toHaveBeenCalled();
         });
 
@@ -205,4 +205,8 @@ describe('For the controller', () => {
     });
 
     // TODO: describe('the checkStatus function', () => { });
+
+    // TODO: describe('the checkRedis function', () => { });
+
+    // TODO: describe('the loadLanguages function', () => { });
 });

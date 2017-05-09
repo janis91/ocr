@@ -24,28 +24,28 @@ export class HttpService {
     }
 
     /**
-     * Retrieve the status of the OCR process.
+     * Retrieve the jobs of the OCR process.
      * @returns The JQueryXHR object.
      */
-    public getAllStatus(): JQueryXHR {
+    public getAllJobs(): JQueryXHR {
         const options: JQueryAjaxSettings = {
             method: 'GET',
-            url: this.config.personalSettingsEndpoint,
+            url: this.config.jobEndpoint,
         };
         return this.makeRequest(options);
     }
 
     /**
-     * Delete a status object.
+     * Delete a jobs object.
      * @returns The JQueryXHR object.
      */
-    public deleteStatus(id: number): JQueryXHR {
+    public deleteJob(id: number): JQueryXHR {
         const options: JQueryAjaxSettings = {
             data: {
                 id: id,
             },
             method: 'DELETE',
-            url: this.config.personalSettingsEndpoint,
+            url: this.config.jobEndpoint,
         };
         return this.makeRequest(options);
     }

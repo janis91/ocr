@@ -10,14 +10,14 @@ describe('For the http service', () => {
 
     beforeEach(() => {
         utilMock = jasmine.createSpyObj('util', ['shrinkFilesToReducedFiles']);
-        configMock = jasmine.createSpyObj('config', ['processingEndpoint', 'statusEndpoint']);
+        configMock = jasmine.createSpyObj('config', ['jobEndpoint', 'statusEndpoint', 'languagesEndpoint']);
         jqueryMock = jasmine.createSpyObj('jquery', ['ajax']);
         cut = new HttpService(utilMock, configMock, jqueryMock);
     });
 
     describe('the makeRequest function', () => {
         it('should make the request with the right options.', () => {
-            const opts = { foo: 'bar' };
+            const opts = { method: 'GET' };
             jqueryMock.ajax.and.returnValue(true);
 
             const result = cut.makeRequest(opts);
@@ -40,9 +40,9 @@ describe('For the http service', () => {
             const reducedFiles = [{ id: file1.id }, { id: file2.id }];
             utilMock.shrinkFilesToReducedFiles.and.returnValue(reducedFiles);
             spyOn(cut, 'makeRequest').and.returnValue(true);
-            configMock.processingEndpoint = 'processingEndpoint';
+            configMock.jobEndpoint = 'jobEndpoint';
 
-            const result = cut.process(files, languages);
+            const result = cut.startProcess(files, languages);
 
             expect(cut.makeRequest).toHaveBeenCalledWith({
                 data: {
@@ -50,7 +50,7 @@ describe('For the http service', () => {
                     languages: languages,
                 },
                 method: 'POST',
-                url: 'processingEndpoint',
+                url: 'jobEndpoint',
             });
             expect(result).toBeTruthy();
         });
@@ -74,13 +74,28 @@ describe('For the http service', () => {
     describe('the loadAvailableLanguages function', () => {
         it('should retrieve the languages.', () => {
             spyOn(cut, 'makeRequest').and.returnValue(true);
-            configMock.processingEndpoint = 'processingEndpoint';
+            configMock.languagesEndpoint = 'languagesEndpoint';
 
             const result = cut.loadAvailableLanguages();
 
             expect(cut.makeRequest).toHaveBeenCalledWith({
                 method: 'GET',
-                url: 'processingEndpoint',
+                url: 'languagesEndpoint',
+            });
+            expect(result).toBeTruthy();
+        });
+    });
+
+    describe('the checkRedisSettings function', () => {
+        it('should retrieve the status.', () => {
+            spyOn(cut, 'makeRequest').and.returnValue(true);
+            configMock.redisEvaluationEndpoint = 'redisEvaluationEndpoint';
+
+            const result = cut.checkRedisSettings();
+
+            expect(cut.makeRequest).toHaveBeenCalledWith({
+                method: 'GET',
+                url: 'redisEvaluationEndpoint',
             });
             expect(result).toBeTruthy();
         });

@@ -30,7 +30,7 @@ export class HttpService {
      * @param languages The languages to process the files with.
      * @returns The JQueryXHR object.
      */
-    public process(files: Array<IFile>, languages: Array<string>): JQueryXHR {
+    public startProcess(files: Array<IFile>, languages: Array<string>): JQueryXHR {
         const reducedFiles: Array<IReducedFile> = this.util.shrinkFilesToReducedFiles(files);
         const options: JQueryAjaxSettings = {
             data: {
@@ -38,7 +38,7 @@ export class HttpService {
                 languages: languages,
             },
             method: 'POST',
-            url: this.config.processingEndpoint,
+            url: this.config.jobEndpoint,
         };
         return this.makeRequest(options);
     }
@@ -57,15 +57,24 @@ export class HttpService {
 
     /**
      * Retrieve all available languages for processing files.
-     * @returns An array of languages.
+     * @returns A string of languages seperated by semicolon.
      */
     public loadAvailableLanguages(): JQueryXHR {
-        /*OCP.AppConfig.getValue('ocr', 'available-languages', '', function (data) {
-                languages = data.split(';');
-            });*/
         const options: JQueryAjaxSettings = {
             method: 'GET',
-            url: this.config.processingEndpoint,
+            url: this.config.languagesEndpoint,
+        };
+        return this.makeRequest(options);
+    }
+
+    /**
+     * Retrieves the status of the redis settings.
+     * @returns A boolean value. True if all is set.
+     */
+    public checkRedisSettings(): JQueryXHR {
+        const options: JQueryAjaxSettings = {
+            method: 'GET',
+            url: this.config.redisEvaluationEndpoint,
         };
         return this.makeRequest(options);
     }

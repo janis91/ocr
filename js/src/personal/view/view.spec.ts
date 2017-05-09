@@ -1,4 +1,4 @@
-import { IStatus } from '../controller/poto/status.poto';
+import { IJob } from '../controller/poto/job.poto';
 import { View } from './view';
 
 describe('For the view', () => {
@@ -39,13 +39,13 @@ describe('For the view', () => {
 
     describe('the render function', () => {
         it('should render and append the table.', () => {
-            const status: Array<IStatus> = [{id: 1}];
+            const jobs: Array<IJob> = [{ id: 1, status: 'FAILED', originalFilename: 'file.jpeg', errorLog: 'Failure' }];
             spyOn(cut, 'appendHtmlToElement');
             spyOn(cut, 'renderTable').and.returnValue('html');
 
-            cut.render(status);
+            cut.render(jobs);
 
-            expect(cut.renderTable).toHaveBeenCalledWith(status);
+            expect(cut.renderTable).toHaveBeenCalledWith(jobs);
             expect(cut.appendHtmlToElement).toHaveBeenCalledWith('html', cut.el);
         });
     });
@@ -62,40 +62,42 @@ describe('For the view', () => {
     });
 
     describe('the renderTable function', () => {
-        it('should return the rendered template for non empty status array.', () => {
-            const status: Array<IStatus> = [{id: 1}];
+        it('should return the rendered template for non empty jobs array.', () => {
+            const jobs: Array<IJob> = [{ id: 1, status: 'FAILED', originalFilename: 'file.jpeg', errorLog: 'Failure' }];
             handlebarsTableTemplateFunctionMock.and.returnValue('template');
 
-            const result = cut.renderTable(status);
+            const result = cut.renderTable(jobs);
 
             expect(handlebarsTableTemplateFunctionMock).toHaveBeenCalledWith({
                 deleteText: 'Delete',
                 enabled: true,
+                jobs: jobs,
                 noPendingOrFailedText: 'No pending or failed OCR items found.',
                 refreshButtonText: 'Refresh',
-                status: status,
                 tableHeadDeleteFromQueueText: 'Delete from queue',
-                tableHeadNameText: 'Name',
-                tableHeadStatusText: 'Status',
+                tableHeadFileText: 'File',
+                tableHeadJobText: 'Status',
+                tableHeadLogText: 'Log',
             });
             expect(result).toBe('template');
         });
 
-        it('should return the rendered template for empty status array.', () => {
-            const status: any = [];
+        it('should return the rendered template for empty jobs array.', () => {
+            const jobs: any = [];
             handlebarsTableTemplateFunctionMock.and.returnValue('template');
 
-            const result = cut.renderTable(status);
+            const result = cut.renderTable(jobs);
 
             expect(handlebarsTableTemplateFunctionMock).toHaveBeenCalledWith({
                 deleteText: 'Delete',
                 enabled: false,
+                jobs: jobs,
                 noPendingOrFailedText: 'No pending or failed OCR items found.',
                 refreshButtonText: 'Refresh',
-                status: status,
                 tableHeadDeleteFromQueueText: 'Delete from queue',
-                tableHeadNameText: 'Name',
-                tableHeadStatusText: 'Status',
+                tableHeadFileText: 'File',
+                tableHeadJobText: 'Status',
+                tableHeadLogText: 'Log',
             });
             expect(result).toBe('template');
         });

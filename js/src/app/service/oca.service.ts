@@ -56,7 +56,7 @@ export class OcaService {
      * Registers the FileActions at OCA.Files app.
      */
     public registerFileActions(): void {
-        // Register FileAction for mimetype pdf
+        // Register FileAction for MIME type pdf
         OCA.Files.fileActions.registerAction({
             actionHandler: this.fileActionHandler,
             altText: this.t('ocr', 'OCR'),
@@ -68,7 +68,7 @@ export class OcaService {
             permissions: this.OC.PERMISSION_UPDATE,
 
         });
-        // Register FileAction for mimetype image
+        // Register FileAction for MIME type image
         OCA.Files.fileActions.registerAction({
             actionHandler: this.fileActionHandler,
             altText: this.t('ocr', 'OCR'),

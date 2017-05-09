@@ -45,4 +45,4 @@ export class Personal {
     }
 }
 
-export let $personal = new Personal();
+export const $personal = new Personal();

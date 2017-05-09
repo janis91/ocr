@@ -1,4 +1,4 @@
-import { IStatus } from '../controller/poto/status.poto';
+import { IJob } from '../controller/poto/job.poto';
 import { ISingleTranslation } from '../../global-oc-functions';
 
 /**
@@ -32,11 +32,11 @@ export class View {
     }
 
     /**
-     * Renders the status table.
-     * @param status The retrieved status objects.
+     * Renders the jobs table.
+     * @param jobs The retrieved jobs objects.
      */
-    public render(status: Array<IStatus>): void {
-        const html: string = this.renderTable(status);
+    public render(jobs: Array<IJob>): void {
+        const html: string = this.renderTable(jobs);
         this.appendHtmlToElement(html, this.el);
     }
 
@@ -48,21 +48,22 @@ export class View {
     }
 
     /**
-     * Renders the status table.
+     * Renders the jobs table.
      * @returns The template as string.
      */
-    public renderTable(status: Array<IStatus>): string {
+    public renderTable(jobs: Array<IJob>): string {
         const template = this.handlebarsTableTemplateFunction;
-        const enabled: boolean = status && status.length > 0 ? true : false;
+        const enabled: boolean = jobs && jobs.length > 0 ? true : false;
         return template({
             deleteText: this.t('ocr', 'Delete'),
             enabled: enabled,
+            jobs: jobs,
             noPendingOrFailedText: this.t('ocr', 'No pending or failed OCR items found.'),
             refreshButtonText: this.t('ocr', 'Refresh'),
-            status: status,
             tableHeadDeleteFromQueueText: this.t('ocr', 'Delete from queue'),
-            tableHeadNameText: this.t('ocr', 'Name'),
-            tableHeadStatusText: this.t('ocr', 'Status'),
+            tableHeadFileText: this.t('ocr', 'File'),
+            tableHeadJobText: this.t('ocr', 'Status'),
+            tableHeadLogText: this.t('ocr', 'Log'),
         });
     }
 
