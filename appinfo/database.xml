@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<database xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/pear/MDB2_Schema/master/docs/MDB.xsd">
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/pear/MDB2_Schema/master/docs/MDB.xsd">
 	<name>*dbname*</name>
 	<create>true</create>
 	<overwrite>false</overwrite>
-	<!--
-	CREATE TABLE ocr_status (
-	id INT(8) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	status TEXT NOT NULL,
-	source TEXT NOT NULL,
-	target TEXT NOT NULL,
-	temp_file TEXT NOT NULL,
-	type TEXT NOT NULL,
-	user_id TEXT NOT NULL,
-	error_displayed BOOLEAN NOT NULL
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-	-->
+	<!-- CREATE TABLE ocr_jobs ( id INT(8) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+		status TEXT NOT NULL, source TEXT NOT NULL, target TEXT NOT NULL, temp_file 
+		TEXT NOT NULL, type TEXT NOT NULL, user_id TEXT NOT NULL, error_displayed 
+		BOOLEAN NOT NULL, original_filename TEXT NOT NULL, log TEXT NOT NULL ) ENGINE=InnoDB 
+		DEFAULT CHARSET=utf8mb4; -->
 	<table>
-		<name>*dbprefix*ocr_status</name>
+		<name>*dbprefix*ocr_jobs</name>
 		<declaration>
 			<field>
 				<name>id</name>
@@ -73,6 +66,20 @@
 				<name>error_displayed</name>
 				<type>boolean</type>
 				<default>false</default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>original_filename</name>
+				<type>text</type>
+				<length>100</length>
+				<default></default>
+				<notnull>true</notnull>
+			</field>
+			<field>
+				<name>error_log</name>
+				<type>text</type>
+				<length>500</length>
+				<default></default>
 				<notnull>true</notnull>
 			</field>
 		</declaration>

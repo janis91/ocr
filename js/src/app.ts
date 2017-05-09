@@ -51,4 +51,4 @@ export class App {
     }
 }
 
-export let $app = new App();
+export const $app = new App();

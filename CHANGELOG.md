@@ -1,4 +1,7 @@
 #Changelog
+nextcloud-ocr (3.0.0-beta.6)
+* **Upcomming Release**: The next major release of OCR is here soon. Some tests have too pass before I will publish it. But This is kind of a Release Candidate.
+* **Major Changes**: The app got completely refactored. It now is based on redis for the communication with a worker which got also completely reworked and is now basically a nodejs application. This nodejs worker gets setup inside of a docker container to have always the latest tesseract and ocrmypdf available and be much more scalable than before. Maybe already Cloud ready. The other refactoring part targeted the php code, that got a lot better now and can now be adjusted way faster and gets way more unit tested than before. This applies also for the worker. Moreover an administration page is now available to configure the redis endpoint and the installed languages inside of the ocr worker container. Another part is the logging capability. In case of an error the user now can see the corresponding message from within his personal ocr overview section.
 nextcloud-ocr (3.0.0-beta.1)
 * **Release**: Now works with NC12. From now on a new Major Release will be released with each major NC version. Older versions will then not be supported anymore (they are still working maybe, but I don't have the time to support those).
 * **Javascript**: Now everything is programmed with typescript and as a result it is much more testable and reliable.

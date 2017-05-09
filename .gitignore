@@ -51,12 +51,15 @@ nbproject
 /.buildpath
 
 # Tests - auto-generated files
-/tests/coverage*
-/tests/clover.xml
-/tests/js/node_modules
-/tests/autotest*
+/tests/Unit/coverage*
+
+# Worker Node.js Server
+/worker/dist
+/worker/spec/tsc-out
 
 # JS node_modules and dist
-/js/node_modules
 npm-debug.log
 /js/spec/tsc-out
+
+# General node_modules
+*/node_modules

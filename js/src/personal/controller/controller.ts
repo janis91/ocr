@@ -1,4 +1,4 @@
-import { IStatus } from './poto/status.poto';
+import { IJob } from './poto/job.poto';
 import { ISingleTranslation } from '../../global-oc-functions';
 import { HttpService } from '../service/http.service';
 import { View } from '../view/view';
@@ -14,7 +14,7 @@ import { View } from '../view/view';
  */
 export class Controller {
 
-    private _status: Array<IStatus> = [];
+    private _jobs: Array<IJob> = [];
 
     constructor(private view: View, private httpService: HttpService, private document: Document, private jquery: JQueryStatic, private t: ISingleTranslation) { }
 
@@ -34,35 +34,35 @@ export class Controller {
     }
 
     /**
-     * Retrieves the status objects of OCR.
+     * Retrieves the jobs objects of OCR.
      * @returns A JQueryPromise to deal with the asynchronous ajax call.
      */
     public loadAndRender(): void {
-        this.httpService.getAllStatus().always(() => {
+        this.httpService.getAllJobs().always(() => {
             this.view.destroy();
-        }).done((status: Array<IStatus>) => {
-            this.status = status;
-            this.view.render(this.status);
+        }).done((jobs: Array<IJob>) => {
+            this.jobs = jobs;
+            this.view.render(this.jobs);
         }).fail((jqXHR: JQueryXHR) => {
-            this.view.displayMessage(`${this.t('ocr', 'OCR status could not be retrieved:')} ${jqXHR.responseText}`, true);
-            this.status = [];
-            this.view.render(this.status);
+            this.view.displayMessage(`${this.t('ocr', 'OCR jobs could not be retrieved:')} ${jqXHR.responseText}`, true);
+            this.jobs = [];
+            this.view.render(this.jobs);
         });
     }
 
     /**
-     * Deletes a status object.
-     * @param id The id of the status object to delete.
+     * Deletes a job object.
+     * @param id The id of the job object to delete.
      */
     public delete(id: number): void {
-        this.httpService.deleteStatus(id).done(() => {
+        this.httpService.deleteJob(id).done(() => {
             this.view.destroy();
-            const status: any = this.status.filter((s: IStatus) => { return s.id === id; }); // TODO: change type and displayed file name
-            this.status = this.status.filter((s: IStatus) => {
+            const jobs: Array<IJob> = this.jobs.filter((s: IJob) => { return s.id === id; });
+            this.jobs = this.jobs.filter((s: IJob) => {
                 return s.id !== id;
             });
-            this.view.displayMessage(`${this.t('ocr', 'Following status object has been successfully deleted:')} ${status[0].target}`, false);
-            this.view.render(this.status);
+            this.view.displayMessage(`${this.t('ocr', 'The job for the following file object has been successfully deleted:')} ${jobs[0].originalFilename}`, false);
+            this.view.render(this.jobs);
         }).fail((jqXHR: JQueryXHR) => {
             this.view.displayMessage(`${this.t('ocr', 'Error during deletion:')} ${jqXHR.responseText}`, true);
             this.loadAndRender();
@@ -87,11 +87,11 @@ export class Controller {
         });
     }
 
-    public get status(): Array<IStatus> {
-        return this._status;
+    public get jobs(): Array<IJob> {
+        return this._jobs;
     }
 
-    public set status(value: Array<IStatus>) {
-        this._status = value;
+    public set jobs(value: Array<IJob>) {
+        this._jobs = value;
     }
 }

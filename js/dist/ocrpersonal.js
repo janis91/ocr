@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("underscore"), require("handlebars/runtime"), require("jQuery"));
+		module.exports = factory(require("underscore"), require("jQuery"), require("handlebars/runtime"));
 	else if(typeof define === 'function' && define.amd)
-		define(["underscore", "handlebars/runtime", "jQuery"], factory);
+		define(["underscore", "jQuery", "handlebars/runtime"], factory);
 	else if(typeof exports === 'object')
-		exports["Ocr"] = factory(require("underscore"), require("handlebars/runtime"), require("jQuery"));
+		exports["Ocr"] = factory(require("underscore"), require("jQuery"), require("handlebars/runtime"));
 	else
-		root["OCA"] = root["OCA"] || {}, root["OCA"]["Ocr"] = factory(root["_"], root["Handlebars"], root["$"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__) {
+		root["OCA"] = root["OCA"] || {}, root["OCA"]["Ocr"] = factory(root["_"], root["$"], root["Handlebars"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,13 +56,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var view_1 = __webpack_require__(12);
-	var controller_1 = __webpack_require__(13);
-	var configuration_1 = __webpack_require__(14);
-	var http_service_1 = __webpack_require__(15);
-	var handlebarsTableTemplate = __webpack_require__(16);
-	var underscore_1 = __webpack_require__(5);
-	var jquery_1 = __webpack_require__(11);
+	var view_1 = __webpack_require__(15);
+	var controller_1 = __webpack_require__(16);
+	var configuration_1 = __webpack_require__(17);
+	var http_service_1 = __webpack_require__(18);
+	var handlebarsTableTemplate = __webpack_require__(19);
+	var underscore_1 = __webpack_require__(4);
+	var jquery_1 = __webpack_require__(5);
 	var Personal = (function () {
 	    function Personal() {
 	        var _this = this;
@@ -90,7 +90,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */,
+/* 4 */
+/***/ (function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
@@ -101,19 +106,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 7 */,
 /* 8 */,
 /* 9 */,
-/* 10 */
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
-
-/***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -135,25 +138,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.notification.showHtml("<div>" + message + "</div>", { timeout: 10 });
 	        }
 	    };
-	    View.prototype.render = function (status) {
-	        var html = this.renderTable(status);
+	    View.prototype.render = function (jobs) {
+	        var html = this.renderTable(jobs);
 	        this.appendHtmlToElement(html, this.el);
 	    };
 	    View.prototype.destroy = function () {
 	        this.el.innerHTML = '';
 	    };
-	    View.prototype.renderTable = function (status) {
+	    View.prototype.renderTable = function (jobs) {
 	        var template = this.handlebarsTableTemplateFunction;
-	        var enabled = status && status.length > 0 ? true : false;
+	        var enabled = jobs && jobs.length > 0 ? true : false;
 	        return template({
 	            deleteText: t('ocr', 'Delete'),
 	            enabled: enabled,
+	            jobs: jobs,
 	            noPendingOrFailedText: t('ocr', 'No pending or failed OCR items found.'),
 	            refreshButtonText: t('ocr', 'Refresh'),
-	            status: status,
 	            tableHeadDeleteFromQueueText: t('ocr', 'Delete from queue'),
-	            tableHeadNameText: t('ocr', 'Name'),
-	            tableHeadStatusText: t('ocr', 'Status'),
+	            tableHeadFileText: t('ocr', 'File'),
+	            tableHeadJobText: t('ocr', 'Status'),
+	            tableHeadLogText: t('ocr', 'Log'),
 	        });
 	    };
 	    View.prototype.appendHtmlToElement = function (html, el) {
@@ -175,7 +179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -187,7 +191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.document = document;
 	        this.jquery = jquery;
 	        this.t = t;
-	        this._status = [];
+	        this._jobs = [];
 	    }
 	    Controller.prototype.init = function () {
 	        this.loadAndRender();
@@ -198,27 +202,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Controller.prototype.loadAndRender = function () {
 	        var _this = this;
-	        this.httpService.getAllStatus().always(function () {
+	        this.httpService.getAllJobs().always(function () {
 	            _this.view.destroy();
-	        }).done(function (status) {
-	            _this.status = status;
-	            _this.view.render(_this.status);
+	        }).done(function (jobs) {
+	            _this.jobs = jobs;
+	            _this.view.render(_this.jobs);
 	        }).fail(function (jqXHR) {
-	            _this.view.displayMessage(t('ocr', 'OCR status could not be retrieved:') + " " + jqXHR.responseText, true);
-	            _this.status = [];
-	            _this.view.render(_this.status);
+	            _this.view.displayMessage(t('ocr', 'OCR jobs could not be retrieved:') + " " + jqXHR.responseText, true);
+	            _this.jobs = [];
+	            _this.view.render(_this.jobs);
 	        });
 	    };
 	    Controller.prototype.delete = function (id) {
 	        var _this = this;
-	        this.httpService.deleteStatus(id).done(function () {
+	        this.httpService.deleteJob(id).done(function () {
 	            _this.view.destroy();
-	            var status = _this.status.filter(function (s) { return s.id === id; });
-	            _this.status = _this.status.filter(function (s) {
+	            var jobs = _this.jobs.filter(function (s) { return s.id === id; });
+	            _this.jobs = _this.jobs.filter(function (s) {
 	                return s.id !== id;
 	            });
-	            _this.view.displayMessage(t('ocr', 'Following status object has been successfully deleted:') + " " + status[0].target, false);
-	            _this.view.render(_this.status);
+	            _this.view.displayMessage(t('ocr', 'The job for the following file object has been successfully deleted:') + " " + jobs[0].originalFilename, false);
+	            _this.view.render(_this.jobs);
 	        }).fail(function (jqXHR) {
 	            _this.view.displayMessage(t('ocr', 'Error during deletion:') + " " + jqXHR.responseText, true);
 	            _this.loadAndRender();
@@ -237,12 +241,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	    };
-	    Object.defineProperty(Controller.prototype, "status", {
+	    Object.defineProperty(Controller.prototype, "jobs", {
 	        get: function () {
-	            return this._status;
+	            return this._jobs;
 	        },
 	        set: function (value) {
-	            this._status = value;
+	            this._jobs = value;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -253,18 +257,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var Configuration = (function () {
 	    function Configuration() {
-	        this._personalSettingsEndpoint = OC.generateUrl('/apps/ocr/settings/personal');
+	        this._jobEndpoint = OC.generateUrl('/apps/ocr');
 	    }
-	    Object.defineProperty(Configuration.prototype, "personalSettingsEndpoint", {
+	    Object.defineProperty(Configuration.prototype, "jobEndpoint", {
 	        get: function () {
-	            return this._personalSettingsEndpoint;
+	            return this._jobEndpoint;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -275,7 +279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -288,20 +292,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    HttpService.prototype.makeRequest = function (opts) {
 	        return this.jquery.ajax(opts);
 	    };
-	    HttpService.prototype.getAllStatus = function () {
+	    HttpService.prototype.getAllJobs = function () {
 	        var options = {
 	            method: 'GET',
-	            url: this.config.personalSettingsEndpoint,
+	            url: this.config.jobEndpoint,
 	        };
 	        return this.makeRequest(options);
 	    };
-	    HttpService.prototype.deleteStatus = function (id) {
+	    HttpService.prototype.deleteJob = function (id) {
 	        var options = {
 	            data: {
 	                id: id,
 	            },
 	            method: 'DELETE',
-	            url: this.config.personalSettingsEndpoint,
+	            url: this.config.jobEndpoint,
 	        };
 	        return this.makeRequest(options);
 	    };
@@ -311,22 +315,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(10);
+	var Handlebars = __webpack_require__(14);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
 	    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
 	  return "<table class=\"grid ocrsettings\">\n    <thead>\n        <tr>\n            <th>"
-	    + alias4(((helper = (helper = helpers.tableHeadNameText || (depth0 != null ? depth0.tableHeadNameText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadNameText","hash":{},"data":data}) : helper)))
+	    + alias4(((helper = (helper = helpers.tableHeadFileText || (depth0 != null ? depth0.tableHeadFileText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadFileText","hash":{},"data":data}) : helper)))
 	    + "</th>\n            <th>"
-	    + alias4(((helper = (helper = helpers.tableHeadStatusText || (depth0 != null ? depth0.tableHeadStatusText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadStatusText","hash":{},"data":data}) : helper)))
+	    + alias4(((helper = (helper = helpers.tableHeadJobText || (depth0 != null ? depth0.tableHeadJobText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadJobText","hash":{},"data":data}) : helper)))
+	    + "</th>\n            <th>"
+	    + alias4(((helper = (helper = helpers.tableHeadLogText || (depth0 != null ? depth0.tableHeadLogText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadLogText","hash":{},"data":data}) : helper)))
 	    + "</th>\n            <th>"
 	    + alias4(((helper = (helper = helpers.tableHeadDeleteFromQueueText || (depth0 != null ? depth0.tableHeadDeleteFromQueueText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadDeleteFromQueueText","hash":{},"data":data}) : helper)))
 	    + "</th>\n        </tr>\n    </thead>\n    <tbody>\n"
-	    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.status : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+	    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.jobs : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
 	    + "    </tbody>\n</table>\n";
 	},"2":function(container,depth0,helpers,partials,data,blockParams,depths) {
 	    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
@@ -334,9 +340,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return "        <tr data-id=\""
 	    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
 	    + "\">\n            <td>"
-	    + alias4(((helper = (helper = helpers.target || (depth0 != null ? depth0.target : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"target","hash":{},"data":data}) : helper)))
+	    + alias4(((helper = (helper = helpers.originalFilename || (depth0 != null ? depth0.originalFilename : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"originalFilename","hash":{},"data":data}) : helper)))
 	    + "</td>\n            <td>"
 	    + alias4(((helper = (helper = helpers.status || (depth0 != null ? depth0.status : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"status","hash":{},"data":data}) : helper)))
+	    + "</td>\n            <td>"
+	    + alias4(((helper = (helper = helpers.errorLog || (depth0 != null ? depth0.errorLog : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"errorLog","hash":{},"data":data}) : helper)))
 	    + "</td>\n            <td class=\"ocr-action-delete\">\n                <div id=\"ocr-delete\"><span>"
 	    + alias4(container.lambda((depths[1] != null ? depths[1].deleteText : depths[1]), depth0))
 	    + "</span><span class=\"icon icon-delete\"></span></div>\n            </td>\n        </tr>\n";

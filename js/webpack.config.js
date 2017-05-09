@@ -3,7 +3,8 @@ var path = require('path');
 module.exports = {
     entry: {
         app: __dirname + '/src/app.ts',
-        personal: __dirname + '/src/personal.ts'
+        personal: __dirname + '/src/personal.ts',
+        admin: __dirname + '/src/admin.ts'
     },
     output: {
         path: __dirname + '/dist',

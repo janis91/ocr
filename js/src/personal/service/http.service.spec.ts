@@ -7,14 +7,14 @@ describe('For the http service', () => {
     let jqueryMock: any;
 
     beforeEach(() => {
-        configMock = jasmine.createSpyObj('config', ['personalSettingsEndpoint']);
+        configMock = jasmine.createSpyObj('config', ['jobEndpoint']);
         jqueryMock = jasmine.createSpyObj('jquery', ['ajax']);
         cut = new HttpService(configMock, jqueryMock);
     });
 
     describe('the makeRequest function', () => {
         it('should make the request with the right options.', () => {
-            const opts = { foo: 'bar' };
+            const opts = { method: 'GET' };
             jqueryMock.ajax.and.returnValue(true);
 
             const result = cut.makeRequest(opts);
@@ -27,13 +27,13 @@ describe('For the http service', () => {
     describe('the getAllStatus function', () => {
         it('should retrieve the status.', () => {
             spyOn(cut, 'makeRequest').and.returnValue(true);
-            configMock.personalSettingsEndpoint = 'personalSettingsEndpoint';
+            configMock.jobEndpoint = 'jobEndpoint';
 
-            const result = cut.getAllStatus();
+            const result = cut.getAllJobs();
 
             expect(cut.makeRequest).toHaveBeenCalledWith({
                 method: 'GET',
-                url: 'personalSettingsEndpoint',
+                url: 'jobEndpoint',
             });
             expect(result).toBeTruthy();
         });
@@ -42,14 +42,14 @@ describe('For the http service', () => {
     describe('the deleteStatus function', () => {
         it('should retrieve the status.', () => {
             spyOn(cut, 'makeRequest').and.returnValue(true);
-            configMock.personalSettingsEndpoint = 'personalSettingsEndpoint';
+            configMock.jobEndpoint = 'jobEndpoint';
 
-            const result = cut.deleteStatus(3);
+            const result = cut.deleteJob(3);
 
             expect(cut.makeRequest).toHaveBeenCalledWith({
                 data: { id: 3 },
                 method: 'DELETE',
-                url: 'personalSettingsEndpoint',
+                url: 'jobEndpoint',
             });
             expect(result).toBeTruthy();
         });

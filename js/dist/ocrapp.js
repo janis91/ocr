@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("underscore"), require("handlebars/runtime"), require("jQuery"));
+		module.exports = factory(require("underscore"), require("jQuery"), require("handlebars/runtime"));
 	else if(typeof define === 'function' && define.amd)
-		define(["underscore", "handlebars/runtime", "jQuery"], factory);
+		define(["underscore", "jQuery", "handlebars/runtime"], factory);
 	else if(typeof exports === 'object')
-		exports["Ocr"] = factory(require("underscore"), require("handlebars/runtime"), require("jQuery"));
+		exports["Ocr"] = factory(require("underscore"), require("jQuery"), require("handlebars/runtime"));
 	else
-		root["OCA"] = root["OCA"] || {}, root["OCA"]["Ocr"] = factory(root["_"], root["Handlebars"], root["$"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__) {
+		root["OCA"] = root["OCA"] || {}, root["OCA"]["Ocr"] = factory(root["_"], root["$"], root["Handlebars"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,15 +56,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var util_1 = __webpack_require__(1);
-	var http_service_1 = __webpack_require__(2);
-	var oca_service_1 = __webpack_require__(3);
-	var controller_1 = __webpack_require__(6);
-	var view_1 = __webpack_require__(7);
-	var configuration_1 = __webpack_require__(8);
-	var handlebarsDropdownTemplate = __webpack_require__(9);
-	var underscore_1 = __webpack_require__(5);
-	var jquery_1 = __webpack_require__(11);
+	var util_1 = __webpack_require__(6);
+	var http_service_1 = __webpack_require__(7);
+	var oca_service_1 = __webpack_require__(8);
+	var controller_1 = __webpack_require__(10);
+	var view_1 = __webpack_require__(11);
+	var configuration_1 = __webpack_require__(12);
+	var handlebarsDropdownTemplate = __webpack_require__(13);
+	var underscore_1 = __webpack_require__(4);
+	var jquery_1 = __webpack_require__(5);
 	var App = (function () {
 	    function App() {
 	        var _this = this;
@@ -91,7 +91,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */
+/***/ (function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -120,7 +135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 2 */
+/* 7 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -134,7 +149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    HttpService.prototype.makeRequest = function (opts) {
 	        return this.jquery.ajax(opts);
 	    };
-	    HttpService.prototype.process = function (files, languages) {
+	    HttpService.prototype.startProcess = function (files, languages) {
 	        var reducedFiles = this.util.shrinkFilesToReducedFiles(files);
 	        var options = {
 	            data: {
@@ -142,7 +157,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                languages: languages,
 	            },
 	            method: 'POST',
-	            url: this.config.processingEndpoint,
+	            url: this.config.jobEndpoint,
 	        };
 	        return this.makeRequest(options);
 	    };
@@ -156,7 +171,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    HttpService.prototype.loadAvailableLanguages = function () {
 	        var options = {
 	            method: 'GET',
-	            url: this.config.processingEndpoint,
+	            url: this.config.languagesEndpoint,
+	        };
+	        return this.makeRequest(options);
+	    };
+	    HttpService.prototype.checkRedisSettings = function () {
+	        var options = {
+	            method: 'GET',
+	            url: this.config.redisEvaluationEndpoint,
 	        };
 	        return this.makeRequest(options);
 	    };
@@ -166,13 +188,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 3 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	var file_poto_1 = __webpack_require__(4);
-	var underscore_1 = __webpack_require__(5);
+	var file_poto_1 = __webpack_require__(9);
+	var underscore_1 = __webpack_require__(4);
 	var OcaService = (function () {
 	    function OcaService(t, n, OC) {
 	        this.t = t;
@@ -231,7 +253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 4 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -265,13 +287,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
-/* 6 */
+/* 10 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -288,6 +304,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.jquery = jquery;
 	    }
 	    Controller.prototype.init = function () {
+	        var _this = this;
+	        this.checkRedis().done(function (response) {
+	            if (response.set) {
+	                _this.startEverything();
+	            }
+	        }).fail(function (jqXHR) {
+	            _this.view.displayError("" + jqXHR.responseText);
+	        });
+	    };
+	    Controller.prototype.startEverything = function () {
 	        this.loadLanguages();
 	        this.registerEvents();
 	        this.view.renderSelectedFilesActionButton();
@@ -333,13 +359,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var filteredFiles = this.util.filterFilesWithMimeTypes(this.selectedFiles);
 	        if (filteredFiles.length === 0) {
-	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'Mimetype(s) not supported.'));
+	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'MIME type(s) not supported.'));
 	            this.view.destroyDropdown();
 	            return;
 	        }
 	        else {
-	            var selectedLanguages = this.view.getSelectTwoValues();
-	            this.httpService.process(filteredFiles, selectedLanguages).done(function () {
+	            var selectedLanguages = this.view.getSelectTwoValues().length > 0 ? this.view.getSelectTwoValues() : ['any'];
+	            this.httpService.startProcess(filteredFiles, selectedLanguages).done(function () {
 	                _this.togglePendingState(true, filteredFiles.length);
 	                _this.selectedFiles = [];
 	                setTimeout(_this.jquery.proxy(_this.loopForStatus, _this), 4500);
@@ -411,11 +437,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	        return deferred.promise();
 	    };
+	    Controller.prototype.checkRedis = function () {
+	        var deferred = this.jquery.Deferred();
+	        this.httpService.checkRedisSettings().done(function (response) {
+	            deferred.resolve(response);
+	        }).fail(function (jqXHR) {
+	            deferred.reject(jqXHR.responseText);
+	        });
+	        return deferred.promise();
+	    };
 	    Controller.prototype.loadLanguages = function () {
 	        var _this = this;
-	        this.httpService.loadAvailableLanguages().done(function (languages) {
+	        this.httpService.loadAvailableLanguages().done(function (response) {
+	            var languages = response.languages.split(';');
 	            if (languages.length === 0) {
-	                throw new Error(t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OcrMyPdf correctly.'));
+	                throw new Error(t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OCRmyPDF correctly.'));
 	            }
 	            _this.availableLanguages = languages;
 	        }).fail(function (jqXHR) {
@@ -458,7 +494,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -610,7 +646,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 8 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -618,9 +654,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Configuration = (function () {
 	    function Configuration() {
 	        this._statusEndpoint = OC.generateUrl('/apps/ocr/status');
-	        this._processingEndpoint = OC.generateUrl('/apps/ocr');
+	        this._jobEndpoint = OC.generateUrl('/apps/ocr');
+	        this._languagesEndpoint = OC.generateUrl('/apps/ocr/languages');
 	        this._allowedMimetypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
+	        this._redisEvaluationEndpoint = OC.generateUrl('/apps/ocr/redis');
 	    }
+	    Object.defineProperty(Configuration.prototype, "redisEvaluationEndpoint", {
+	        get: function () {
+	            return this._redisEvaluationEndpoint;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    Object.defineProperty(Configuration.prototype, "statusEndpoint", {
 	        get: function () {
 	            return this._statusEndpoint;
@@ -628,9 +673,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Configuration.prototype, "processingEndpoint", {
+	    Object.defineProperty(Configuration.prototype, "jobEndpoint", {
 	        get: function () {
-	            return this._processingEndpoint;
+	            return this._jobEndpoint;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -642,16 +687,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
+	    Object.defineProperty(Configuration.prototype, "languagesEndpoint", {
+	        get: function () {
+	            return this._languagesEndpoint;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    return Configuration;
 	}());
 	exports.Configuration = Configuration;
 
 
 /***/ }),
-/* 9 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(10);
+	var Handlebars = __webpack_require__(14);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
 	    var alias1=container.lambda, alias2=container.escapeExpression;
@@ -672,16 +724,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	},"useData":true});
 
 /***/ }),
-/* 10 */
+/* 14 */
 /***/ (function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ })
 /******/ ])

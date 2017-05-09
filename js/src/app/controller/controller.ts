@@ -29,6 +29,19 @@ export class Controller {
      * Initializes the Controller / OCR functions in the frontend of Nextcloud.
      */
     public init(): void {
+        this.checkRedis().done((response: IRedisResponse) => {
+            if (response.set) {
+                this.startEverything();
+            }
+        }).fail((jqXHR: JQueryXHR) => {
+            this.view.displayError(`${jqXHR.responseText}`);
+        });
+    }
+
+    /**
+     * Setup all the Events and load the languages and start the app.
+     */
+    public startEverything() {
         this.loadLanguages();
         this.registerEvents();
         this.view.renderSelectedFilesActionButton();
@@ -95,12 +108,12 @@ export class Controller {
         }
         const filteredFiles: Array<IFile> = this.util.filterFilesWithMimeTypes(this.selectedFiles);
         if (filteredFiles.length === 0) {
-            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'Mimetype(s) not supported.')}`);
+            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'MIME type(s) not supported.')}`);
             this.view.destroyDropdown();
             return;
         } else {
-            const selectedLanguages: Array<string> = this.view.getSelectTwoValues();
-            this.httpService.process(filteredFiles, selectedLanguages).done(() => {
+            const selectedLanguages: Array<string> = this.view.getSelectTwoValues().length > 0 ? this.view.getSelectTwoValues() : ['any'];
+            this.httpService.startProcess(filteredFiles, selectedLanguages).done(() => {
                 this.togglePendingState(true, filteredFiles.length);
                 this.selectedFiles = [];
                 setTimeout(this.jquery.proxy(this.loopForStatus, this), 4500);
@@ -202,12 +215,27 @@ export class Controller {
     }
 
     /**
+     * Retrieves the redis settings evaluation bool.
+     * @returns A JQueryPromise to deal with the asynchronous ajax call.
+     */
+    public checkRedis(): JQueryPromise<{}> {
+        const deferred = this.jquery.Deferred();
+        this.httpService.checkRedisSettings().done((response: IRedisResponse) => {
+            deferred.resolve(response);
+        }).fail((jqXHR: JQueryXHR) => {
+            deferred.reject(jqXHR.responseText);
+        });
+        return deferred.promise();
+    }
+
+    /**
      * Retrieves the available languages for the OCR process.
      */
     public loadLanguages(): void {
-        this.httpService.loadAvailableLanguages().done((languages: string[]) => {
+        this.httpService.loadAvailableLanguages().done((response: ILanguageResponse) => {
+            const languages: string[] = response.languages.split(';');
             if (languages.length === 0) {
-                throw new Error(this.t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OcrMyPdf correctly.'));
+                throw new Error(this.t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OCRmyPDF correctly.'));
             }
             this.availableLanguages = languages;
         }).fail((jqXHR: JQueryXHR) => {
@@ -238,4 +266,12 @@ export class Controller {
     public set selectedFiles(value: Array<IFile>) {
         this._selectedFiles = value;
     }
+}
+
+interface ILanguageResponse {
+    languages: string;
+}
+
+interface IRedisResponse {
+    set: boolean;
 }

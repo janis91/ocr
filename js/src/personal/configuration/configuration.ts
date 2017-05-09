@@ -10,9 +10,9 @@ declare var OC: any;
  * @copyright Janis Koehr 2017
  */
 export class Configuration {
-    private _personalSettingsEndpoint: string = OC.generateUrl('/apps/ocr/settings/personal');
+    private _jobEndpoint: string = OC.generateUrl('/apps/ocr');
 
-    public get personalSettingsEndpoint(): string {
-        return this._personalSettingsEndpoint;
+    public get jobEndpoint(): string {
+        return this._jobEndpoint;
     }
 }
