@@ -27,6 +27,7 @@ OC.L10N.register(
     "Wrong parameter." : "Falscher Parameter.",
     "Wrong mimetype." : "Falscher Dateityp.",
     "Temp file does not exist." : "Temporäre Datei existiert nicht.",
-    "Could not add files to the OCR processing queue." : "Dateien konnten nicht zur OCR-Verarbeitungsschlange hinzugefügt werden."
+    "Could not add files to the OCR processing queue." : "Dateien konnten nicht zur OCR-Verarbeitungsschlange hinzugefügt werden.",
+    "Optical character recognition (OCR)" : "Texterkennung (OCR)"
 },
 "nplurals=2; plural=(n != 1);");

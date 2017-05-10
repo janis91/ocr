@@ -27,6 +27,7 @@ OC.L10N.register(
     "Wrong parameter." : "Parametre doğru değil.",
     "Wrong mimetype." : "MIME türü doğru değil.",
     "Temp file does not exist." : "Geçici dosya bulunamadı.",
-    "Could not add files to the OCR processing queue." : "Dosyalar karakter tanıma kuyruğuna eklenemedi."
+    "Could not add files to the OCR processing queue." : "Dosyalar karakter tanıma kuyruğuna eklenemedi.",
+    "Optical character recognition (OCR)" : "Optik Karakter Tanıma (OCR)"
 },
 "nplurals=2; plural=(n > 1);");
