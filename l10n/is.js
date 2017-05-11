@@ -27,6 +27,7 @@ OC.L10N.register(
     "Wrong parameter." : "Röng færibreyta.",
     "Wrong mimetype." : "Röng MIME-tegund",
     "Temp file does not exist." : "Bráðabirgðaskrá er ekki til.",
-    "Could not add files to the OCR processing queue." : "Ekki tókst að bæta skrám við í OCR-vinnslubiðröðina."
+    "Could not add files to the OCR processing queue." : "Ekki tókst að bæta skrám við í OCR-vinnslubiðröðina.",
+    "Optical character recognition (OCR)" : "Ljóslestur (OCR)"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");
