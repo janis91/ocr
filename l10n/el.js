@@ -1,0 +1,26 @@
+OC.L10N.register(
+    "ocr",
+    {
+    "OCR App could not be initialized:" : "Δεν μπορεί να εγκατασταθεί η εφαρμογή OCR",
+    "Files have wrong mimetypes." : "Τα αρχεία έχουν εσφαλμένους τύπους mime",
+    "Name" : "Όνομα",
+    "Status" : "Κατάσταση",
+    "Delete from queue" : "Διαγραφή από την ουρά",
+    "Delete" : "Διαγραφή",
+    "No pending or failed OCR items found." : "Δεν βρέθηκαν αντικείμενα OCR που εκκρεμούν ή έχουν αποτύχει.",
+    "Refresh" : "Ανανέωση ",
+    "Following file has been successfully deleted from the queue:" : "Το παρακάτω αρχείο έχει διαγραφεί επιτυχώς από την ουρά:",
+    "Error during deletion: " : "Σφάλμα κατά την διαγραφή:",
+    "No languages for tesseract available" : "Δεν υπάρχουν διαθέσιμες γλώσσες για το τεσσεράκτιο",
+    "Process" : "Διεργασία",
+    "OCR" : "OCR",
+    "Select language" : "Επιλογή γλώσσας",
+    "No matches found." : "Δεν βρέθηκαν αποτελέσματα",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["Εκκίνηση του OCR: %n νέο αρχείο στην ουρά.","Εκκίνηση του OCR: %n νέα αρχεία στην ουρά."],
+    "OCR processing failed:" : "Αποτυχημένη επεξεργασία OCR:",
+    "No languages found." : "Δεν βρέθηκαν γλώσσες.",
+    "Cannot delete. Wrong owner." : "Αδυναμία διαγραφής. Εσφαλμένος ιδιοκτήτης.",
+    "Wrong parameter." : "Εσφαλμένη παράμετρος.",
+    "Wrong mimetype." : "Εσφαλμένος τύπος mime."
+},
+"nplurals=2; plural=(n != 1);");
