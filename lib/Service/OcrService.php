@@ -1,6 +1,6 @@
 <?php
 /**
- * nextCloud - ocr
+ * nextCloud - OCR
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -76,17 +76,17 @@ class OcrService {
 	private $l10n;
 
 	/**
-	 * Array of allowed mimetypes for ocr processing
+	 * Array of allowed MIME types for OCR processing
 	 */
 	const ALLOWED_MIMETYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
 
 	/**
-	 * the correct mimetype for a pdf file
+	 * The correct MIME type for a PDF file
 	 */
 	const MIMETYPE_PDF = 'application/pdf';
 
 	/**
-	 * the only allowed image mimetypes by tesseract
+	 * The only allowed image MIME types by tesseract
 	 */
 	const MIMETYPES_IMAGE = ['image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
 
@@ -148,8 +148,8 @@ class OcrService {
 	}
 
 	/**
-	 * Processes and prepares the files for ocr.
-	 * Sends the stuff to the client in order to ocr async.
+	 * Processes and prepares the files for OCR.
+	 * Sends the stuff to the client in order to OCR async.
 	 *
 	 * @param string[] $languages
 	 * @param array $files
@@ -274,7 +274,7 @@ class OcrService {
 			return $status;
 		} catch (Exception $e) {
 			if ($e instanceof DoesNotExistException) {
-				$ex = new NotFoundException($this->l10n->t('Cannot delete. Wrong id.'));
+				$ex = new NotFoundException($this->l10n->t('Cannot delete. Wrong ID.'));
 				$this->handleException($ex);
 			} else {
 				$this->handleException($e);
@@ -348,7 +348,7 @@ class OcrService {
 	}
 
 	/**
-	 * Returns a not existing file name for pdf or image processing
+	 * Returns a not existing file name for PDF or image processing
 	 * protected as of testing issues with static methods. (Actually
 	 * it will be mocked partially) FIXME: Change this behaviour as soon as the buidlNotExistingFileName function is not static anymore
 	 * @codeCoverageIgnore
@@ -391,7 +391,7 @@ class OcrService {
 
 	/**
 	 * Returns the fileInfo for each file in files and checks
-	 * if it has a allowed mimetype and some other conditions.
+	 * if it has a allowed MIME type and some other conditions.
 	 *
 	 * @param array $files
 	 * @return File[]
@@ -419,14 +419,14 @@ class OcrService {
 	}
 
 	/**
-	 * Checks a Mimetype for a specific given FileInfo.
+	 * Checks a MIME type for a specifically given FileInfo.
 	 * @param File $fileInfo
 	 */
 	private function checkMimeType(File $fileInfo) {
 		try {
 			if (!$fileInfo || !in_array($fileInfo->getMimetype(), $this::ALLOWED_MIMETYPES)) {
 				$this->logger->debug('Getting FileInfo did not work or not included in the ALLOWED_MIMETYPES array.', ['app' => 'ocr']);
-				throw new NotFoundException($this->l10n->t('Wrong mimetype.'));
+				throw new NotFoundException($this->l10n->t('Wrong MIME type.'));
 			}
 		} catch (Exception $e) {
 			$this->handleException($e);
@@ -489,7 +489,7 @@ class OcrService {
 	}
 
 	/**
-	 * Removes ".txt" from the newName of a ocr status
+	 * Removes ".txt" from the newName of a OCR status
 	 *
 	 * @param $status OcrStatus
 	 * @return string
