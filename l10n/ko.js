@@ -23,9 +23,7 @@ OC.L10N.register(
     "No languages found." : "언어를 찾을 수 없습니다.",
     "Empty parameters passed." : "빈 인자를 지정했습니다.",
     "Cannot delete. Wrong owner." : "삭제할 수 없습니다. 소유자가 잘못되었습니다.",
-    "Cannot delete. Wrong id." : "삭제할 수 없습니다. ID가 잘못되었습니다.",
     "Wrong parameter." : "인자가 잘못되었습니다.",
-    "Wrong mimetype." : "MIME 형식이 잘못되었습니다.",
     "Temp file does not exist." : "임시 파일이 존재하지 않습니다.",
     "Could not add files to the OCR processing queue." : "OCR 처리 대기열에 파일을 추가할 수 없습니다."
 },

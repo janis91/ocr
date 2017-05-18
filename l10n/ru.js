@@ -23,9 +23,7 @@ OC.L10N.register(
     "No languages found." : "Языки не найдены.",
     "Empty parameters passed." : "Переданы пустые параметры.",
     "Cannot delete. Wrong owner." : "Невозможно удалить. Неверный владелец.",
-    "Cannot delete. Wrong id." : "Невозможно удалить. Неверный id.",
     "Wrong parameter." : "Неверный параметр.",
-    "Wrong mimetype." : "Неверный тип mime.",
     "Temp file does not exist." : "Временный файл не существует.",
     "Could not add files to the OCR processing queue." : "Не удается добавить файлы в очередь обработки ОРС.",
     "Optical character recognition (OCR)" : "Оптическое распознавание символов (ОРС)"

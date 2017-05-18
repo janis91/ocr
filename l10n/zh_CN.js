@@ -23,9 +23,7 @@ OC.L10N.register(
     "No languages found." : "未找到语言。",
     "Empty parameters passed." : "传递了空参数。",
     "Cannot delete. Wrong owner." : "无法删除。所有者错误。",
-    "Cannot delete. Wrong id." : "无法删除。ID 错误。",
     "Wrong parameter." : "参数错误。",
-    "Wrong mimetype." : "MIME 类型错误。",
     "Temp file does not exist." : "临时文件不存在。",
     "Could not add files to the OCR processing queue." : "不能向图型识别队列中添加文件。",
     "Optical character recognition (OCR)" : "图型识别(OCR)"

@@ -23,9 +23,7 @@ OC.L10N.register(
     "No languages found." : "Herhangi bir dil bulunamadı.",
     "Empty parameters passed." : "Boş parametre gönderildi.",
     "Cannot delete. Wrong owner." : "Silinemedi. Sahip doğru değil.",
-    "Cannot delete. Wrong id." : "Silinemedi. Kod doğru değil.",
     "Wrong parameter." : "Parametre doğru değil.",
-    "Wrong mimetype." : "MIME türü doğru değil.",
     "Temp file does not exist." : "Geçici dosya bulunamadı.",
     "Could not add files to the OCR processing queue." : "Dosyalar karakter tanıma kuyruğuna eklenemedi.",
     "Optical character recognition (OCR)" : "Optik Karakter Tanıma (OCR)"

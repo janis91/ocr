@@ -23,9 +23,7 @@ OC.L10N.register(
     "No languages found." : "No se encontró los idiomas.",
     "Empty parameters passed." : "Parámetros vacíos han sido pasados.",
     "Cannot delete. Wrong owner." : "No se puede eliminar. Propietario erróneo.",
-    "Cannot delete. Wrong id." : "No se puede eliminar. Id errónea.",
     "Wrong parameter." : "Parámetro erróneo.",
-    "Wrong mimetype." : "Mimetype erróneo.",
     "Temp file does not exist." : "Archivo temporal no existe.",
     "Could not add files to the OCR processing queue." : "No se ha podido añadir archivos a la cola de procesamiento OCR."
 },

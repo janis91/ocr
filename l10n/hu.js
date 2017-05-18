@@ -21,7 +21,6 @@ OC.L10N.register(
     "No languages found." : "Nem találhatóak nyelvek.",
     "Empty parameters passed." : "Üres átadott paraméterek.",
     "Wrong parameter." : "Hibás paraméter.",
-    "Wrong mimetype." : "Hibás mime típus.",
     "Temp file does not exist." : "Az ideiglenes fájl nem létezik."
 },
 "nplurals=2; plural=(n != 1);");

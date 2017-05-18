@@ -23,10 +23,9 @@ OC.L10N.register(
     "No languages found." : "Geen talen gevonden.",
     "Empty parameters passed." : "Lege parameters doorgegeven.",
     "Cannot delete. Wrong owner." : "Kan niet verwijderen. Verkeerde eigenaar.",
-    "Cannot delete. Wrong id." : "Kan niet verwijderen. Verkeerde id.",
     "Wrong parameter." : "Verkeerde parameter.",
-    "Wrong mimetype." : "Verkeerde mimetype.",
     "Temp file does not exist." : "Tijdelijk bestand bestaat niet.",
-    "Could not add files to the OCR processing queue." : "Kon geen bestanden toevoegen aan de OCR wachtrij."
+    "Could not add files to the OCR processing queue." : "Kon geen bestanden toevoegen aan de OCR wachtrij.",
+    "Optical character recognition (OCR)" : "Optische karakter herkening (OCR)"
 },
 "nplurals=2; plural=(n != 1);");

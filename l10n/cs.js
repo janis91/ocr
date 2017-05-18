@@ -23,9 +23,7 @@ OC.L10N.register(
     "No languages found." : "Nenalezeny žádné jazyky.",
     "Empty parameters passed." : "Předány prázdné parametry.",
     "Cannot delete. Wrong owner." : "Nemohu smazat. Neplatný vlastník.",
-    "Cannot delete. Wrong id." : "Nemohu smazat. Neplatné id.",
     "Wrong parameter." : "Chybný parametr.",
-    "Wrong mimetype." : "Chybný MIME Typ.",
     "Temp file does not exist." : "Odkládací soubor neexistuje.",
     "Could not add files to the OCR processing queue." : "Soubory se nepodařilo přidat do zpracovávací fronty OCR."
 },
