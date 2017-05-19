@@ -23,7 +23,9 @@ OC.L10N.register(
     "No languages found." : "Engin tungumál fundust.",
     "Empty parameters passed." : "Gefin voru tóm viðföng.",
     "Cannot delete. Wrong owner." : "Get ekki eytt. Rangur eigandi.",
+    "Cannot delete. Wrong ID." : "Get ekki eytt. Rangt auðkenni.",
     "Wrong parameter." : "Röng færibreyta.",
+    "Wrong MIME type." : "Röng MIME-skráartegund.",
     "Temp file does not exist." : "Bráðabirgðaskrá er ekki til.",
     "Could not add files to the OCR processing queue." : "Ekki tókst að bæta skrám við í OCR-vinnslubiðröðina.",
     "Optical character recognition (OCR)" : "Ljóslestur (OCR)"

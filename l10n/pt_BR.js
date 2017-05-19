@@ -23,7 +23,9 @@ OC.L10N.register(
     "No languages found." : "Nenhum idioma encontrado.",
     "Empty parameters passed." : "Parâmetros vazios enviados.",
     "Cannot delete. Wrong owner." : "Não excluído. Dono errado.",
+    "Cannot delete. Wrong ID." : "Não foi possível excluir. ID errada.",
     "Wrong parameter." : "Parâmetro errado.",
+    "Wrong MIME type." : "Tipo MIME errado.",
     "Temp file does not exist." : "O arquivo temporário não existe.",
     "Could not add files to the OCR processing queue." : "Não foi possível adicionar arquivos à fila de processamento OCR,",
     "Optical character recognition (OCR)" : "Reconhecimento ótico de caracteres (OCR)"

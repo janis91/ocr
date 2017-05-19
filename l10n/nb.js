@@ -23,8 +23,11 @@ OC.L10N.register(
     "No languages found." : "Ingen språk funnet.",
     "Empty parameters passed." : "Tomme parametre hoppes over.",
     "Cannot delete. Wrong owner." : "Kan ikke slette. Feil eier.",
+    "Cannot delete. Wrong ID." : "Kan ikke slette. Feil ID.",
     "Wrong parameter." : "Feil parameter.",
+    "Wrong MIME type." : "Feil MIME-type.",
     "Temp file does not exist." : "Midlertidig fil finnes ikke.",
-    "Could not add files to the OCR processing queue." : "Kunne ikke legge til filer i OCR-behandlingskøa."
+    "Could not add files to the OCR processing queue." : "Kunne ikke legge til filer i OCR-behandlingskøa.",
+    "Optical character recognition (OCR)" : "Optisk tegngjenkjenning (OCR)"
 },
 "nplurals=2; plural=(n != 1);");
