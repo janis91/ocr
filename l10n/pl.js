@@ -23,6 +23,7 @@ OC.L10N.register(
     "No languages found." : "Nie znaleziono żadnych języków.",
     "Empty parameters passed." : "Wpisano puste parametry",
     "Cannot delete. Wrong owner." : "Nie można usunąć. Błędny właściciel.",
+    "Cannot delete. Wrong ID." : "Nie można usunąć. Błędne ID.",
     "Wrong parameter." : "Błędny parametr.",
     "Temp file does not exist." : "Plik tymczasowy nie istnieje.",
     "Could not add files to the OCR processing queue." : "Nie mogę dodać plików do kolejki procesowania OCR.",
