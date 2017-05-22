@@ -25,6 +25,7 @@ OC.L10N.register(
     "Cannot delete. Wrong owner." : "Nie można usunąć. Błędny właściciel.",
     "Cannot delete. Wrong ID." : "Nie można usunąć. Błędne ID.",
     "Wrong parameter." : "Błędny parametr.",
+    "Wrong MIME type." : "Błędy typ MIME",
     "Temp file does not exist." : "Plik tymczasowy nie istnieje.",
     "Could not add files to the OCR processing queue." : "Nie mogę dodać plików do kolejki procesowania OCR.",
     "Optical character recognition (OCR)" : "Rozpoznawanie pisma (OCR)"
