@@ -23,7 +23,9 @@ OC.L10N.register(
     "No languages found." : "Inga språk hittade.",
     "Empty parameters passed." : "Tomma parametrar passerade.",
     "Cannot delete. Wrong owner." : "Kan inte radera. Fel ägare.",
+    "Cannot delete. Wrong ID." : "Kan ej radera. Fel ID.",
     "Wrong parameter." : "Fel parameter.",
+    "Wrong MIME type." : "Fel MIME-typ.",
     "Temp file does not exist." : "Temporär fil finns ej."
 },
 "nplurals=2; plural=(n != 1);");
