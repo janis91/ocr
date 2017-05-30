@@ -23,8 +23,11 @@ OC.L10N.register(
     "No languages found." : "No se encontró los idiomas.",
     "Empty parameters passed." : "Parámetros vacíos han sido pasados.",
     "Cannot delete. Wrong owner." : "No se puede eliminar. Propietario erróneo.",
+    "Cannot delete. Wrong ID." : "No se puede eliminar. ID errónea.",
     "Wrong parameter." : "Parámetro erróneo.",
+    "Wrong MIME type." : "Tipo MIME erróneo.",
     "Temp file does not exist." : "Archivo temporal no existe.",
-    "Could not add files to the OCR processing queue." : "No se ha podido añadir archivos a la cola de procesamiento OCR."
+    "Could not add files to the OCR processing queue." : "No se ha podido añadir archivos a la cola de procesamiento OCR.",
+    "Optical character recognition (OCR)" : "Reconocimiento óptico de caracteres (OCR)"
 },
 "nplurals=2; plural=(n != 1);");

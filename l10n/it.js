@@ -24,6 +24,7 @@ OC.L10N.register(
     "Empty parameters passed." : "I parametri forniti sono vuoti.",
     "Cannot delete. Wrong owner." : "Impossibile eliminare. Proprietario errato.",
     "Wrong parameter." : "Parametro errato.",
+    "Wrong MIME type." : "Tipo MIME errato.",
     "Temp file does not exist." : "Il file temporaneo non esiste.",
     "Could not add files to the OCR processing queue." : "Impossibile aggiungere file alla coda di elaborazione OCR."
 },
