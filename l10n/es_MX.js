@@ -18,7 +18,7 @@ OC.L10N.register(
     "No matches found." : "No se encontraron coincidencias",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR comenzó: %n archivo nuevo en la cola. ","OCR comenzó: %n archivos nuevos en la cola. "],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n archivo pendiente en la cola actualmente.","OCR: %n archivos pendientes en la cola actualmente."],
-    "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Se presentó una falla en el procesameinto OCR del archivo %n. Para mayores detalles favor de ir a sus ajustes personales","Se presentó una falla en el procesameinto OCR de los archivos %n. Para mayores detalles favor de ir a sus ajustes personales."],
+    "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Se presentó una falla en el procesameinto OCR del archivo %n. Para mayores detalles favor de ir a sus ajustes personales","Se presentó una falla en el procesameinto OCR de los archivos %n. Para mayores detalles favor de ir a sus configuraciones personales."],
     "OCR processing failed:" : "Falla en el procesamiento OCR:",
     "No languages found." : "No se encotraron idiomas.",
     "Empty parameters passed." : "Se pasaron parametros vacíos. ",
