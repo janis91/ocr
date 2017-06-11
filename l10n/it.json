@@ -1,6 +1,8 @@
 { "translations": {
     "OCR" : "OCR",
     "OCR processing failed:" : "Elaborazione OCR non riuscito:",
+    "No file(s) selected." : "Nessun file selezionato.",
+    "Mimetype(s) not supported." : "Tipi di MIME non sono supportati.",
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Elaborazione OCR non riuscita per %n file. Per i dettagli, controlla le impostazioni personali.","Elaborazione OCR non riuscita per %n file. Per i dettagli, controlla le impostazioni personali."],
     "Process" : "Elabora",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR avviato: %n nuovo file in coda.","OCR avviato: %n nuovi file in coda."],
@@ -13,6 +15,7 @@
     "Delete from queue" : "Elimina dalla coda",
     "Name" : "Nome",
     "Status" : "Stato",
+    "Error during deletion:" : "Errore durante l'eliminazione:",
     "No languages found." : "Nessuna lingua trovata.",
     "Empty parameters passed." : "I parametri forniti sono vuoti.",
     "Cannot delete. Wrong owner." : "Impossibile eliminare. Proprietario errato.",
