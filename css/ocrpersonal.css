@@ -15,6 +15,10 @@ table.ocrsettings td.ocr-action-delete:hover {
     font-weight: bold;
     color: black;
 }
+
+.nav-icon-schrifterkennung,
+.nav-icon-karakter-tanıma,
+.nav-icon-texterkennung,
 .nav-icon-ocr {
 	background-image: url('../img/icon/ocr.svg');
 }
