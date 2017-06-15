@@ -333,7 +333,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var filteredFiles = this.util.filterFilesWithMimeTypes(this.selectedFiles);
 	        if (filteredFiles.length === 0) {
-	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'Mimetype(s) not supported.'));
+	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'MIME type(s) not supported.'));
 	            this.view.destroyDropdown();
 	            return;
 	        }
@@ -415,7 +415,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = this;
 	        this.httpService.loadAvailableLanguages().done(function (languages) {
 	            if (languages.length === 0) {
-	                throw new Error(t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OcrMyPdf correctly.'));
+	                throw new Error(t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OCRmyPDF correctly.'));
 	            }
 	            _this.availableLanguages = languages;
 	        }).fail(function (jqXHR) {
