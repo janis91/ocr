@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "OCR processing failed:" : "OCR verwerking mislukt:",
+    "No file(s) selected." : "Geen bestand(en) geselecteerd",
     "Mimetype(s) not supported." : "MIME type(s) zijn niet ondersteund.",
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["OCR verwerking voor %n bestand mislukt. Ga naar je persoonlijke instellingen voor meer details.","OCR verwerking voor %n bestanden mislukt. Ga naar je persoonlijke instellingen voor meer details."],
     "OCR status could not be retrieved:" : "OCR status kon niet worden teruggehaald:",

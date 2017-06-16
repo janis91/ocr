@@ -15,7 +15,7 @@ OC.L10N.register(
     "No matches found." : "Nenhuma equivalência encontrada.",
     "Select language" : "Selecione o idioma",
     "Delete" : "Excluir",
-    "No pending or failed OCR items found." : "Nenhum arquivo pendente ou falha de OCR.",
+    "No pending or failed OCR items found." : "Nenhum item encontrado pendente ou falha de OCR",
     "Refresh" : "Atualizar",
     "Delete from queue" : "Excluir da fila",
     "Name" : "Nome",
