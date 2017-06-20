@@ -18,6 +18,7 @@
     "Delete from queue" : "Usuń z kolejki",
     "Name" : "Nazwa",
     "Status" : "Status",
+    "Following status object has been successfully deleted:" : "Następujący status obiektu został usunięty z sukcesem:",
     "Error during deletion:" : "Błąd w trakcie usuwania:",
     "No languages found." : "Nie znaleziono żadnych języków.",
     "Empty parameters passed." : "Żadne parametry nie przeszły.",
