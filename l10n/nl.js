@@ -20,6 +20,7 @@ OC.L10N.register(
     "Delete from queue" : "Verwijderen uit wachtrij",
     "Name" : "Naam",
     "Status" : "Toestand",
+    "Following status object has been successfully deleted:" : "Het volgende statusobject is succesvol verwijderd:",
     "Error during deletion:" : "Fout tijdens verwijderen:",
     "No languages found." : "Geen talen gevonden.",
     "Empty parameters passed." : "Lege parameters doorgegeven.",
