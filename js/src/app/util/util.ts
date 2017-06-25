@@ -29,7 +29,7 @@ export class Util {
 
     /**
      * Shrinks down the size of the object to the absolutely minimum (id).
-     * @param files The array of files that should be shrinked.
+     * @param files The array of files that should be shrunk.
      * @returns An array of reduced files.
      */
     public shrinkFilesToReducedFiles(files: Array<IFile>): Array<IReducedFile> {
