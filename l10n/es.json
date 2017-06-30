@@ -1,9 +1,9 @@
 { "translations": {
     "OCR" : "OCR",
-    "OCR processing failed:" : "Procesado OCR ha fallado:",
+    "OCR processing failed:" : "El procesado OCR falló:",
     "No file(s) selected." : "No se ha(n) seleccionado archivo(s).",
     "Mimetype(s) not supported." : "Tipo(s) MIME no soportados.",
-    "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["El proceso OCR falló para %n archivo. Para detalles, por favor acude a tu configuración personal.","El proceso OCR falló para %n archivos. Para detalles, por favor acude a tu configuración personal."],
+    "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["El proceso OCR falló para %n archivo. Para detalles, por favor acude a tu configuración personal.","El procesado OCR falló para %n archivos. Para detalles, por favor acude a tu configuración personal."],
     "OCR status could not be retrieved:" : "El estado del OCR no se ha podido recuperar:",
     "No languages available for OCR processing. Please make sure to setup tesseract and OcrMyPdf correctly." : "No hay lenguajes disponibles para el procesado OCR. Por favor, asegúrate de configurar tesseract y OCRmyPDF de manera correcta",
     "Available languages could not be retrieved:" : "No se han podido recuperar los lenguajes disponibles:",
