@@ -32,7 +32,7 @@ export class Worker {
      */
     public loop() {
         this.redisClient.brpoplpush('incoming', 'working', 0).then((jobMessage: string) => {
-            this.logger.debug(`Message recieved from Redis server: ${jobMessage}`);
+            this.logger.debug(`Message received from Redis server: ${jobMessage}`);
             try {
                 this.ocrProcessingService.process(jobMessage);
             } catch (e) {

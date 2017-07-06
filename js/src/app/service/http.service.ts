@@ -57,7 +57,7 @@ export class HttpService {
 
     /**
      * Retrieve all available languages for processing files.
-     * @returns A string of languages seperated by semicolon.
+     * @returns A string of languages separated by semicolon.
      */
     public loadAvailableLanguages(): JQueryXHR {
         const options: JQueryAjaxSettings = {
