@@ -5,7 +5,7 @@
 # docker run --name redis --network=isolated_ocr -p 6379:6379 redis
 # docker run --name ocr --network=isolated_ocr -e "NODE_ENV=production" -e "REDIS_HOST=redis" -v /path/to/data/directory/of/nextcloud:/home/node/data:ro -v /path/to/tmp:/home/node/output -d <your username>/ocr
 #
-FROM ubuntu:16.04
+FROM ubuntu:16.10
 
 LABEL maintainer="janiskoehr@icloud.com" description="This image serves the dependencies like tesseract and OCRmyPDF and the ocr worker for the nextcloud ocr app." vendor="Janis Koehr"
 ARG LANGUAGES="tesseract-ocr-fra tesseract-ocr-spa tesseract-ocr-deu"

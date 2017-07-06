@@ -38,7 +38,7 @@ export class Worker {
             } catch (e) {
                 this.logger.error(`${e.message}: ${e.stack}`);
             }
-            this.redisClient.lrem('working', 1, jobMessage).then(this.loop());
+            this.redisClient.lrem('working', 1, jobMessage).then(() => { this.loop(); });
         });
     }
 }
