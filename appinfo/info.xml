@@ -36,7 +36,7 @@ Please read the related topics in the [wiki](https://github.com/janis91/ocr/wiki
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.
 ]]></description>
-	<version>3.0.0-beta.6</version>
+	<version>3.0.0-beta.7</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>
@@ -50,6 +50,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 	<website>https://github.com/janis91/ocr/wiki/Usage</website>
 	<bugs>https://github.com/janis91/ocr/issues</bugs>
 	<repository type="git">https://github.com/janis91/ocr.git</repository>
+	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/app.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc1.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
