@@ -7,7 +7,7 @@ script('ocr', 'dist/ocradmin');
 	<input placeholder="eng;deu;spa;fra;deu-frak" type="text"
 		name="languages" id="languages" value="<?php p($_['languages'])?>"
 		style="width: 300px;"> <br />
-	<em><?php p($l->t('Here goes a semicolon separated list of languages that are supported by the docker worker instance (more details in the wiki on github).')) ?></em>
+	<em><?php p($l->t('Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub).')) ?></em>
 	<br />
 	<button type="button" id="languages_apply"><?php p($l->t('Apply')) ?></button>
 	<br /> <label for="redisHost"><?php p($l->t('Redis host')) ?></label><br />
