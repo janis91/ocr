@@ -99,7 +99,7 @@ class PHPUtil {
         if (chmod($fileName, $mode)) {
             return true;
         } else {
-            throw new NotFoundException($this->l10n->t('Cannot set set permissions for temporary Tesseract file.'));
+            throw new NotFoundException($this->l10n->t('Cannot set permissions for temporary Tesseract file.'));
         }
     }
 }
