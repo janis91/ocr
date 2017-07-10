@@ -66,7 +66,7 @@ class PHPUtil {
             return true;
         } else {
             throw new NotFoundException(
-                    $this->l10n->t('Cannot delete temporary file during temp file creation for tesseract.'));
+                    $this->l10n->t('Cannot delete temporary file during creation of temp file for Tesseract.'));
         }
     }
 
@@ -82,7 +82,7 @@ class PHPUtil {
         if (touch($fileName)) {
             return true;
         } else {
-            throw new NotFoundException($this->l10n->t('Cannot create temporary file for tesseract.'));
+            throw new NotFoundException($this->l10n->t('Cannot create temporary file for Tesseract.'));
         }
     }
 
@@ -99,7 +99,7 @@ class PHPUtil {
         if (chmod($fileName, $mode)) {
             return true;
         } else {
-            throw new NotFoundException($this->l10n->t('Cannot set permissions to temporary file for tesseract.'));
+            throw new NotFoundException($this->l10n->t('Cannot set permissions for temporary Tesseract file.'));
         }
     }
 }
