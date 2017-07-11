@@ -36,7 +36,6 @@ OC.L10N.register(
     "Cannot delete because of wrong ID." : "Suppression invalide pour cause de mauvais ID.",
     "Temp file does not exist." : "Le fichier temporaire n'existe pas.",
     "Temp file cannot be created." : "Le fichier temporaire ne peut pas être créé.",
-    "Cannot create temporary file for tesseract." : "Impossible de créer des fichiers temporaires pour tesseract.",
     "Cannot connect to Redis." : "Impossible de se connecter à Redis",
     "Cannot connect to the right Redis database." : "Impossible de se connecter à la bonne base de données Redis",
     "Optical character recognition (OCR)" : "Reconnaissance optique des caractères (OCR)",
