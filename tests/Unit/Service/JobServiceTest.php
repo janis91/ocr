@@ -461,7 +461,7 @@ class JobServiceTest extends TestCase {
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage Cannot delete temporary file during temp file creation for tesseract.
+     * @expectedExceptionMessage Cannot delete temporary file during temp file creation for Tesseract.
      */
     public function testProcessTempFileDeletionFail() {
         $files = [
@@ -521,13 +521,13 @@ class JobServiceTest extends TestCase {
             ->method('unlinkWrapper')
             ->with('/tmp/ocr_randomTempFileName')
             ->willThrowException(
-                new NotFoundException('Cannot delete temporary file during temp file creation for tesseract.'));
+                new NotFoundException('Cannot delete temporary file during temp file creation for Tesseract.'));
         $this->cut->process($languages, $files);
     }
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage Cannot create temporary file for tesseract.
+     * @expectedExceptionMessage Cannot create temporary file for Tesseract.
      */
     public function testProcessTempFileCreationForTesseractFail() {
         $files = [
@@ -589,13 +589,13 @@ class JobServiceTest extends TestCase {
         $this->phpUtilMock->expects($this->once())
             ->method('touchWrapper')
             ->with('/tmp/ocr_randomTempFileName.txt')
-            ->willThrowException(new NotFoundException('Cannot create temporary file for tesseract.'));
+            ->willThrowException(new NotFoundException('Cannot create temporary file for Tesseract.'));
         $this->cut->process($languages, $files);
     }
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage Cannot set permissions to temporary file for tesseract.
+     * @expectedExceptionMessage Cannot set permissions to temporary file for Tesseract.
      */
     public function testProcessTempFileSetPermissionsForTesseractFail() {
         $files = [
@@ -660,7 +660,7 @@ class JobServiceTest extends TestCase {
         $this->phpUtilMock->expects($this->once())
             ->method('chmodWrapper')
             ->with('/tmp/ocr_randomTempFileName.txt', 0600)
-            ->willThrowException(new NotFoundException('Cannot set permissions to temporary file for tesseract.'));
+            ->willThrowException(new NotFoundException('Cannot set permissions to temporary file for Tesseract.'));
         $this->cut->process($languages, $files);
     }
 
@@ -767,7 +767,7 @@ class JobServiceTest extends TestCase {
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage Reading the finished jobs from redis went wrong.
+     * @expectedExceptionMessage Reading the finished jobs from Redis went wrong.
      */
     public function testCheckForFinishedJobsRetrievedDataCorrupt() {
         $json = '';
@@ -776,8 +776,8 @@ class JobServiceTest extends TestCase {
             ->will($this->returnValue($json));
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with('Reading the finished jobs from redis went wrong.')
-            ->will($this->returnValue('Reading the finished jobs from redis went wrong.'));
+            ->with('Reading the finished jobs from Redis went wrong.')
+            ->will($this->returnValue('Reading the finished jobs from Redis went wrong.'));
         $this->cut->checkForFinishedJobs();
     }
 

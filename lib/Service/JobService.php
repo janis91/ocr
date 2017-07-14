@@ -253,7 +253,7 @@ class JobService {
                 $this->jobFinished($fJob->id, $fJob->error, $fJob->log);
             }
         } catch (Exception $e) {
-            throw new NotFoundException($this->l10n->t('Reading the finished jobs from redis went wrong.'));
+            throw new NotFoundException($this->l10n->t('Reading the finished jobs from Redis went wrong.'));
         }
     }
 

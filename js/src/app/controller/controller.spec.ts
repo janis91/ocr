@@ -91,7 +91,7 @@ describe('For the controller', () => {
 
             cut.clickOnProcessButtonEvent();
 
-            expect(viewMock.displayError).toHaveBeenCalledWith(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'No file(s) selected.')}`);
+            expect(viewMock.displayError).toHaveBeenCalledWith(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'No file selected.')}`);
             expect(viewMock.destroyDropdown).toHaveBeenCalled();
         });
 
@@ -103,7 +103,7 @@ describe('For the controller', () => {
             cut.clickOnProcessButtonEvent();
 
             expect(utilMock.filterFilesWithMimeTypes).toHaveBeenCalledWith(selectedFiles);
-            expect(viewMock.displayError).toHaveBeenCalledWith(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'MIME type(s) not supported.')}`);
+            expect(viewMock.displayError).toHaveBeenCalledWith(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'MIME type not supported.')}`);
             expect(viewMock.destroyDropdown).toHaveBeenCalled();
         });
 
