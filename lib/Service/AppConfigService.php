@@ -123,7 +123,7 @@ class AppConfigService {
         if (empty($value) || !preg_match(
                 '/(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$)/', 
                 $value)) {
-            throw new NotFoundException($this->l10n->t('The redis host is not specified in the correct format.'));
+            throw new NotFoundException($this->l10n->t('The Redis host is not specified in the correct format.'));
         }
     }
 
@@ -135,7 +135,7 @@ class AppConfigService {
      */
     private function checkRedisPort($value) {
         if (empty($value) || !($value > 0 && $value < 65535)) {
-            throw new NotFoundException($this->l10n->t('The redis port number is not specified in the correct format.'));
+            throw new NotFoundException($this->l10n->t('The Redis port number is not specified in the correct format.'));
         }
     }
 
@@ -147,7 +147,7 @@ class AppConfigService {
      */
     private function checkRedisDb($value) {
         if ($value === '' || !preg_match('/^\d*$/', $value)) {
-            throw new NotFoundException($this->l10n->t('The redis db is not specified in the correct format.'));
+            throw new NotFoundException($this->l10n->t('The Redis db is not specified in the correct format.'));
         }
     }
 }

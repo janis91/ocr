@@ -353,13 +353,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Controller.prototype.clickOnProcessButtonEvent = function () {
 	        var _this = this;
 	        if (this.selectedFiles.length === 0) {
-	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'No file(s) selected.'));
+	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'No file selected.'));
 	            this.view.destroyDropdown();
 	            return;
 	        }
 	        var filteredFiles = this.util.filterFilesWithMimeTypes(this.selectedFiles);
 	        if (filteredFiles.length === 0) {
-	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'MIME type(s) not supported.'));
+	            this.view.displayError(t('ocr', 'OCR processing failed:') + " " + t('ocr', 'MIME type not supported.'));
 	            this.view.destroyDropdown();
 	            return;
 	        }
@@ -451,7 +451,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.httpService.loadAvailableLanguages().done(function (response) {
 	            var languages = response.languages.split(';');
 	            if (languages.length === 0) {
-	                throw new Error(t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OCRmyPDF correctly.'));
+	                throw new Error(t('ocr', 'No languages available for OCR processing. Please make sure to configure the languages in the administration section.'));
 	            }
 	            _this.availableLanguages = languages;
 	        }).fail(function (jqXHR) {

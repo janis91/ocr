@@ -90,7 +90,7 @@ class RedisServiceTest extends TestCase {
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage Could not add files to the redis OCR processing queue.
+     * @expectedExceptionMessage Could not add files to the Redis OCR processing queue.
      */
     public function testSendJobFailed() {
         $languages = [
@@ -123,13 +123,13 @@ class RedisServiceTest extends TestCase {
             ->will($this->returnValue(false));
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with('Could not add files to the redis OCR processing queue.')
-            ->will($this->returnValue('Could not add files to the redis OCR processing queue.'));
+            ->with('Could not add files to the Redis OCR processing queue.')
+            ->will($this->returnValue('Could not add files to the Redis OCR processing queue.'));
         $this->fileUtilMock->expects($this->once())
             ->method('execRemove')
             ->with($jobInserted->getTempFile());
         $jobInserted->setStatus(OcrConstants::STATUS_FAILED);
-        $jobInserted->setErrorLog('Could not add files to the redis OCR processing queue.');
+        $jobInserted->setErrorLog('Could not add files to the Redis OCR processing queue.');
         $this->jobMapperMock->expects($this->once())
             ->method('update')
             ->with($jobInserted);

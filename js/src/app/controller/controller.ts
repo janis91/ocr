@@ -102,13 +102,13 @@ export class Controller {
      */
     public clickOnProcessButtonEvent(): void {
         if (this.selectedFiles.length === 0) {
-            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'No file(s) selected.')}`);
+            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'No file selected.')}`);
             this.view.destroyDropdown();
             return;
         }
         const filteredFiles: Array<IFile> = this.util.filterFilesWithMimeTypes(this.selectedFiles);
         if (filteredFiles.length === 0) {
-            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'MIME type(s) not supported.')}`);
+            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'MIME type not supported.')}`);
             this.view.destroyDropdown();
             return;
         } else {
@@ -235,7 +235,7 @@ export class Controller {
         this.httpService.loadAvailableLanguages().done((response: ILanguageResponse) => {
             const languages: string[] = response.languages.split(';');
             if (languages.length === 0) {
-                throw new Error(this.t('ocr', 'No languages available for OCR processing. Please make sure to setup tesseract and OCRmyPDF correctly.'));
+                throw new Error(this.t('ocr', 'No languages available for OCR processing. Please make sure to configure the languages in the administration section.'));
             }
             this.availableLanguages = languages;
         }).fail((jqXHR: JQueryXHR) => {

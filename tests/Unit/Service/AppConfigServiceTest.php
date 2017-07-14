@@ -214,39 +214,39 @@ class AppConfigServiceTest extends TestCase {
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis host is not specified in the correct format.
+     * @expectedExceptionMessage The Redis host is not specified in the correct format.
      */
     public function testSetAppValueRedisHostForValueEmpty() {
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with($this->equalTo('The redis host is not specified in the correct format.'))
-            ->will($this->returnValue('The redis host is not specified in the correct format.'));
+            ->with($this->equalTo('The Redis host is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis host is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_HOST, '');
     }
 
     /**
      * Makes sure that the regular expression works.
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis host is not specified in the correct format.
+     * @expectedExceptionMessage The Redis host is not specified in the correct format.
      */
     public function testSetAppValueRedisHostForValueWrong() {
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with($this->equalTo('The redis host is not specified in the correct format.'))
-            ->will($this->returnValue('The redis host is not specified in the correct format.'));
+            ->with($this->equalTo('The Redis host is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis host is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_HOST, 'http://localhost');
     }
 
     /**
      * Makes sure that the regular expression works.
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis host is not specified in the correct format.
+     * @expectedExceptionMessage The Redis host is not specified in the correct format.
      */
     public function testSetAppValueRedisHostForValueWrong2() {
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with($this->equalTo('The redis host is not specified in the correct format.'))
-            ->will($this->returnValue('The redis host is not specified in the correct format.'));
+            ->with($this->equalTo('The Redis host is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis host is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_HOST, '127.0.0.1:6379');
     }
 
@@ -262,49 +262,49 @@ class AppConfigServiceTest extends TestCase {
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis port number is not specified in the correct format.
+     * @expectedExceptionMessage The Redis port number is not specified in the correct format.
      */
     public function testSetAppValueRedisPortForValueEmpty() {
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with($this->equalTo('The redis port number is not specified in the correct format.'))
-            ->will($this->returnValue('The redis port number is not specified in the correct format.'));
+            ->with($this->equalTo('The Redis port number is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis port number is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_PORT, '');
     }
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis port number is not specified in the correct format.
+     * @expectedExceptionMessage The Redis port number is not specified in the correct format.
      */
     public function testSetAppValueRedisPortForValueWrong() {
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with($this->equalTo('The redis port number is not specified in the correct format.'))
-            ->will($this->returnValue('The redis port number is not specified in the correct format.'));
+            ->with($this->equalTo('The Redis port number is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis port number is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_PORT, 'some string');
     }
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis port number is not specified in the correct format.
+     * @expectedExceptionMessage The Redis port number is not specified in the correct format.
      */
     public function testSetAppValueRedisPortForValueNegative() {
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with($this->equalTo('The redis port number is not specified in the correct format.'))
-            ->will($this->returnValue('The redis port number is not specified in the correct format.'));
+            ->with($this->equalTo('The Redis port number is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis port number is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_PORT, '-3');
     }
 
     /**
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis port number is not specified in the correct format.
+     * @expectedExceptionMessage The Redis port number is not specified in the correct format.
      */
     public function testSetAppValueRedisPortForValueToHigh() {
         $this->l10nMock->expects($this->once())
             ->method('t')
-            ->with($this->equalTo('The redis port number is not specified in the correct format.'))
-            ->will($this->returnValue('The redis port number is not specified in the correct format.'));
+            ->with($this->equalTo('The Redis port number is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis port number is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_PORT, '65536');
     }
 
@@ -321,26 +321,26 @@ class AppConfigServiceTest extends TestCase {
     /**
      * 
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis db is not specified in the correct format.
+     * @expectedExceptionMessage The Redis db is not specified in the correct format.
      */
     public function testSetAppValueRedisDbForValueEmpty() {
         $this->l10nMock->expects($this->once())
         ->method('t')
-        ->with($this->equalTo('The redis db is not specified in the correct format.'))
-        ->will($this->returnValue('The redis db is not specified in the correct format.'));
+        ->with($this->equalTo('The Redis db is not specified in the correct format.'))
+        ->will($this->returnValue('The Redis db is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, '');
     }
     
     /**
      * Makes sure that the regular expression works.
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The redis db is not specified in the correct format.
+     * @expectedExceptionMessage The Redis db is not specified in the correct format.
      */
     public function testSetAppValueRedisDbForValueNegative() {
         $this->l10nMock->expects($this->once())
         ->method('t')
-        ->with($this->equalTo('The redis db is not specified in the correct format.'))
-        ->will($this->returnValue('The redis db is not specified in the correct format.'));
+        ->with($this->equalTo('The Redis db is not specified in the correct format.'))
+        ->will($this->returnValue('The Redis db is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, '-3');
     }
 }

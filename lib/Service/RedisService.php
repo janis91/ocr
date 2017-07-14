@@ -96,7 +96,7 @@ class RedisService {
                             'languages' => $languages
                     ]);
             if (!$redis->lPush(OcrConstants::REDIS_NEW_JOBS_QUEUE, $msg)) {
-                throw new NotFoundException($this->l10n->t('Could not add files to the redis OCR processing queue.'));
+                throw new NotFoundException($this->l10n->t('Could not add files to the Redis OCR processing queue.'));
             }
         } catch (Exception $e) {
             $this->fileUtil->execRemove($job->getTempFile());
@@ -119,7 +119,7 @@ class RedisService {
                 ->lRange(OcrConstants::REDIS_FINISHED_JOBS_QUEUE, 0, -1)
                 ->delete(OcrConstants::REDIS_FINISHED_JOBS_QUEUE)
                 ->exec();
-            $this->logger->debug('Retrieved the following array from redis: {result}', 
+            $this->logger->debug('Retrieved the following array from Redis: {result}', 
                     [
                             'result' => $result[0]
                     ]);
