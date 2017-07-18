@@ -114,7 +114,7 @@ class AppConfigService {
     }
 
     /**
-     * Checks for the right redis host format.
+     * Checks for the right Redis host format.
      * 
      * @param string $value            
      * @throws NotFoundException
@@ -128,7 +128,7 @@ class AppConfigService {
     }
 
     /**
-     * Checks for the right redis port format.
+     * Checks for the right Redis port format.
      * 
      * @param string $value            
      * @throws NotFoundException
@@ -140,14 +140,14 @@ class AppConfigService {
     }
 
     /**
-     * Checks for the right redis db format.
+     * Checks for the right Redis DB format.
      * 
      * @param string $value            
      * @throws NotFoundException
      */
     private function checkRedisDb($value) {
         if ($value === '' || !preg_match('/^\d*$/', $value)) {
-            throw new NotFoundException($this->l10n->t('The Redis db is not specified in the correct format.'));
+            throw new NotFoundException($this->l10n->t('The Redis DB is not specified in the correct format.'));
         }
     }
 }

@@ -321,26 +321,26 @@ class AppConfigServiceTest extends TestCase {
     /**
      * 
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The Redis db is not specified in the correct format.
+     * @expectedExceptionMessage The Redis DB is not specified in the correct format.
      */
     public function testSetAppValueRedisDbForValueEmpty() {
         $this->l10nMock->expects($this->once())
         ->method('t')
-        ->with($this->equalTo('The Redis db is not specified in the correct format.'))
-        ->will($this->returnValue('The Redis db is not specified in the correct format.'));
+        ->with($this->equalTo('The Redis DB is not specified in the correct format.'))
+        ->will($this->returnValue('The Redis DB is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, '');
     }
     
     /**
      * Makes sure that the regular expression works.
      * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The Redis db is not specified in the correct format.
+     * @expectedExceptionMessage The Redis DB is not specified in the correct format.
      */
     public function testSetAppValueRedisDbForValueNegative() {
         $this->l10nMock->expects($this->once())
         ->method('t')
-        ->with($this->equalTo('The Redis db is not specified in the correct format.'))
-        ->will($this->returnValue('The Redis db is not specified in the correct format.'));
+        ->with($this->equalTo('The Redis DB is not specified in the correct format.'))
+        ->will($this->returnValue('The Redis DB is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, '-3');
     }
 }
