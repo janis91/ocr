@@ -112,6 +112,18 @@ describe('For the controller', () => {
         });
     });
 
+    describe('the getRedisPassword function', () => {
+        it('should get the value from the input field.', () => {
+            const inputMock = { value: 'OCR' };
+            documentMock.getElementById.and.returnValue(inputMock);
+
+            const result = cut.getRedisPassword();
+
+            expect(result).toBe('OCR');
+            expect(documentMock.getElementById).toHaveBeenCalledWith('redisPassword');
+        });
+    });
+
     describe('the checkLanguagesValidity function', () => {
         it('should test the input for validity and return true for single input.', () => {
             const input = 'eng';

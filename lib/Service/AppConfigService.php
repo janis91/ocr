@@ -14,6 +14,8 @@ namespace OCA\Ocr\Service;
 use \OCP\IConfig;
 use OCP\IL10N;
 use OCA\Ocr\Constants\OcrConstants;
+use OCA\Ocr\Util\RedisUtil;
+use OCP\ILogger;
 
 
 class AppConfigService {
@@ -37,14 +39,30 @@ class AppConfigService {
     private $l10n;
 
     /**
+     *
+     * @var RedisUtil
+     */
+    private $redisUtil;
+
+    /**
+     *
+     * @var ILogger
+     */
+    private $logger;
+
+    /**
      * Constructor
      * 
      * @param IConfig $config            
      * @param IL10N $l10n            
+     * @param RedisUtil $redisUtil            
+     * @param ILogger $logger            
      */
-    public function __construct(IConfig $config, IL10N $l10n) {
+    public function __construct(IConfig $config, IL10N $l10n, RedisUtil $redisUtil, ILogger $logger) {
         $this->config = $config;
         $this->l10n = $l10n;
+        $this->redisUtil = $redisUtil;
+        $this->logger = $logger;
     }
 
     /**
@@ -58,17 +76,19 @@ class AppConfigService {
     }
 
     /**
-     * Evaluate if all redis related settings are set.
+     * Evaluate if all needed redis related settings are set.
      * 
      * @return boolean
      */
     public function evaluateRedisSettings() {
         if ($this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_HOST) !== '' &&
-                 $this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_PORT) !== '' &&
-                 $this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_DB) !== '') {
+                $this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_PORT) !== '' &&
+                        $this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_DB) !== '') {
+            // test the connection and authenticate
+            $this->redisUtil->setupRedisInstance();
             return true;
         } else {
-            return false;
+            throw new NotFoundException($this->l10n->t('Please setup Redis in the administration settings first.'));
         }
     }
 
@@ -81,7 +101,7 @@ class AppConfigService {
      * @throws NotFoundException
      */
     public function setAppValue($key, $value) {
-        if(empty($key)) {
+        if (empty($key)) {
             throw new NotFoundException($this->l10n->t('The given settings key is empty.'));
         }
         switch ($key) {
@@ -108,7 +128,8 @@ class AppConfigService {
      * @throws NotFoundException
      */
     private function checkLanguages($value) {
-        if (empty($value) || !preg_match('/^(([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4});)*([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4})$/', $value)) {
+        if (empty($value) ||
+                 !preg_match('/^(([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4});)*([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4})$/', $value)) {
             throw new NotFoundException($this->l10n->t('The languages are not specified in the correct format.'));
         }
     }

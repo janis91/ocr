@@ -29,12 +29,10 @@ export class Controller {
      * Initializes the Controller / OCR functions in the frontend of Nextcloud.
      */
     public init(): void {
-        this.checkRedis().done((response: IRedisResponse) => {
-            if (response.set) {
-                this.startEverything();
-            }
-        }).fail((jqXHR: JQueryXHR) => {
-            this.view.displayError(`${jqXHR.responseText}`);
+        this.checkRedis().done(() => {
+            this.startEverything();
+        }).fail((message: string) => {
+            this.view.displayError(`${message}`);
         });
     }
 

@@ -24,6 +24,10 @@ class AppConfigServiceTest extends TestCase {
 
     protected $l10nMock;
 
+    protected $loggerMock;
+
+    protected $redisUtilMock;
+
     protected $appName = 'ocr';
 
     public function setUp() {
@@ -31,7 +35,12 @@ class AppConfigServiceTest extends TestCase {
             ->getMock();
         $this->l10nMock = $this->getMockBuilder('OCP\IL10N')
             ->getMock();
-        $this->cut = new AppConfigService($this->configMock, $this->l10nMock);
+        $this->loggerMock = $this->getMockBuilder('OCP\ILogger')
+            ->getMock();
+        $this->redisUtilMock = $this->getMockBuilder('OCA\Ocr\Util\RedisUtil')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->cut = new AppConfigService($this->configMock, $this->l10nMock, $this->redisUtilMock, $this->loggerMock);
     }
 
     public function testGetAppValue() {
@@ -71,19 +80,34 @@ class AppConfigServiceTest extends TestCase {
                         $this->equalTo(OcrConstants::REDIS_CONFIG_KEY_DB)
                 ])
             ->will($this->onConsecutiveCalls('127.0.0.1', '6379', '0'));
+        $this->redisUtilMock->expects($this->once())
+            ->method('setupRedisInstance');
         $result = $this->cut->evaluateRedisSettings();
         $this->assertTrue($result);
     }
 
+    /**
+     * @expectedException OCA\Ocr\Service\NotFoundException
+     * @expectedExceptionMessage Please setup Redis in the administration settings first.
+     */
     public function testEvaluateRedisSettingsForEmptyHost() {
         $this->configMock->expects($this->once())
             ->method('getAppValue')
             ->with($this->equalTo($this->appName), $this->equalTo(OcrConstants::REDIS_CONFIG_KEY_HOST))
             ->will($this->returnValue(''));
+        $this->redisUtilMock->expects($this->never())
+            ->method('setupRedisInstance');
+        $this->l10nMock->expects($this->once())
+            ->method('t')
+            ->with($this->equalTo('Please setup Redis in the administration settings first.'))
+            ->will($this->returnValue('Please setup Redis in the administration settings first.'));
         $result = $this->cut->evaluateRedisSettings();
-        $this->assertFalse($result);
     }
 
+    /**
+     * @expectedException OCA\Ocr\Service\NotFoundException
+     * @expectedExceptionMessage Please setup Redis in the administration settings first.
+     */
     public function testEvaluateRedisSettingsForEmptyPort() {
         $this->configMock->expects($this->exactly(2))
             ->method('getAppValue')
@@ -97,10 +121,19 @@ class AppConfigServiceTest extends TestCase {
                         $this->equalTo(OcrConstants::REDIS_CONFIG_KEY_PORT)
                 ])
             ->will($this->onConsecutiveCalls('127.0.0.1', ''));
+        $this->redisUtilMock->expects($this->never())
+            ->method('setupRedisInstance');
+        $this->l10nMock->expects($this->once())
+            ->method('t')
+            ->with($this->equalTo('Please setup Redis in the administration settings first.'))
+            ->will($this->returnValue('Please setup Redis in the administration settings first.'));
         $result = $this->cut->evaluateRedisSettings();
-        $this->assertFalse($result);
     }
 
+    /**
+     * @expectedException OCA\Ocr\Service\NotFoundException
+     * @expectedExceptionMessage Please setup Redis in the administration settings first.
+     */
     public function testEvaluateRedisSettingsForEmptyDb() {
         $this->configMock->expects($this->exactly(3))
             ->method('getAppValue')
@@ -118,8 +151,13 @@ class AppConfigServiceTest extends TestCase {
                         $this->equalTo(OcrConstants::REDIS_CONFIG_KEY_DB)
                 ])
             ->will($this->onConsecutiveCalls('127.0.0.1', '6379', ''));
+        $this->redisUtilMock->expects($this->never())
+            ->method('setupRedisInstance');
+        $this->l10nMock->expects($this->once())
+            ->method('t')
+            ->with($this->equalTo('Please setup Redis in the administration settings first.'))
+            ->will($this->returnValue('Please setup Redis in the administration settings first.'));
         $result = $this->cut->evaluateRedisSettings();
-        $this->assertFalse($result);
     }
 
     /**
@@ -317,20 +355,19 @@ class AppConfigServiceTest extends TestCase {
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, '0');
         $this->assertTrue($result);
     }
-    
+
     /**
-     * 
      * @expectedException OCA\Ocr\Service\NotFoundException
      * @expectedExceptionMessage The Redis DB is not specified in the correct format.
      */
     public function testSetAppValueRedisDbForValueEmpty() {
         $this->l10nMock->expects($this->once())
-        ->method('t')
-        ->with($this->equalTo('The Redis DB is not specified in the correct format.'))
-        ->will($this->returnValue('The Redis DB is not specified in the correct format.'));
+            ->method('t')
+            ->with($this->equalTo('The Redis DB is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis DB is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, '');
     }
-    
+
     /**
      * Makes sure that the regular expression works.
      * @expectedException OCA\Ocr\Service\NotFoundException
@@ -338,9 +375,19 @@ class AppConfigServiceTest extends TestCase {
      */
     public function testSetAppValueRedisDbForValueNegative() {
         $this->l10nMock->expects($this->once())
-        ->method('t')
-        ->with($this->equalTo('The Redis DB is not specified in the correct format.'))
-        ->will($this->returnValue('The Redis DB is not specified in the correct format.'));
+            ->method('t')
+            ->with($this->equalTo('The Redis DB is not specified in the correct format.'))
+            ->will($this->returnValue('The Redis DB is not specified in the correct format.'));
         $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, '-3');
+    }
+
+    public function testSetAppValueRedisPasswordSuccessfully() {
+        $this->configMock->expects($this->once())
+            ->method('setAppValue')
+            ->with($this->equalTo($this->appName), $this->equalTo(OcrConstants::REDIS_CONFIG_KEY_PASSWORD), 
+                $this->equalTo('OCR'))
+            ->will($this->returnValue(true));
+        $result = $this->cut->setAppValue(OcrConstants::REDIS_CONFIG_KEY_PASSWORD, 'OCR');
+        $this->assertTrue($result);
     }
 }

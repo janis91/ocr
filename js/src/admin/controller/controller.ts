@@ -69,8 +69,9 @@ export class Controller {
         const redisHost = this.getRedisHost();
         const redisPort = this.getRedisPort();
         const redisDb = this.getRedisDb();
+        const redisPassword = this.getRedisPassword();
         if (this.checkRedisHostValidity(redisHost) && this.checkRedisPortValidity(redisPort) && this.checkRedisDbValidity(redisDb)) {
-            this.sendRedis(redisHost, `${redisPort}`, `${redisDb}`).done(() => {
+            this.sendRedis(redisHost, `${redisPort}`, `${redisDb}`, `${redisPassword}`).done(() => {
                 this.displayMessage(this.t('ocr', 'Saved.'), false);
             }).fail((message) => {
                 this.displayMessage(`${this.t('ocr', 'Saving Redis settings failed:')} ${message}`, true);
@@ -78,7 +79,7 @@ export class Controller {
         } else {
             this.displayMessage(this.t('ocr', 'The Redis settings are not specified in the right format.'), true);
         }
-        this.applyLanguagesButton.disabled = false;
+        this.applyRedisButton.disabled = false;
     }
 
     /**
@@ -103,27 +104,35 @@ export class Controller {
     }
 
     /**
-     * Get the redis host of the input.
-     * @returns The redis host.
+     * Get the Redis host of the input.
+     * @returns The Redis host.
      */
     public getRedisHost(): string {
         return (<HTMLInputElement>this.document.getElementById('redisHost')).value;
     }
 
     /**
-     * Get the redis port of the input.
-     * @returns The redis port.
+     * Get the Redis port of the input.
+     * @returns The Redis port.
      */
     public getRedisPort(): number {
         return parseInt((<HTMLInputElement>this.document.getElementById('redisPort')).value, 10);
     }
 
     /**
-     * Get the redis db of the input.
-     * @returns The redis db.
+     * Get the Redis DB of the input.
+     * @returns The Redis DB.
      */
     public getRedisDb(): number {
         return parseInt((<HTMLInputElement>this.document.getElementById('redisDb')).value, 10);
+    }
+
+    /**
+     * Get the Redis db of the input.
+     * @returns The Redis db.
+     */
+    public getRedisPassword(): string {
+        return (<HTMLInputElement>this.document.getElementById('redisPassword')).value;
     }
 
     /**
@@ -178,9 +187,9 @@ export class Controller {
      * Sets the redis settings in the app config.
      * @returns A JQueryPromise to deal with the asynchronous ajax call.
      */
-    public sendRedis(redisHost: string, redisPort: string, redisDb: string): JQueryPromise<{}> {
+    public sendRedis(redisHost: string, redisPort: string, redisDb: string, redisPassword: string): JQueryPromise<{}> {
         const deferred = this.jquery.Deferred();
-        this.httpService.sendRedis(redisHost, redisPort, redisDb).done(() => {
+        this.httpService.sendRedis(redisHost, redisPort, redisDb, redisPassword).done(() => {
             deferred.resolve();
         }).fail((jqXHR: JQueryXHR) => {
             deferred.reject(jqXHR.responseText);

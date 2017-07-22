@@ -48,15 +48,17 @@ describe('For the http service', () => {
             const redisHost = '127.0.0.1';
             const redisPort = '6379';
             const redisDb = '0';
+            const redisPassword = 'OCR';
             spyOn(cut, 'makeRequest').and.returnValue(true);
             configMock.redisSettingsEndpoint = 'redisSettingsEndpoint';
 
-            const result = cut.sendRedis(redisHost, redisPort, redisDb);
+            const result = cut.sendRedis(redisHost, redisPort, redisDb, redisPassword);
 
             expect(cut.makeRequest).toHaveBeenCalledWith({
                 data: {
                     redisDb: redisDb,
                     redisHost: redisHost,
+                    redisPassword: redisPassword,
                     redisPort: redisPort,
                 },
                 method: 'POST',

@@ -82,7 +82,8 @@ class AdminSettingsControllerTest extends TestCase {
         $redisHost = '127.0.0.1';
         $redisPort = '6379';
         $redisDb = '0';
-        $this->appConfigServiceMock->expects($this->exactly(3))
+        $redisPassword = 'OCR';
+        $this->appConfigServiceMock->expects($this->exactly(4))
             ->method('setAppValue')
             ->withConsecutive([
                 OcrConstants::REDIS_CONFIG_KEY_HOST,
@@ -93,12 +94,15 @@ class AdminSettingsControllerTest extends TestCase {
         ], [
                 OcrConstants::REDIS_CONFIG_KEY_DB,
                 $redisDb
+        ], [
+                OcrConstants::REDIS_CONFIG_KEY_PASSWORD,
+                $redisPassword
         ]);
         $this->l10nMock->expects($this->once())
             ->method('t')
             ->with('Saved')
             ->will($this->returnValue('Saved'));
-        $result = $this->cut->setRedis($redisHost, $redisPort, $redisDb);
+        $result = $this->cut->setRedis($redisHost, $redisPort, $redisDb, $redisPassword);
         $this->assertEquals('Saved', $result->getData());
     }
 }

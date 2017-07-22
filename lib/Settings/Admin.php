@@ -43,7 +43,9 @@ class Admin implements ISettings {
                         OcrConstants::REDIS_CONFIG_KEY_PORT => $this->config->getAppValue('ocr', 
                                 OcrConstants::REDIS_CONFIG_KEY_PORT),
                         OcrConstants::REDIS_CONFIG_KEY_DB => $this->config->getAppValue('ocr', 
-                                OcrConstants::REDIS_CONFIG_KEY_DB)
+                                OcrConstants::REDIS_CONFIG_KEY_DB),
+                        OcrConstants::REDIS_CONFIG_KEY_PASSWORD => $this->config->getAppValue('ocr',
+                                OcrConstants::REDIS_CONFIG_KEY_PASSWORD)
                 ], 'blank');
     }
 

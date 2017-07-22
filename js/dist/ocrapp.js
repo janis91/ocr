@@ -305,12 +305,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    Controller.prototype.init = function () {
 	        var _this = this;
-	        this.checkRedis().done(function (response) {
-	            if (response.set) {
-	                _this.startEverything();
-	            }
-	        }).fail(function (jqXHR) {
-	            _this.view.displayError("" + jqXHR.responseText);
+	        this.checkRedis().done(function () {
+	            _this.startEverything();
+	        }).fail(function (message) {
+	            _this.view.displayError("" + message);
 	        });
 	    };
 	    Controller.prototype.startEverything = function () {

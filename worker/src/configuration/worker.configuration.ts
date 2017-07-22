@@ -8,6 +8,7 @@ export class Configuration {
         db: process.env.REDIS_DB || 0,
         host: process.env.REDIS_HOST || 'redis',
         keyPrefix: 'ocr:',
+        password: process.env.REDIS_PASSWORD || null,
         port: process.env.REDIS_PORT || 6379,
         reconnectOnError: function (err) {
             if (err.message.slice(0, 'READONLY'.length) === 'READONLY') {

@@ -2,8 +2,7 @@
 # important steps:
 # docker build --build-arg LANGUAGES="tesseract-ocr-deu" -t <your username>/ocr .
 # docker network create --driver bridge isolated_ocr
-# docker run --name redis --network=isolated_ocr -p 6379:6379 redis
-# docker run --name ocr --network=isolated_ocr -e "NODE_ENV=production" -e "REDIS_HOST=redis" -v /path/to/data/directory/of/nextcloud:/home/node/data:ro -v /path/to/tmp:/home/node/output -d <your username>/ocr
+# docker run --name ocr --network=isolated_ocr -e "NODE_ENV=production" -e "REDIS_HOST=redis" -e "REDIS_DB=0" -e "REDIS_PORT=6379" -e "REDIS_PASSWORD=OCR" -v /path/to/data/directory/of/nextcloud:/home/node/data:ro -v /path/to/tmp:/home/node/output -d <your username>/ocr
 #
 FROM ubuntu:16.10
 
