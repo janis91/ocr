@@ -113,6 +113,13 @@ abstract class OcrConstants {
      * @var string
      */
     const REDIS_CONFIG_KEY_DB = 'redisDb';
+    
+    /**
+     * The name of the redis db config key.
+     *
+     * @var string
+     */
+    const REDIS_CONFIG_KEY_PASSWORD = 'redisPassword';
 
     /**
      * The prefix for the redis key.

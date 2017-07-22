@@ -92,15 +92,17 @@ class AdminSettingsController extends Controller {
      * 
      * @param string $redisHost            
      * @param string $redisPort            
-     * @param string $redisDb            
+     * @param string $redisDb   
+     * @param string $redisPassword         
      * @return DataResponse
      */
-    public function setRedis($redisHost, $redisPort, $redisDb) {
+    public function setRedis($redisHost, $redisPort, $redisDb, $redisPassword) {
         return $this->handleNotFound(
-                function () use ($redisHost, $redisPort, $redisDb) {
+                function () use ($redisHost, $redisPort, $redisDb, $redisPassword) {
                     $this->appConfig->setAppValue(OcrConstants::REDIS_CONFIG_KEY_HOST, $redisHost);
                     $this->appConfig->setAppValue(OcrConstants::REDIS_CONFIG_KEY_PORT, $redisPort);
                     $this->appConfig->setAppValue(OcrConstants::REDIS_CONFIG_KEY_DB, $redisDb);
+                    $this->appConfig->setAppValue(OcrConstants::REDIS_CONFIG_KEY_PASSWORD, $redisPassword);
                     return $this->l10n->t('Saved');
                 });
     }

@@ -46,11 +46,12 @@ export class HttpService {
      * @param redisDb The Redis database.
      * @returns The JQueryXHR object.
      */
-    public sendRedis(redisHost: string, redisPort: string, redisDb: string): JQueryXHR {
+    public sendRedis(redisHost: string, redisPort: string, redisDb: string, redisPassword: string): JQueryXHR {
         const options: JQueryAjaxSettings = {
             data: {
                 redisDb: redisDb,
                 redisHost: redisHost,
+                redisPassword: redisPassword,
                 redisPort: redisPort,
             },
             method: 'POST',

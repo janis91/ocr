@@ -107,11 +107,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	        return this.makeRequest(options);
 	    };
-	    HttpService.prototype.sendRedis = function (redisHost, redisPort, redisDb) {
+	    HttpService.prototype.sendRedis = function (redisHost, redisPort, redisDb, redisPassword) {
 	        var options = {
 	            data: {
 	                redisDb: redisDb,
 	                redisHost: redisHost,
+	                redisPassword: redisPassword,
 	                redisPort: redisPort,
 	            },
 	            method: 'POST',
@@ -176,8 +177,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var redisHost = this.getRedisHost();
 	        var redisPort = this.getRedisPort();
 	        var redisDb = this.getRedisDb();
+	        var redisPassword = this.getRedisPassword();
 	        if (this.checkRedisHostValidity(redisHost) && this.checkRedisPortValidity(redisPort) && this.checkRedisDbValidity(redisDb)) {
-	            this.sendRedis(redisHost, "" + redisPort, "" + redisDb).done(function () {
+	            this.sendRedis(redisHost, "" + redisPort, "" + redisDb, "" + redisPassword).done(function () {
 	                _this.displayMessage(t('ocr', 'Saved.'), false);
 	            }).fail(function (message) {
 	                _this.displayMessage(t('ocr', 'Saving Redis settings failed:') + " " + message, true);
@@ -186,7 +188,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        else {
 	            this.displayMessage(t('ocr', 'The Redis settings are not specified in the right format.'), true);
 	        }
-	        this.applyLanguagesButton.disabled = false;
+	        this.applyRedisButton.disabled = false;
 	    };
 	    Controller.prototype.displayMessage = function (message, error) {
 	        if (error) {
@@ -207,6 +209,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Controller.prototype.getRedisDb = function () {
 	        return parseInt(this.document.getElementById('redisDb').value, 10);
+	    };
+	    Controller.prototype.getRedisPassword = function () {
+	        return this.document.getElementById('redisPassword').value;
 	    };
 	    Controller.prototype.checkLanguagesValidity = function (languages) {
 	        return /^(([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4});)*([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4})$/.test(languages);
@@ -229,9 +234,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	        return deferred.promise();
 	    };
-	    Controller.prototype.sendRedis = function (redisHost, redisPort, redisDb) {
+	    Controller.prototype.sendRedis = function (redisHost, redisPort, redisDb, redisPassword) {
 	        var deferred = this.jquery.Deferred();
-	        this.httpService.sendRedis(redisHost, redisPort, redisDb).done(function () {
+	        this.httpService.sendRedis(redisHost, redisPort, redisDb, redisPassword).done(function () {
 	            deferred.resolve();
 	        }).fail(function (jqXHR) {
 	            deferred.reject(jqXHR.responseText);

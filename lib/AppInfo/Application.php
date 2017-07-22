@@ -132,7 +132,7 @@ class Application extends App {
                 function (IAppContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new AppConfigService($server->getConfig(), $server->getL10N('ocr'));
+                    return new AppConfigService($server->getConfig(), $server->getL10N('ocr'), $c->query('RedisUtil'), $server->getLogger());
                 });
         /**
          * Register the Job Service

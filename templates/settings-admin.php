@@ -23,5 +23,9 @@ script('ocr', 'dist/ocradmin');
 	<input placeholder="0" type="number" name="redisDb" id="redisDb"
 		value="<?php p($_['redisDb'])?>" style="width: 300px;"> <br />
 	<em><?php p($l->t('The Redis database (normally 0).')) ?></em> <br />
+	<label for="redisPassword"><?php p($l->t('Redis password')) ?></label><br />
+	<input placeholder="OCR" type="text" name="redisPassword" id="redisPassword"
+		value="<?php p($_['redisPassword'])?>" style="width: 300px;"> <br />
+	<em><?php p($l->t('The password to authenticate (normally OCR).')) ?></em> <br />
 	<button type="button" id="redis_apply"><?php p($l->t('Apply')) ?></button>
 </div>
