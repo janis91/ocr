@@ -31,7 +31,6 @@
     "The given settings key is empty." : "Указан пустой ключ настроек.",
     "The Redis host is not specified in the correct format." : "Узел Redis указан в неверном формате.",
     "The Redis port number is not specified in the correct format." : "Порт Redis указан в неверном формате",
-    "The Redis db is not specified in the correct format." : "База данных Redis указана в неверном формате.",
     "Wrong parameter." : "Неверный параметр.",
     "Wrong MIME type." : "Неверный тип MIME. ",
     "Empty parameters passed." : "Переданы пустые параметры.",

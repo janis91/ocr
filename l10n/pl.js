@@ -32,7 +32,6 @@ OC.L10N.register(
     "The given settings key is empty." : "Wskazany klucz ustawień jest pusty.",
     "The Redis host is not specified in the correct format." : "Host Redis nie jest podany we właściwym formacie.",
     "The Redis port number is not specified in the correct format." : "Numer portu Redis nie jest podany we właściwym formacie.",
-    "The Redis db is not specified in the correct format." : "Baza danych Redis nie jest podana we właściwym formacie.",
     "Wrong parameter." : "Błędny parametr.",
     "Wrong MIME type." : "Błędy typ MIME",
     "Empty parameters passed." : "Żadne parametry nie przeszły.",

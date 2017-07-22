@@ -31,7 +31,6 @@
     "The given settings key is empty." : "Der eingegebenen Einstellungs-Schlüssel ist leer.",
     "The Redis host is not specified in the correct format." : "Der Redis-Host wurde im falschen Format angegeben.",
     "The Redis port number is not specified in the correct format." : "Die Redis-Portnummer wurde im falschen Format angegeben.",
-    "The Redis db is not specified in the correct format." : "Die Redis-Datenbank wurde im falschen Format angegeben.",
     "Wrong parameter." : "Falscher Parameter.",
     "Wrong MIME type." : "Falscher Medien-Typ",
     "Empty parameters passed." : "Keine Parameter gesendet.",

@@ -31,7 +31,6 @@
     "The given settings key is empty." : "Belirtilen ayar anahtarı boş.",
     "The Redis host is not specified in the correct format." : "Redis sunucusu doğru biçimde belirtilmemiş.",
     "The Redis port number is not specified in the correct format." : "Redis kapı numarası doğru biçimde belirtilmemiş.",
-    "The Redis db is not specified in the correct format." : "Redis veritabanı doğru biçimde belirtilmemiş.",
     "Wrong parameter." : "Parametre doğru değil.",
     "Wrong MIME type." : "MIME türü doğru değil.",
     "Empty parameters passed." : "Boş parametre gönderildi.",

@@ -31,7 +31,6 @@
     "The given settings key is empty." : "A chave de configurações fornecida está vazia.",
     "The Redis host is not specified in the correct format." : "O host Redis não está configurado no formato correto.",
     "The Redis port number is not specified in the correct format." : "A porta Redis não está configurada no formato correto.",
-    "The Redis db is not specified in the correct format." : "O banco de dados Redis não está configurado no formato correto.",
     "Wrong parameter." : "Parâmetro errado.",
     "Wrong MIME type." : "Tipo MIME errado.",
     "Empty parameters passed." : "Parâmetros vazios enviados.",
