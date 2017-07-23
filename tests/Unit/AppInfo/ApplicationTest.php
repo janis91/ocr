@@ -104,6 +104,10 @@ class ApplicationTest extends TestCase {
                 array(
                         'PersonalSettingsController',
                         'OCP\AppFramework\Controller'
+                ),
+                array(
+                        'UserHooks',
+                        'OCA\Ocr\Hooks\UserHooks'
                 )
         );
     }

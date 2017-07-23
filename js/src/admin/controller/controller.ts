@@ -89,9 +89,9 @@ export class Controller {
      */
     public displayMessage(message: string, error: boolean): void {
         if (error) {
-            this.notification.showHtml(`<div>${message}</div>`, { timeout: 10, type: 'error' });
+            this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
         } else {
-            this.notification.showHtml(`<div>${message}</div>`, { timeout: 5 });
+            this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 5 });
         }
     }
 

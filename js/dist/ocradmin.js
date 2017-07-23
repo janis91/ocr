@@ -192,10 +192,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Controller.prototype.displayMessage = function (message, error) {
 	        if (error) {
-	            this.notification.showHtml("<div>" + message + "</div>", { timeout: 10, type: 'error' });
+	            this.notification.showHtml("<div>" + t('ocr', 'OCR') + ": " + message + "</div>", { timeout: 10, type: 'error' });
 	        }
 	        else {
-	            this.notification.showHtml("<div>" + message + "</div>", { timeout: 5 });
+	            this.notification.showHtml("<div>" + t('ocr', 'OCR') + ": " + message + "</div>", { timeout: 5 });
 	        }
 	    };
 	    Controller.prototype.getLanguages = function () {

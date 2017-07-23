@@ -52,7 +52,7 @@ describe('For the controller', () => {
 
             cut.displayMessage(message, true);
 
-            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>${message}</div>`, { timeout: 10, type: 'error' });
+            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>OCR: ${message}</div>`, { timeout: 10, type: 'error' });
         });
 
         it('should display a normal message.', () => {
@@ -60,7 +60,7 @@ describe('For the controller', () => {
 
             cut.displayMessage(message, false);
 
-            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>${message}</div>`, { timeout: 5 });
+            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>OCR: ${message}</div>`, { timeout: 5 });
         });
     });
 

@@ -127,4 +127,12 @@ class OcrJobMapperTest extends MapperTestUtility {
         $result = $this->cut->findAll($this->userId);
         $this->assertEquals($this->jobs, $result);
     }
+    
+    public function testDeleteAllForUser() {
+        $rows = $this->twoRows;
+        $sql = 'DELETE FROM *PREFIX*ocr_jobs WHERE user_id = ?';
+        $this->setMapperResult($sql, [$this->userId], $rows);
+        $result = $this->cut->deleteAllForUser($this->userId);
+        $this->assertEquals($this->jobs, $result);
+    }
 }

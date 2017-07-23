@@ -25,7 +25,7 @@ describe('For the view', () => {
 
             cut.displayMessage(message, false);
 
-            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>${message}</div>`, { timeout: 10 });
+            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>OCR: ${message}</div>`, { timeout: 10 });
         });
 
         it('should display an error message.', () => {
@@ -33,7 +33,7 @@ describe('For the view', () => {
 
             cut.displayMessage(message, true);
 
-            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>${message}</div>`, { timeout: 10, type: 'error' });
+            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>OCR: ${message}</div>`, { timeout: 10, type: 'error' });
         });
     });
 
