@@ -1,5 +1,5 @@
 #Changelog
-nextcloud-ocr (3.0.0-beta.9)
+nextcloud-ocr (3.1.0-beta.1)
 * **Feature**: Now files can be replaced by selecting a checkbox.
 nextcloud-ocr (3.0.0-beta.8)
 * **Upcoming Release**: The next major release of OCR is here soon. Some tests have too pass before I will publish it. But This is kind of a Release Candidate.
