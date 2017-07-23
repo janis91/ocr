@@ -509,7 +509,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._notificationRow = undefined;
 	    }
 	    View.prototype.displayError = function (message) {
-	        this.notification.showHtml("<div>" + message + "</div>", { timeout: 10, type: 'error' });
+	        this.notification.showHtml("<div>" + t('ocr', 'OCR') + ": " + message + "</div>", { timeout: 10, type: 'error' });
 	    };
 	    View.prototype.renderDropdown = function (languages) {
 	        this.destroyDropdown();

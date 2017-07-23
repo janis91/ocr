@@ -32,7 +32,7 @@ export class View {
      * @param message The message to display.
      */
     public displayError(message: string): void {
-        this.notification.showHtml(`<div>${message}</div>`, { timeout: 10, type: 'error' });
+        this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
     }
 
     /**

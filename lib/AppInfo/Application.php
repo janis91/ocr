@@ -29,6 +29,7 @@ use OCA\Ocr\Service\AppConfigService;
 use OCA\Ocr\Util\PHPUtil;
 use OCA\Ocr\Util\FileUtil;
 use OCA\Ocr\Util\RedisUtil;
+use OCA\Ocr\Hooks\UserHooks;
 
 
 /**
@@ -85,7 +86,7 @@ class Application extends App {
         /**
          * Register the RedisUtil
          */
-        $container->registerService('RedisUtil',
+        $container->registerService('RedisUtil', 
                 function (IContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
@@ -132,7 +133,8 @@ class Application extends App {
                 function (IAppContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new AppConfigService($server->getConfig(), $server->getL10N('ocr'), $c->query('RedisUtil'), $server->getLogger());
+                    return new AppConfigService($server->getConfig(), $server->getL10N('ocr'), $c->query('RedisUtil'), 
+                            $server->getLogger());
                 });
         /**
          * Register the Job Service
@@ -162,9 +164,9 @@ class Application extends App {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
                     return new JobService($server->getL10N('ocr'), $server->getLogger(), $c->query('CurrentUID'), 
-                            new View('/' . $c->query('CurrentUID') . '/files'), $server->getTempManager(), $c->query('RedisService'), 
-                            $c->query('OcrJobMapper'), $c->query('FileService'), $c->query('AppConfigService'), 
-                            $c->query('PHPUtil'), $c->query('FileUtil'));
+                            new View('/' . $c->query('CurrentUID') . '/files'), $server->getTempManager(), 
+                            $c->query('RedisService'), $c->query('OcrJobMapper'), $c->query('FileService'), 
+                            $c->query('AppConfigService'), $c->query('PHPUtil'), $c->query('FileUtil'));
                 });
         /**
          * Register the Status Service
@@ -198,6 +200,16 @@ class Application extends App {
         /**
          * Controller
          */
+        $container->registerService('UserHooks', 
+                function (IAppContainer $c) {
+                    /** @var \OC\Server $server */
+                    $server = $c->query('ServerContainer');
+                    return new UserHooks($c->query('ServerContainer')
+                        ->getUserManager(), $c->query('OcrJobMapper'), $server->getLogger());
+                });
+        /**
+         * Controller
+         */
         $container->registerAlias('PersonalSettingsController', PersonalSettingsController::class);
     }
 
@@ -208,5 +220,15 @@ class Application extends App {
     public function registerPersonal() {
         \OCP\App::registerPersonal($this->getContainer()
             ->getAppName(), 'personal');
+    }
+
+    /**
+     * Registers the User Hooks.
+     * @codeCoverageIgnore
+     */
+    public function registerHooks() {
+        $this->getContainer()
+            ->query('UserHooks')
+            ->register();
     }
 }

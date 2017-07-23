@@ -24,7 +24,8 @@ export class Worker {
         this.logger = LoggerUtil.build();
         this.ocrProcessingService = OcrProcessingServiceFactory.build();
         this.redisClient = RedisClientFactory.build();
-        this.logger.info(`Application: "OCR worker" initialized.`);
+        this.logger.info(`Application "OCR worker" initialized.`);
+        this.registerProcessTerminationEvent();
     }
 
     /**
@@ -39,6 +40,17 @@ export class Worker {
                 this.logger.error(`${e.message}: ${e.stack}`);
             }
             this.redisClient.lrem('working', 1, jobMessage).then(() => { this.loop(); });
+        });
+    }
+
+    /**
+     * Registers the SIGTERM event for closing the docker container.
+     */
+    public registerProcessTerminationEvent() {
+        process.on('SIGTERM', () => {
+            this.logger.info(`Application "OCR worker" stopped.`);
+            this.redisClient.disconnect();
+            process.exit(0);
         });
     }
 }

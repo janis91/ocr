@@ -132,10 +132,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    View.prototype.displayMessage = function (message, error) {
 	        if (error) {
-	            this.notification.showHtml("<div>" + message + "</div>", { timeout: 10, type: 'error' });
+	            this.notification.showHtml("<div>" + t('ocr', 'OCR') + ": " + message + "</div>", { timeout: 10, type: 'error' });
 	        }
 	        else {
-	            this.notification.showHtml("<div>" + message + "</div>", { timeout: 10 });
+	            this.notification.showHtml("<div>" + t('ocr', 'OCR') + ": " + message + "</div>", { timeout: 10 });
 	        }
 	    };
 	    View.prototype.render = function (jobs) {

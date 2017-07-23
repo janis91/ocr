@@ -3,7 +3,8 @@
 /**
  * Nextcloud - OCR
  * This file is licensed under the Affero General Public License version 3 or
- * later. See the COPYING file.
+ * later.
+ * See the COPYING file.
  * 
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2017
@@ -68,10 +69,11 @@ class OcrJobMapper extends Mapper {
      */
     public function findAllProcessed($userId) {
         $sql = 'SELECT * FROM *PREFIX*ocr_jobs WHERE user_id = ? AND status = ?';
-        return $this->findEntities($sql, [
-                $userId,
-                OcrConstants::STATUS_PROCESSED
-        ]);
+        return $this->findEntities($sql, 
+                [
+                        $userId,
+                        OcrConstants::STATUS_PROCESSED
+                ]);
     }
 
     /**
@@ -83,10 +85,11 @@ class OcrJobMapper extends Mapper {
      */
     public function findAllPending($userId) {
         $sql = 'SELECT * FROM *PREFIX*ocr_jobs WHERE user_id = ? AND status = ?';
-        return $this->findEntities($sql, [
-                $userId,
-                OcrConstants::STATUS_PENDING
-        ]);
+        return $this->findEntities($sql, 
+                [
+                        $userId,
+                        OcrConstants::STATUS_PENDING
+                ]);
     }
 
     /**
@@ -98,10 +101,25 @@ class OcrJobMapper extends Mapper {
      */
     public function findAllFailed($userId) {
         $sql = 'SELECT * FROM *PREFIX*ocr_jobs WHERE user_id = ? AND status = ? AND error_displayed = ?';
+        return $this->findEntities($sql, 
+                [
+                        $userId,
+                        OcrConstants::STATUS_FAILED,
+                        false
+                ]);
+    }
+
+    /**
+     * Deletes all jobs for a given userid.
+     * (For example after user deletion)
+     * 
+     * @param unknown $userId            
+     * @return OcrJob[]
+     */
+    public function deleteAllForUser($userId) {
+        $sql = 'DELETE FROM *PREFIX*ocr_jobs WHERE user_id = ?';
         return $this->findEntities($sql, [
-                $userId,
-                OcrConstants::STATUS_FAILED,
-                false
+                $userId
         ]);
     }
 }

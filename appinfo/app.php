@@ -12,3 +12,4 @@ namespace OCA\Ocr\AppInfo;
 
 $app = new \OCA\Ocr\AppInfo\Application();
 $app->registerPersonal();
+$app->registerHooks();
