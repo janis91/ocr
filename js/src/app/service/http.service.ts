@@ -30,12 +30,13 @@ export class HttpService {
      * @param languages The languages to process the files with.
      * @returns The JQueryXHR object.
      */
-    public startProcess(files: Array<IFile>, languages: Array<string>): JQueryXHR {
+    public startProcess(files: Array<IFile>, languages: Array<string>, replace: boolean): JQueryXHR {
         const reducedFiles: Array<IReducedFile> = this.util.shrinkFilesToReducedFiles(files);
         const options: JQueryAjaxSettings = {
             data: {
                 files: reducedFiles,
                 languages: languages,
+                replace: replace,
             },
             method: 'POST',
             url: this.config.jobEndpoint,

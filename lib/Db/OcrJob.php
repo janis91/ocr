@@ -35,6 +35,8 @@ use JsonSerializable;
  * @method string getOriginalFilename()
  * @method void setErrorLog(string $errorLog)
  * @method string getErrorLog()
+ * @method boolean getReplace()
+ * @method void setReplace(boolean $replace)
  */
 class OcrJob extends Entity implements JsonSerializable {
 
@@ -91,6 +93,12 @@ class OcrJob extends Entity implements JsonSerializable {
      * @var string
      */
     protected $errorLog;
+    
+    /**
+     * 
+     * @var boolean
+     */
+    protected $replace;
 
     /**
      * OcrJob constructor.
@@ -103,10 +111,11 @@ class OcrJob extends Entity implements JsonSerializable {
      * @param string $userId            
      * @param boolean $errorDisplayed            
      * @param string $originalFilename            
-     * @param string $errorLog            
+     * @param string $errorLog  
+     * @param boolean $replace          
      */
     public function __construct($status = null, $source = null, $target = null, $tempFile = null, $type = null, $userId = null, 
-            $errorDisplayed = null, $originalFilename = null, $errorLog = null) {
+            $errorDisplayed = null, $originalFilename = null, $errorLog = null, $replace = null) {
         $this->setStatus($status);
         $this->setSource($source);
         $this->setTarget($target);
@@ -116,6 +125,7 @@ class OcrJob extends Entity implements JsonSerializable {
         $this->setErrorDisplayed($errorDisplayed);
         $this->setOriginalFilename($originalFilename);
         $this->setErrorLog($errorLog);
+        $this->setReplace($replace);
     }
 
     /**
@@ -137,7 +147,8 @@ class OcrJob extends Entity implements JsonSerializable {
                 'userId' => $this->userId,
                 'errorDisplayed' => $this->errorDisplayed,
                 'originalFilename' => $this->originalFilename,
-                'errorLog' => $this->errorLog
+                'errorLog' => $this->errorLog,
+                'replace' => $this->replace
         ];
     }
 }

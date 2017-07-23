@@ -91,7 +91,12 @@ export class Controller {
      * @param event The click event.
      */
     public clickOnOtherEvent(event: any): void {
-        if (this.view.checkClickOther(event)) { this.selectedFiles = []; }
+        if (this.view.checkClickOther(event)) {
+            this.selectedFiles = [];
+            if (this.ocaService.getSelectedFiles().length === 0) {
+                this.view.toggleSelectedFilesActionButton(false);
+            }
+        }
     }
 
     /**
@@ -109,18 +114,18 @@ export class Controller {
             this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'MIME type not supported.')}`);
             this.view.destroyDropdown();
             return;
-        } else {
-            const selectedLanguages: Array<string> = this.view.getSelectTwoValues().length > 0 ? this.view.getSelectTwoValues() : ['any'];
-            this.httpService.startProcess(filteredFiles, selectedLanguages).done(() => {
-                this.togglePendingState(true, filteredFiles.length);
-                this.selectedFiles = [];
-                setTimeout(this.jquery.proxy(this.loopForStatus, this), 4500);
-            }).fail((jqXHR: JQueryXHR) => {
-                this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${jqXHR.responseText}`);
-            }).always(() => {
-                this.view.destroyDropdown();
-            });
         }
+        const selectedLanguages: Array<string> = this.view.getSelectTwoValues().length > 0 ? this.view.getSelectTwoValues() : ['any'];
+        const replace = this.view.getReplaceValue();
+        this.httpService.startProcess(filteredFiles, selectedLanguages, replace).done(() => {
+            this.togglePendingState(true, filteredFiles.length);
+            this.selectedFiles = [];
+            setTimeout(this.jquery.proxy(this.loopForStatus, this), 4500);
+        }).fail((jqXHR: JQueryXHR) => {
+            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${jqXHR.responseText}`);
+        }).always(() => {
+            this.view.destroyDropdown();
+        });
     }
 
     /**

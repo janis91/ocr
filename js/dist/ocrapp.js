@@ -149,12 +149,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    HttpService.prototype.makeRequest = function (opts) {
 	        return this.jquery.ajax(opts);
 	    };
-	    HttpService.prototype.startProcess = function (files, languages) {
+	    HttpService.prototype.startProcess = function (files, languages, replace) {
 	        var reducedFiles = this.util.shrinkFilesToReducedFiles(files);
 	        var options = {
 	            data: {
 	                files: reducedFiles,
 	                languages: languages,
+	                replace: replace,
 	            },
 	            method: 'POST',
 	            url: this.config.jobEndpoint,
@@ -346,6 +347,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Controller.prototype.clickOnOtherEvent = function (event) {
 	        if (this.view.checkClickOther(event)) {
 	            this.selectedFiles = [];
+	            if (this.ocaService.getSelectedFiles().length === 0) {
+	                this.view.toggleSelectedFilesActionButton(false);
+	            }
 	        }
 	    };
 	    Controller.prototype.clickOnProcessButtonEvent = function () {
@@ -361,18 +365,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.view.destroyDropdown();
 	            return;
 	        }
-	        else {
-	            var selectedLanguages = this.view.getSelectTwoValues().length > 0 ? this.view.getSelectTwoValues() : ['any'];
-	            this.httpService.startProcess(filteredFiles, selectedLanguages).done(function () {
-	                _this.togglePendingState(true, filteredFiles.length);
-	                _this.selectedFiles = [];
-	                setTimeout(_this.jquery.proxy(_this.loopForStatus, _this), 4500);
-	            }).fail(function (jqXHR) {
-	                _this.view.displayError(t('ocr', 'OCR processing failed:') + " " + jqXHR.responseText);
-	            }).always(function () {
-	                _this.view.destroyDropdown();
-	            });
-	        }
+	        var selectedLanguages = this.view.getSelectTwoValues().length > 0 ? this.view.getSelectTwoValues() : ['any'];
+	        var replace = this.view.getReplaceValue();
+	        this.httpService.startProcess(filteredFiles, selectedLanguages, replace).done(function () {
+	            _this.togglePendingState(true, filteredFiles.length);
+	            _this.selectedFiles = [];
+	            setTimeout(_this.jquery.proxy(_this.loopForStatus, _this), 4500);
+	        }).fail(function (jqXHR) {
+	            _this.view.displayError(t('ocr', 'OCR processing failed:') + " " + jqXHR.responseText);
+	        }).always(function () {
+	            _this.view.destroyDropdown();
+	        });
 	    };
 	    Controller.prototype.clickOnTopBarSelectedFilesActionButton = function () {
 	        this.view.renderFileAction(undefined, this.availableLanguages);
@@ -514,7 +517,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    View.prototype.renderDropdown = function (languages) {
 	        this.destroyDropdown();
 	        var template = this.ocrDropdownTemplateFunction;
-	        return template({ languages: languages, buttonText: t('ocr', 'Process') });
+	        return template({ languages: languages, buttonText: t('ocr', 'Process'), replaceText: t('ocr', 'Replace') });
 	    };
 	    View.prototype.destroyDropdown = function () {
 	        var dropdown = this.document.getElementById('ocrDropdown');
@@ -563,7 +566,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.appendHtmlToElement(html, tds);
 	        }
 	        else {
-	            this.appendHtmlToElement(html, this.document.querySelectorAll('tr th.column-name'));
+	            this.appendHtmlToElement(html, this.document.querySelectorAll('#app-content-files tr th.column-name'));
 	        }
 	        this.renderSelectTwo();
 	    };
@@ -588,6 +591,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    View.prototype.getSelectTwoValues = function () {
 	        return this.jquery('#ocrLanguage').select2('val');
+	    };
+	    View.prototype.getReplaceValue = function () {
+	        return this.document.getElementById('ocrReplace').checked;
 	    };
 	    View.prototype.renderSelectTwo = function () {
 	        var _this = this;
@@ -712,13 +718,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    + alias2(alias1(depth0, depth0))
 	    + "</option>\n";
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
+	    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "<div id=\"ocrDropdown\" class=\"ocrUserInterface\">\n    <select id=\"ocrLanguage\" class=\"multiselect\" multiple=\"multiple\">\n"
+	  return "<div id=\"ocrDropdown\" class=\"ocrUserInterface\">\n    <div class=\"ocrUserSelection\">\n        <div class=\"ocrUserSelectionReplace\">\n            <input type=\"checkbox\" id=\"ocrReplace\" class=\"checkbox\">\n            <label for=\"ocrReplace\" class=\"ocrUserSelectionReplaceLabel\">"
+	    + alias4(((helper = (helper = helpers.replaceText || (depth0 != null ? depth0.replaceText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"replaceText","hash":{},"data":data}) : helper)))
+	    + "</label>\n        </div>\n        <select id=\"ocrLanguage\" class=\"multiselect\" multiple=\"multiple\">\n"
 	    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.languages : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-	    + "        </select>\n    <input type=\"button\" id=\"processOCR\" class=\"processOCRButton\" value=\""
-	    + container.escapeExpression(((helper = (helper = helpers.buttonText || (depth0 != null ? depth0.buttonText : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"buttonText","hash":{},"data":data}) : helper)))
-	    + "\" />\n</div>";
+	    + "        </select>\n    </div>\n    <div class=\"ocrUserInputSubmit\">\n      <input type=\"button\" id=\"processOCR\" class=\"processOCRButton\" value=\""
+	    + alias4(((helper = (helper = helpers.buttonText || (depth0 != null ? depth0.buttonText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"buttonText","hash":{},"data":data}) : helper)))
+	    + "\" />\n    </div>\n</div>";
 	},"useData":true});
 
 /***/ }),

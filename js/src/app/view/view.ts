@@ -43,7 +43,7 @@ export class View {
     public renderDropdown(languages: Array<string>): string {
         this.destroyDropdown();
         const template = this.ocrDropdownTemplateFunction;
-        return template({ languages: languages, buttonText: this.t('ocr', 'Process') });
+        return template({ languages: languages, buttonText: this.t('ocr', 'Process'), replaceText: this.t('ocr', 'Replace') });
     }
 
     /**
@@ -110,7 +110,7 @@ export class View {
             const tds = tr[0].querySelectorAll('td.filename');
             this.appendHtmlToElement(html, tds);
         } else {
-            this.appendHtmlToElement(html, this.document.querySelectorAll('tr th.column-name'));
+            this.appendHtmlToElement(html, this.document.querySelectorAll('#app-content-files tr th.column-name'));
         }
         this.renderSelectTwo();
     }
@@ -151,8 +151,18 @@ export class View {
         this.removeElement(this.document.getElementById('selectedActionsOCRId'));
     }
 
+    /**
+     * Get the values from select box
+     */
     public getSelectTwoValues(): Array<string> {
         return this.jquery('#ocrLanguage').select2('val');
+    }
+
+    /**
+     * Get value of checkbox
+     */
+    public getReplaceValue(): boolean {
+        return (<HTMLInputElement>this.document.getElementById('ocrReplace')).checked;
     }
 
     /**

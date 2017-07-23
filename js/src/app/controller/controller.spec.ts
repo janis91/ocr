@@ -64,9 +64,21 @@ describe('For the controller', () => {
     });
 
     describe('the clickOnOtherEvent function', () => {
-        it('should set selectedFiles to empty if clicked outside of the dropdown.', () => {
+        it('should set selectedFiles to empty and toggle selected files action button when selected files array is empty if clicked outside of the dropdown.', () => {
             const event = 'test';
             viewMock.checkClickOther.and.returnValue(true);
+            ocaServiceMock.getSelectedFiles.and.returnValue([]);
+
+            cut.clickOnOtherEvent(event);
+
+            expect(viewMock.checkClickOther).toHaveBeenCalledWith(event);
+            expect(cut.selectedFiles).toEqual([]);
+        });
+
+        it('should set selectedFiles to empty and not toggle selected files action button when selected files array is not empty if clicked outside of the dropdown.', () => {
+            const event = 'test';
+            viewMock.checkClickOther.and.returnValue(true);
+            ocaServiceMock.getSelectedFiles.and.returnValue(['test']);
 
             cut.clickOnOtherEvent(event);
 

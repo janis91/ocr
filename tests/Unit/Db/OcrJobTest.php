@@ -28,6 +28,7 @@ class OcrJobTest extends TestCase {
         $job->setErrorDisplayed(true);
         $job->setOriginalFilename('originalFilename');
         $job->setErrorLog('errorLog');
+        $job->setReplace(true);
         $this->assertEquals(3, $job->getId());
         $this->assertEquals('status', $job->getStatus());
         $this->assertEquals('source', $job->getSource());
@@ -38,6 +39,7 @@ class OcrJobTest extends TestCase {
         $this->assertEquals(true, $job->getErrorDisplayed());
         $this->assertEquals('originalFilename', $job->getOriginalFilename());
         $this->assertEquals('errorLog', $job->getErrorLog());
+        $this->assertEquals(true, $job->getReplace());
     }
 
     public function testSerialize() {
@@ -52,6 +54,7 @@ class OcrJobTest extends TestCase {
         $job->setErrorDisplayed(true);
         $job->setOriginalFilename('originalFilename');
         $job->setErrorLog('errorLog');
+        $job->setReplace(true);
         $this->assertEquals(
                 [
                         'id' => 3,
@@ -63,7 +66,8 @@ class OcrJobTest extends TestCase {
                         'type' => 'type',
                         'errorDisplayed' => true,
                         'originalFilename' => 'originalFilename',
-                        'errorLog' => 'errorLog'
+                        'errorLog' => 'errorLog',
+                        'replace' => true
                 ], $job->jsonSerialize());
     }
 }

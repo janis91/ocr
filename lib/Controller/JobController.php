@@ -59,12 +59,13 @@ class JobController extends Controller {
      * @param string[] $languages
      *            - deu, eng...
      * @param array $files            
+     * @param boolean $replace            
      * @return DataResponse
      */
-    public function process($languages, $files) {
+    public function process($languages, $files, $replace) {
         return $this->handleNotFound(
-                function () use ($languages, $files) {
-                    return $this->service->process($languages, $files);
+                function () use ($languages, $files, $replace) {
+                    return $this->service->process($languages, $files, $replace);
                 });
     }
 
