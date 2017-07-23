@@ -39,9 +39,9 @@ class JobControllerTest extends TestCase {
         $message = 'PROCESSING';
         $this->jobServiceMock->expects($this->once())
             ->method('process')
-            ->with($this->equalTo('language'), $this->equalTo('files'))
+            ->with('language', 'files', true)
             ->will($this->returnValue($message));
-        $result = $this->cut->process('language', 'files');
+        $result = $this->cut->process('language', 'files', true);
         $this->assertEquals($message, $result->getData());
         $this->assertEquals(Http::STATUS_OK, $result->getStatus());
     }
@@ -51,7 +51,7 @@ class JobControllerTest extends TestCase {
         $this->jobServiceMock->expects($this->once())
             ->method('process')
             ->will($this->throwException(new NotFoundException($message)));
-        $result = $this->cut->process('', '');
+        $result = $this->cut->process('', '', false);
         $this->assertEquals($message, $result->getData());
         $this->assertEquals(Http::STATUS_NOT_FOUND, $result->getStatus());
     }

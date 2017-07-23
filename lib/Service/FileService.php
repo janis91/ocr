@@ -56,14 +56,15 @@ class FileService {
      * @var IL10N
      */
     private $l10n;
-    
+
     /**
-     * 
+     *
      * @var FileUtil
      */
     private $fileUtil;
 
-    public function __construct(IL10N $l10n, ILogger $logger, $userId, FileMapper $fileMapper, ShareMapper $shareMapper, FileUtil $fileUtil) {
+    public function __construct(IL10N $l10n, ILogger $logger, $userId, FileMapper $fileMapper, ShareMapper $shareMapper, 
+            FileUtil $fileUtil) {
         $this->l10n = $l10n;
         $this->logger = $logger;
         $this->userId = $userId;
@@ -94,13 +95,14 @@ class FileService {
      * 
      * @param File $fileInfo            
      * @param boolean $shared            
+     * @param boolean $replace            
      * @return string
      */
-    public function buildTarget($fileInfo, $shared) {
+    public function buildTarget($fileInfo, $shared, $replace) {
         if ($shared) {
-            $target = $this->buildTargetForShared($fileInfo);
+            $target = $this->buildTargetForShared($fileInfo, $replace);
         } else {
-            $target = $this->buildTargetNotForShared($fileInfo);
+            $target = $this->buildTargetNotForShared($fileInfo, $replace);
         }
         return $target;
     }
@@ -163,9 +165,10 @@ class FileService {
      * Returns a not existing file name for pdf or image processing.
      * 
      * @param File $fileInfo            
+     * @param boolean $replace            
      * @return string
      */
-    private function buildTargetForShared(File $fileInfo) {
+    private function buildTargetForShared(File $fileInfo, $replace) {
         $share = $this->shareMapper->find($fileInfo->getFileid(), $this->userId, 
                 str_replace('home::', '', $fileInfo->getStoragename()));
         // get rid of the .png or .pdf and so on
@@ -185,10 +188,17 @@ class FileService {
         }
         if ($fileInfo->getMimetype() === OcrConstants::MIME_TYPE_PDF) {
             // PDFs:
-            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '_OCR.pdf');
+            if ($replace) {
+                if($filePath === '/') {
+                    $filePath = '';
+                }
+                return $filePath . '/'. $fileName . '.pdf';
+            } else {
+                return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.pdf');
+            }
         } else {
             // IMAGES:
-            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '_OCR.txt');
+            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.txt');
         }
     }
 
@@ -196,15 +206,16 @@ class FileService {
      * Returns a not existing file name for PDF or image processing.
      * 
      * @param File $fileInfo            
+     * @param boolean $replace            
      * @return string
      */
-    private function buildTargetNotForShared(File $fileInfo) {
+    private function buildTargetNotForShared(File $fileInfo, $replace) {
         // get rid of the .png or .pdf and so on
         // 'thedom.png' => 'thedom'
-        $fileName = substr($fileInfo->getName(), 0, (strrpos($fileInfo->getName(), '.'))); 
+        $fileName = substr($fileInfo->getName(), 0, (strrpos($fileInfo->getName(), '.')));
         // eliminate the file name from the path
         // 'files/Test/thedom.png' => 'files/Test/' || 'files/thedom.png' => 'files/'
-        $filePath = str_replace($fileInfo->getName(), '', $fileInfo->getPath()); 
+        $filePath = str_replace($fileInfo->getName(), '', $fileInfo->getPath());
         // and get the path on top of the files/ dir
         // 'files/Test/' => '/Test/' || 'files/' => '/'
         $filePath = str_replace('files', '', $filePath);
@@ -219,10 +230,17 @@ class FileService {
         }
         if ($fileInfo->getMimetype() === OcrConstants::MIME_TYPE_PDF) {
             // PDFs:
-            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '_OCR.pdf');
+            if ($replace) {
+                if($filePath === '/') {
+                    $filePath = '';
+                }
+                return $filePath . '/' . $fileName . '.pdf';
+            } else {
+                return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.pdf');
+            }
         } else {
             // IMAGES:
-            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '_OCR.txt');
+            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.txt');
         }
     }
 

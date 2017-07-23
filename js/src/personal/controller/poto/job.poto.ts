@@ -3,6 +3,7 @@ export class Job implements IJob {
     private _status: string;
     private _originalFilename: string;
     private _errorLog: string;
+    private _replace: string;
 
     public get id(): number {
         return this._id;
@@ -35,6 +36,14 @@ export class Job implements IJob {
     public set errorLog(value: string) {
         this._errorLog = value;
     }
+
+    public get replace(): string {
+        return this._replace;
+    }
+
+    public set replace(value: string) {
+        this._replace = value;
+    }
 }
 
 export interface IJob {
@@ -42,4 +51,5 @@ export interface IJob {
     status: string;
     originalFilename: string;
     errorLog: string;
+    replace: string;
 }

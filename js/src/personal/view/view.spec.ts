@@ -39,7 +39,7 @@ describe('For the view', () => {
 
     describe('the render function', () => {
         it('should render and append the table.', () => {
-            const jobs: Array<IJob> = [{ id: 1, status: 'FAILED', originalFilename: 'file.jpeg', errorLog: 'Failure' }];
+            const jobs: Array<IJob> = [{ id: 1, status: 'FAILED', originalFilename: 'file.jpeg', errorLog: 'Failure', replace: '1' }];
             spyOn(cut, 'appendHtmlToElement');
             spyOn(cut, 'renderTable').and.returnValue('html');
 
@@ -63,7 +63,7 @@ describe('For the view', () => {
 
     describe('the renderTable function', () => {
         it('should return the rendered template for non empty jobs array.', () => {
-            const jobs: Array<IJob> = [{ id: 1, status: 'FAILED', originalFilename: 'file.jpeg', errorLog: 'Failure' }];
+            const jobs: Array<IJob> = [{ id: 1, status: 'FAILED', originalFilename: 'file.jpeg', errorLog: 'Failure', replace: '1' }];
             handlebarsTableTemplateFunctionMock.and.returnValue('template');
 
             const result = cut.renderTable(jobs);
@@ -78,6 +78,7 @@ describe('For the view', () => {
                 tableHeadFileText: 'File',
                 tableHeadJobText: 'Status',
                 tableHeadLogText: 'Log',
+                tableHeadReplaceText: 'Replace by result',
             });
             expect(result).toBe('template');
         });
@@ -98,6 +99,7 @@ describe('For the view', () => {
                 tableHeadFileText: 'File',
                 tableHeadJobText: 'Status',
                 tableHeadLogText: 'Log',
+                tableHeadReplaceText: 'Replace by result',
             });
             expect(result).toBe('template');
         });

@@ -1,8 +1,16 @@
 <div id="ocrDropdown" class="ocrUserInterface">
-    <select id="ocrLanguage" class="multiselect" multiple="multiple">
+    <div class="ocrUserSelection">
+        <div class="ocrUserSelectionReplace">
+            <input type="checkbox" id="ocrReplace" class="checkbox">
+            <label for="ocrReplace" class="ocrUserSelectionReplaceLabel">{{replaceText}}</label>
+        </div>
+        <select id="ocrLanguage" class="multiselect" multiple="multiple">
             {{#each languages}}
                 <option value="{{this}}">{{this}}</option>
             {{/each}}
         </select>
-    <input type="button" id="processOCR" class="processOCRButton" value="{{buttonText}}" />
+    </div>
+    <div class="ocrUserInputSubmit">
+      <input type="button" id="processOCR" class="processOCRButton" value="{{buttonText}}" />
+    </div>
 </div>

@@ -29,6 +29,7 @@ describe('For the http service', () => {
 
     describe('the process function', () => {
         it('should trigger the process for the right files and languages.', () => {
+            const replace = true;
             const languages = ['deu', 'eng'];
             const file1 = new File();
             file1.id = 1;
@@ -42,12 +43,13 @@ describe('For the http service', () => {
             spyOn(cut, 'makeRequest').and.returnValue(true);
             configMock.jobEndpoint = 'jobEndpoint';
 
-            const result = cut.startProcess(files, languages);
+            const result = cut.startProcess(files, languages, replace);
 
             expect(cut.makeRequest).toHaveBeenCalledWith({
                 data: {
                     files: reducedFiles,
                     languages: languages,
+                    replace: replace,
                 },
                 method: 'POST',
                 url: 'jobEndpoint',

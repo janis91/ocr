@@ -148,6 +148,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    View.prototype.renderTable = function (jobs) {
 	        var template = this.handlebarsTableTemplateFunction;
 	        var enabled = jobs && jobs.length > 0 ? true : false;
+	        jobs.forEach(function (job) {
+	            job.replace = job.replace === '1' ? true : false;
+	        });
 	        return template({
 	            deleteText: t('ocr', 'Delete'),
 	            enabled: enabled,
@@ -158,6 +161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tableHeadFileText: t('ocr', 'File'),
 	            tableHeadJobText: t('ocr', 'Status'),
 	            tableHeadLogText: t('ocr', 'Log'),
+	            tableHeadReplaceText: t('ocr', 'Replace by result'),
 	        });
 	    };
 	    View.prototype.appendHtmlToElement = function (html, el) {
@@ -330,12 +334,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    + "</th>\n            <th>"
 	    + alias4(((helper = (helper = helpers.tableHeadLogText || (depth0 != null ? depth0.tableHeadLogText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadLogText","hash":{},"data":data}) : helper)))
 	    + "</th>\n            <th>"
+	    + alias4(((helper = (helper = helpers.tableHeadReplaceText || (depth0 != null ? depth0.tableHeadReplaceText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadReplaceText","hash":{},"data":data}) : helper)))
+	    + "</th>\n            <th>"
 	    + alias4(((helper = (helper = helpers.tableHeadDeleteFromQueueText || (depth0 != null ? depth0.tableHeadDeleteFromQueueText : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tableHeadDeleteFromQueueText","hash":{},"data":data}) : helper)))
 	    + "</th>\n        </tr>\n    </thead>\n    <tbody>\n"
 	    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.jobs : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
 	    + "    </tbody>\n</table>\n";
 	},"2":function(container,depth0,helpers,partials,data,blockParams,depths) {
-	    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+	    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
 	  return "        <tr data-id=\""
 	    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
@@ -345,10 +351,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    + alias4(((helper = (helper = helpers.status || (depth0 != null ? depth0.status : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"status","hash":{},"data":data}) : helper)))
 	    + "</td>\n            <td>"
 	    + alias4(((helper = (helper = helpers.errorLog || (depth0 != null ? depth0.errorLog : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"errorLog","hash":{},"data":data}) : helper)))
-	    + "</td>\n            <td class=\"ocr-action-delete\">\n                <div id=\"ocr-delete\"><span>"
+	    + "</td>\n            <td><span class=\"icon icon-"
+	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.replace : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.program(5, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
+	    + "\"></span></td>\n            <td class=\"ocr-action-delete\">\n                <div id=\"ocr-delete\"><span>"
 	    + alias4(container.lambda((depths[1] != null ? depths[1].deleteText : depths[1]), depth0))
 	    + "</span><span class=\"icon icon-delete\"></span></div>\n            </td>\n        </tr>\n";
-	},"4":function(container,depth0,helpers,partials,data) {
+	},"3":function(container,depth0,helpers,partials,data) {
+	    return "checkmark";
+	},"5":function(container,depth0,helpers,partials,data) {
+	    return "close";
+	},"7":function(container,depth0,helpers,partials,data) {
 	    var helper;
 
 	  return "<p>"
@@ -357,7 +369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
 	    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-	  return ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.enabled : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.program(4, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
+	  return ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.enabled : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.program(7, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
 	    + "<button id=\"ocr-search\">"
 	    + container.escapeExpression(((helper = (helper = helpers.refreshButtonText || (depth0 != null ? depth0.refreshButtonText : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"refreshButtonText","hash":{},"data":data}) : helper)))
 	    + "</button>";

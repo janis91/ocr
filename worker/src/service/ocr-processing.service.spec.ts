@@ -52,6 +52,32 @@ describe('For the ocr processing service', () => {
             expect(cut.finishJob).toHaveBeenCalledWith(job);
         });
 
+        it('should process the job of type tesseract for empty languages array.', () => {
+            const jobMessage = 'this is a valid job message';
+            const job = new Job();
+            job.type = JobType.TESSERACT;
+            job.tempFile = 'tempFile';
+            job.source = 'source';
+            job.languages = [];
+            incomingJsonMessageToJobTfMock.transform.and.returnValue(job);
+            spyOn(cut, 'finishJob');
+            spawnSyncMock.and.callFake(() => {
+                return { status: 0 };
+            });
+
+            cut.process(jobMessage);
+
+            expect(unlinkSyncMock).toHaveBeenCalledWith(`${Configuration.OUTPUT_PATH}/${job.tempFile}`);
+            expect(spawnSyncMock).toHaveBeenCalledWith('tesseract',
+                [
+                    `${Configuration.INPUT_PATH}/${job.source}`,
+                    `${Configuration.OUTPUT_PATH}/${job.tempFile.replace(/\.[^/.]+$/, '')}`,
+                ],
+                Configuration.SPAWN_SYNC_OPTIONS);
+            expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);
+            expect(cut.finishJob).toHaveBeenCalledWith(job);
+        });
+
         it('should process the job of type ocrmypdf.', () => {
             const jobMessage = 'this is a valid job message';
             const job = new Job();
@@ -72,7 +98,34 @@ describe('For the ocr processing service', () => {
                 [
                     `${Configuration.INPUT_PATH}/${job.source}`,
                     `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
+                    `--skip-text`,
                     `-l`, `${job.languages.join('+')}`,
+                ],
+                Configuration.SPAWN_SYNC_OPTIONS);
+            expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);
+            expect(cut.finishJob).toHaveBeenCalledWith(job);
+        });
+
+        it('should process the job of type ocrmypdf for empty languages array.', () => {
+            const jobMessage = 'this is a valid job message';
+            const job = new Job();
+            job.type = JobType.OCRMYPDF;
+            job.tempFile = 'tempFile';
+            job.source = 'source';
+            job.languages = [];
+            incomingJsonMessageToJobTfMock.transform.and.returnValue(job);
+            spyOn(cut, 'finishJob');
+            spawnSyncMock.and.callFake(() => {
+                return { status: 0 };
+            });
+
+            cut.process(jobMessage);
+
+            expect(unlinkSyncMock).not.toHaveBeenCalled();
+            expect(spawnSyncMock).toHaveBeenCalledWith('ocrmypdf',
+                [
+                    `${Configuration.INPUT_PATH}/${job.source}`,
+                    `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
                     `--skip-text`,
                 ],
                 Configuration.SPAWN_SYNC_OPTIONS);
@@ -100,8 +153,8 @@ describe('For the ocr processing service', () => {
                 [
                     `${Configuration.INPUT_PATH}/${job.source}`,
                     `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
-                    `-l`, `${job.languages.join('+')}`,
                     `--skip-text`,
+                    `-l`, `${job.languages.join('+')}`,
                 ],
                 Configuration.SPAWN_SYNC_OPTIONS);
             expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);

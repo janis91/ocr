@@ -1,4 +1,6 @@
 #Changelog
+nextcloud-ocr (3.0.0-beta.9)
+* **Feature**: Now files can be replaced by selecting a checkbox.
 nextcloud-ocr (3.0.0-beta.8)
 * **Upcoming Release**: The next major release of OCR is here soon. Some tests have too pass before I will publish it. But This is kind of a Release Candidate.
 * **Security**: Added the possibility to specify a password for Redis and added the respective configuration.

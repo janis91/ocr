@@ -54,6 +54,9 @@ export class View {
     public renderTable(jobs: Array<IJob>): string {
         const template = this.handlebarsTableTemplateFunction;
         const enabled: boolean = jobs && jobs.length > 0 ? true : false;
+        jobs.forEach((job: any) => {
+            job.replace = job.replace === '1' ? true : false;
+        });
         return template({
             deleteText: this.t('ocr', 'Delete'),
             enabled: enabled,
@@ -64,6 +67,7 @@ export class View {
             tableHeadFileText: this.t('ocr', 'File'),
             tableHeadJobText: this.t('ocr', 'Status'),
             tableHeadLogText: this.t('ocr', 'Log'),
+            tableHeadReplaceText: this.t('ocr', 'Replace by result'),
         });
     }
 

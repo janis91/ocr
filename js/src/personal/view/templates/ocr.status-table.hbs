@@ -5,6 +5,7 @@
             <th>{{ tableHeadFileText }}</th>
             <th>{{ tableHeadJobText }}</th>
             <th>{{ tableHeadLogText }}</th>
+            <th>{{ tableHeadReplaceText }}</th>
             <th>{{ tableHeadDeleteFromQueueText }}</th>
         </tr>
     </thead>
@@ -14,6 +15,7 @@
             <td>{{ originalFilename }}</td>
             <td>{{ status }}</td>
             <td>{{ errorLog }}</td>
+            <td><span class="icon icon-{{#if replace}}checkmark{{else}}close{{/if}}"></span></td>
             <td class="ocr-action-delete">
                 <div id="ocr-delete"><span>{{ ../deleteText }}</span><span class="icon icon-delete"></span></div>
             </td>

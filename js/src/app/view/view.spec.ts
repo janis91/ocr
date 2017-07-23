@@ -46,7 +46,7 @@ describe('For the view', () => {
             const result = cut.renderDropdown(languages);
 
             expect(cut.destroyDropdown).toHaveBeenCalled();
-            expect(handlebarsDropdownTemplateMock).toHaveBeenCalledWith({ languages: languages, buttonText: 'Process' });
+            expect(handlebarsDropdownTemplateMock).toHaveBeenCalledWith({ languages: languages, buttonText: 'Process', replaceText: 'Replace' });
             expect(result).toBe('template');
         });
     });
@@ -259,6 +259,20 @@ describe('For the view', () => {
 
             expect(cut.destroySelectedFilesActionButton).toHaveBeenCalled();
             expect(cut.destroyDropdown).toHaveBeenCalled();
+        });
+    });
+
+    describe('the getReplaceValue function', () => {
+        it('should get the value from the checkbox.', () => {
+            let element = {
+                checked: true,
+            };
+            documentMock.getElementById.and.returnValue(element);
+
+            const result = cut.getReplaceValue();
+
+            expect(documentMock.getElementById).toHaveBeenCalledWith('ocrReplace');
+            expect(result).toBeTruthy();
         });
     });
 });
