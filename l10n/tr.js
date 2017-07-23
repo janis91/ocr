@@ -45,7 +45,6 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Dört boyutlu küp için geçici dosya oluşturulurken geçici dosya silinemedi.",
     "Cannot create temporary file for Tesseract." : "Dört boyutlu küp için geçici dosya oluşturulamadı.",
     "Cannot set permissions for temporary Tesseract file." : "Dört boyutlu küp için geçici dosya izinleri ayarlanamadı.",
-    "Message queueing capabilities are missing on the server." : "Sunucu üzerinde iletileri kuyruğa ekleme yeteneği yok.",
     "Cannot connect to Redis." : "Redis bağlantısı kurulamadı.",
     "Cannot connect to the right Redis database." : "Doğru Redis veritabanına bağlanılamadı.",
     "Optical character recognition (OCR)" : "Optik Karakter Tanıma (OCR)",

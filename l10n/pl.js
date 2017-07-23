@@ -44,7 +44,6 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Nie można skasować pliku tymczasowego podczas tworzenia pliku tymczasowego dla Tesseract.",
     "Cannot create temporary file for Tesseract." : "Nie można utworzyć pliku tymczasowego dla Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "Nie można nadać odpowiednich uprawnień dla pliku tymczasowego Tesseract.",
-    "Message queueing capabilities are missing on the server." : "Możliwości kolejkowania wiadomości są nieobecne na tym serwerze.",
     "Cannot connect to Redis." : "Nie można się połączyć z Redis.",
     "Cannot connect to the right Redis database." : "Nie można się połączyć z właściwą bazą danych Redis. ",
     "Optical character recognition (OCR)" : "Rozpoznawanie pisma (OCR)",

@@ -43,7 +43,6 @@
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Невозможно удалить созданный для Tesseract временный файл.",
     "Cannot create temporary file for Tesseract." : "Невозможно создать временный файл для Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "Невозможно задать права доступа к созданному для Tesseract временному файлу",
-    "Message queueing capabilities are missing on the server." : "На сервере отсутствуют инструменты для опроса очереди сообщений.",
     "Cannot connect to Redis." : "Невозможно подключиться к Redis",
     "Cannot connect to the right Redis database." : "Невозможно подключиться к верной базе данных Redis",
     "Optical character recognition (OCR)" : "Оптическое распознавание символов (ОРС)",

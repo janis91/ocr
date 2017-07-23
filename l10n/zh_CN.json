@@ -43,7 +43,6 @@
     "Cannot delete temporary file during creation of temp file for Tesseract." : "在Tesseract创建临时文件期间无法删除临时文件",
     "Cannot create temporary file for Tesseract." : "Tesseract无法创建临时文件",
     "Cannot set permissions for temporary Tesseract file." : "Tesseract临时文件授权失败",
-    "Message queueing capabilities are missing on the server." : "服务器消息队列功能缺失",
     "Cannot connect to Redis." : "Redis无法连接",
     "Cannot connect to the right Redis database." : "无法连接到正确的Redis数据库",
     "Optical character recognition (OCR)" : "图型识别(OCR)",
