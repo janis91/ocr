@@ -30,6 +30,7 @@ OC.L10N.register(
     "The job for the following file object has been successfully deleted:" : "Aufgabe für folgendes Datei-Objekt wurde gelöscht:",
     "Error during deletion:" : "Fehler beim Löschen:",
     "Saved" : "Gespeichert",
+    "Please setup Redis in the administration settings first." : "Bitte erst Redis in den Administrator-Einstellungen einrichten.",
     "The given settings key is empty." : "Der eingegebenen Einstellungs-Schlüssel ist leer.",
     "The Redis host is not specified in the correct format." : "Der Redis-Host wurde im falschen Format angegeben.",
     "The Redis port number is not specified in the correct format." : "Die Redis-Portnummer wurde im falschen Format angegeben.",
@@ -46,7 +47,9 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Kann temporäre Datei während der Erstellung der temporären Datei für Tesseract nicht löschen.",
     "Cannot create temporary file for Tesseract." : "Kann temporäre Datei für Tesseract nicht erstellen. ",
     "Cannot set permissions for temporary Tesseract file." : "Kann Berechtigungen der temporären Datei für Tesseract nicht setzen. ",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Dem Server (package php-redis) fehlen die Fähigkeiten für Nachrichten-Warteschlangen.",
     "Cannot connect to Redis." : "Kann nicht zu Redis verbinden.",
+    "Redis authentication error." : "Redis-Authentifizierungsfehler.",
     "Cannot connect to the right Redis database." : "Kann nicht zur richtigen Redis-Datenbank verbinden.",
     "Optical character recognition (OCR)" : "Texterkennung (OCR)",
     "Installed languages" : "Installierte Sprachen",
@@ -57,6 +60,8 @@ OC.L10N.register(
     "Redis port" : "Redis-Port",
     "The corresponding port (normally 6379)." : "Der zugehörige Port (normalerweise 6379).",
     "Redis database" : "Redis Datenbank",
-    "The Redis database (normally 0)." : "Die Redis Datenbank (normalerweise 0)"
+    "The Redis database (normally 0)." : "Die Redis Datenbank (normalerweise 0)",
+    "Redis password" : "Redis-Passwort",
+    "The password to authenticate (normally OCR)." : "Das Passwort zum authentifizieren (normalerweise optische Zeichenerkennung, OCR)"
 },
 "nplurals=2; plural=(n != 1);");

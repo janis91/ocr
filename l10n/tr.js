@@ -30,9 +30,11 @@ OC.L10N.register(
     "The job for the following file object has been successfully deleted:" : "Şu dosya nesnesinin işi silindi:",
     "Error during deletion:" : "Silinirken sorun çıktı:",
     "Saved" : "Saved",
+    "Please setup Redis in the administration settings first." : "Lütfen önce yönetim ayarları bölümünden Redis kurulumunu yapın.",
     "The given settings key is empty." : "Belirtilen ayar anahtarı boş.",
     "The Redis host is not specified in the correct format." : "Redis sunucusu doğru biçimde belirtilmemiş.",
     "The Redis port number is not specified in the correct format." : "Redis kapı numarası doğru biçimde belirtilmemiş.",
+    "The Redis DB is not specified in the correct format." : "Redis veritabanı doğru biçimde belirtilmemiş.",
     "Wrong parameter." : "Parametre doğru değil.",
     "Wrong MIME type." : "MIME türü doğru değil.",
     "Empty parameters passed." : "Boş parametre gönderildi.",
@@ -45,7 +47,9 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Dört boyutlu küp için geçici dosya oluşturulurken geçici dosya silinemedi.",
     "Cannot create temporary file for Tesseract." : "Dört boyutlu küp için geçici dosya oluşturulamadı.",
     "Cannot set permissions for temporary Tesseract file." : "Dört boyutlu küp için geçici dosya izinleri ayarlanamadı.",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Sunucu üzerinde iletileri kuyruğa ekleme yeteneği yok (php-redis paketi).",
     "Cannot connect to Redis." : "Redis bağlantısı kurulamadı.",
+    "Redis authentication error." : "Redis kimlik doğrulama sorunu.",
     "Cannot connect to the right Redis database." : "Doğru Redis veritabanına bağlanılamadı.",
     "Optical character recognition (OCR)" : "Optik Karakter Tanıma (OCR)",
     "Installed languages" : "Kurulmuş diller",
@@ -56,6 +60,8 @@ OC.L10N.register(
     "Redis port" : "Redis kapı numarası",
     "The corresponding port (normally 6379)." : "Uygun kapı numarası (normal olarak 6379).",
     "Redis database" : "Redis veritabanı",
-    "The Redis database (normally 0)." : "Redis veritabanı (normal olarak 0)."
+    "The Redis database (normally 0)." : "Redis veritabanı (normal olarak 0).",
+    "Redis password" : "Redis parolası",
+    "The password to authenticate (normally OCR)." : "Kimlik doğrulama parolası (normal olarak OCR)."
 },
 "nplurals=2; plural=(n > 1);");

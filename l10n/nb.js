@@ -30,6 +30,7 @@ OC.L10N.register(
     "The job for the following file object has been successfully deleted:" : "Jobben for følgende filobjekt har blitt slettet:",
     "Error during deletion:" : "Feil under sletting:",
     "Saved" : "Lagret",
+    "Please setup Redis in the administration settings first." : "Sett opp Redis i administrasjonsinnstillingene først.",
     "The given settings key is empty." : "Den angitte innstillingsnøkkelen er tom.",
     "The Redis host is not specified in the correct format." : "Redis-verten er ikke oppgitt i riktig format.",
     "The Redis port number is not specified in the correct format." : "Redis-portnummeret er ikke oppgitt i riktig format.",
@@ -46,7 +47,9 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Kan ikke slette midlertidig fil under opprettelse av midlertidig fil for Tesseract.",
     "Cannot create temporary file for Tesseract." : "Kan ikke opprette midlertidig fil for Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "Kan ikke sette tilganger for midlertidig Tesseract-fil.",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Muligheter for å legge meldinger i kø mangler på tjeneren. (pakken php-redis).",
     "Cannot connect to Redis." : "Kan ikke koble til Redis.",
+    "Redis authentication error." : "Redis-autentiseringsfeil.",
     "Cannot connect to the right Redis database." : "Kan ikke koble til den riktige Redis databasen.",
     "Optical character recognition (OCR)" : "Optisk tegngjenkjenning (OCR)",
     "Installed languages" : "Installerte språk",
@@ -57,6 +60,8 @@ OC.L10N.register(
     "Redis port" : "Redis port",
     "The corresponding port (normally 6379)." : "Tilhørende port (normalt 6379).",
     "Redis database" : "Redis database",
-    "The Redis database (normally 0)." : "Redis databasen (normalt 0)."
+    "The Redis database (normally 0)." : "Redis databasen (normalt 0).",
+    "Redis password" : "Redis-passord",
+    "The password to authenticate (normally OCR)." : "Passordet for å autentisere (normalt OCR)."
 },
 "nplurals=2; plural=(n != 1);");

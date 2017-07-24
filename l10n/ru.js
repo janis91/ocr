@@ -30,9 +30,11 @@ OC.L10N.register(
     "The job for the following file object has been successfully deleted:" : "Задание для указного файлового объекта было успешно удалено:",
     "Error during deletion:" : "Ошибка удаления:",
     "Saved" : "Сохранено",
+    "Please setup Redis in the administration settings first." : "Для начала настройте Redis в административных настройках, пожалуйста.",
     "The given settings key is empty." : "Указан пустой ключ настроек.",
     "The Redis host is not specified in the correct format." : "Узел Redis указан в неверном формате.",
     "The Redis port number is not specified in the correct format." : "Порт Redis указан в неверном формате",
+    "The Redis DB is not specified in the correct format." : "База Redis не указана или указана не корректно.",
     "Wrong parameter." : "Неверный параметр.",
     "Wrong MIME type." : "Неверный тип MIME. ",
     "Empty parameters passed." : "Переданы пустые параметры.",
@@ -45,7 +47,9 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Невозможно удалить созданный для Tesseract временный файл.",
     "Cannot create temporary file for Tesseract." : "Невозможно создать временный файл для Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "Невозможно задать права доступа к созданному для Tesseract временному файлу",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Для возможности очереди сообщений установите пакет 'php-redis' на сервер.",
     "Cannot connect to Redis." : "Невозможно подключиться к Redis",
+    "Redis authentication error." : "Ошибка при аутентификации Redis.",
     "Cannot connect to the right Redis database." : "Невозможно подключиться к верной базе данных Redis",
     "Optical character recognition (OCR)" : "Оптическое распознавание символов (ОРС)",
     "Installed languages" : "Установленные языки",
@@ -56,6 +60,8 @@ OC.L10N.register(
     "Redis port" : "Порт Redis",
     "The corresponding port (normally 6379)." : "Соответствующий порт (обычно 6379).",
     "Redis database" : "База данных Redis",
-    "The Redis database (normally 0)." : "База данных Redis (обычно 0)."
+    "The Redis database (normally 0)." : "База данных Redis (обычно 0).",
+    "Redis password" : "Пароль Redis",
+    "The password to authenticate (normally OCR)." : "Пароль для аутентификации (обычно OCR)"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

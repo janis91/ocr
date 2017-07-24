@@ -30,9 +30,11 @@ OC.L10N.register(
     "The job for the following file object has been successfully deleted:" : "The job for the following file object has been successfully deleted:",
     "Error during deletion:" : "Error during deletion:",
     "Saved" : "Saved",
+    "Please setup Redis in the administration settings first." : "Please setup Redis in the administration settings first.",
     "The given settings key is empty." : "The given settings key is empty.",
     "The Redis host is not specified in the correct format." : "The Redis host is not specified in the correct format.",
     "The Redis port number is not specified in the correct format." : "The Redis port number is not specified in the correct format.",
+    "The Redis DB is not specified in the correct format." : "The Redis DB is not specified in the correct format.",
     "Wrong parameter." : "Wrong parameter.",
     "Wrong MIME type." : "Wrong MIME type.",
     "Empty parameters passed." : "Empty parameters passed.",
@@ -45,7 +47,9 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Cannot delete temporary file during creation of temp file for Tesseract.",
     "Cannot create temporary file for Tesseract." : "Cannot create temporary file for Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "Cannot set permissions for temporary Tesseract file.",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Message queueing capabilities are missing on the server (package php-redis).",
     "Cannot connect to Redis." : "Cannot connect to Redis.",
+    "Redis authentication error." : "Redis authentication error.",
     "Cannot connect to the right Redis database." : "Cannot connect to the right Redis database.",
     "Optical character recognition (OCR)" : "Optical character recognition (OCR)",
     "Installed languages" : "Installed languages",
@@ -56,6 +60,8 @@ OC.L10N.register(
     "Redis port" : "Redis port",
     "The corresponding port (normally 6379)." : "The corresponding port (normally 6379).",
     "Redis database" : "Redis database",
-    "The Redis database (normally 0)." : "The Redis database (normally 0)."
+    "The Redis database (normally 0)." : "The Redis database (normally 0).",
+    "Redis password" : "Redis password",
+    "The password to authenticate (normally OCR)." : "The password to authenticate (normally OCR)."
 },
 "nplurals=2; plural=(n != 1);");
