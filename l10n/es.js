@@ -30,9 +30,11 @@ OC.L10N.register(
     "The job for the following file object has been successfully deleted:" : "El trabajo para el siguiente objeto de archivo se ha borrado correctamente:",
     "Error during deletion:" : "Error al borrar:",
     "Saved" : "Guardado",
+    "Please setup Redis in the administration settings first." : "Por favor, configura primero Redis en la configuración de administración.",
     "The given settings key is empty." : "La clave de configuración dada está vacía.",
     "The Redis host is not specified in the correct format." : "El servidor Redis no está especificado en el formato correcto.",
     "The Redis port number is not specified in the correct format." : "El número de puerto de Redis no está especificado en el formato correcto.",
+    "The Redis DB is not specified in the correct format." : "La base de datos Redis no se ha especificado en el formato correcto.",
     "Wrong parameter." : "Parámetro erróneo.",
     "Wrong MIME type." : "Tipo MIME erróneo.",
     "Empty parameters passed." : "Parámetros vacíos han sido pasados.",
@@ -45,7 +47,9 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "No se puede borrar el archivo temporal durante la creación del archivo temporal para Tesseract.",
     "Cannot create temporary file for Tesseract." : "No se puede crear el archivo temporal para Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "No se puede cambiar permisos del archivo temporal de Tesseract.",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Faltan en el servidor las capacidades de encolar mensajes (paquete php-redis).",
     "Cannot connect to Redis." : "No se puede conectar a Redis.",
+    "Redis authentication error." : "Error de autenticación de Redis.",
     "Cannot connect to the right Redis database." : "No se puede conectar a la base Redis correcta.",
     "Optical character recognition (OCR)" : "Reconocimiento óptico de caracteres (OCR)",
     "Installed languages" : "Lenguajes instalados",
@@ -56,6 +60,8 @@ OC.L10N.register(
     "Redis port" : "Puerto Redis",
     "The corresponding port (normally 6379)." : "El puerto correspondiente (normalmente, 6379).",
     "Redis database" : "Base de datos Redis",
-    "The Redis database (normally 0)." : "La base de datos Redis (normalmente 0)."
+    "The Redis database (normally 0)." : "La base de datos Redis (normalmente 0).",
+    "Redis password" : "Contraseña de Redis",
+    "The password to authenticate (normally OCR)." : "La contraseña para autenticar (normalmente OCR)."
 },
 "nplurals=2; plural=(n != 1);");
