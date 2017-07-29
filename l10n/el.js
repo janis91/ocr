@@ -52,6 +52,16 @@ OC.L10N.register(
     "Redis authentication error." : "Σφάλμα πιστοποίησης Redis.",
     "Cannot connect to the right Redis database." : "Αδυναμία σύνδεσης στη σωστή βάση δεδομένων Redis.",
     "Optical character recognition (OCR)" : "Οπτική αναγνώριση χαρακτήρων (OCR)",
-    "Installed languages" : "Εγκατεστημένες γλώσσες"
+    "Installed languages" : "Εγκατεστημένες γλώσσες",
+    "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Εδώ εμφανίζεται μια λίστα με γλώσσες διαχωρισμένες με ερωτηματικό που υποστηρίζονται από την εργασία του Docker (περισσότερες πληροφορίες στο wiki στο GitHub).",
+    "Apply" : "Εφαρμογή",
+    "Redis host" : "Διακομιστής Redis",
+    "The host of the Redis instance for communication with the OCR worker." : "Ο διακομιστής της εργασίας του Redis για την επικοινωνία με την εργασία OCR.",
+    "Redis port" : "Θύρα Redis",
+    "The corresponding port (normally 6379)." : "Η θύρα αντιστοίχισης (κανονικά 6379).",
+    "Redis database" : "Βάση δεδομένων Redis",
+    "The Redis database (normally 0)." : "Η βάση δεδομένων του Redis (κανονικά 0).",
+    "Redis password" : "Συνθηματικό Redis",
+    "The password to authenticate (normally OCR)." : "Το συνθηματικό πιστοποίησης (κανονικά OCR)."
 },
 "nplurals=2; plural=(n != 1);");
