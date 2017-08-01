@@ -47,6 +47,7 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "No es posible borrar el archivo durante la creación del archivo temporal para Tesseract.",
     "Cannot create temporary file for Tesseract." : "No es posible crear el archivo temporal para Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "No es posible establecer los permisos para el archivo Tesseract temporal.",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Las capacidades para el encolamiento de mensajes no estan disponibles en el servidor (paquete php-redis).",
     "Cannot connect to Redis." : "No se puede conectar a Redis.",
     "Redis authentication error." : "Error de autenticación de Redis.",
     "Cannot connect to the right Redis database." : "No se puede conectar a la base de datos de Redis correcta.",
