@@ -28,7 +28,10 @@
     "The job for the following file object has been successfully deleted:" : "Jobbet för följande filobjekt har framgångsrikt tagits bort:",
     "Error during deletion:" : "Fel vid borttagande:",
     "Saved" : "Sparad",
+    "Please setup Redis in the administration settings first." : "Vänligen installera Redis i administratörsinställningarna först.",
     "The given settings key is empty." : "Den angivna inställningsnyckeln är tom.",
+    "The Redis host is not specified in the correct format." : "Redis-värden är inte specificerad i korrekt format.",
+    "The Redis port number is not specified in the correct format." : "Redis portnummer är inte specificerat i korrekt format.",
     "The Redis DB is not specified in the correct format." : "The Redis DB är inte specificerat i korrekt format.",
     "Wrong parameter." : "Fel parameter.",
     "Wrong MIME type." : "Fel MIME-typ.",
@@ -43,14 +46,18 @@
     "Cannot create temporary file for Tesseract." : "Kan inte skapa temporär fil för Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "Kan inte sätta rättigheter för temporär Tesseract-fil.",
     "Cannot connect to Redis." : "Kan inte ansluta till Redis.",
+    "Redis authentication error." : "Redis autentiseringsfel.",
+    "Cannot connect to the right Redis database." : "Kan inte ansluta till Redis databas",
     "Optical character recognition (OCR)" : "Optisk teckenigenkänning (OCR)",
     "Installed languages" : "Installerade språk",
     "Apply" : "Applicera",
     "Redis host" : "Redis-värd",
+    "The host of the Redis instance for communication with the OCR worker." : "Värden för Redis-instansen för kommunikation med OCR-motorn.",
     "Redis port" : "Redis-port",
     "The corresponding port (normally 6379)." : "Korresponderande port (normalt 6379).",
     "Redis database" : "Redis databas",
     "The Redis database (normally 0)." : "Redis-databasen (normalt 0).",
-    "Redis password" : "Redis-lösenord"
+    "Redis password" : "Redis-lösenord",
+    "The password to authenticate (normally OCR)." : "Lösenordet för att autentisera (vanligtvis OCR)."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
