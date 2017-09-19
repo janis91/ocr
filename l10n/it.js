@@ -15,6 +15,7 @@ OC.L10N.register(
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "Nessuna lingua disponibile per l'elaborazione OCR. Assicurati di configurare le lingue nella sezione di amministrazione.",
     "Available languages could not be retrieved:" : "Le lingue disponibili non possono essere recuperate:",
     "Process" : "Elabora",
+    "Replace" : "Sostituisci",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR avviato: %n nuovo file in coda.","OCR avviato: %n nuovi file in coda."],
     "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n file in coda.","OCR: %n file in coda."],
     "No matches found." : "Nessuna corrispondenza trovata.",
