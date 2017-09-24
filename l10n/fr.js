@@ -2,9 +2,9 @@ OC.L10N.register(
     "ocr",
     {
     "Saved." : "Sauvegardé.",
-    "Saving languages failed:" : "Échec de la sauvergarde des langues :",
+    "Saving languages failed:" : "Échec de la sauvegarde des langues :",
     "The languages are not specified in the correct format." : "Les langues ne sont pas spécifiées dans le format correct.",
-    "Saving Redis settings failed:" : "Échec de la sauvergarde des paramètres de Redis :",
+    "Saving Redis settings failed:" : "Échec de la sauvegarde des paramètres de Redis :",
     "The Redis settings are not specified in the right format." : "Les paramètres de Redis ne sont pas spécifiés dans le bon format.",
     "OCR" : "OCR",
     "OCR processing failed:" : "Le traitement OCR a échoué :",
