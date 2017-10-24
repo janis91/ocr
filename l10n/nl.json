@@ -25,6 +25,7 @@
     "File" : "Bestand",
     "Status" : "Toestand",
     "Log" : "Log",
+    "Replace by result" : "Vervang bij resultaat",
     "OCR jobs could not be retrieved:" : "OCR toestand kon niet worden teruggehaald:",
     "The job for the following file object has been successfully deleted:" : "De taak voor het bestand object is succesvol verwijderd:",
     "Error during deletion:" : "Fout tijdens verwijderen:",
