@@ -2,6 +2,7 @@ OC.L10N.register(
     "ocr",
     {
     "Saved." : "Uloženo.",
+    "Saving languages failed:" : "Ukládání jazyků se nezdařilo:",
     "The languages are not specified in the correct format." : "Jazyky nejsou zadány ve správném formátu.",
     "Saving Redis settings failed:" : "Uložení nastavení Redis se nezdařilo:",
     "The Redis settings are not specified in the right format." : "Nastavení Redis nejsou zadány ve správném formátu.",
@@ -59,7 +60,12 @@ OC.L10N.register(
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Zde jde středníkem oddělený seznam jazyků, které jsou podporovány pracovní instancí Dockeru (další podrobnosti ve wiki na GitHub).",
     "Apply" : "Použít",
     "Redis host" : "Hostitel Redis",
+    "The host of the Redis instance for communication with the OCR worker." : "Hostitel instance Redis pro komunikaci s OCR.",
     "Redis port" : "Redis port",
+    "The corresponding port (normally 6379)." : "Odpovídající port (obvykle 6379).",
+    "Redis database" : "Databáze Redis",
+    "The Redis database (normally 0)." : "Databáze Redis (obvykle 0)",
+    "Redis password" : "Heslo Redis",
     "The password to authenticate (normally OCR)." : "Heslo pro ověření (obvykle OCR)."
 },
 "nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");
