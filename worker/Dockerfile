@@ -13,6 +13,10 @@ ARG LANGUAGES="tesseract-ocr-fra tesseract-ocr-spa tesseract-ocr-deu"
 RUN groupadd --gid 1000 node \
     && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
+# Lang
+ENV LC_ALL="C.UTF-8"
+ENV LANG="C.UTF-8"
+
 # Tesseract / languages
 # For now leave tess4 because of bad performance RUN add-apt-repository ppa:alex-p/tesseract-ocr -y   && \
 RUN apt-get update && apt-get install -y --no-install-recommends \
