@@ -60,6 +60,11 @@ nbproject
 # JS node_modules and dist
 npm-debug.log
 /js/spec/tsc-out
+/js/dist
 
 # General node_modules
 */node_modules
+
+# release files
+/release
+ocr.tar.gz

@@ -8,96 +8,87 @@ addons:
     - mysql-client-5.6
 language: php
 php:
-  - 5.6
-  - 7.0
-  - 7.1
-
+- 5.6
+- 7.0
+- 7.1
 env:
   global:
-    - CORE_BRANCH=stable12
-    - APP_NAME=ocr
+  - CORE_BRANCH=stable12
+  - APP_NAME=ocr
   matrix:
-    - DB=sqlite
-
+  - DB=sqlite
 branches:
   only:
-    - master
-
+  - master
 before_install:
-  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
-  - . ./before_install.sh $APP_NAME $CORE_BRANCH $DB
-
-  # Add nodejs for javascript testing
-  - nvm install 6
-  - nvm use 6
-
-  # Add some output debugging information
-  - cd ../server
-  - ./occ check
-  - ./occ status
-  - ./occ app:list
-  - ./occ app:enable $APP_NAME
-  - ./occ app:list
-  - cd apps/$APP_NAME/
-
-  # Setup behat for integration tests
-  #- cd tests/Integration/
-  #- sh -c "if [ '$INTEGRATION' = '1' ]; then composer install; fi"
-  #- cd ../../
-
+- echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+- wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+- ". ./before_install.sh $APP_NAME $CORE_BRANCH $DB"
+- nvm install 6
+- nvm use 6
+- cd ../server
+- "./occ check"
+- "./occ status"
+- "./occ app:list"
+- "./occ app:enable $APP_NAME"
+- "./occ app:list"
+- cd apps/$APP_NAME/
 script:
-  # Test the app
-  - sh -c "if [ '$CODECHECK' = '1' ]; then find . -name \*.php -exec php -l \"{}\" \;; fi"
-  - cd ../../
-  - sh -c "if [ '$CODECHECK' = '1' ]; then ./occ app:check-code $APP_NAME -c private -c strong-comparison; fi"
-  - sh -c "if [ '$CODECHECK' = '2' ]; then ./occ app:check-code $APP_NAME -c deprecation; fi"
-  - cd apps/$APP_NAME/
-
-  # Run phpunit tests
-  - cd tests/Unit
-  - sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' ]; then phpunit --configuration phpunit.xml; fi"
-  - cd ../..
-
-  # Install worker deps and run unit tests
-  - cd worker
-  - sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
-  - sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build; fi"
-  - cd ..
-
-  # Install js deps and run unit tests
-  - cd js
-  - sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
-  - sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build; fi"
-  - cd ..
-
-  # Integration tests
-  #- cd tests/Integration
-  #- sh -c "if [ '$INTEGRATION' = '1' ]; then bash run.sh; fi"
-  #- cd ../..
-
-  # Create coverage report
-  - cd tests/Unit
-  - sh -c "if [ '$COVERAGE' = '1' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
-  - sh -c "if [ '$COVERAGE' = '1' ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi"
-  - cd ../..
-
+- sh -c "if [ '$CODECHECK' = '1' ]; then find . -name \*.php -exec php -l \"{}\" \;; fi"
+- cd ../../
+- sh -c "if [ '$CODECHECK' = '1' ]; then ./occ app:check-code $APP_NAME -c private -c strong-comparison; fi"
+- sh -c "if [ '$CODECHECK' = '2' ]; then ./occ app:check-code $APP_NAME -c deprecation; fi"
+- cd apps/$APP_NAME/
+- cd tests/Unit
+- sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' -a '$RELEASE' != '1' ]; then phpunit --configuration phpunit.xml; fi"
+- cd ../..
+- cd worker
+- sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
+- sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build;
+  fi"
+- cd ..
+- cd js
+- sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
+- sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build; fi"
+- cd ..
+- cd tests/Unit
+- sh -c "if [ '$COVERAGE' = '1' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
+- sh -c "if [ '$COVERAGE' = '1' ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi"
+- cd ../..
 matrix:
   include:
-    - php: 7.0
-      env: DB=mysql
-    - php: 7.0
-      env: DB=pgsql
-    - php: 7.0
-      env: DB=mysql;CODECHECK=1
-    - php: 7.0
-      env: DB=mysql;CODECHECK=2
-    - php: 7.0
-      env: DB=mysql;INTEGRATION=1
-    - php: 7.0
-      env: DB=mysql;JSTESTS=1
-    - php: 7.0
-      env: DB=mysql;COVERAGE=1
+  - php: 7.0
+    env: DB=mysql
+  - php: 7.0
+    env: DB=pgsql
+  - php: 7.0
+    env: DB=mysql;CODECHECK=1
+  - php: 7.0
+    env: DB=mysql;CODECHECK=2
+  - php: 7.0
+    env: DB=mysql;INTEGRATION=1
+  - php: 7.0
+    env: DB=mysql;JSTESTS=1
+  - php: 7.0
+    env: DB=mysql;COVERAGE=1
+  - php: 7.0
+    env: DB=mysql;RELEASE=1
   allow_failures:
-    - env: DB=mysql;CODECHECK=2
+  - env: DB=mysql;CODECHECK=2
 fast_finish: true
+before_deploy:
+- sh build_release.sh
+- git config --local user.name "janis91"
+- git config --local user.email "janiskoehr@icloud.com"
+- git tag "$(grep -oPm1 "(?<=<version>)[^<]+" appinfo/info.xml)"
+deploy:
+  provider: releases
+  skip_cleanup: true
+  overwrite: true
+  api_key:
+    secure: rblLFytrl6G18z7H7f3cQcgJHYU6Hk7rrSpzlG0gMFfsWfgUKhHrj5no7/nO9rciK6TKlaj20mXK512oaZRIou9uj+hN4yVZA6bUsaQU4jL51JB/KHi5BMH7x6rU7lG2YbAk2LhGd1jIUcn9NB0KWB8fnfFKdCuGPSL/ebB8EwKYNgNuc/T3Wo1e75AnZRd8wzybGMlnpGnjoWLpqhOYRgEm4463vrBBszPLFY9Nd4Fvhv6R1P8clsEC3EwJRhSlOQztEUk0EnNRW1dSJqPMJMI+N8CuN0YBzbmpfpSgYUSJanPiB/lz8Q6Suc8EIwoAid7QIrwrnHEdYeBKLl0izjs3P/orwzkoRGilbYnH9ZgSo0ws7q12e8VArUzcs+M+B1dBm9Q3nePEGcmYm8nkYsU/dSlaEz0AMJatTClKP9329lGZRy3e9rHdZUBZZChm7qHDQZDG7HP4VRMH2pSHQQYl8jDH/G1me0RvqDeTPB2EIx/dJUtpbEEB5Ips55slX1HX1Va/UMpphM3YwabAd3VXG+NHHOeqjWc3zu+WWzMP0m8soVnqX1iuwJOE14mm5uPpEjV/863Ai4If37NLd5qs47ZIkzqe7hWnnClzdwkLShYh0ZxOO+VixdZjqyVE+fsoc6RnUCLatcNIzltCzEIFjGDGMidLz0gySilOD1M=
+  file: ocr.tar.gz
+  on:
+    repo: janis91/ocr
+    branch: master
+    condition: $RELEASE = 1
