@@ -164,7 +164,7 @@ class JobService {
                     // set the running type
                     $fType = $this->fileService->getCorrectType($fInfo);
                     // create a temp file for ocr processing purposes
-                    $tempFile = $this->getTempFile($fType);
+                    $tempFile = $this->getTempFile();
                     // Create job object
                     $job = new OcrJob(OcrConstants::STATUS_PENDING, $source, $target, $tempFile, $fType, $this->userId, 
                             false, $fInfo->getName(), null, $replace);
@@ -274,11 +274,11 @@ class JobService {
             $this->logger->debug('Check if files were processed by ocr and if so, put them to the right dirs.');
             $processed = $this->jobMapper->findAllProcessed($this->userId);
             foreach ($processed as $job) {
-                if ($this->fileUtil->fileExists($job->getTempFile())) {
+                if ($this->fileUtil->fileExists($this->tempM->getTempBaseDir().'/'.$job->getTempFile().'.pdf')) {
                     // Save the tmp file with newname
                     $this->pullResult($job);
                     $this->jobMapper->delete($job);
-                    $this->fileUtil->execRemove($job->getTempFile());
+                    $this->fileUtil->execRemove($this->tempM->getTempBaseDir().'/'.$job->getTempFile().'.pdf');
                 } else {
                     $job->setStatus(OcrConstants::STATUS_FAILED);
                     $job->setErrorLog('Temp file does not exist.');
@@ -302,7 +302,7 @@ class JobService {
             $failed = $this->jobMapper->findAllFailed($this->userId);
             foreach ($failed as $job) {
                 // clean the tempfile
-                $this->fileUtil->execRemove($job->getTempFile());
+                $this->fileUtil->execRemove($this->tempM->getTempBaseDir().'/'.$job->getTempFile().'.pdf');
                 // set error displayed
                 $job->setErrorDisplayed(true);
                 $this->jobMapper->update($job);
@@ -326,7 +326,7 @@ class JobService {
         if ($job->getReplace()) {
             $this->view->unlink(str_replace($this->userId . '/files', '', $job->getSource()));
         }
-        $result = $this->view->file_put_contents($job->getTarget(), $this->fileUtil->getFileContents($job->getTempFile()));
+        $result = $this->view->file_put_contents($job->getTarget(), $this->fileUtil->getFileContents($this->tempM->getTempBaseDir().'/'.$job->getTempFile().'.pdf'));
         if (!$result) {
             throw new NotFoundException($this->l10n->t('OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin.'));
         }
@@ -360,21 +360,17 @@ class JobService {
     /**
      * Gives a temp file name back depending on the type of the OCR.
      * Later in the worker this file is used as an output.
-     * 
-     * @param integer $type            
+     *         
      * @return string
      */
-    private function getTempFile($type) {
-        if ($type === OcrConstants::TESSERACT) {
+    private function getTempFile() {
             $fileName = $this->phpUtil->tempnamWrapper($this->tempM->getTempBaseDir(), OcrConstants::TEMPFILE_PREFIX);
             $this->phpUtil->unlinkWrapper($fileName);
-            $fileNameWithPostfix = $fileName . '.txt';
+            $fileNameWithPostfix = $fileName . '.pdf';
             $this->phpUtil->touchWrapper($fileNameWithPostfix);
             $this->phpUtil->chmodWrapper($fileNameWithPostfix, 0600);
-            return $fileNameWithPostfix;
-        } else {
-            return $this->phpUtil->tempnamWrapper($this->tempM->getTempBaseDir(), OcrConstants::TEMPFILE_PREFIX);
-        }
+            $fileName = basename($fileName);
+            return $fileName;
     }
 
     /**

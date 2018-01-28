@@ -1,4 +1,7 @@
 #Changelog
+nextcloud-ocr (3.2.0)
+* **Feature**: Now the result of a processed image will always be a pdf file, not a txt file anymore.
+* **Bugfix**: The ENOENT error in the worker should be fixed now.
 nextcloud-ocr (3.1.0-beta.1)
 * **Feature**: Now files can be replaced by selecting a checkbox.
 nextcloud-ocr (3.0.0-beta.8)

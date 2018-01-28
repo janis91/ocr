@@ -87,10 +87,10 @@ class FileServiceTest extends TestCase {
             ->will($this->returnValue($share));
         $this->fileUtilMock->expects($this->once())
             ->method('buildNotExistingFilename')
-            ->with('test/path/to', 'file.txt')
-            ->will($this->returnValue('/test/path/to/file.txt'));
+            ->with('test/path/to', 'file.pdf')
+            ->will($this->returnValue('/test/path/to/file.pdf'));
         $result = $this->cut->buildTarget($this->fileInfoSharedPng, true, false);
-        $this->assertEquals('/test/path/to/file.txt', $result);
+        $this->assertEquals('/test/path/to/file.pdf', $result);
     }
 
     public function testBuildTargetForSharedForPdf() {
@@ -130,10 +130,10 @@ class FileServiceTest extends TestCase {
     public function testBuildTargetNotForSharedForImage() {
         $this->fileUtilMock->expects($this->once())
             ->method('buildNotExistingFilename')
-            ->with('test/path/to', 'file.txt')
-            ->will($this->returnValue('/test/path/to/file.txt'));
+            ->with('test/path/to', 'file.pdf')
+            ->will($this->returnValue('/test/path/to/file.pdf'));
             $result = $this->cut->buildTarget($this->fileInfoNotSharedPng, false, false);
-        $this->assertEquals('/test/path/to/file.txt', $result);
+        $this->assertEquals('/test/path/to/file.pdf', $result);
     }
 
     public function testBuildTargetNotForSharedForPdf() {

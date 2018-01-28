@@ -191,7 +191,9 @@ class JobServiceTest extends TestCase {
         $this->fileServiceMock->expects($this->once())
             ->method('buildFileInfo')
             ->with($files)
-            ->will($this->returnValue([$this->fileInfoSharedPdf]));
+            ->will($this->returnValue([
+                $this->fileInfoSharedPdf
+        ]));
         // foreach from here on
         $this->fileServiceMock->expects($this->once())
             ->method('checkSharedWithInitiator')
@@ -301,25 +303,25 @@ class JobServiceTest extends TestCase {
             ->with('/tmp', OcrConstants::TEMPFILE_PREFIX)
             ->will($this->returnValue('/tmp/ocr_randomTempFileName'));
         // only one png
-        $this->phpUtilMock->expects($this->once())
+        $this->phpUtilMock->expects($this->exactly(3))
             ->method('unlinkWrapper')
             ->with('/tmp/ocr_randomTempFileName');
-        $this->phpUtilMock->expects($this->once())
+        $this->phpUtilMock->expects($this->exactly(3))
             ->method('touchWrapper')
-            ->with('/tmp/ocr_randomTempFileName.txt');
-        $this->phpUtilMock->expects($this->once())
+            ->with('/tmp/ocr_randomTempFileName.pdf');
+        $this->phpUtilMock->expects($this->exactly(3))
             ->method('chmodWrapper')
-            ->with('/tmp/ocr_randomTempFileName.txt', 0600);
+            ->with('/tmp/ocr_randomTempFileName.pdf', 0600);
         // step out from tempfile creation
         $job1 = new OcrJob(OcrConstants::STATUS_PENDING, 'john/' . $this->fileInfoNotSharedPdf->getPath(), 
-                '/test/path/to/file_OCR.pdf', '/tmp/ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, 
-                false, $this->fileInfoSharedPdf->getName(), null, false);
+                '/test/path/to/file_OCR.pdf', 'ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, false, 
+                $this->fileInfoSharedPdf->getName(), null, false);
         $job2 = new OcrJob(OcrConstants::STATUS_PENDING, 'notJohn/' . $this->fileInfoSharedPdf->getPath(), 
-                '/test/path/to/file_OCR.pdf', '/tmp/ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, 
-                false, $this->fileInfoSharedPdf->getName(), null, false);
+                '/test/path/to/file_OCR.pdf', 'ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, false, 
+                $this->fileInfoSharedPdf->getName(), null, false);
         $job3 = new OcrJob(OcrConstants::STATUS_PENDING, 'notJohn/' . $this->fileInfoSharedPng->getPath(), 
-                '/test/path/to/file_OCR.txt', '/tmp/ocr_randomTempFileName.txt', OcrConstants::TESSERACT, $this->userId, 
-                false, $this->fileInfoSharedPng->getName(), null, false);
+                '/test/path/to/file_OCR.txt', 'ocr_randomTempFileName', OcrConstants::TESSERACT, $this->userId, false, 
+                $this->fileInfoSharedPng->getName(), null, false);
         $this->redisServiceMock->expects($this->exactly(3))
             ->method('sendJob')
             ->withConsecutive([
@@ -435,25 +437,25 @@ class JobServiceTest extends TestCase {
             ->with('/tmp', OcrConstants::TEMPFILE_PREFIX)
             ->will($this->returnValue('/tmp/ocr_randomTempFileName'));
         // only one png
-        $this->phpUtilMock->expects($this->once())
+        $this->phpUtilMock->expects($this->exactly(3))
             ->method('unlinkWrapper')
             ->with('/tmp/ocr_randomTempFileName');
-        $this->phpUtilMock->expects($this->once())
+        $this->phpUtilMock->expects($this->exactly(3))
             ->method('touchWrapper')
-            ->with('/tmp/ocr_randomTempFileName.txt');
-        $this->phpUtilMock->expects($this->once())
+            ->with('/tmp/ocr_randomTempFileName.pdf');
+        $this->phpUtilMock->expects($this->exactly(3))
             ->method('chmodWrapper')
-            ->with('/tmp/ocr_randomTempFileName.txt', 0600);
+            ->with('/tmp/ocr_randomTempFileName.pdf', 0600);
         // step out from tempfile creation
         $job1 = new OcrJob(OcrConstants::STATUS_PENDING, 'john/' . $this->fileInfoNotSharedPdf->getPath(), 
-                '/test/path/to/file_OCR.pdf', '/tmp/ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, 
-                false, $this->fileInfoNotSharedPdf->getName(), null, false);
+                '/test/path/to/file_OCR.pdf', 'ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, false, 
+                $this->fileInfoNotSharedPdf->getName(), null, false);
         $job2 = new OcrJob(OcrConstants::STATUS_PENDING, 'notJohn/' . $this->fileInfoSharedPdf->getPath(), 
-                '/test/path/to/file_OCR.pdf', '/tmp/ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, 
-                false, $this->fileInfoSharedPdf->getName(), null, false);
+                '/test/path/to/file_OCR.pdf', 'ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, false, 
+                $this->fileInfoSharedPdf->getName(), null, false);
         $job3 = new OcrJob(OcrConstants::STATUS_PENDING, 'notJohn/' . $this->fileInfoSharedPng->getPath(), 
-                '/test/path/to/file_OCR.txt', '/tmp/ocr_randomTempFileName.txt', OcrConstants::TESSERACT, $this->userId, 
-                false, $this->fileInfoSharedPng->getName(), null, false);
+                '/test/path/to/file_OCR.txt', 'ocr_randomTempFileName', OcrConstants::TESSERACT, $this->userId, false, 
+                $this->fileInfoSharedPng->getName(), null, false);
         $this->redisServiceMock->expects($this->exactly(3))
             ->method('sendJob')
             ->withConsecutive([
@@ -663,7 +665,7 @@ class JobServiceTest extends TestCase {
             ->with('/tmp/ocr_randomTempFileName');
         $this->phpUtilMock->expects($this->once())
             ->method('touchWrapper')
-            ->with('/tmp/ocr_randomTempFileName.txt')
+            ->with('/tmp/ocr_randomTempFileName.pdf')
             ->willThrowException(new NotFoundException('Cannot create temporary file for Tesseract.'));
         $this->cut->process($languages, $files, $replace);
     }
@@ -732,10 +734,10 @@ class JobServiceTest extends TestCase {
             ->with('/tmp/ocr_randomTempFileName');
         $this->phpUtilMock->expects($this->once())
             ->method('touchWrapper')
-            ->with('/tmp/ocr_randomTempFileName.txt');
+            ->with('/tmp/ocr_randomTempFileName.pdf');
         $this->phpUtilMock->expects($this->once())
             ->method('chmodWrapper')
-            ->with('/tmp/ocr_randomTempFileName.txt', 0600)
+            ->with('/tmp/ocr_randomTempFileName.pdf', 0600)
             ->willThrowException(new NotFoundException('Cannot set permissions to temporary file for Tesseract.'));
         $this->cut->process($languages, $files, $replace);
     }
@@ -917,9 +919,12 @@ class JobServiceTest extends TestCase {
             ->method('t')
             ->with('Temp file does not exist.')
             ->will($this->returnValue('Temp file does not exist.'));
+        $this->tempManagerMock->expects($this->once())
+            ->method('getTempBaseDir')
+            ->will($this->returnValue('/temp'));
         $this->fileUtilMock->expects($this->once())
             ->method('fileExists')
-            ->with($job1->getTempFile())
+            ->with('/temp' . '/' . $job1->getTempFile() . '.pdf')
             ->will($this->returnValue(false));
         $job1->setStatus(OcrConstants::STATUS_FAILED);
         $job1->setErrorLog('Temp file does not exist.');
@@ -930,8 +935,7 @@ class JobServiceTest extends TestCase {
     }
 
     public function testHandleProcessed() {
-        $job1 = new OcrJob(OcrConstants::STATUS_PROCESSED, 
-                'john/files/test.pdf', '/test/path/to/file_OCR.pdf', 
+        $job1 = new OcrJob(OcrConstants::STATUS_PROCESSED, 'john/files/test.pdf', '/test/path/to/file_OCR.pdf', 
                 '/tmp/ocr_randomTempFileName', OcrConstants::OCRmyPDF, $this->userId, false, 
                 $this->fileInfoNotSharedPdf->getName(), null, true);
         $job1->setId(1);
@@ -947,20 +951,23 @@ class JobServiceTest extends TestCase {
                 $job1,
                 $job2
         ]));
+        $this->tempManagerMock->expects($this->exactly(6))
+            ->method('getTempBaseDir')
+            ->will($this->returnValue('/temp'));
         $this->fileUtilMock->expects($this->exactly(2))
             ->method('fileExists')
             ->withConsecutive([
-                $job1->getTempFile()
+                '/temp' . '/' . $job1->getTempFile() . '.pdf'
         ], [
-                $job2->getTempFile()
+                '/temp' . '/' . $job2->getTempFile() . '.pdf'
         ])
             ->will($this->returnValue(true));
         $this->fileUtilMock->expects($this->exactly(2))
             ->method('getFileContents')
             ->withConsecutive([
-                $job1->getTempFile()
+                '/temp' . '/' . $job1->getTempFile() . '.pdf'
         ], [
-                $job2->getTempFile()
+                '/temp' . '/' . $job2->getTempFile() . '.pdf'
         ])
             ->will($this->onConsecutiveCalls('stream1', 'stream2'));
         $this->viewMock->expects($this->exactly(1))
@@ -974,7 +981,8 @@ class JobServiceTest extends TestCase {
         ], [
                 $job2->getTarget(),
                 'stream2'
-        ])->will($this->onConsecutiveCalls(true, true));
+        ])
+            ->will($this->onConsecutiveCalls(true, true));
         $this->jobMapperMock->expects($this->exactly(2))
             ->method('delete')
             ->withConsecutive([
@@ -985,9 +993,9 @@ class JobServiceTest extends TestCase {
         $this->fileUtilMock->expects($this->exactly(2))
             ->method('execRemove')
             ->withConsecutive([
-                $job1->getTempFile()
+                '/temp' . '/' . $job1->getTempFile() . '.pdf'
         ], [
-                $job2->getTempFile()
+                '/temp' . '/' . $job2->getTempFile() . '.pdf'
         ]);
         $result = $this->cut->handleProcessed();
         $this->assertEquals([
@@ -1013,12 +1021,15 @@ class JobServiceTest extends TestCase {
                 $job2
         ]));
         // foreach
+        $this->tempManagerMock->expects($this->exactly(2))
+            ->method('getTempBaseDir')
+            ->will($this->returnValue('/temp'));
         $this->fileUtilMock->expects($this->exactly(2))
             ->method('execRemove')
             ->withConsecutive([
-                $job1->getTempFile()
+                '/temp' . '/' . $job1->getTempFile() . '.pdf'
         ], [
-                $job2->getTempFile()
+                '/temp' . '/' . $job2->getTempFile() . '.pdf'
         ]);
         $job1Origin = $job1;
         $job2Origin = $job2;

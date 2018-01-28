@@ -40,12 +40,13 @@ describe('For the ocr processing service', () => {
 
             cut.process(jobMessage);
 
-            expect(unlinkSyncMock).toHaveBeenCalledWith(`${Configuration.OUTPUT_PATH}/${job.tempFile}`);
+            expect(unlinkSyncMock).toHaveBeenCalledWith(`${Configuration.OUTPUT_PATH}/${job.tempFile}.pdf`);
             expect(spawnSyncMock).toHaveBeenCalledWith('tesseract',
                 [
-                    `${Configuration.INPUT_PATH}/${job.source}`,
-                    `${Configuration.OUTPUT_PATH}/${job.tempFile.replace(/\.[^/.]+$/, '')}`,
                     `-l`, `${job.languages.join('+')}`,
+                    `${Configuration.INPUT_PATH}/${job.source}`,
+                    `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
+                    `pdf`,
                 ],
                 Configuration.SPAWN_SYNC_OPTIONS);
             expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);
@@ -67,11 +68,12 @@ describe('For the ocr processing service', () => {
 
             cut.process(jobMessage);
 
-            expect(unlinkSyncMock).toHaveBeenCalledWith(`${Configuration.OUTPUT_PATH}/${job.tempFile}`);
+            expect(unlinkSyncMock).toHaveBeenCalledWith(`${Configuration.OUTPUT_PATH}/${job.tempFile}.pdf`);
             expect(spawnSyncMock).toHaveBeenCalledWith('tesseract',
                 [
                     `${Configuration.INPUT_PATH}/${job.source}`,
-                    `${Configuration.OUTPUT_PATH}/${job.tempFile.replace(/\.[^/.]+$/, '')}`,
+                    `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
+                    `pdf`,
                 ],
                 Configuration.SPAWN_SYNC_OPTIONS);
             expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);
@@ -96,10 +98,10 @@ describe('For the ocr processing service', () => {
             expect(unlinkSyncMock).not.toHaveBeenCalled();
             expect(spawnSyncMock).toHaveBeenCalledWith('ocrmypdf',
                 [
-                    `${Configuration.INPUT_PATH}/${job.source}`,
-                    `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
-                    `--skip-text`,
                     `-l`, `${job.languages.join('+')}`,
+                    `--skip-text`,
+                    `${Configuration.INPUT_PATH}/${job.source}`,
+                    `${Configuration.OUTPUT_PATH}/${job.tempFile}.pdf`,
                 ],
                 Configuration.SPAWN_SYNC_OPTIONS);
             expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);
@@ -124,9 +126,9 @@ describe('For the ocr processing service', () => {
             expect(unlinkSyncMock).not.toHaveBeenCalled();
             expect(spawnSyncMock).toHaveBeenCalledWith('ocrmypdf',
                 [
-                    `${Configuration.INPUT_PATH}/${job.source}`,
-                    `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
                     `--skip-text`,
+                    `${Configuration.INPUT_PATH}/${job.source}`,
+                    `${Configuration.OUTPUT_PATH}/${job.tempFile}.pdf`,
                 ],
                 Configuration.SPAWN_SYNC_OPTIONS);
             expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);
@@ -151,10 +153,10 @@ describe('For the ocr processing service', () => {
             expect(unlinkSyncMock).not.toHaveBeenCalled();
             expect(spawnSyncMock).toHaveBeenCalledWith('ocrmypdf',
                 [
-                    `${Configuration.INPUT_PATH}/${job.source}`,
-                    `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
-                    `--skip-text`,
                     `-l`, `${job.languages.join('+')}`,
+                    `--skip-text`,
+                    `${Configuration.INPUT_PATH}/${job.source}`,
+                    `${Configuration.OUTPUT_PATH}/${job.tempFile}.pdf`,
                 ],
                 Configuration.SPAWN_SYNC_OPTIONS);
             expect(incomingJsonMessageToJobTfMock.transform).toHaveBeenCalledWith(jobMessage);
@@ -162,7 +164,7 @@ describe('For the ocr processing service', () => {
         });
     });
 
-     describe('the finishJob function', () => {
+    describe('the finishJob function', () => {
         it('should push the job to the finished queue if no error.', () => {
             const job = new Job();
             const finishedJob = new FinishedJob();
@@ -194,5 +196,5 @@ describe('For the ocr processing service', () => {
             expect(jobToFinishedJobTfMock.transform).toHaveBeenCalledWith(job);
             expect(redisClientMock.lpush).toHaveBeenCalledWith('finished', expectedJob.toJSON());
         });
-     });
+    });
 });

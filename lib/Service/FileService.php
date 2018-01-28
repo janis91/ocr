@@ -198,7 +198,7 @@ class FileService {
             }
         } else {
             // IMAGES:
-            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.txt');
+            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.pdf');
         }
     }
 
@@ -240,7 +240,7 @@ class FileService {
             }
         } else {
             // IMAGES:
-            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.txt');
+            return $this->fileUtil->buildNotExistingFilename($filePath, $fileName . '.pdf');
         }
     }
 

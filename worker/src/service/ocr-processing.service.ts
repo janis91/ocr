@@ -48,14 +48,16 @@ export class OcrProcessingService {
     }
 
     private execTesseract(job: IJob): void {
-        this.unlinkSync(`${Configuration.OUTPUT_PATH}/${job.tempFile}`);
-        const commandArgs: Array<String> = [
-            `${Configuration.INPUT_PATH}/${job.source}`,
-            `${Configuration.OUTPUT_PATH}/${job.tempFile.replace(/\.[^/.]+$/, '')}`,
-        ];
+        this.unlinkSync(`${Configuration.OUTPUT_PATH}/${job.tempFile}.pdf`);
+        const commandArgs: Array<String> = [];
         if (job.languages.length > 0) {
             commandArgs.push(`-l`, `${job.languages.join('+')}`);
         }
+        commandArgs.push(
+            ...[`${Configuration.INPUT_PATH}/${job.source}`,
+            `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
+                `pdf`,
+            ]);
         const spawn = this.spawnSync('tesseract',
             commandArgs,
             Configuration.SPAWN_SYNC_OPTIONS);
@@ -66,14 +68,15 @@ export class OcrProcessingService {
     }
 
     private execOcrMyPdf(job: IJob): void {
-        const commandArgs: Array<String> = [
-            `${Configuration.INPUT_PATH}/${job.source}`,
-            `${Configuration.OUTPUT_PATH}/${job.tempFile}`,
-            `--skip-text`,
-        ];
+        const commandArgs: Array<String> = [];
         if (job.languages.length > 0) {
             commandArgs.push(`-l`, `${job.languages.join('+')}`);
         }
+        commandArgs.push(
+            ...[`--skip-text`,
+                `${Configuration.INPUT_PATH}/${job.source}`,
+                `${Configuration.OUTPUT_PATH}/${job.tempFile}.pdf`,
+            ]);
         const spawn = this.spawnSync('ocrmypdf',
             commandArgs,
             Configuration.SPAWN_SYNC_OPTIONS);

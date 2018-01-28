@@ -4,7 +4,7 @@
 # docker network create --driver bridge isolated_ocr
 # docker run --name ocr --network=isolated_ocr -e "NODE_ENV=production" -e "REDIS_HOST=redis" -e "REDIS_DB=0" -e "REDIS_PORT=6379" -e "REDIS_PASSWORD=OCR" -v /path/to/data/directory/of/nextcloud:/home/node/data:ro -v /path/to/tmp:/home/node/output -d <your username>/ocr
 #
-FROM ubuntu:16.10
+FROM ubuntu:17.10
 
 LABEL maintainer="janiskoehr@icloud.com" description="This image serves the dependencies like tesseract and OCRmyPDF and the ocr worker for the nextcloud ocr app." vendor="Janis Koehr"
 ARG LANGUAGES="tesseract-ocr-fra tesseract-ocr-spa tesseract-ocr-deu"
@@ -26,21 +26,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # OcrMyPDF
 RUN apt-get install -y --no-install-recommends \
-    unpaper \
-    ghostscript \
-    qpdf \
-    python3-pip \
-    python3-cffi
-
-RUN pip3 install --upgrade pip \
-    && pip3 install setuptools \
-    && pip3 install ocrmypdf
+    ocrmypdf
 
 # Nodejs
-RUN apt-get install curl -y --no-install-recommends \
-    && curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install lsb-release ca-certificates wget -y --no-install-recommends \
+    && wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
+    && echo "deb https://deb.nodesource.com/node_8.x $(lsb_release -s -c) main" | tee /etc/apt/sources.list.d/nodesource.list \
+    && echo "deb-src https://deb.nodesource.com/node_8.x $(lsb_release -s -c) main" | tee -a /etc/apt/sources.list.d/nodesource.list
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     nodejs
 
 # Clean up

@@ -36,6 +36,8 @@ class RedisServiceTest extends TestCase {
 
     protected $fileInfoNotSharedPdf;
 
+    protected $tempMMock;
+
     public function setUp() {
         $this->jobMapperMock = $this->getMockBuilder('OCA\Ocr\Db\OcrJobMapper')
             ->disableOriginalConstructor()
@@ -51,9 +53,11 @@ class RedisServiceTest extends TestCase {
             ->getMock();
         $this->redisMock = $this->getMockBuilder('Redis')
             ->getMock();
+        $this->tempMMock = $this->getMockBuilder('OCP\ITempManager')
+            ->getMock();
         $this->fileInfoNotSharedPdf = new File(42, '/test/path/to/file.pdf', 'file.pdf', 'application/pdf', 'home::john');
         $this->cut = new RedisService($this->jobMapperMock, $this->fileUtilMock, $this->redisUtilMock, $this->l10nMock, 
-                $this->loggerMock);
+                $this->loggerMock, $this->tempMMock);
     }
 
     public function testSendJob() {
@@ -125,9 +129,12 @@ class RedisServiceTest extends TestCase {
             ->method('t')
             ->with('Could not add files to the Redis OCR processing queue.')
             ->will($this->returnValue('Could not add files to the Redis OCR processing queue.'));
+        $this->tempMMock->expects($this->once())
+            ->method('getTempBaseDir')
+            ->will($this->returnValue('/temp'));
         $this->fileUtilMock->expects($this->once())
             ->method('execRemove')
-            ->with($jobInserted->getTempFile());
+            ->with('/temp' . '/' . $jobInserted->getTempFile() . '.pdf');
         $jobInserted->setStatus(OcrConstants::STATUS_FAILED);
         $jobInserted->setErrorLog('Could not add files to the Redis OCR processing queue.');
         $this->jobMapperMock->expects($this->once())
