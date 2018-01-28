@@ -154,7 +154,7 @@ class Application extends App {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
                     return new RedisService($c->query('OcrJobMapper'), $c->query('FileUtil'), $c->query('RedisUtil'), 
-                            $server->getL10N('ocr'), $server->getLogger());
+                            $server->getL10N('ocr'), $server->getLogger(), $server->getTempManager());
                 });
         /**
          * Register the Job Service

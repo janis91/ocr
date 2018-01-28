@@ -15,6 +15,7 @@ use Exception;
 use OCA\Ocr\Db\OcrJob;
 use OCA\Ocr\Db\OcrJobMapper;
 use OCP\IL10N;
+use OCP\ITempManager;
 use OCP\ILogger;
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Util\FileUtil;
@@ -57,6 +58,12 @@ class RedisService {
      * @var IL10N
      */
     private $l10n;
+    
+    /**
+     *
+     * @var ITempManager
+     */
+    private $tempM;
 
     /**
      * QueueService constructor.
@@ -68,12 +75,13 @@ class RedisService {
      * @param ILogger $logger            
      */
     public function __construct(OcrJobMapper $mapper, FileUtil $fileUtil, RedisUtil $redisUtil, IL10N $l10n, 
-            ILogger $logger) {
+            ILogger $logger, ITempManager $tempManager) {
         $this->mapper = $mapper;
         $this->fileUtil = $fileUtil;
         $this->logger = $logger;
         $this->l10n = $l10n;
         $this->redisUtil = $redisUtil;
+        $this->tempM = $tempManager;
     }
 
     /**
@@ -99,7 +107,7 @@ class RedisService {
                 throw new NotFoundException($this->l10n->t('Could not add files to the Redis OCR processing queue.'));
             }
         } catch (Exception $e) {
-            $this->fileUtil->execRemove($job->getTempFile());
+            $this->fileUtil->execRemove($this->tempM->getTempBaseDir().'/'.$job->getTempFile().'.pdf');
             $job->setStatus(OcrConstants::STATUS_FAILED);
             $job->setErrorLog($e->getMessage());
             $this->mapper->update($job);
