@@ -1,10 +1,11 @@
 OC.L10N.register(
     "ocr",
     {
+    "The languages are not specified in the correct format." : "Diller doğru biçimde belirtilmemiş.",
+    "OCR" : "Karakter Tanıma",
     "Saved" : "Saved",
     "Please setup Redis in the administration settings first." : "Lütfen önce yönetim ayarları bölümünden Redis kurulumunu yapın.",
     "The given settings key is empty." : "Belirtilen ayar anahtarı boş.",
-    "The languages are not specified in the correct format." : "Diller doğru biçimde belirtilmemiş.",
     "The Redis host is not specified in the correct format." : "Redis sunucusu doğru biçimde belirtilmemiş.",
     "The Redis port number is not specified in the correct format." : "Redis kapı numarası doğru biçimde belirtilmemiş.",
     "The Redis DB is not specified in the correct format." : "Redis veritabanı doğru biçimde belirtilmemiş.",
@@ -18,7 +19,6 @@ OC.L10N.register(
     "Temp file does not exist." : "Geçici dosya bulunamadı.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR işlenmiş dosyayı sağdaki hedef klasöre koyamadı. Değiştir seçeneğini seçtiyseniz çöp kutusunu kullanarak dosyayı geri yükleyebilirsiniz.",
     "Could not add files to the Redis OCR processing queue." : "Dosyalar Redis karakter tanıma kuyruğuna eklenemedi.",
-    "OCR" : "Karakter Tanıma",
     "Temp file cannot be created." : "Geçici dosya oluşturulamadı.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Dört boyutlu küp için geçici dosya oluşturulurken geçici dosya silinemedi.",
     "Cannot create temporary file for Tesseract." : "Dört boyutlu küp için geçici dosya oluşturulamadı.",

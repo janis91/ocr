@@ -1,10 +1,11 @@
 OC.L10N.register(
     "ocr",
     {
+    "The languages are not specified in the correct format." : "Tungumálin eru ekki skilgreind á réttu sniði.",
+    "OCR" : "OCR-ljóslestur",
     "Saved" : "Vistað",
     "Please setup Redis in the administration settings first." : "Settu Redis fyrst upp í stjórnstillingunum.",
     "The given settings key is empty." : "Uppgefinn stillingalykill er tómur.",
-    "The languages are not specified in the correct format." : "Tungumálin eru ekki skilgreind á réttu sniði.",
     "The Redis host is not specified in the correct format." : "Redis-vélin er ekki skilgreind á réttu sniði.",
     "The Redis port number is not specified in the correct format." : "Redis-gáttin er ekki skilgreind á réttu sniði.",
     "The Redis DB is not specified in the correct format." : "Redis-gagnagrunnurinn er ekki skilgreindur á réttu sniði.",
@@ -18,7 +19,6 @@ OC.L10N.register(
     "Temp file does not exist." : "Bráðabirgðaskrá er ekki til.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR-ljóslestrarforritð gat ekki sett unna skrá í rétta úttaksmöppu. Ef þú notaðir útskiptingarvalkostinn, geturðu endurheimt skrána með því að fara í ruslafötuna.",
     "Could not add files to the Redis OCR processing queue." : "Ekki tókst að bæta skrám við í Redis OCR-vinnslubiðröðina.",
-    "OCR" : "OCR-ljóslestur",
     "Temp file cannot be created." : "Ekki tókst að útbúa bráðabirgðaskrá.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Get ekki eytt bráðabirgðaskrá þegar bráðabirgðaskrá fyrir Tesseract var útbúin.",
     "Cannot create temporary file for Tesseract." : "Get ekki búið til bráðabirgðaskrá fyrir Tesseract.",

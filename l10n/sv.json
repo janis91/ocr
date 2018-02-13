@@ -1,8 +1,9 @@
 { "translations": {
+    "The languages are not specified in the correct format." : "Språken är inte specificerade i korrekt format.",
+    "OCR" : "OCR",
     "Saved" : "Sparad",
     "Please setup Redis in the administration settings first." : "Vänligen sätt upp Redis i administratörsinställningarna först.",
     "The given settings key is empty." : "Den angivna inställningsnyckeln är tom.",
-    "The languages are not specified in the correct format." : "Språken är inte specificerade i korrekt format.",
     "The Redis host is not specified in the correct format." : "Redis-värden är inte specificerad i korrekt format.",
     "The Redis port number is not specified in the correct format." : "Redis portnummer är inte specificerat i korrekt format.",
     "The Redis DB is not specified in the correct format." : "The Redis DB är inte specificerat i korrekt format.",
@@ -16,7 +17,6 @@
     "Temp file does not exist." : "Temporär fil finns ej.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR kunde inte placera filen till rätt mål katalog. Om du valde byta ut , kan du få tillbaka filen genom att använda papperskorgen.",
     "Could not add files to the Redis OCR processing queue." : "Kunde inte lägga till filer till Redis OCR-behandlingskön.",
-    "OCR" : "OCR",
     "Temp file cannot be created." : "Temp-fil kunde inte skapas.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Kan inte ta bort temporär fil medan tempfil skapas för Tesseract.",
     "Cannot create temporary file for Tesseract." : "Kan inte skapa temporär fil för Tesseract.",

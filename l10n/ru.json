@@ -1,8 +1,9 @@
 { "translations": {
+    "The languages are not specified in the correct format." : "Языки указаны в неверном формате.",
+    "OCR" : "ОРС",
     "Saved" : "Сохранено",
     "Please setup Redis in the administration settings first." : "Для начала настройте Redis в административных настройках, пожалуйста.",
     "The given settings key is empty." : "Указан пустой ключ настроек.",
-    "The languages are not specified in the correct format." : "Языки указаны в неверном формате.",
     "The Redis host is not specified in the correct format." : "Узел Redis указан в неверном формате.",
     "The Redis port number is not specified in the correct format." : "Порт Redis указан в неверном формате",
     "The Redis DB is not specified in the correct format." : "База Redis не указана или указана не корректно.",
@@ -16,7 +17,6 @@
     "Temp file does not exist." : "Временный файл не существует.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "Не удалось поместить обрабатываемый файл в верную целевую папку. При выборе варианта «заменить», будет возможно восстановить файл из корзины.",
     "Could not add files to the Redis OCR processing queue." : "Не удаётся добавить файлы в очередь обработки ОРС.",
-    "OCR" : "ОРС",
     "Temp file cannot be created." : "Невозможно создать временный файл.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Невозможно удалить созданный для Tesseract временный файл.",
     "Cannot create temporary file for Tesseract." : "Невозможно создать временный файл для Tesseract.",

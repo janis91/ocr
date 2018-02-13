@@ -1,10 +1,11 @@
 OC.L10N.register(
     "ocr",
     {
+    "The languages are not specified in the correct format." : "Språkene er ikke angitt i rett format.",
+    "OCR" : "OCR",
     "Saved" : "Lagret",
     "Please setup Redis in the administration settings first." : "Sett opp Redis i administrasjonsinnstillingene først.",
     "The given settings key is empty." : "Den angitte innstillingsnøkkelen er tom.",
-    "The languages are not specified in the correct format." : "Språkene er ikke angitt i rett format.",
     "The Redis host is not specified in the correct format." : "Redis-verten er ikke oppgitt i riktig format.",
     "The Redis port number is not specified in the correct format." : "Redis-portnummeret er ikke oppgitt i riktig format.",
     "The Redis DB is not specified in the correct format." : "Redis DB er ikke oppgitt i riktig format.",
@@ -18,7 +19,6 @@ OC.L10N.register(
     "Temp file does not exist." : "Midlertidig fil finnes ikke.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR kunne ikke legge behandlet fil i riktig målmappe. Hvis du valgte erstatt -valget, kan du gjenopprette fila ved å bruke papirkurven.",
     "Could not add files to the Redis OCR processing queue." : "Kan ikke legge til filer i Redis OCR-behandlingskø.",
-    "OCR" : "OCR",
     "Temp file cannot be created." : "Kan ikke opprette midlertidig fil.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Kan ikke slette midlertidig fil under opprettelse av midlertidig fil for Tesseract.",
     "Cannot create temporary file for Tesseract." : "Kan ikke opprette midlertidig fil for Tesseract.",

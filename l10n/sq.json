@@ -1,8 +1,9 @@
 { "translations": {
+    "The languages are not specified in the correct format." : "Gjuhët nuk janë specifikuar në formatin e duhur.",
+    "OCR" : "OCR",
     "Saved" : "U ruajt",
     "Please setup Redis in the administration settings first." : "Ju lutemi të ngrini Redis në konfigurimet e administratës fillimisht.",
     "The given settings key is empty." : "Çelësi i dhënë i konfigurimeve është i bosh.",
-    "The languages are not specified in the correct format." : "Gjuhët nuk janë specifikuar në formatin e duhur.",
     "The Redis host is not specified in the correct format." : "Mikëpritja e Redis nuk është e specifikuar në formatin e duhur.",
     "The Redis port number is not specified in the correct format." : "Numri i portit të Redis nuk është specifikuar në formatin e duhur.",
     "The Redis DB is not specified in the correct format." : "Redis DB nuk është specifikuar në formatin e duhur.",
@@ -14,7 +15,6 @@
     "Reading the finished jobs from Redis went wrong." : "Leximi i punëve të përfunduara nga Redis shkoi keq.",
     "Temp file does not exist." : "Skedari i përkohëshem nuk egziston",
     "Could not add files to the Redis OCR processing queue." : "Nuk mund të shtohen skedarë në radhën e përpunimit të OCR-së Redis.",
-    "OCR" : "OCR",
     "Temp file cannot be created." : "Skedari Temp nuk mund të krijohet.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Nuk mund të fshihet skedari i përkohshëm gjatë krijimit të skedarit temp për Tesseract.",
     "Cannot create temporary file for Tesseract." : "Nuk mund të krijojë skedarë të përkohshëm për Tesseract.",

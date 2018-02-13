@@ -1,10 +1,11 @@
 OC.L10N.register(
     "ocr",
     {
+    "The languages are not specified in the correct format." : "ენები მოცემულია არასწორი ფორმატით.",
+    "OCR" : "OCR",
     "Saved" : "შენახულია",
     "Please setup Redis in the administration settings first." : "გთხოვთ ამ ოპერაციამდე  ადმინისტრაციის პარამეტრებიდან გაუწიოთ კონფიგურირება Redis-ს.",
     "The given settings key is empty." : "მოცემული პარამეტრის გასაღები ცარიელია.",
-    "The languages are not specified in the correct format." : "ენები მოცემულია არასწორი ფორმატით.",
     "The Redis host is not specified in the correct format." : "Redis-ის ჰოსტი არაა მოცემული სწორი ფორმატით.",
     "The Redis port number is not specified in the correct format." : "Redis-ის პორტის ნომერი არაა მოცემული სწორი ფორმატით.",
     "The Redis DB is not specified in the correct format." : "Redis-ის მონაცემთა ბაზა არაა მოცემული სწორი ფორმატით.",
@@ -18,7 +19,6 @@ OC.L10N.register(
     "Temp file does not exist." : "დროიებითი ფაილი არ არსებობს.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR-მა დანიშნულების სწორ დირექტორიაში ფაილის პროცესირება ვერ მოახერხა. ჩანაცვლების არჩევის შემთხვევაში, ფაილის აღდგენას შეძლებთ სანაგვე ყუთიდან.",
     "Could not add files to the Redis OCR processing queue." : "Redis-ის OCR პროცესირების რიგში, ფაილების დამატება ვერ მოხერხდა.",
-    "OCR" : "OCR",
     "Temp file cannot be created." : "დროებითი ფაილი ვერ იქმნება.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Tesseract-ისთვის დროებითი ფაილის შექმნისას, არსებული დროებითი ფაილი ვერ გაუქმდა.",
     "Cannot create temporary file for Tesseract." : "დროებითი ფაილი Tesseract-ისთვის ვერ შეიქმნა.",

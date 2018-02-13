@@ -1,6 +1,7 @@
 OC.L10N.register(
     "ocr",
     {
+    "OCR" : "OCR",
     "Saved" : "Tallennettu",
     "Wrong parameter." : "Väärä paramteri.",
     "Wrong MIME type." : "Väärä MIME-tyyppi.",
@@ -8,7 +9,6 @@ OC.L10N.register(
     "Empty parameters passed." : "Tyhjiä parametreja",
     "Cannot delete because of wrong owner." : "Ei voida poistaa väärän omistajan vuoksi.",
     "Temp file does not exist." : "Väliaikaistiedostoa ei ole olemassa.",
-    "OCR" : "OCR",
     "Temp file cannot be created." : "Väliaikaistiedostoa ei voi luoda.",
     "Cannot connect to Redis." : "Redis-yhteyttä ei voi muodostaa.",
     "Redis authentication error." : "Redis-tunnistautumisvirhe.",

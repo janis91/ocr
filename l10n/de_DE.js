@@ -1,10 +1,11 @@
 OC.L10N.register(
     "ocr",
     {
+    "The languages are not specified in the correct format." : "Die Sprachen wurden im falschen Format angegeben.",
+    "OCR" : "Schrifterkennung",
     "Saved" : "Gespeichert",
     "Please setup Redis in the administration settings first." : "Bitte erst Redis in den Administrator-Einstellungen einrichten.",
     "The given settings key is empty." : "Der eingegebenen Einstellungs-Schlüssel ist leer.",
-    "The languages are not specified in the correct format." : "Die Sprachen wurden im falschen Format angegeben.",
     "The Redis host is not specified in the correct format." : "Der Redis-Host wurde im falschen Format angegeben.",
     "The Redis port number is not specified in the correct format." : "Die Redis-Portnummer wurde im falschen Format angegeben.",
     "The Redis DB is not specified in the correct format." : "Die Redis-Datenbank wurde im falschen Format angegeben.",
@@ -18,7 +19,6 @@ OC.L10N.register(
     "Temp file does not exist." : "Temporäre Datei existiert nicht.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR kann die verarbeitete Datei nicht im richtigen Zielordner speichern. Wenn Sie die Überschreiben-Option gewählt haben, können Sie die Datei über den Papierkorb wiederherstellen.",
     "Could not add files to the Redis OCR processing queue." : "Konnte keine Dateien der Redis-Texterkennungs-Aufgabenliste hinzufügen.",
-    "OCR" : "Schrifterkennung",
     "Temp file cannot be created." : "Temporäre-Datei kann nicht erstellt werden.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Kann temporäre Datei während der Erstellung der temporären Datei für Tesseract nicht löschen.",
     "Cannot create temporary file for Tesseract." : "Kann temporäre Datei für Tesseract nicht erstellen. ",

@@ -1,10 +1,11 @@
 OC.L10N.register(
     "ocr",
     {
+    "The languages are not specified in the correct format." : "다음 언어는 올바른 형식으로 명시되지 않았습니다.",
+    "OCR" : "OCR",
     "Saved" : "저장됨",
     "Please setup Redis in the administration settings first." : "관리 설정에서 Redis를 설정하십시오.",
     "The given settings key is empty." : "지정한 설정 키가 비어 있습니다.",
-    "The languages are not specified in the correct format." : "다음 언어는 올바른 형식으로 명시되지 않았습니다.",
     "The Redis host is not specified in the correct format." : "Redis 호스트가 올바른 형식으로 지정되지 않았습니다.",
     "The Redis port number is not specified in the correct format." : "Redis 포트 번호가 올바른 형식으로 지정되지 않았습니다.",
     "The Redis DB is not specified in the correct format." : "Redis DB가 올바른 형식으로 지정되지 않았습니다.",
@@ -18,7 +19,6 @@ OC.L10N.register(
     "Temp file does not exist." : "임시 파일이 존재하지 않습니다.",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR 앱에서 처리한 파일을 올바른 대상 폴더에 저장할 수 없습니다. 대체 옵션을 선택했다면 휴지통에서 파일을 복원할 수 있습니다.",
     "Could not add files to the Redis OCR processing queue." : "Redis OCR 처리 대기열에 파일을 추가할 수 없습니다.",
-    "OCR" : "OCR",
     "Temp file cannot be created." : "임시 파일을 생성할 수 없습니다.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Tesseract 임시 파일을 생성하는 중 임시 파일을 삭제할 수 없습니다.",
     "Cannot create temporary file for Tesseract." : "Tesseract 임시 파일을 만들 수 없습니다.",

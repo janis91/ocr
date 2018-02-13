@@ -1,10 +1,11 @@
 OC.L10N.register(
     "ocr",
     {
+    "The languages are not specified in the correct format." : "L'idioma no s'especifiquen en el format correcte.",
+    "OCR" : "OCR",
     "Saved" : "Desat",
     "Please setup Redis in the administration settings first." : "Configureu-lo primer a la configuració de l'administració.",
     "The given settings key is empty." : "La clau de configuració donada està buida.",
-    "The languages are not specified in the correct format." : "L'idioma no s'especifiquen en el format correcte.",
     "The Redis host is not specified in the correct format." : "El servidor Redis no s'especifica en el format correcte.",
     "The Redis port number is not specified in the correct format." : "El número de port Redis no s'especifica en el format correcte.",
     "The Redis DB is not specified in the correct format." : "El Redis DB no s'especifica en el format correcte.",
@@ -18,7 +19,6 @@ OC.L10N.register(
     "Temp file does not exist." : "L'arxiu temporal no existeix",
     "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR no ha pogut posar el fitxer processat a la carpeta de destinació adequada. Si heu seleccionat l'opció de reemplaçament, podeu restaurar el fitxer mitjançant la paperera.",
     "Could not add files to the Redis OCR processing queue." : "No s'han pogut afegir fitxers a la cua de processament Redis OCR.",
-    "OCR" : "OCR",
     "Temp file cannot be created." : "No es pot crear el fitxer temporal.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "No es pot eliminar el fitxer temporal durant la creació del fitxer temporal per Tesseract.",
     "Cannot create temporary file for Tesseract." : "No es pot crear un fitxer temporal per a Tesseract.",
