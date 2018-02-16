@@ -17,7 +17,7 @@ OC.L10N.register(
     "Cannot delete because of wrong ID." : "Cannot delete because of wrong ID.",
     "Reading the finished jobs from Redis went wrong." : "Reading the finished jobs from Redis went wrong.",
     "Temp file does not exist." : "Temp file does not exist.",
-    "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin.",
+    "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file from the Deleted files folder.",
     "Could not add files to the Redis OCR processing queue." : "Could not add files to the Redis OCR processing queue.",
     "Temp file cannot be created." : "Temp file cannot be created.",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Cannot delete temporary file during creation of temp file for Tesseract.",
