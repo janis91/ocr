@@ -11,6 +11,7 @@
 namespace OCA\Ocr\Settings;
 
 use OCP\IL10N;
+use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
 
 
@@ -18,13 +19,16 @@ class Section implements IIconSection {
 
     /** @var IL10N */
     private $l;
+    /** @var IURLGenerator */
+    private $url;
 
     /**
-     *
-     * @param IL10N $l            
+     * @param IL10N $l
+     * @param IURLGenerator $url
      */
-    public function __construct(IL10N $l) {
-        $this->l = $l;
+    public function __construct(IL10N $l, IURLGenerator $url) {
+      $this->l = $l;
+      $this->url = $url;
     }
 
     /**
@@ -60,6 +64,6 @@ class Section implements IIconSection {
      *
      */
     public function getIcon() {
-        return '/apps/ocr/img/icon/ocr.svg';
+        return $this->url->imagePath('ocr', 'ocr.svg');
     }
 }
