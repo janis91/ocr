@@ -61,7 +61,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 		<database>sqlite</database>
 		<database>mysql</database>
 		<database>pgsql</database>
-		<nextcloud min-version="12" max-version="12" />
+		<nextcloud min-version="12" max-version="13" />
 	</dependencies>
 	<repair-steps>
 		<pre-migration>
