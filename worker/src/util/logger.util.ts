@@ -11,7 +11,7 @@ export class LoggerUtil {
     private static readonly DEBUG: string = 'debug';
 
     /**
-     * Creates an instance of the logger or if already exiting returns this.
+     * Creates an instance of the logger or if already existing returns this.
      */
     public static build(): LoggerInstance {
         /* tslint:disable:no-unused-expression */
