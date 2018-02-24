@@ -12,7 +12,7 @@ The app uses a docker container with tesseract-ocr, OCRmyPDF and communicates ov
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
- - **[Nextcloud 12](https://nextcloud.com/)**. For older versions take an older major version of this app.
+ - **[Nextcloud 12 or 13](https://nextcloud.com/)**. For older versions take an older major version of this app.
  - **Linux** server as environment. (tested with Debian 8, Raspbian and Ubuntu 14.04 (Trusty))
  - **Docker** is used for processing files. tesseract-ocr and OCRmyPDF reside in a docker container.
  - **php-redis** is used for the communication and has to be a part of your php.
