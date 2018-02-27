@@ -1,8 +1,18 @@
 OC.L10N.register(
     "ocr",
     {
+    "Saved." : "Guardado.",
     "The languages are not specified in the correct format." : "Los idiomas no están definidos en el formato correcto.",
+    "The Redis settings are not specified in the right format." : "Las configuraciones de Redis no están especificadas en el formato correcto.",
     "OCR" : "OCR",
+    "No file selected." : "No se ha seleccionado algun archivo.",
+    "Error during deletion:" : "Error durante el borrado:",
+    "Delete" : "Borrar",
+    "Refresh" : "Actualizar",
+    "Delete from queue" : "Borrar de la cola",
+    "File" : "Archivo",
+    "Status" : "Estatus",
+    "Log" : "Bitácora",
     "Saved" : "Guardado",
     "Please setup Redis in the administration settings first." : "Por favor configura primero Redis en la configuración de administración.",
     "The given settings key is empty." : "La clave ingresada en la configuración está vacía.",
