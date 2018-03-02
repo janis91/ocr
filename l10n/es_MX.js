@@ -8,6 +8,8 @@ OC.L10N.register(
     "OCR" : "OCR",
     "No file selected." : "No se ha seleccionado algun archivo.",
     "MIME type not supported." : "El tipo MIME no está soportado.",
+    "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "No hay idiomas disponibles para el procesamiento OCR. Por favor asegúrate de configurar los idiomas en la sección de adminsitración. ",
+    "Available languages could not be retrieved:" : "Los lenguajes disponibles no pudieron ser extraidos: ",
     "OCR jobs could not be retrieved:" : "No se pudieron recuperar las tareas OCR:",
     "The job for the following file object has been successfully deleted:" : "La tarea para el siguiente objeto de archivo ha sido borrada exitosamente:",
     "Error during deletion:" : "Error durante el borrado:",
