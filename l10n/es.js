@@ -7,7 +7,7 @@ OC.L10N.register(
     "Saving Redis settings failed:" : "Fallo al guardar la configuración de Redis:",
     "The Redis settings are not specified in the right format." : "La configuración de Redis no se han especificado en el formato correcto.",
     "OCR" : "OCR",
-    "OCR processing failed:" : "El procesado OCR falló:",
+    "OCR processing failed:" : "El procesado OCR ha fallado:",
     "No file selected." : "No se ha seleccionado ningún archivo.",
     "MIME type not supported." : "Tipo MIME no soportado.",
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["El procesado OCR falló para %n archivo. Para detalles, por favor acude a tu configuración personal.","El procesado OCR falló para %n archivos. Para detalles, por favor acude a tu configuración personal."],
