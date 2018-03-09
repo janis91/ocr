@@ -1,8 +1,16 @@
 OC.L10N.register(
     "ocr",
     {
+    "Saved." : "Uloženo.",
     "The languages are not specified in the correct format." : "Jazyky nejsou zadány ve správném formátu.",
     "OCR" : "OCR",
+    "No file selected." : "Nebyl vybrán žádný soubor.",
+    "Error during deletion:" : "Chyba při mazání:",
+    "Delete" : "Smazat",
+    "Delete from queue" : "Vymazat z fronty",
+    "File" : "Soubor",
+    "Status" : "Stav",
+    "Replace by result" : "Nahradit výsledkem",
     "Saved" : "Uloženo",
     "Please setup Redis in the administration settings first." : "Nejprve v administračním nastavení nastavte Redis.",
     "The given settings key is empty." : "Zadaný klíč nastavení je prázdný.",
