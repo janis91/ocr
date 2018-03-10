@@ -129,7 +129,7 @@ class AppConfigService {
      */
     private function checkLanguages($value) {
         if (empty($value) ||
-                 !preg_match('/^(([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4});)*([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4})$/', $value)) {
+                 !preg_match('/^[a-zA-Z\_\-\/]+(\;[a-zA-Z\_\-\/]+)*$/', $value)) {
             throw new NotFoundException($this->l10n->t('The languages are not specified in the correct format.'));
         }
     }

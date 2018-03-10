@@ -9,8 +9,6 @@ import $ from 'jquery';
 
 declare var OC: any;
 declare var document: Document;
-declare var t: ISingleTranslation;
-declare var n: IMultiTranslation;
 
 /**
  * Nextcloud - OCR
@@ -31,9 +29,9 @@ export class Personal {
     constructor() {
         _.delay(() => {
             this.config = new Configuration();
-            this.view = new View(OC.Notification, handlebarsTableTemplate, t, $, document);
+            this.view = new View(OC.Notification, handlebarsTableTemplate, $, document);
             this.httpService = new HttpService(this.config, $);
-            this.controller = new Controller(this.view, this.httpService, document, $, t);
+            this.controller = new Controller(this.view, this.httpService, document, $);
 
             try {
                 this.controller.init();

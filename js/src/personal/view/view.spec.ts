@@ -1,12 +1,14 @@
 import { IJob } from '../controller/poto/job.poto';
 import { View } from './view';
 
+const globalAny: any = global;
+
 describe('For the view', () => {
 
     let cut: View;
     let notificationMock: any;
     let handlebarsTableTemplateFunctionMock: any;
-    let t = (appName: string, translationString: string) => { return translationString; };
+    globalAny.t = (appName: string, translationString: string) => { return translationString; };
     let jqueryMock: any;
     let documentMock: any;
     let element: any;
@@ -16,7 +18,7 @@ describe('For the view', () => {
         notificationMock = jasmine.createSpyObj('notification', ['showHtml']);
         jqueryMock = jasmine.createSpy('jquery');
         documentMock = jasmine.createSpyObj('document', ['getElementById']);
-        cut = new View(notificationMock, handlebarsTableTemplateFunctionMock, t, jqueryMock, documentMock);
+        cut = new View(notificationMock, handlebarsTableTemplateFunctionMock, jqueryMock, documentMock);
     });
 
     describe('the displayMessage function', () => {

@@ -3,6 +3,8 @@ import { ISingleTranslation } from '../../global-oc-functions';
 import { HttpService } from '../service/http.service';
 import { View } from '../view/view';
 
+declare var t: ISingleTranslation;
+
 /**
  * Nextcloud - OCR
  *
@@ -16,7 +18,7 @@ export class Controller {
 
     private _jobs: Array<IJob> = [];
 
-    constructor(private view: View, private httpService: HttpService, private document: Document, private jquery: JQueryStatic, private t: ISingleTranslation) { }
+    constructor(private view: View, private httpService: HttpService, private document: Document, private jquery: JQueryStatic) { }
 
     /**
      * Initializes the Controller / OCR settings in the frontend of Nextcloud.
@@ -44,7 +46,7 @@ export class Controller {
             this.jobs = jobs;
             this.view.render(this.jobs);
         }).fail((jqXHR: JQueryXHR) => {
-            this.view.displayMessage(`${this.t('ocr', 'OCR jobs could not be retrieved:')} ${jqXHR.responseText}`, true);
+            this.view.displayMessage(`${t('ocr', 'OCR jobs could not be retrieved:')} ${jqXHR.responseText}`, true);
             this.jobs = [];
             this.view.render(this.jobs);
         });
@@ -61,10 +63,10 @@ export class Controller {
             this.jobs = this.jobs.filter((s: IJob) => {
                 return s.id !== id;
             });
-            this.view.displayMessage(`${this.t('ocr', 'The job for the following file object has been successfully deleted:')} ${jobs[0].originalFilename}`, false);
+            this.view.displayMessage(`${t('ocr', 'The job for the following file object has been successfully deleted:')} ${jobs[0].originalFilename}`, false);
             this.view.render(this.jobs);
         }).fail((jqXHR: JQueryXHR) => {
-            this.view.displayMessage(`${this.t('ocr', 'Error during deletion:')} ${jqXHR.responseText}`, true);
+            this.view.displayMessage(`${t('ocr', 'Error during deletion:')} ${jqXHR.responseText}`, true);
             this.loadAndRender();
         });
     }

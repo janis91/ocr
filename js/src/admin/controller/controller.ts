@@ -1,5 +1,8 @@
 import { HttpService } from '../service/http.service';
-import { ISingleTranslation } from '../../global-oc-functions';
+import { ISingleTranslation, IMultiTranslation } from '../../global-oc-functions';
+
+declare var t: ISingleTranslation;
+declare var n: IMultiTranslation;
 
 /**
  * Nextcloud - OCR
@@ -18,7 +21,7 @@ export class Controller {
     private _applyRedisButton: HTMLButtonElement;
 
     constructor(private httpService: HttpService, private notification: any, private jquery: JQueryStatic,
-        private document: Document, private t: ISingleTranslation) { }
+        private document: Document) { }
 
     /**
      * Initializes the Controller / OCR admin settings in the frontend of Nextcloud.
@@ -51,12 +54,12 @@ export class Controller {
         const languages = this.getLanguages();
         if (this.checkLanguagesValidity(languages)) {
             this.sendLanguages(languages).done(() => {
-                this.displayMessage(this.t('ocr', 'Saved.'), false);
+                this.displayMessage(t('ocr', 'Saved.'), false);
             }).fail((message) => {
-                this.displayMessage(`${this.t('ocr', 'Saving languages failed:')} ${message}`, true);
+                this.displayMessage(`${t('ocr', 'Saving languages failed:')} ${message}`, true);
             });
         } else {
-            this.displayMessage(this.t('ocr', 'The languages are not specified in the correct format.'), true);
+            this.displayMessage(t('ocr', 'The languages are not specified in the correct format.'), true);
         }
         this.applyLanguagesButton.disabled = false;
     }
@@ -72,12 +75,12 @@ export class Controller {
         const redisPassword = this.getRedisPassword();
         if (this.checkRedisHostValidity(redisHost) && this.checkRedisPortValidity(redisPort) && this.checkRedisDbValidity(redisDb)) {
             this.sendRedis(redisHost, `${redisPort}`, `${redisDb}`, `${redisPassword}`).done(() => {
-                this.displayMessage(this.t('ocr', 'Saved.'), false);
+                this.displayMessage(t('ocr', 'Saved.'), false);
             }).fail((message) => {
-                this.displayMessage(`${this.t('ocr', 'Saving Redis settings failed:')} ${message}`, true);
+                this.displayMessage(`${t('ocr', 'Saving Redis settings failed:')} ${message}`, true);
             });
         } else {
-            this.displayMessage(this.t('ocr', 'The Redis settings are not specified in the right format.'), true);
+            this.displayMessage(t('ocr', 'The Redis settings are not specified in the right format.'), true);
         }
         this.applyRedisButton.disabled = false;
     }
@@ -89,9 +92,9 @@ export class Controller {
      */
     public displayMessage(message: string, error: boolean): void {
         if (error) {
-            this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
+            this.notification.showHtml(`<div>${t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
         } else {
-            this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 5 });
+            this.notification.showHtml(`<div>${t('ocr', 'OCR')}: ${message}</div>`, { timeout: 5 });
         }
     }
 
@@ -140,7 +143,7 @@ export class Controller {
      * @param languages The string to validate.
      */
     public checkLanguagesValidity(languages: string): boolean {
-        return /^[a-zA-Z\_\-]+(\;[a-zA-Z\_\-]+)*$/.test(languages);
+        return /^[a-zA-Z\_\-\/]+(\;[a-zA-Z\_\-\/]+)*$/.test(languages);
     }
 
     /**

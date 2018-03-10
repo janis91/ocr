@@ -1,5 +1,7 @@
 import { Controller } from './controller';
 
+const globalAny: any = global;
+
 describe('For the controller', () => {
 
     let cut: Controller;
@@ -7,14 +9,14 @@ describe('For the controller', () => {
     let httpServiceMock: any;
     let documentMock: any;
     let jqueryMock: any;
-    let t = (appName: string, translationString: string) => { return translationString; };
+    globalAny.t = (appName: string, translationString: string) => { return translationString; };
 
     beforeEach(() => {
         viewMock = jasmine.createSpyObj('view', ['destroy']);
         httpServiceMock = jasmine.createSpy('httpService');
         documentMock = jasmine.createSpyObj('document', ['addEventListener']);
         jqueryMock = jasmine.createSpy('jquery');
-        cut = new Controller(viewMock, httpServiceMock, documentMock, jqueryMock, t);
+        cut = new Controller(viewMock, httpServiceMock, documentMock, jqueryMock);
     });
 
     describe('the init function', () => {
