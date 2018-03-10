@@ -108,7 +108,8 @@ class StatusService {
      */
     private function handleException($e) {
         $this->logger->logException($e, [
-                'message' => 'Exception during status service function processing'
+                'message' => 'Exception during status service function processing',
+                'app' => 'OCR'
         ]);
         throw $e;
     }

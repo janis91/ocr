@@ -173,20 +173,20 @@ describe('For the controller', () => {
             expect(result).toBeFalsy();
         });
 
-        it('should test the input for validity and return false.', () => {
+        it('should test the input for validity and return true for custom namings.', () => {
             const input = 'eng;deu-fraktur';
 
             const result = cut.checkLanguagesValidity(input);
 
-            expect(result).toBeFalsy();
+            expect(result).toBeTruthy();
         });
 
-        it('should test the input for validity and return false.', () => {
+        it('should test the input for validity and return true for custom namings.', () => {
             const input = 'english';
 
             const result = cut.checkLanguagesValidity(input);
 
-            expect(result).toBeFalsy();
+            expect(result).toBeTruthy();
         });
     });
 

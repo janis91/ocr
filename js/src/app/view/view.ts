@@ -1,6 +1,9 @@
 import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
 import { IFile } from '../controller/poto/file.poto';
 
+declare var t: ISingleTranslation;
+declare var n: IMultiTranslation;
+
 /**
  * Nextcloud - OCR
  *
@@ -17,22 +20,21 @@ export class View {
     <span id="selectedActionsOCRId" class="selectedActionsOCR hidden">
         <a id="selectedFilesOCR" href="" class="ocr">
             <span class="icon icon-ocr"></span>
-            <span class="pad-for-icon">${this.t('ocr', 'OCR')}</span>
+            <span class="pad-for-icon">${t('ocr', 'OCR')}</span>
         </a>
     </span>`;
 
     /** The row of the notification for the pending state. */
     private _notificationRow: number = undefined;
 
-    constructor(private notification: any, private ocrDropdownTemplateFunction: any, private t: ISingleTranslation,
-        private n: IMultiTranslation, private jquery: JQueryStatic, private document: Document) { }
+    constructor(private notification: any, private ocrDropdownTemplateFunction: any, private jquery: JQueryStatic, private document: Document) { }
 
     /**
      * Displays an error for a given message.
      * @param message The message to display.
      */
     public displayError(message: string): void {
-        this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
+        this.notification.showHtml(`<div>${t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
     }
 
     /**
@@ -43,7 +45,7 @@ export class View {
     public renderDropdown(languages: Array<string>): string {
         this.destroyDropdown();
         const template = this.ocrDropdownTemplateFunction;
-        return template({ languages: languages, buttonText: this.t('ocr', 'Process'), replaceText: this.t('ocr', 'Replace') });
+        return template({ languages: languages, buttonText: t('ocr', 'Process'), replaceText: t('ocr', 'Replace') });
     }
 
     /**
@@ -65,10 +67,10 @@ export class View {
         let html: string;
         if (force) {
             // tslint:disable-next-line:max-line-length
-            html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> ${this.n('ocr', 'OCR started: %n new file in queue.', 'OCR started: %n new files in queue.', count)}</span>`;
+            html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> ${n('ocr', 'OCR started: %n new file in queue.', 'OCR started: %n new files in queue.', count)}</span>`;
         } else {
             // tslint:disable-next-line:max-line-length
-            html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> ${this.n('ocr', 'OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', count)}</span>`;
+            html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> ${n('ocr', 'OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', count)}</span>`;
         }
         if (count > 0 || force) {
             if (this.notificationRow !== undefined) { this.notification.hide(this.notificationRow); }
@@ -171,9 +173,9 @@ export class View {
     public renderSelectTwo(): void {
         this.jquery('#ocrLanguage').select2({
             formatNoMatches: () => {
-                return this.t('ocr', 'No matches found.');
+                return t('ocr', 'No matches found.');
             },
-            placeholder: this.t('ocr', 'Select language'),
+            placeholder: t('ocr', 'Select language'),
             width: 'element',
         });
     }

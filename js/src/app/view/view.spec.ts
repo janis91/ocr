@@ -1,4 +1,9 @@
 import { View } from './view';
+import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
+
+declare var t: ISingleTranslation;
+declare var n: IMultiTranslation;
+const globalAny: any = global;
 
 describe('For the view', () => {
 
@@ -7,15 +12,15 @@ describe('For the view', () => {
     let handlebarsDropdownTemplateMock: any;
     let jqueryMock: any;
     let documentMock: any;
-    let t = (appName: string, translationString: string) => { return translationString; };
-    let n = (appName: string, singleTranslationString: string, multipleTranslationString: string, count: number) => { return singleTranslationString; };
+    globalAny.t = (appName: string, translationString: string) => { return translationString; };
+    globalAny.n = (appName: string, singleTranslationString: string, multipleTranslationString: string, count: number) => { return singleTranslationString; };
 
     beforeEach(() => {
         handlebarsDropdownTemplateMock = jasmine.createSpy('ocrDropdownTemplateFunction');
         notificationMock = jasmine.createSpyObj('notification', ['showHtml', 'hide']);
         jqueryMock = jasmine.createSpy('jquery');
         documentMock = jasmine.createSpyObj('document', ['getElementById', 'removeChild', 'querySelectorAll']);
-        cut = new View(notificationMock, handlebarsDropdownTemplateMock, t, n, jqueryMock, documentMock);
+        cut = new View(notificationMock, handlebarsDropdownTemplateMock, jqueryMock, documentMock);
     });
 
     describe('the displayError function', () => {

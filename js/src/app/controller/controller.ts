@@ -6,6 +6,9 @@ import { HttpService } from '../service/http.service';
 import { OcaService } from '../service/oca.service';
 import { View } from '../view/view';
 
+declare var t: ISingleTranslation;
+declare var n: IMultiTranslation;
+
 /**
  * Nextcloud - OCR
  *
@@ -22,8 +25,7 @@ export class Controller {
     private _status: IStatus;
 
     constructor(private util: Util, private view: View, private httpService: HttpService,
-        private ocaService: OcaService, private t: ISingleTranslation, private n: IMultiTranslation,
-        private document: Document, private jquery: JQueryStatic) { }
+        private ocaService: OcaService, private document: Document, private jquery: JQueryStatic) { }
 
     /**
      * Initializes the Controller / OCR functions in the frontend of Nextcloud.
@@ -105,13 +107,13 @@ export class Controller {
      */
     public clickOnProcessButtonEvent(): void {
         if (this.selectedFiles.length === 0) {
-            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'No file selected.')}`);
+            this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'No file selected.')}`);
             this.view.destroyDropdown();
             return;
         }
         const filteredFiles: Array<IFile> = this.util.filterFilesWithMimeTypes(this.selectedFiles);
         if (filteredFiles.length === 0) {
-            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${this.t('ocr', 'MIME type not supported.')}`);
+            this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'MIME type not supported.')}`);
             this.view.destroyDropdown();
             return;
         }
@@ -122,7 +124,7 @@ export class Controller {
             this.selectedFiles = [];
             setTimeout(this.jquery.proxy(this.loopForStatus, this), 4500);
         }).fail((jqXHR: JQueryXHR) => {
-            this.view.displayError(`${this.t('ocr', 'OCR processing failed:')} ${jqXHR.responseText}`);
+            this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${jqXHR.responseText}`);
         }).always(() => {
             this.view.destroyDropdown();
         });
@@ -159,7 +161,7 @@ export class Controller {
         this.jquery.when(this.checkStatus()).done(() => {
             if (this.status.failed > 0) {
                 // tslint:disable-next-line:max-line-length
-                this.view.displayError(this.n('ocr', 'OCR processing for %n file failed. For details please go to your personal settings.', 'OCR processing for %n files failed. For details please go to your personal settings.', this.status.failed));
+                this.view.displayError(n('ocr', 'OCR processing for %n file failed. For details please go to your personal settings.', 'OCR processing for %n files failed. For details please go to your personal settings.', this.status.failed));
             }
             if (this.status.pending > 0) {
                 if (this.status.processed > 0) { this.updateFileList(); }
@@ -170,7 +172,7 @@ export class Controller {
                 this.togglePendingState(false);
             }
         }).fail((message: string) => {
-            this.view.displayError(`${this.t('ocr', 'OCR status could not be retrieved:')} ${message}`);
+            this.view.displayError(`${t('ocr', 'OCR status could not be retrieved:')} ${message}`);
             setTimeout(this.jquery.proxy(this.loopForStatus, self), 4500);
         });
     }
@@ -238,11 +240,11 @@ export class Controller {
         this.httpService.loadAvailableLanguages().done((response: ILanguageResponse) => {
             const languages: string[] = response.languages.split(';');
             if (languages.length === 0) {
-                throw new Error(this.t('ocr', 'No languages available for OCR processing. Please make sure to configure the languages in the administration section.'));
+                throw new Error(t('ocr', 'No languages available for OCR processing. Please make sure to configure the languages in the administration section.'));
             }
             this.availableLanguages = languages;
         }).fail((jqXHR: JQueryXHR) => {
-            this.view.displayError(`${this.t('ocr', 'Available languages could not be retrieved:')} ${jqXHR.responseText}`);
+            this.view.displayError(`${t('ocr', 'Available languages could not be retrieved:')} ${jqXHR.responseText}`);
         });
     }
 

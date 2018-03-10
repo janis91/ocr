@@ -26,6 +26,7 @@
         "@types/handlebars": "^4.0.32",
         "@types/jasmine": "^2.5.47",
         "@types/jquery": "^2.0.42",
+        "@types/node": "^9.4.7",
         "@types/select2": "^4.0.35",
         "@types/underscore": "^1.8.0",
         "handlebars": "^4.0.8",

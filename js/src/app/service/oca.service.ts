@@ -3,6 +3,8 @@ import { IFile, File } from '../controller/poto/file.poto';
 import _ from 'underscore';
 
 declare var OCA: any;
+declare var t: ISingleTranslation;
+declare var n: IMultiTranslation;
 
 /**
  * Nextcloud - OCR
@@ -13,10 +15,9 @@ declare var OCA: any;
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2017
  */
-// TODO: testing with giving in the OCA.Files.fileActions or FileList and so on directly (separately).
 export class OcaService {
 
-    constructor(private t: ISingleTranslation, private n: IMultiTranslation, private OC: any) { }
+    constructor(private OC: any) { }
 
     /**
      * Destroy the OCR related FileActions.
@@ -32,7 +33,8 @@ export class OcaService {
      * @param instance The instance that the events should be bound to (this).
      */
     public registerCheckBoxEvents(instance: any): void {
-        OCA.Files.App.fileList.$fileList.on('change', 'td.filename>.selectCheckBox', _.bind(instance.toggleSelectedFilesActionButton, instance));
+        OCA.Files.App.fileList.$fileList.on('change', 'td.selection>.selectCheckBox', _.bind(instance.toggleSelectedFilesActionButton, instance));
+        OCA.Files.App.fileList.$fileList.on('change', 'td.filename>.selectCheckBox', _.bind(instance.toggleSelectedFilesActionButton, instance)); // backwards compatible to nc12
         OCA.Files.App.fileList.$el.find('.select-all').click(_.bind(instance.toggleSelectedFilesActionButton, instance));
         OCA.Files.App.fileList.$el.find('.delete-selected').click(_.bind(instance.hideSelectedFilesActionButton, instance));
     }
@@ -59,8 +61,8 @@ export class OcaService {
         // Register FileAction for MIME type pdf
         OCA.Files.fileActions.registerAction({
             actionHandler: this.fileActionHandler,
-            altText: this.t('ocr', 'OCR'),
-            displayName: this.t('ocr', 'OCR'),
+            altText: t('ocr', 'OCR'),
+            displayName: t('ocr', 'OCR'),
             iconClass: 'icon-ocr',
             mime: 'application/pdf',
             name: 'Ocr',
@@ -71,8 +73,8 @@ export class OcaService {
         // Register FileAction for MIME type image
         OCA.Files.fileActions.registerAction({
             actionHandler: this.fileActionHandler,
-            altText: this.t('ocr', 'OCR'),
-            displayName: this.t('ocr', 'OCR'),
+            altText: t('ocr', 'OCR'),
+            displayName: t('ocr', 'OCR'),
             iconClass: 'icon-ocr',
             mime: 'image',
             name: 'Ocr',

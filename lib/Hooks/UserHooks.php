@@ -53,7 +53,8 @@ class UserHooks {
     public function register() {
         $postDelete = function ($user) {
             $this->logger->debug('Deleting all jobs for user "{user}" after user deletion (Hook).', [
-                    'user' => $user->getUID()
+                    'user' => $user->getUID(),
+                    'app' => 'OCR'
             ]);
             $this->ocrJobMapper->deleteAllForUser($user->getUID());
         };

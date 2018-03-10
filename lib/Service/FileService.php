@@ -251,7 +251,7 @@ class FileService {
      */
     private function checkMimeType(File $fileInfo) {
         if (!$fileInfo || !in_array($fileInfo->getMimetype(), OcrConstants::ALLOWED_MIME_TYPES)) {
-            $this->logger->debug('Getting FileInfo did not work or not included in the ALLOWED_MIMETYPES array.');
+            $this->logger->debug('Getting FileInfo did not work or not included in the ALLOWED_MIMETYPES array.', ['app' => 'OCR']);
             throw new NotFoundException($this->l10n->t('Wrong MIME type.'));
         }
     }
