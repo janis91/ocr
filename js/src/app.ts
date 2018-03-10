@@ -12,8 +12,6 @@ import $ from 'jquery';
 
 declare var OC: any;
 declare var document: any;
-declare var t: ISingleTranslation;
-declare var n: IMultiTranslation;
 
 /**
  * Nextcloud - OCR
@@ -37,10 +35,10 @@ export class App {
         _.delay(() => {
             this.config = new Configuration();
             this.util = new Util(this.config);
-            this.view = new View(OC.Notification, handlebarsDropdownTemplate, t, n, $, document);
+            this.view = new View(OC.Notification, handlebarsDropdownTemplate, $, document);
             this.httpService = new HttpService(this.util, this.config, $);
-            this.ocaService = new OcaService(t, n, OC);
-            this.controller = new Controller(this.util, this.view, this.httpService, this.ocaService, t, n, document, $);
+            this.ocaService = new OcaService(OC);
+            this.controller = new Controller(this.util, this.view, this.httpService, this.ocaService, document, $);
             try {
                 this.controller.init();
             } catch (e) {

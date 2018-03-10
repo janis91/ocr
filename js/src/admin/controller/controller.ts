@@ -140,7 +140,7 @@ export class Controller {
      * @param languages The string to validate.
      */
     public checkLanguagesValidity(languages: string): boolean {
-        return /^(([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4});)*([a-z]{3,4}|[a-z]{3,4}\-[a-z]{3,4})$/.test(languages);
+        return /^[a-zA-Z\_\-]+(\;[a-zA-Z\_\-]+)*$/.test(languages);
     }
 
     /**

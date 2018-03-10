@@ -1,4 +1,9 @@
 import { Controller } from './controller';
+import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
+
+declare var t: ISingleTranslation;
+declare var n: IMultiTranslation;
+const globalAny: any = global;
 
 describe('For the controller', () => {
 
@@ -10,8 +15,8 @@ describe('For the controller', () => {
     let documentMock: any;
     let jqueryMock: any;
     let OC: any;
-    let t = (appName: string, translationString: string) => { return translationString; };
-    let n = (appName: string, singleTranslationString: string, multipleTranslationString: string, count: number) => { return singleTranslationString; };
+    globalAny.t = (appName: string, translationString: string) => { return translationString; };
+    globalAny.n = (appName: string, singleTranslationString: string, multipleTranslationString: string, count: number) => { return singleTranslationString; };
 
 
     beforeEach(() => {
@@ -23,7 +28,7 @@ describe('For the controller', () => {
         ocaServiceMock = jasmine.createSpyObj('ocaService', ['destroy', 'registerFileActions', 'registerCheckBoxEvents', 'getSelectedFiles', 'reloadFilelist']);
         documentMock = jasmine.createSpyObj('document', ['addEventListener']);
         jqueryMock = jasmine.createSpy('jquery');
-        cut = new Controller(utilMock, viewMock, httpServiceMock, ocaServiceMock, t, n, documentMock, jqueryMock);
+        cut = new Controller(utilMock, viewMock, httpServiceMock, ocaServiceMock, documentMock, jqueryMock);
     });
 
     describe('the startEverything function', () => {

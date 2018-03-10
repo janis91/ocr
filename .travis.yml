@@ -77,10 +77,10 @@ matrix:
   - env: DB=mysql;CODECHECK=2
 fast_finish: true
 before_deploy:
-- sh build_release.sh
 - git config --local user.name "janis91"
 - git config --local user.email "janiskoehr@icloud.com"
-- git tag "$(grep -oPm1 "(?<=<version>)[^<]+" appinfo/info.xml)"
+- node ci/gitTag.js
+- sh ci/build_release.sh
 deploy:
   provider: releases
   skip_cleanup: true

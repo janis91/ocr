@@ -129,7 +129,8 @@ class RedisService {
                 ->exec();
             $this->logger->debug('Retrieved the following array from Redis: {result}', 
                     [
-                            'result' => $result[0]
+                            'result' => $result[0],
+                            'app' => 'OCR'
                     ]);
             return $result[0];
         } catch (Exception $e) {
@@ -147,7 +148,8 @@ class RedisService {
     private function handleException($e) {
         $this->logger->logException($e, 
                 [
-                        'message' => 'Exception during message queue processing'
+                        'message' => 'Exception during message queue processing', 
+                        'app' => 'OCR'
                 ]);
         throw $e;
     }

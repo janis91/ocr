@@ -23,7 +23,7 @@ Currently the app is not working with any activated encryption, nor is it workin
 For further information see the [homepage](https://github.com/janis91/ocr/wiki/Usage) or the appropriate documentation in the wiki.
 
 ## Installation
-Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download/clone the git repository and place the content in **nextcloud/apps/ocr/**.
+Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download the release package from github (**NOT** the sources) and place the content in **nextcloud/apps/ocr/**.
 
 **Please consider: The app will not work as long as the Docker container isn't running. (more information in the [wiki](https://github.com/janis91/ocr/wiki))**
 
@@ -34,7 +34,7 @@ Please read the related topics in the [wiki](https://github.com/janis91/ocr/wiki
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.
 ]]></description>
-	<version>3.2.0</version>
+	<version>3.3.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>

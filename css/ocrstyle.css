@@ -75,7 +75,7 @@ tr:focus .action:focus,
 .selectedActionsOCR {
 	position: absolute;
 	top: 0;
-	right: 100px;
+	right: 190px;
 }
 .selectedActionsOCR a {
 	display: inline;
