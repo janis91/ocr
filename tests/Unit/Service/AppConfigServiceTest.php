@@ -207,17 +207,24 @@ class AppConfigServiceTest extends TestCase {
         $result = $this->cut->setAppValue(OcrConstants::LANGUAGES_CONFIG_KEY, 'deu,eng');
     }
 
-    /**
-     * Makes sure that the regular expression works.
-     * @expectedException OCA\Ocr\Service\NotFoundException
-     * @expectedExceptionMessage The languages are not specified in the correct format.
-     */
-    public function testSetAppValueLanguagesForValueWrong2() {
-        $this->l10nMock->expects($this->once())
-            ->method('t')
-            ->with($this->equalTo('The languages are not specified in the correct format.'))
-            ->will($this->returnValue('The languages are not specified in the correct format.'));
+    public function testSetAppValueLanguagesForValueRight() {
+        $this->configMock->expects($this->once())
+        ->method('setAppValue')
+        ->with($this->equalTo($this->appName), $this->equalTo(OcrConstants::LANGUAGES_CONFIG_KEY),
+                $this->equalTo('deu;deu_frak'))
+                ->will($this->returnValue(true));
         $result = $this->cut->setAppValue(OcrConstants::LANGUAGES_CONFIG_KEY, 'deu;deu_frak');
+        $this->assertTrue($result);
+    }
+    
+    public function testSetAppValueLanguagesForValueRightUltimate() {
+        $this->configMock->expects($this->once())
+        ->method('setAppValue')
+        ->with($this->equalTo($this->appName), $this->equalTo(OcrConstants::LANGUAGES_CONFIG_KEY),
+                $this->equalTo('Latin;script/Latin;deu;deu-frak;eng_frak'))
+                ->will($this->returnValue(true));
+                $result = $this->cut->setAppValue(OcrConstants::LANGUAGES_CONFIG_KEY, 'Latin;script/Latin;deu;deu-frak;eng_frak');
+                $this->assertTrue($result);
     }
 
     public function testSetAppValueRedisHostForIPSuccessfully() {

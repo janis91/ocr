@@ -7,7 +7,6 @@ import $ from 'jquery';
 
 declare var OC: any;
 declare var document: any;
-declare var t: ISingleTranslation;
 
 /**
  * Nextcloud - OCR
@@ -28,7 +27,7 @@ export class Admin {
         _.delay(() => {
             this.config = new Configuration();
             this.httpService = new HttpService(this.config, $);
-            this.controller = new Controller(this.httpService, OC.Notification, $, document, t);
+            this.controller = new Controller(this.httpService, OC.Notification, $, document);
             try {
                 this.controller.init();
             } catch (e) {

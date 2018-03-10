@@ -1,5 +1,7 @@
 import { Controller } from './controller';
 
+const globalAny: any = global;
+
 describe('For the controller', () => {
 
     let cut: Controller;
@@ -8,15 +10,15 @@ describe('For the controller', () => {
     let jqueryMock: any;
     let notificationMock: any;
     let OC: any;
-    let t = (appName: string, translationString: string) => { return translationString; };
-    let n = (appName: string, singleTranslationString: string, multipleTranslationString: string, count: number) => { return singleTranslationString; };
+    globalAny.t = (appName: string, translationString: string) => { return translationString; };
+    globalAny.n = (appName: string, singleTranslationString: string, multipleTranslationString: string, count: number) => { return singleTranslationString; };
 
     beforeEach(() => {
         httpServiceMock = jasmine.createSpyObj('httpService', ['sendLanguages', 'sendRedis']);
         documentMock = jasmine.createSpyObj('document', ['addEventListener', 'getElementById']);
         jqueryMock = jasmine.createSpy('jquery');
         notificationMock = jasmine.createSpyObj('notification', ['showHtml']);
-        cut = new Controller(httpServiceMock, notificationMock, jqueryMock, documentMock, t);
+        cut = new Controller(httpServiceMock, notificationMock, jqueryMock, documentMock);
     });
 
     describe('the init function', () => {
@@ -173,8 +175,8 @@ describe('For the controller', () => {
             expect(result).toBeFalsy();
         });
 
-        it('should test the input for validity and return true for custom namings.', () => {
-            const input = 'eng;deu-fraktur';
+        it('should test the input for validity and return true for custom namings and scripts.', () => {
+            const input = 'Latin;script/Latin;deu;deu-frak;eng_frak';
 
             const result = cut.checkLanguagesValidity(input);
 

@@ -1,6 +1,8 @@
 import { IJob } from '../controller/poto/job.poto';
 import { ISingleTranslation } from '../../global-oc-functions';
 
+declare var t: ISingleTranslation;
+
 /**
  * Nextcloud - OCR
  *
@@ -12,10 +14,9 @@ import { ISingleTranslation } from '../../global-oc-functions';
  */
 export class View {
 
-    private _el: Element;
+    private _el: Element | null;
 
-    constructor(private notification: any, private handlebarsTableTemplateFunction: any,
-        private t: ISingleTranslation, private jquery: JQueryStatic, private document: Document) {
+    constructor(private notification: any, private handlebarsTableTemplateFunction: any, private jquery: JQueryStatic, private document: Document) {
         this.el = this.document.getElementById('ocr-settings');
     }
 
@@ -25,9 +26,9 @@ export class View {
      */
     public displayMessage(message: string, error: boolean): void {
         if (error) {
-            this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
+            this.notification.showHtml(`<div>${t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
         } else {
-            this.notification.showHtml(`<div>${this.t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10 });
+            this.notification.showHtml(`<div>${t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10 });
         }
     }
 
@@ -44,7 +45,9 @@ export class View {
      * Destroys the view.
      */
     public destroy(): void {
-        this.el.innerHTML = '';
+        if (this.el !== null) {
+            this.el.innerHTML = '';
+        }
     }
 
     /**
@@ -58,16 +61,16 @@ export class View {
             job.replace = job.replace === '1' ? true : false;
         });
         return template({
-            deleteText: this.t('ocr', 'Delete'),
+            deleteText: t('ocr', 'Delete'),
             enabled: enabled,
             jobs: jobs,
-            noPendingOrFailedText: this.t('ocr', 'No pending or failed OCR items found.'),
-            refreshButtonText: this.t('ocr', 'Refresh'),
-            tableHeadDeleteFromQueueText: this.t('ocr', 'Delete from queue'),
-            tableHeadFileText: this.t('ocr', 'File'),
-            tableHeadJobText: this.t('ocr', 'Status'),
-            tableHeadLogText: this.t('ocr', 'Log'),
-            tableHeadReplaceText: this.t('ocr', 'Replace by result'),
+            noPendingOrFailedText: t('ocr', 'No pending or failed OCR items found.'),
+            refreshButtonText: t('ocr', 'Refresh'),
+            tableHeadDeleteFromQueueText: t('ocr', 'Delete from queue'),
+            tableHeadFileText: t('ocr', 'File'),
+            tableHeadJobText: t('ocr', 'Status'),
+            tableHeadLogText: t('ocr', 'Log'),
+            tableHeadReplaceText: t('ocr', 'Replace by result'),
         });
     }
 
