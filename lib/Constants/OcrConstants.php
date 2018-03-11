@@ -12,6 +12,13 @@ namespace OCA\Ocr\Constants;
 
 
 abstract class OcrConstants {
+    
+    /**
+     * The app name
+     * 
+     * @var string
+     */
+    const APP_NAME = 'ocr';
 
     /**
      * The pending status.
