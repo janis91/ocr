@@ -36,15 +36,15 @@ class Admin implements ISettings {
     public function getForm() {
         return new TemplateResponse('ocr', 'settings-admin', 
                 [
-                        OcrConstants::LANGUAGES_CONFIG_KEY => $this->config->getAppValue('ocr', 
+                        OcrConstants::LANGUAGES_CONFIG_KEY => $this->config->getAppValue(OcrConstants::APP_NAME, 
                                 OcrConstants::LANGUAGES_CONFIG_KEY),
-                        OcrConstants::REDIS_CONFIG_KEY_HOST => $this->config->getAppValue('ocr', 
+                        OcrConstants::REDIS_CONFIG_KEY_HOST => $this->config->getAppValue(OcrConstants::APP_NAME, 
                                 OcrConstants::REDIS_CONFIG_KEY_HOST),
-                        OcrConstants::REDIS_CONFIG_KEY_PORT => $this->config->getAppValue('ocr', 
+                        OcrConstants::REDIS_CONFIG_KEY_PORT => $this->config->getAppValue(OcrConstants::APP_NAME, 
                                 OcrConstants::REDIS_CONFIG_KEY_PORT),
-                        OcrConstants::REDIS_CONFIG_KEY_DB => $this->config->getAppValue('ocr', 
+                        OcrConstants::REDIS_CONFIG_KEY_DB => $this->config->getAppValue(OcrConstants::APP_NAME, 
                                 OcrConstants::REDIS_CONFIG_KEY_DB),
-                        OcrConstants::REDIS_CONFIG_KEY_PASSWORD => $this->config->getAppValue('ocr',
+                        OcrConstants::REDIS_CONFIG_KEY_PASSWORD => $this->config->getAppValue(OcrConstants::APP_NAME,
                                 OcrConstants::REDIS_CONFIG_KEY_PASSWORD)
                 ], 'blank');
     }
@@ -54,7 +54,7 @@ class Admin implements ISettings {
      * @return string the section ID, e.g. 'sharing'
      */
     public function getSection() {
-        return 'ocr';
+        return OcrConstants::APP_NAME;
     }
 
     /**
