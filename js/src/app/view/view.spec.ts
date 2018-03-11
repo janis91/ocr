@@ -231,13 +231,13 @@ describe('For the view', () => {
     describe('the renderSelectedFilesActionButton function', () => {
         it('should render the selected files action button.', () => {
             spyOnProperty(cut, 'templateOCRSelectedFileAction', 'get').and.returnValue('template');
-            spyOn(cut, 'appendHtmlToElement');
+            spyOn(cut, 'prependHtmlToElement');
             documentMock.getElementById.and.returnValue('an element');
 
             cut.renderSelectedFilesActionButton();
 
-            expect(documentMock.getElementById).toHaveBeenCalledWith('headerName-container');
-            expect(cut.appendHtmlToElement).toHaveBeenCalledWith('template', 'an element');
+            expect(documentMock.getElementById).toHaveBeenCalledWith('selectedActionsList');
+            expect(cut.prependHtmlToElement).toHaveBeenCalledWith('template', 'an element');
         });
     });
 
@@ -251,7 +251,7 @@ describe('For the view', () => {
 
             cut.destroySelectedFilesActionButton();
 
-            expect(documentMock.getElementById).toHaveBeenCalledWith('selectedActionsOCRId');
+            expect(documentMock.getElementById).toHaveBeenCalledWith('process-ocr');
         });
     });
 

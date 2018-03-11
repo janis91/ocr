@@ -74,7 +74,7 @@ export class Controller {
         });
 
         this.document.addEventListener('click', (event: any): any => {
-            if (event.target.id === 'selectedFilesOCR' || event.target.parentNode.id === 'selectedFilesOCR') {
+            if (event.target.id === 'process-ocr' || event.target.parentNode.id === 'process-ocr') {
                 this.clickOnTopBarSelectedFilesActionButton();
                 event.preventDefault();
                 event.stopImmediatePropagation();
