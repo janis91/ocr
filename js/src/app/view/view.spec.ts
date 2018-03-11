@@ -251,7 +251,7 @@ describe('For the view', () => {
 
             cut.destroySelectedFilesActionButton();
 
-            expect(documentMock.getElementById).toHaveBeenCalledWith('selectedActionsOCRId');
+            expect(documentMock.getElementById).toHaveBeenCalledWith('selectedFilesOCR');
         });
     });
 
