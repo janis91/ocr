@@ -54,7 +54,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
 	<dependencies>
-		<php min-version="5.6" max-version="7.1" min-int-size="32" />
+		<php min-version="5.6" max-version="7.2" min-int-size="32" />
 		<lib>redis</lib>
 		<database>sqlite</database>
 		<database>mysql</database>
