@@ -17,12 +17,10 @@ export class View {
 
     /** Template for the OCR selected file action in the top bar. */
     private readonly _templateOCRSelectedFileAction: string = `
-    <span id="selectedActionsOCRId" class="selectedActionsOCR hidden">
-        <a id="selectedFilesOCR" href="" class="ocr">
+        <a id="process-ocr" href="" class="ocr hidden">
             <span class="icon icon-ocr"></span>
             <span class="pad-for-icon">${t('ocr', 'OCR')}</span>
-        </a>
-    </span>`;
+        </a>`;
 
     /** The row of the notification for the pending state. */
     private _notificationRow: number = undefined;
@@ -88,7 +86,7 @@ export class View {
      * @param show If show or hide.
      */
     public toggleSelectedFilesActionButton(show: boolean): void {
-        const selectedActionsOCR = this.document.getElementById('selectedActionsOCRId');
+        const selectedActionsOCR = this.document.getElementById('process-ocr');
         if (show) {
             this.removeClass(selectedActionsOCR, 'hidden');
         } else {
@@ -135,7 +133,7 @@ export class View {
      * Renders the selected files action button.
      */
     public renderSelectedFilesActionButton(): void {
-        this.appendHtmlToElement(this.templateOCRSelectedFileAction, this.document.getElementById('headerName-container'));
+        this.prependHtmlToElement(this.templateOCRSelectedFileAction, this.document.getElementById('selectedActionsList'));
     }
 
     /**
@@ -150,7 +148,7 @@ export class View {
      * Destroys the selected files action button.
      */
     public destroySelectedFilesActionButton(): void {
-        this.removeElement(this.document.getElementById('selectedActionsOCRId'));
+        this.removeElement(this.document.getElementById('process-ocr'));
     }
 
     /**
@@ -181,12 +179,21 @@ export class View {
     }
 
     /**
-     * Wraps the appenTo function of jQuery.
+     * Wraps the appendTo function of jQuery.
      * @param html The html to append to the element.
      * @param el The element.
      */
     public appendHtmlToElement(html: string, el: any) {
         this.jquery(html).appendTo(el);
+    }
+
+    /**
+     * Wraps the prependTo function of jQuery.
+     * @param html The html to prepend to the element.
+     * @param el The elemment.
+     */
+    public prependHtmlToElement(html: string, el: any) {
+        this.jquery(html).prependTo(el);
     }
 
     /**

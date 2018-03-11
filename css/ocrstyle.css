@@ -72,30 +72,6 @@ tr:focus .action:focus,
 	line-height: 2em;
 }
 
-.selectedActionsOCR {
-	position: absolute;
-	top: 0;
-	right: 190px;
-}
-.selectedActionsOCR a {
-	display: inline;
-	font-size: 11px;
-	line-height: 50px;
-	padding: 18px 5px;
-}
-.selectedActionsOCR a.hidden {
-	display: none;
-}
-.selectedActionsOCR a img {
-	position:relative;
-	vertical-align: text-bottom;
-	margin-bottom: -1px;
-}
-
-html.ie8 .column-mtime .selectedActionsOCR {
-	top: -95px;
-}
-
 #filestable .filename .action .icon,
 #filestable .selectedActionsOCR a .icon,
 #controls .actions .button .icon {
