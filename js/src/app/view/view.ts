@@ -17,12 +17,11 @@ export class View {
 
     /** Template for the OCR selected file action in the top bar. */
     private readonly _templateOCRSelectedFileAction: string = `
-    <span id="selectedActionsOCRId" class="selectedActionsOCR hidden">
-        <a id="selectedFilesOCR" href="" class="ocr">
+        <a id="selectedFilesOCR" href="" class="ocr hidden">
             <span class="icon icon-ocr"></span>
             <span class="pad-for-icon">${t('ocr', 'OCR')}</span>
         </a>
-    </span>`;
+    `;
 
     /** The row of the notification for the pending state. */
     private _notificationRow: number = undefined;
@@ -88,7 +87,7 @@ export class View {
      * @param show If show or hide.
      */
     public toggleSelectedFilesActionButton(show: boolean): void {
-        const selectedActionsOCR = this.document.getElementById('selectedActionsOCRId');
+        const selectedActionsOCR = this.document.getElementById('selectedFilesOCR');
         if (show) {
             this.removeClass(selectedActionsOCR, 'hidden');
         } else {
@@ -135,7 +134,7 @@ export class View {
      * Renders the selected files action button.
      */
     public renderSelectedFilesActionButton(): void {
-        this.appendHtmlToElement(this.templateOCRSelectedFileAction, this.document.getElementById('headerName-container'));
+        this.appendHtmlToElement(this.templateOCRSelectedFileAction, this.document.getElementById('selectedActionsList'));
     }
 
     /**
@@ -150,7 +149,7 @@ export class View {
      * Destroys the selected files action button.
      */
     public destroySelectedFilesActionButton(): void {
-        this.removeElement(this.document.getElementById('selectedActionsOCRId'));
+        this.removeElement(this.document.getElementById('selectedFilesOCR'));
     }
 
     /**
