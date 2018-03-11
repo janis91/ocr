@@ -23,7 +23,6 @@
     "Cannot connect to Redis." : "Nuk mund të lidhej me Redis",
     "Redis authentication error." : "Gabim autentifikimi Redis.",
     "Cannot connect to the right Redis database." : "Nuk mund të lidhej me databazën Redis të saktë",
-    "Optical character recognition (OCR)" : "Njohja optike e karaktereve (OCR)",
     "Installed languages" : "Gjuhë të instaluara",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Këtu është një listë me gjuhë të ndara nga pikëpresje që mbështeten nga instrumenti i punëtorit Docker (më shumë detaje në wiki në GitHub).",
     "Apply" : "Apliko",

@@ -27,7 +27,6 @@ OC.L10N.register(
     "Cannot connect to Redis." : "Не могу да се повежем са Redis базом.",
     "Redis authentication error." : "Redis грешка при провери идентитета.",
     "Cannot connect to the right Redis database." : "Не могу да се повежем на исправну Redis базу.",
-    "Optical character recognition (OCR)" : "Оптичко препознавање знакова (OCR)",
     "Installed languages" : "Инсталирани језици",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Овде иде листа језика одвојена са тачка-зарезом које подржава Докер радном инстанцом (више детаља на вики страни на GitHub-у).",
     "Apply" : "Примени",

@@ -25,7 +25,6 @@
     "Cannot connect to Redis." : "Nie można się połączyć z Redis.",
     "Redis authentication error." : "Błąd uwierzytelniania Redis.",
     "Cannot connect to the right Redis database." : "Nie można się połączyć z właściwą bazą danych Redis. ",
-    "Optical character recognition (OCR)" : "Rozpoznawanie pisma (OCR)",
     "Installed languages" : "Zainstalowane języki",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Lista języków oddzielona średnikami, wspierana przez instancję modułu Docker (więcej informacji w wiki na GitHub).",
     "Apply" : "Zastosuj",

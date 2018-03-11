@@ -32,7 +32,6 @@ OC.L10N.register(
     "Cannot set permissions for temporary Tesseract file." : "Nepavyksta nustatyti laikinojo Tesseract failo leidimų.",
     "Cannot connect to Redis." : "Nepavyksta prisijungti prie Redis.",
     "Cannot connect to the right Redis database." : "Nepavyksta prisijungti prie tinkamos Redis duomenų bazės.",
-    "Optical character recognition (OCR)" : "Optinis ženklų atpažinimas (OCR)",
     "Installed languages" : "Įdiegtos kalbos",
     "Apply" : "Taikyti",
     "Redis port" : "Redis prievadas",

@@ -49,7 +49,6 @@
     "Cannot connect to Redis." : "Невозможно подключиться к Redis",
     "Redis authentication error." : "Ошибка при аутентификации Redis.",
     "Cannot connect to the right Redis database." : "Невозможно подключиться к верной базе данных Redis",
-    "Optical character recognition (OCR)" : "Оптическое распознавание символов (ОРС)",
     "Installed languages" : "Установленные языки",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Здесь приведён разделённый точкой с запятой список языков, поддерживаемых установленным экземпляром Docker (более подробная информация в wiki на github).",
     "Apply" : "Применить",

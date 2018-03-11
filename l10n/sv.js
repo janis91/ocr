@@ -51,7 +51,6 @@ OC.L10N.register(
     "Cannot connect to Redis." : "Kan inte ansluta till Redis.",
     "Redis authentication error." : "Redis autentiseringsfel.",
     "Cannot connect to the right Redis database." : "Kan inte ansluta till Redis databas",
-    "Optical character recognition (OCR)" : "Optisk teckenigenkänning (OCR)",
     "Installed languages" : "Installerade språk",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Här följer en semikolonseparerad lista av språk som stöds av Docker worker instance (mer detaljer i wikin på GitHub).",
     "Apply" : "Applicera",

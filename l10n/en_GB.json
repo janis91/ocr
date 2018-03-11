@@ -49,7 +49,6 @@
     "Cannot connect to Redis." : "Cannot connect to Redis.",
     "Redis authentication error." : "Redis authentication error.",
     "Cannot connect to the right Redis database." : "Cannot connect to the right Redis database.",
-    "Optical character recognition (OCR)" : "Optical character recognition (OCR)",
     "Installed languages" : "Installed languages",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub).",
     "Apply" : "Apply",

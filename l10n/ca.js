@@ -27,7 +27,6 @@ OC.L10N.register(
     "Cannot connect to Redis." : "No es pot connectar amb Redis.",
     "Redis authentication error." : "Error d'autenticació",
     "Cannot connect to the right Redis database." : "No es pot connectar a la base de dades Redis",
-    "Optical character recognition (OCR)" : "Reconeixement òptic de caràcters (OCR)",
     "Installed languages" : "Idiomes instal·lats",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Aquí hi ha una llista d'idiomes separats per punts i punts que són compatibles amb la instància del treballador de Docker (més detalls a la wiki de GitHub).",
     "Apply" : "Aplica",

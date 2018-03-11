@@ -23,7 +23,6 @@
     "Cannot connect to Redis." : "Αδυναμία σύνδεσης στον Redis.",
     "Redis authentication error." : "Σφάλμα πιστοποίησης Redis.",
     "Cannot connect to the right Redis database." : "Αδυναμία σύνδεσης στη σωστή βάση δεδομένων Redis.",
-    "Optical character recognition (OCR)" : "Οπτική αναγνώριση χαρακτήρων (OCR)",
     "Installed languages" : "Εγκατεστημένες γλώσσες",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Εδώ εμφανίζεται μια λίστα με γλώσσες διαχωρισμένες με ερωτηματικό που υποστηρίζονται από την εργασία του Docker (περισσότερες πληροφορίες στο wiki στο GitHub).",
     "Apply" : "Εφαρμογή",

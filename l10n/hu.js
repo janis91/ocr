@@ -51,7 +51,6 @@ OC.L10N.register(
     "Cannot connect to Redis." : "Nem lehet kapcsolódni a Redishez.",
     "Redis authentication error." : "Redis azonosítási hiba.",
     "Cannot connect to the right Redis database." : "Nem lehet csatlakozni a megfelelő Redis adatbázishoz.",
-    "Optical character recognition (OCR)" : "Optikai karakterfelismerés (OCR)",
     "Installed languages" : "Telepített nyelvek",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Ide egy pontosvesszővel elválasztott nyelvlista kerül amit a Docker Worker példány támogat. (további részletek a GitHub wiki-ben)",
     "Apply" : "Alkalmaz",

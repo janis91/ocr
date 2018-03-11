@@ -51,7 +51,6 @@ OC.L10N.register(
     "Cannot connect to Redis." : "Redis bağlantısı kurulamadı.",
     "Redis authentication error." : "Redis kimlik doğrulama sorunu.",
     "Cannot connect to the right Redis database." : "Doğru Redis veritabanına bağlanılamadı.",
-    "Optical character recognition (OCR)" : "Optik Karakter Tanıma (OCR)",
     "Installed languages" : "Kurulmuş diller",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Docker worker kopyası tarafından desteklenen dillerin noktalı virgül ile ayrılmış listesi (ayrıntılı bilgi almak için GitHub üzerinde wiki bölümüne bakın).",
     "Apply" : "Uygula",

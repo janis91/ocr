@@ -25,7 +25,6 @@
     "Cannot connect to Redis." : "Redis에 연결할 수 없습니다.",
     "Redis authentication error." : "Redis 인증 오류입니다.",
     "Cannot connect to the right Redis database." : "올바른 Redis 데이터베이스에 연결할 수 없습니다.",
-    "Optical character recognition (OCR)" : "광학 문자 인식(OCR)",
     "Installed languages" : "설치된 언어",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "쉼표로 구분한 Docker 워커 인스턴스에서 지원하는 언어 목록입니다(자세한 사항은 GitHub의 위키 참조).",
     "Apply" : "적용",

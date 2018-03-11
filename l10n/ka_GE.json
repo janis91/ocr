@@ -49,7 +49,6 @@
     "Cannot connect to Redis." : "Redis-თან დაკავშირება ვერ ხერხდება.",
     "Redis authentication error." : "Redis-თან აუტენტიფიკაცია ვერ მოხერხდა.",
     "Cannot connect to the right Redis database." : "ვერ ვუკავშირდებით Redis-ის სწორ მონაცემთა ბაზას.",
-    "Optical character recognition (OCR)" : "ოპტიკური ნიშნის ამოცნობა (OCR)",
     "Installed languages" : "დაყენებული ენები",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "აქ წერტილ-მძიმით გამოყოფილი სიაა ენებისა, რომლებიც მხადაჭერილია Docker-ის მუშის ნიმუშში (მეტი დეტალები GitHub-ის wiki-ზე).",
     "Apply" : "გამოყენება",
