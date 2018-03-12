@@ -12,8 +12,6 @@
     "OCR status could not be retrieved:" : "No fue posible recuperar el estatus OCR:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "No hay idiomas disponibles para el procesamiento OCR. Por favor asegúrate de configurar los idiomas en la sección de adminsitración. ",
     "Available languages could not be retrieved:" : "Los lenguajes disponibles no pudieron ser extraidos: ",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["Comenzó el OCR: %n archivo nuevo en la cola","Comenzó el OCR: %n archivos nuevos en la cola"],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n archivo actualmente pendiente en la cola. ","OCR: %n archivos actualmente pendientes en la cola. "],
     "OCR jobs could not be retrieved:" : "No se pudieron recuperar las tareas OCR:",
     "The job for the following file object has been successfully deleted:" : "La tarea para el siguiente objeto de archivo ha sido borrada exitosamente:",
     "Error during deletion:" : "Error durante el borrado:",

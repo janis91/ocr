@@ -14,8 +14,6 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "Texterkennungs-Status kann nicht abgerufen werden.",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "Keine Sprachen für die Texterkennung verfügbar. Bitte stellen Sie sicher, dass die Sprachen im Administrationsbereich richtig eingestellt sind.",
     "Available languages could not be retrieved:" : "Verfügbare Sprachen konnten nicht abgerufen werden:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["Texterkennung gestartet: %n neue Dateie in der Warteschlange.","Texterkennung gestartet: %n neue Dateien in der Warteschlange."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["Texterkennung: %n Datei in der Warteschlange.","Texterkennung: %n Dateien in der Warteschlange."],
     "OCR jobs could not be retrieved:" : "Texterkennungs-Aufgaben konnten nicht abgerufen werden:",
     "The job for the following file object has been successfully deleted:" : "Aufgabe für folgendes Datei-Objekt wurde gelöscht:",
     "Error during deletion:" : "Fehler beim Löschen:",
@@ -51,6 +49,7 @@ OC.L10N.register(
     "Cannot connect to Redis." : "Kann nicht zu Redis verbinden.",
     "Redis authentication error." : "Redis-Authentifizierungsfehler.",
     "Cannot connect to the right Redis database." : "Kann nicht zur richtigen Redis-Datenbank verbinden.",
+    "Optical character recognition" : "Texterkennung",
     "Installed languages" : "Installierte Sprachen",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Dies ist eine durch Semikolon getrennte Liste von Sprachen. Diese Sprachen werden von der Docker-Worker-Instanz unterstützt (mehr Informationen hierzu im Wiki bei GitHub).",
     "Apply" : "Anwenden",
@@ -61,6 +60,6 @@ OC.L10N.register(
     "Redis database" : "Redis Datenbank",
     "The Redis database (normally 0)." : "Die Redis Datenbank (normalerweise 0)",
     "Redis password" : "Redis-Passwort",
-    "The password to authenticate (normally OCR)." : "Das Passwort zum authentifizieren (normalerweise optische Zeichenerkennung, OCR)"
+    "The password to authenticate (normally OCR)." : "Das Passwort zum Authentifizieren (normalerweise OCR)"
 },
 "nplurals=2; plural=(n != 1);");

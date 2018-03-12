@@ -14,8 +14,6 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "Az OCR állapotot nem lehet lekérni:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "Nem állnak rendelkezésre nyelvek az OCR feldolgozáshoz. Kérjük, győződjön meg róla, hogy beállította a nyelveket az adminisztrációs részben.",
     "Available languages could not be retrieved:" : "Az elérhető nyelveket nem lehet lekérni:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR elindítva: %n új fájl van a sorban.","OCR elindítva: %n új fájl van a sorban."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: jelenleg %n fájl van a sorban.","OCR: jelenleg %n fájl van a sorban."],
     "OCR jobs could not be retrieved:" : "Az OCR feladatokat nem lehet lekérni:",
     "The job for the following file object has been successfully deleted:" : "A következő fájl objektumhoz tartozó feladat sikeresen törölve lett:",
     "Error during deletion:" : "Hiba a törlés közben:",

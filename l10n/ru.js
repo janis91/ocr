@@ -14,8 +14,6 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "Не удаётся получить состояние ОРС :",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "Не найдены языки для обработки ОРС. Проверьте настройку языков в разделе «Администрирование».",
     "Available languages could not be retrieved:" : "Не удаётся получить список доступных языков распознавания:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["ОРС запущено: в очереди %n новый файл.","ОРС запущено: в очереди %n новых файла.","ОРС запущено: в очереди %n новых файлов.","ОРС запущено: в очереди %n новых файла."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["ОРС: в очереди ожидает %n файлов.","ОРС: в очереди ожидает %n файлов.","ОРС: в очереди ожидает %n файлов.","ОРС: в очереди ожидает %n файлов."],
     "OCR jobs could not be retrieved:" : "Не удаётся получить список заданий ОРС:",
     "The job for the following file object has been successfully deleted:" : "Задание для указного файлового объекта было успешно удалено:",
     "Error during deletion:" : "Ошибка удаления:",

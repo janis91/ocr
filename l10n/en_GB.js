@@ -14,8 +14,6 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "OCR status could not be retrieved:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "No languages available for OCR processing. Please make sure to configure the languages in the administration section.",
     "Available languages could not be retrieved:" : "Available languages could not be retrieved:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR started: %n new file in queue.","OCR started: %n new files in queue."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n currently pending file in queue.","OCR: %n currently pending files in queue."],
     "OCR jobs could not be retrieved:" : "OCR jobs could not be retrieved:",
     "The job for the following file object has been successfully deleted:" : "The job for the following file object has been successfully deleted:",
     "Error during deletion:" : "Error during deletion:",

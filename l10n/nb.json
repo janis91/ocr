@@ -12,8 +12,6 @@
     "OCR status could not be retrieved:" : "OCR-status kunne ikke innhentes:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "Ingen språk tilgjengelige for OCR-behandling. Sørg for å ha satt opp språkene i administrasjonsdelen.",
     "Available languages could not be retrieved:" : "Tilgjengelig språk kunne ikke innhentes:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR startet: %n ny fil i køen.","OCR startet: %n nye filer i køen."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n fil i køen","OCR: %n filer i køen"],
     "OCR jobs could not be retrieved:" : "OCR jobbene kunne ikke hentes:",
     "The job for the following file object has been successfully deleted:" : "Jobben for følgende filobjekt har blitt slettet:",
     "Error during deletion:" : "Feil under sletting:",

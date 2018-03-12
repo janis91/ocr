@@ -14,8 +14,6 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "OCR-status kunde inte hämtas:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "Inget språk tillgängligt för OCR-bearbetning. Vänligen kontrollera språkkonfigurationen i administrationsdelen.",
     "Available languages could not be retrieved:" : "Tillgängliga språk kunde inte hämtas:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR startade: %n ny fil i kö.","OCR startade: %n nya filer i kö."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n fil i kö.","OCR: %n antal filer i kö."],
     "OCR jobs could not be retrieved:" : "OCR-jobb kunde inte hämtas:",
     "The job for the following file object has been successfully deleted:" : "Jobbet för följande filobjekt har framgångsrikt tagits bort:",
     "Error during deletion:" : "Fel vid borttagande:",

@@ -14,8 +14,6 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "OCR სტატუსი ვერ დგინდება:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "OCR პროცესირებისთვის არც ერთი ენა არაა ხელმისაწვდომი. გთხოვთ გაუწიოთ ენებს კონფიგურაცია ადმინისტრაციის სექციაში.",
     "Available languages could not be retrieved:" : "ხელმისაწვდომი ენები ვერ იძებნება:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR დაიწყო: %n ახალი ფაილი რიგში."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n ამჟამად მოლოდინში მყოფი ფაილი."],
     "OCR jobs could not be retrieved:" : "OCR საქმეები ვერ იძებნება:",
     "The job for the following file object has been successfully deleted:" : "საქმეები შემდეგი ფაილ ობიექტებისთვის წარმატებით გაუქმდა:",
     "Error during deletion:" : "გაუქმებისას წარმოიშვა შეცდომა:",

@@ -14,8 +14,6 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "OCR durumu alınamadı:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "OCR işlemi için kullanılabilecek bir dil yok. Lütfen yönetim bölümünden dillerin ayarlandığından emin olun.",
     "Available languages could not be retrieved:" : "Kullanılabilecek diller alınamadı:",
-    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["Karakter Tanıma başlatıldı: Kuyrukta %n yeni dosya var.","Karakter Tanıma başlatıldı: Kuyrukta %n yeni dosya var."],
-    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["Karakter Tanıma: Kuyrukta bekleyen %n dosya var.","Karakter Tanıma: Kuyrukta bekleyen %n dosya var."],
     "OCR jobs could not be retrieved:" : "OCR görevleri alınamadı:",
     "The job for the following file object has been successfully deleted:" : "Şu dosya nesnesinin işi silindi:",
     "Error during deletion:" : "Silinirken sorun çıktı:",
