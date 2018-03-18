@@ -130,7 +130,7 @@ class RedisService {
             $this->logger->debug('Retrieved the following array from Redis: {result}', 
                     [
                             'result' => $result[0],
-                            'app' => 'OCR'
+                            'app' => OcrConstants::APP_NAME
                     ]);
             return $result[0];
         } catch (Exception $e) {
@@ -149,7 +149,7 @@ class RedisService {
         $this->logger->logException($e, 
                 [
                         'message' => 'Exception during message queue processing', 
-                        'app' => 'OCR'
+                        'app' => OcrConstants::APP_NAME
                 ]);
         throw $e;
     }

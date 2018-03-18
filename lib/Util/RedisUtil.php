@@ -72,13 +72,13 @@ class RedisUtil {
         try {
         if (!extension_loaded('redis')) {
             $this->logger->debug(
-                    'It seems that the message queueing capabilities are not available in your local php installation. Please install php-redis.', ['app' => 'OCR']);
+                    'It seems that the message queueing capabilities are not available in your local php installation. Please install php-redis.', ['app' => OcrConstants::APP_NAME]);
             throw new NotFoundException($this->l10n->t('Message queueing capabilities are missing on the server (package php-redis).'));
         }
         $redis = new \Redis();
         if (!$redis->connect($this->config->getAppValue($this->appName, 'redisHost'), 
                 intval($this->config->getAppValue($this->appName, 'redisPort')), 2.5, null, 100)) {
-                    $this->logger->debug('Cannot connect to Redis.', ['app' => 'OCR']);
+                    $this->logger->debug('Cannot connect to Redis.', ['app' => OcrConstants::APP_NAME]);
             throw new NotFoundException($this->l10n->t('Cannot connect to Redis.'));
         }
         $password = $this->config->getAppValue($this->appName, 'redisPassword', '');
@@ -86,7 +86,7 @@ class RedisUtil {
             $authenticated = $redis->auth($password);
         }
         if ($password !== '' && !$authenticated) {
-            $this->logger->debug('Redis authentication error.', ['app' => 'OCR']);
+            $this->logger->debug('Redis authentication error.', ['app' => OcrConstants::APP_NAME]);
             throw new NotFoundException($this->l10n->t('Redis authentication error.'));
         }
         if (!$redis->select(intval($this->config->getAppValue($this->appName, 'redisDb')))) {

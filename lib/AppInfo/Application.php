@@ -30,6 +30,7 @@ use OCA\Ocr\Util\PHPUtil;
 use OCA\Ocr\Util\FileUtil;
 use OCA\Ocr\Util\RedisUtil;
 use OCA\Ocr\Hooks\UserHooks;
+use OCA\Ocr\Constants\OcrConstants;
 
 
 /**
@@ -45,7 +46,7 @@ class Application extends App {
      * @param array $urlParams            
      */
     public function __construct(array $urlParams = array()) {
-        parent::__construct('ocr', $urlParams);
+        parent::__construct(OcrConstants::APP_NAME, $urlParams);
         $container = $this->getContainer();
         /**
          * Add the js and style if OCA\Files app is loaded
@@ -53,8 +54,8 @@ class Application extends App {
         $eventDispatcher = \OC::$server->getEventDispatcher();
         $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', 
                 function () {
-                    script('ocr', 'dist/ocrapp');
-                    style('ocr', 'ocrstyle');
+                    script(OcrConstants::APP_NAME, 'dist/ocrapp');
+                    style(OcrConstants::APP_NAME, 'ocrstyle');
                     // if not loaded before - load select2 for multi select languages
                     vendor_script('select2/select2');
                     vendor_style('select2/select2');
@@ -81,7 +82,7 @@ class Application extends App {
                 function (IContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new PHPUtil($server->getL10N('ocr'));
+                    return new PHPUtil($server->getL10N(OcrConstants::APP_NAME));
                 });
         /**
          * Register the RedisUtil
@@ -90,7 +91,7 @@ class Application extends App {
                 function (IContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new RedisUtil($server->getL10N('ocr'), $server->getLogger(), $server->getConfig());
+                    return new RedisUtil($server->getL10N(OcrConstants::APP_NAME), $server->getLogger(), $server->getConfig());
                 });
         /**
          * Register the FileUtil
@@ -133,7 +134,7 @@ class Application extends App {
                 function (IAppContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new AppConfigService($server->getConfig(), $server->getL10N('ocr'), $c->query('RedisUtil'), 
+                    return new AppConfigService($server->getConfig(), $server->getL10N(OcrConstants::APP_NAME), $c->query('RedisUtil'), 
                             $server->getLogger());
                 });
         /**
@@ -143,7 +144,7 @@ class Application extends App {
                 function (IAppContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new FileService($server->getL10N('ocr'), $server->getLogger(), $c->query('CurrentUID'), 
+                    return new FileService($server->getL10N(OcrConstants::APP_NAME), $server->getLogger(), $c->query('CurrentUID'), 
                             $c->query('FileMapper'), $c->query('ShareMapper'), $c->query('FileUtil'));
                 });
         /**
@@ -154,7 +155,7 @@ class Application extends App {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
                     return new RedisService($c->query('OcrJobMapper'), $c->query('FileUtil'), $c->query('RedisUtil'), 
-                            $server->getL10N('ocr'), $server->getLogger(), $server->getTempManager());
+                            $server->getL10N(OcrConstants::APP_NAME), $server->getLogger(), $server->getTempManager());
                 });
         /**
          * Register the Job Service
@@ -163,7 +164,7 @@ class Application extends App {
                 function (IAppContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new JobService($server->getL10N('ocr'), $server->getLogger(), $c->query('CurrentUID'), 
+                    return new JobService($server->getL10N(OcrConstants::APP_NAME), $server->getLogger(), $c->query('CurrentUID'), 
                             new View('/' . $c->query('CurrentUID') . '/files'), $server->getTempManager(), 
                             $c->query('RedisService'), $c->query('OcrJobMapper'), $c->query('FileService'), 
                             $c->query('AppConfigService'), $c->query('PHPUtil'), $c->query('FileUtil'));
@@ -175,7 +176,7 @@ class Application extends App {
                 function (IAppContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');
-                    return new StatusService($server->getL10N('ocr'), $server->getLogger(), $c->query('CurrentUID'), 
+                    return new StatusService($server->getL10N(OcrConstants::APP_NAME), $server->getLogger(), $c->query('CurrentUID'), 
                             $c->query('OcrJobMapper'), $c->query('JobService'));
                 });
         /**

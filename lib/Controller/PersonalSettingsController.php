@@ -13,6 +13,7 @@ namespace OCA\Ocr\Controller;
 use OCP\AppFramework\Controller;
 use OCP\IRequest;
 use OCP\Template;
+use OCA\Ocr\Constants\OcrConstants;
 
 
 class PersonalSettingsController extends Controller {
@@ -33,7 +34,7 @@ class PersonalSettingsController extends Controller {
      * @return Template
      */
     public function displayPanel() {
-        $tmpl = new Template('ocr', 'settings-personal');
+        $tmpl = new Template(OcrConstants::APP_NAME, 'settings-personal');
         return $tmpl;
     }
 }

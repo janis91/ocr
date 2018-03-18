@@ -22,12 +22,6 @@ class AppConfigService {
 
     /**
      *
-     * @var string
-     */
-    private $appName = 'ocr';
-
-    /**
-     *
      * @var IConfig
      */
     private $config;
@@ -72,7 +66,7 @@ class AppConfigService {
      * @return string
      */
     public function getAppValue($key) {
-        return $this->config->getAppValue($this->appName, $key);
+        return $this->config->getAppValue(OcrConstants::APP_NAME, $key);
     }
 
     /**
@@ -81,9 +75,9 @@ class AppConfigService {
      * @return boolean
      */
     public function evaluateRedisSettings() {
-        if ($this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_HOST) !== '' &&
-                $this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_PORT) !== '' &&
-                        $this->config->getAppValue($this->appName, OcrConstants::REDIS_CONFIG_KEY_DB) !== '') {
+        if ($this->config->getAppValue(OcrConstants::APP_NAME, OcrConstants::REDIS_CONFIG_KEY_HOST) !== '' &&
+                $this->config->getAppValue(OcrConstants::APP_NAME, OcrConstants::REDIS_CONFIG_KEY_PORT) !== '' &&
+                        $this->config->getAppValue(OcrConstants::APP_NAME, OcrConstants::REDIS_CONFIG_KEY_DB) !== '') {
             // test the connection and authenticate
             $this->redisUtil->setupRedisInstance();
             return true;
@@ -118,7 +112,7 @@ class AppConfigService {
                 $this->checkRedisDb($value);
                 break;
         }
-        return $this->config->setAppValue($this->appName, $key, $value);
+        return $this->config->setAppValue(OcrConstants::APP_NAME, $key, $value);
     }
 
     /**

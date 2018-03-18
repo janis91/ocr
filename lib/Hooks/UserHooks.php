@@ -14,6 +14,7 @@ namespace OCA\Ocr\Hooks;
 use OCP\IUserManager;
 use OCA\Ocr\Db\OcrJobMapper;
 use OCP\ILogger;
+use OCA\Ocr\Constants\OcrConstants;
 
 
 /**
@@ -54,7 +55,7 @@ class UserHooks {
         $postDelete = function ($user) {
             $this->logger->debug('Deleting all jobs for user "{user}" after user deletion (Hook).', [
                     'user' => $user->getUID(),
-                    'app' => 'OCR'
+                    'app' => OcrConstants::APP_NAME
             ]);
             $this->ocrJobMapper->deleteAllForUser($user->getUID());
         };
