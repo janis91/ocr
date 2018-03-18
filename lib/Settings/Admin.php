@@ -34,7 +34,7 @@ class Admin implements ISettings {
      * @return TemplateResponse
      */
     public function getForm() {
-        return new TemplateResponse('ocr', 'settings-admin', 
+        return new TemplateResponse(OcrConstants::APP_NAME, 'settings-admin', 
                 [
                         OcrConstants::LANGUAGES_CONFIG_KEY => $this->config->getAppValue(OcrConstants::APP_NAME, 
                                 OcrConstants::LANGUAGES_CONFIG_KEY),

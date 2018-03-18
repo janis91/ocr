@@ -62,14 +62,13 @@ export class View {
      * @param count How much files.
      */
     public togglePendingNotification(force: boolean, count: number): void {
-        let html: string;
+        let displayText: string;
         if (force) {
-            // tslint:disable-next-line:max-line-length
-            html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> ${n('ocr', 'OCR started: %n new file in queue.', 'OCR started: %n new files in queue.', count)}</span>`;
+            displayText = n('ocr', 'OCR started: %n new file in queue.', 'OCR started: %n new files in queue.', count);
         } else {
-            // tslint:disable-next-line:max-line-length
-            html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> ${n('ocr', 'OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', count)}</span>`;
+            displayText = n('ocr', 'OCR: %n currently pending file in queue.', 'OCR: %n currently pending files in queue.', count);
         }
+        const html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> ${displayText}</span>`;
         if (count > 0 || force) {
             if (this.notificationRow !== undefined) { this.notification.hide(this.notificationRow); }
             this.notificationRow = this.notification.showHtml(html);

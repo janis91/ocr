@@ -14,6 +14,7 @@ use Exception;
 use OCP\IL10N;
 use OCP\ILogger;
 use OCA\Ocr\Db\OcrJobMapper;
+use OCA\Ocr\Constants\OcrConstants;
 
 
 /**
@@ -109,7 +110,7 @@ class StatusService {
     private function handleException($e) {
         $this->logger->logException($e, [
                 'message' => 'Exception during status service function processing',
-                'app' => 'OCR'
+                'app' => OcrConstants::APP_NAME
         ]);
         throw $e;
     }

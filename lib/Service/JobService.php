@@ -143,7 +143,7 @@ class JobService {
                             'files' => json_encode($files),
                             'languages' => json_encode($languages),
                             'replace' => json_encode($replace),
-                            'app' => 'OCR'
+                            'app' => OcrConstants::APP_NAME
                     ]);
             // Check if files and language not empty
             $noLang = $this->noLanguage($languages);
@@ -256,7 +256,7 @@ class JobService {
                 $this->logger->debug('The following job finished: {job}', 
                         [
                                 'job' => $fJob,
-                                'app' => 'OCR'
+                                'app' => OcrConstants::APP_NAME
                         ]);
                 $this->jobFinished($fJob->id, $fJob->error, $fJob->log);
             }
@@ -273,7 +273,7 @@ class JobService {
      */
     public function handleProcessed() {
         try {
-            $this->logger->debug('Check if files were processed by ocr and if so, put them to the right dirs.', ['app' => 'OCR']);
+            $this->logger->debug('Check if files were processed by ocr and if so, put them to the right dirs.', ['app' => OcrConstants::APP_NAME]);
             $processed = $this->jobMapper->findAllProcessed($this->userId);
             foreach ($processed as $job) {
                 if ($this->fileUtil->fileExists($this->tempM->getTempBaseDir().'/'.$job->getTempFile().'.pdf')) {
@@ -312,7 +312,7 @@ class JobService {
             $this->logger->debug('Following jobs failed: {failed}', 
                     [
                             'failed' => json_encode($failed),
-                            'app' => 'OCR'
+                            'app' => OcrConstants::APP_NAME
                     ]);
             return $failed;
         } catch (Exception $e) {
@@ -353,7 +353,7 @@ class JobService {
                 $job->setStatus(OcrConstants::STATUS_FAILED);
                 $job->setErrorLog($log);
                 $this->jobMapper->update($job);
-                $this->logger->error($log, ['app' => 'OCR']);
+                $this->logger->error($log, ['app' => OcrConstants::APP_NAME]);
             }
         } catch (Exception $e) {
             $this->handleException($e);
@@ -388,7 +388,7 @@ class JobService {
         if ($decoded !== null && isset($decoded->id)) {
             return $decoded;
         } else {
-            $this->logger->debug('The finished job retrieved by Redis was corrupt.', ['app' => 'OCR']);
+            $this->logger->debug('The finished job retrieved by Redis was corrupt.', ['app' => OcrConstants::APP_NAME]);
             throw new NotFoundException('The finished job retrieved by Redis was corrupt.');
         }
     }
@@ -433,7 +433,7 @@ class JobService {
         $this->logger->logException($e, 
                 [
                         'message' => 'Exception during job service function processing',
-                        'app' => 'OCR'
+                        'app' => OcrConstants::APP_NAME
                 ]);
         throw $e;
     }
