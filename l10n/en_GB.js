@@ -16,6 +16,8 @@ OC.L10N.register(
     "Available languages could not be retrieved:" : "Available languages could not be retrieved:",
     "Process" : "Process",
     "Replace" : "Replace",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR started: %n new file in queue.","OCR started: %n new files in queue."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n currently pending file in queue.","OCR: %n currently pending files in queue."],
     "No matches found." : "No matches found.",
     "Select language" : "Select language",
     "OCR jobs could not be retrieved:" : "OCR jobs could not be retrieved:",

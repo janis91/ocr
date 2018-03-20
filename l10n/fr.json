@@ -14,6 +14,8 @@
     "Available languages could not be retrieved:" : "Les langues disponibles n'ont pas pu être récupérées :",
     "Process" : "Exécuter",
     "Replace" : "Remplacer",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["L'OCR a commencé : %n fichier en attente de traitement.","L'OCR a commencé : %n fichiers en attente de traitement."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR : %n fichier en attente de traitement.","OCR : %n fichiers en attente d'être traités."],
     "No matches found." : "Aucun résultats trouvés.",
     "Select language" : "Sélectionner la langue",
     "OCR jobs could not be retrieved:" : "Les travaux d'OCR n'ont pas pu être récupérés :",

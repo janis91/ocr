@@ -14,6 +14,8 @@
     "Available languages could not be retrieved:" : "Kullanılabilecek diller alınamadı:",
     "Process" : "İşlem",
     "Replace" : "Değiştir",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["Karakter Tanıma başlatıldı: Kuyrukta %n yeni dosya var.","Karakter Tanıma başlatıldı: Kuyrukta %n yeni dosya var."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["Karakter Tanıma: Kuyrukta bekleyen %n dosya var.","Karakter Tanıma: Kuyrukta bekleyen %n dosya var."],
     "No matches found." : "Hehrangi bir eşleşme bulunamadı.",
     "Select language" : "Dil seçin",
     "OCR jobs could not be retrieved:" : "OCR görevleri alınamadı:",

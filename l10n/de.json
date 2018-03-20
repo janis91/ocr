@@ -14,6 +14,8 @@
     "Available languages could not be retrieved:" : "Verfügbare Sprachen konnten nicht abgerufen werden:",
     "Process" : "Verarbeiten",
     "Replace" : "Überschreiben",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["Texterkennung gestartet: %n neue Datei in der Warteschlange.","Texterkennung gestartet: %n neue Dateien in der Warteschlange."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["Texterkennung: %n Datei in der Warteschlange.","Texterkennung: %n Dateien in der Warteschlange."],
     "No matches found." : "Keine Übereinstimmungen gefunden.",
     "Select language" : "Sprache wählen",
     "OCR jobs could not be retrieved:" : "Texterkennungs-Aufgaben konnten nicht abgerufen werden:",
