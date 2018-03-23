@@ -1,6 +1,7 @@
 OC.L10N.register(
     "ocr",
     {
+    "Saved." : "Tallennettu.",
     "OCR" : "OCR",
     "Saved" : "Tallennettu",
     "Wrong parameter." : "Väärä paramteri.",

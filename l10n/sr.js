@@ -16,6 +16,8 @@ OC.L10N.register(
     "Available languages could not be retrieved:" : "Не могу да дохватим доступне језике:",
     "Process" : "Обради",
     "Replace" : "Замени",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR почео: %n нови фајл на чекању.","OCR почео: %n новa фајлa на чекању.","OCR почео:  %n нових фајлова на чекању."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: тренутно чека %n фајл","OCR: тренутно чека %n фајла","OCR: тренутно чека %n фајлова"],
     "No matches found." : "Нема поклапања.",
     "Select language" : "Одаберите језик",
     "OCR jobs could not be retrieved:" : "OCR послови не могу да се дохвате:",
