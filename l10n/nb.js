@@ -14,6 +14,8 @@ OC.L10N.register(
     "OCR status could not be retrieved:" : "OCR-status kunne ikke innhentes:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "Ingen språk tilgjengelige for OCR-behandling. Sørg for å ha satt opp språkene i administrasjonsdelen.",
     "Available languages could not be retrieved:" : "Tilgjengelig språk kunne ikke innhentes:",
+    "Replace" : "Erstatt",
+    "Select language" : "Velg språk",
     "OCR jobs could not be retrieved:" : "OCR jobbene kunne ikke hentes:",
     "The job for the following file object has been successfully deleted:" : "Jobben for følgende filobjekt har blitt slettet:",
     "Error during deletion:" : "Feil under sletting:",
