@@ -16,6 +16,8 @@ OC.L10N.register(
     "Available languages could not be retrieved:" : "No se han podido recuperar los lenguajes disponibles:",
     "Process" : "Proceso",
     "Replace" : "Reemplazar",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR iniciado: %n archivos nuevos en la cola","OCR iniciado: %n archivos nuevos en la cola."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: Quedan %n archivos en cola","OCR: actualmente quedan %n archivos pendiente en la cola"],
     "No matches found." : "No se han encontrado coincidencias.",
     "Select language" : "Selecciona el idioma",
     "OCR jobs could not be retrieved:" : "No se han podido recuperar los trabajos OCR:",
