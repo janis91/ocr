@@ -1,6 +1,8 @@
 OC.L10N.register(
     "ocr",
     {
+    "Saved." : "已保存",
+    "Saving languages failed:" : "保存语言失败:",
     "The languages are not specified in the correct format." : "未指定正确的语言",
     "OCR" : "OCR",
     "Saved" : "已保存",
