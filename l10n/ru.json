@@ -14,6 +14,8 @@
     "Available languages could not be retrieved:" : "Не удаётся получить список доступных языков распознавания:",
     "Process" : "Обработка",
     "Replace" : "Заменить",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["ОРС запущено: в очереди %n новый файл.","ОРС запущено: в очереди %n новых файлов.","ОРС запущено: в очереди %n новых файлов.","ОРС запущено: в очереди %n новых файлов."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["ОРС: в очереди ожидает %n файл.","ОРС: в очереди ожидает %n файлов.","ОРС: в очереди ожидает %n файлов.","ОРС: в очереди ожидает %n файлов."],
     "No matches found." : "Соответствий не найдено",
     "Select language" : "Выбрать язык",
     "OCR jobs could not be retrieved:" : "Не удаётся получить список заданий ОРС:",
