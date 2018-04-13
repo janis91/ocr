@@ -16,6 +16,8 @@ OC.L10N.register(
     "Available languages could not be retrieved:" : "Beschikbare talen konden niet worden opgehaald:",
     "Process" : "Verwerken",
     "Replace" : "Vervangen",
+    "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR gestart: %n nieuw bestand in wachtrij.","OCR gestart: %n nieuwe bestanden in wachtrij."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n bestand in de wachtrij.","OCR: %n bestanden in de wachtrij."],
     "No matches found." : "Geen overeenkomsten gevonden.",
     "Select language" : "Kies taal",
     "OCR jobs could not be retrieved:" : "OCR taken konden niet worden opgehaald:",
