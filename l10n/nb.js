@@ -17,6 +17,7 @@ OC.L10N.register(
     "Process" : "Prosess",
     "Replace" : "Erstatt",
     "_OCR started: %n new file in queue._::_OCR started: %n new files in queue._" : ["OCR startet: %n fil i kø.","OCR startet: %n nye filer i kø."],
+    "_OCR: %n currently pending file in queue._::_OCR: %n currently pending files in queue._" : ["OCR: %n fil venter nå i kø.","OCR: %n filer venter nå i kø."],
     "No matches found." : "Ingen treff.",
     "Select language" : "Velg språk",
     "OCR jobs could not be retrieved:" : "OCR jobbene kunne ikke hentes:",
