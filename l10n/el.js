@@ -2,6 +2,7 @@ OC.L10N.register(
     "ocr",
     {
     "Saved." : "Αποθηκεύτηκε.",
+    "Saving languages failed:" : "Αποτυχία αποθήκευσης γλωσσών:",
     "The languages are not specified in the correct format." : "Οι γλώσσες δεν έχουν καθοριστεί στη σωστή μορφή.",
     "OCR" : "OCR",
     "No file selected." : "Δεν επιλέχτηκε αρχείο.",
