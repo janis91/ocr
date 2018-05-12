@@ -1,6 +1,8 @@
 OC.L10N.register(
     "ocr",
     {
+    "Saved." : "Desat.",
+    "Saving languages failed:" : "S'ha produït un error en desar els idiomes:",
     "The languages are not specified in the correct format." : "L'idioma no s'especifiquen en el format correcte.",
     "OCR" : "OCR",
     "Saved" : "Desat",
