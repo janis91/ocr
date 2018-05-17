@@ -10,7 +10,7 @@ OC.L10N.register(
     "OCR processing failed:" : "OCR პროცესირება ვერ მოხერხდა:",
     "No file selected." : "ფაილი არაა არჩეული.",
     "MIME type not supported." : "MIME სახეობა არაა მხარდაჭერილი.",
-    "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["OCR პროცესირება %n ფაილისთვის ვერ მოხერხდა. დეტალებისთვის გთხოვთ გადახვიდეთ პირად პარამეტრებში."],
+    "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["OCR პროცესირება %n ფაილისთვის ვერ მოხერხდა. დეტალებისთვის გთხოვთ გადახვიდეთ პირად პარამეტრებში.","OCR პროცესირება %n ფაილისთვის ვერ მოხერხდა. დეტალებისთვის გთხოვთ გადახვიდეთ პირად პარამეტრებში."],
     "OCR status could not be retrieved:" : "OCR სტატუსი ვერ დგინდება:",
     "No languages available for OCR processing. Please make sure to configure the languages in the administration section." : "OCR პროცესირებისთვის არც ერთი ენა არაა ხელმისაწვდომი. გთხოვთ გაუწიოთ ენებს კონფიგურაცია ადმინისტრაციის სექციაში.",
     "Available languages could not be retrieved:" : "ხელმისაწვდომი ენები ვერ იძებნება:",
@@ -61,4 +61,4 @@ OC.L10N.register(
     "Redis password" : "Redis პაროლი",
     "The password to authenticate (normally OCR)." : "აუტენტიფიკაციის პაროლი (ჩვეულებრივ OCR)."
 },
-"nplurals=1; plural=0;");
+"nplurals=2; plural=(n==1);");
