@@ -58,5 +58,5 @@
     "The Redis database (normally 0)." : "Redis მონაცემთა ბაზა (ჩვეულებრივ 0).",
     "Redis password" : "Redis პაროლი",
     "The password to authenticate (normally OCR)." : "აუტენტიფიკაციის პაროლი (ჩვეულებრივ OCR)."
-},"pluralForm" :"nplurals=2; plural=(n==1);"
+},"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

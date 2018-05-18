@@ -61,4 +61,4 @@ OC.L10N.register(
     "Redis password" : "Redis პაროლი",
     "The password to authenticate (normally OCR)." : "აუტენტიფიკაციის პაროლი (ჩვეულებრივ OCR)."
 },
-"nplurals=2; plural=(n==1);");
+"nplurals=2; plural=(n!=1);");
