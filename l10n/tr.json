@@ -55,7 +55,7 @@
     "Cannot connect to the right Redis database." : "Doğru Redis veritabanına bağlanılamadı.",
     "Optical character recognition" : "Optik Karakter Tanıma",
     "Installed languages" : "Kurulmuş diller",
-    "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Docker worker kopyası tarafından desteklenen dillerin noktalı virgül ile ayrılmış listesi (ayrıntılı bilgi almak için GitHub üzerinde wiki bölümüne bakın).",
+    "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Docker worker kopyası tarafından desteklenen dillerin noktalı virgül ile ayrılmış listesi (ayrıntılı bilgi almak için GitHub üzerinde wiki bölümüne bakabilirsiniz).",
     "Apply" : "Uygula",
     "Redis host" : "Redis sunucusu",
     "The host of the Redis instance for communication with the OCR worker." : "Karakter tanıma çalışanı ile iletişim kuracak Redis kopyası sunucusu.",
