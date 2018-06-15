@@ -8,6 +8,7 @@ OC.L10N.register(
     "OCR" : "OCR",
     "OCR processing failed:" : "Rozpoznání textu z obrázku se nezdařilo:",
     "No file selected." : "Nebyl vybrán žádný soubor.",
+    "OCR status could not be retrieved:" : "Stav OCR nelze načíst:",
     "Available languages could not be retrieved:" : "Nepodařilo se získat dostupné jazyky:",
     "Process" : "Zpracovat",
     "Replace" : "Nahradit",
