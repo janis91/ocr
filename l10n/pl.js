@@ -1,8 +1,13 @@
 OC.L10N.register(
     "ocr",
     {
+    "Saved." : "Zapisano.",
     "The languages are not specified in the correct format." : "Języki nie są podane we właściwym formacie.",
     "OCR" : "OCR",
+    "Select language" : "Wybierz język",
+    "Delete" : "Usuń",
+    "File" : "Plik",
+    "Status" : "Status",
     "Saved" : "Zapisano",
     "Please setup Redis in the administration settings first." : "Proszę zainstaluj/ustaw wpierw Redis w sekcji administracyjnej.",
     "The given settings key is empty." : "Wskazany klucz ustawień jest pusty.",
