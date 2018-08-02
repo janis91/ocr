@@ -56,6 +56,7 @@ OC.L10N.register(
     "Redis authentication error." : "Villa við auðkenningu í Redis.",
     "Cannot connect to the right Redis database." : "Tekst ekki að tengjast réttum Redis-gagnagrunni.",
     "Optical character recognition" : "Ljóslestur (OCR)",
+    "Text recognition for your images and pdf files" : "Greining texta í myndum og PDF-skrám",
     "Installed languages" : "Uppsett tungumál",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Hér kemur listi aðgreindur með semikommum yfir þau tungumál sem Docker-vinnslukerfið styður (nánari upplýsingar á wiki-síðum GitHub).",
     "Apply" : "Virkja",
