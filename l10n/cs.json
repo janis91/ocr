@@ -43,6 +43,7 @@
     "Cannot connect to Redis." : "Nelze se připojit k Redisu.",
     "Redis authentication error." : "Chyba při ověřování do Redisu.",
     "Cannot connect to the right Redis database." : "Nelze se připojit k správné databázi Redis.",
+    "Optical character recognition" : "Optické rozpoznávání znaků",
     "Installed languages" : "Nainstalované jazyky",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Zde jde středníkem oddělený seznam jazyků, které jsou podporovány pracovní instancí Dockeru (další podrobnosti ve wiki na GitHub).",
     "Apply" : "Použít",
