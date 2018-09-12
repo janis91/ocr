@@ -12,6 +12,7 @@ OC.L10N.register(
     "Replace" : "Αντικατάσταση",
     "No matches found." : "Δεν βρέθηκαν αποτελέσματα.",
     "Select language" : "Επιλογή γλώσσας",
+    "Error during deletion:" : "Σφάλμα κατά τη διαγραφή:",
     "Delete" : "Διαγραφή",
     "Refresh" : "Ανανέωση",
     "Delete from queue" : "Διαγραφή από την ουρά",
