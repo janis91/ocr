@@ -49,14 +49,14 @@
     "Optical character recognition" : "Optické rozpoznávání znaků",
     "Text recognition for your images and pdf files" : "Rozpoznávání textu v obrázcích a pdf souborech",
     "Installed languages" : "Nainstalované jazyky",
-    "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Zde jde středníkem oddělený seznam jazyků, které jsou podporovány pracovní instancí Dockeru (další podrobnosti ve wiki na GitHub).",
+    "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Zde jde středníkem oddělovaný seznam jazyků, které jsou podporovány pracovní instancí Dockeru (další podrobnosti ve wiki na GitHub).",
     "Apply" : "Použít",
     "Redis host" : "Hostitel Redis",
     "The host of the Redis instance for communication with the OCR worker." : "Hostitel instance Redis pro komunikaci s OCR.",
     "Redis port" : "Redis port",
     "The corresponding port (normally 6379)." : "Odpovídající port (obvykle 6379).",
     "Redis database" : "Databáze Redis",
-    "The Redis database (normally 0)." : "Databáze Redis (obvykle 0)",
+    "The Redis database (normally 0)." : "Databáze Redis (obvykle 0).",
     "Redis password" : "Heslo Redis",
     "The password to authenticate (normally OCR)." : "Heslo pro ověření (obvykle OCR)."
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
