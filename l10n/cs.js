@@ -5,7 +5,7 @@ OC.L10N.register(
     "Saving languages failed:" : "Uložení jazyků se nezdařilo:",
     "The languages are not specified in the correct format." : "Jazyky nejsou zadány ve správném formátu.",
     "Saving Redis settings failed:" : "Uložení nastavení pro Redis se nezdařilo:",
-    "The Redis settings are not specified in the right format." : "Nastavení pro Redis nejsou zadané ve správném formátu.",
+    "The Redis settings are not specified in the right format." : "Nastavení pro Redis nejsou zadaná ve správném formátu.",
     "OCR" : "OCR",
     "OCR processing failed:" : "Rozpoznání textu z obrázku se nezdařilo:",
     "No file selected." : "Nebyl vybrán žádný soubor.",
