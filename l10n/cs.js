@@ -8,7 +8,7 @@ OC.L10N.register(
     "The Redis settings are not specified in the right format." : "Nastavení pro Redis nejsou zadaná ve správném formátu.",
     "OCR" : "OCR",
     "OCR processing failed:" : "Rozpoznání textu z obrázku se nezdařilo:",
-    "No file selected." : "Nebyl vybrán žádný soubor.",
+    "No file selected." : "Nevybrán žádný soubor.",
     "MIME type not supported." : "MIME typ není podporován.",
     "_OCR processing for %n file failed. For details please go to your personal settings._::_OCR processing for %n files failed. For details please go to your personal settings._" : ["Rozpoznání znaků z %n souboru se nezdařilo. Podrobnosti naleznete ve svých osobních nastaveních.","Rozpoznání znaků ze %n souborů se nezdařilo. Podrobnosti naleznete ve svých osobních nastaveních.","Rozpoznání znaků z %n souborů se nezdařilo. Podrobnosti naleznete ve svých osobních nastaveních.","Rozpoznání znaků ze %n souborů se nezdařilo. Podrobnosti naleznete ve svých osobních nastaveních."],
     "OCR status could not be retrieved:" : "Stav OCR nelze načíst:",
