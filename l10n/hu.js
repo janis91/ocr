@@ -53,7 +53,7 @@ OC.L10N.register(
     "Cannot set permissions for temporary Tesseract file." : "A Tesseract átmeneti fájl jogosultságait nem lehet beállítani.",
     "Message queueing capabilities are missing on the server (package php-redis)." : "Az üzenet sorba állítási képesség hiányzik a szerverről ( php-redis csomag).",
     "Cannot connect to Redis." : "Nem lehet kapcsolódni a Redishez.",
-    "Redis authentication error." : "Redis azonosítási hiba.",
+    "Redis authentication error." : "Redis hitelesítési hiba.",
     "Cannot connect to the right Redis database." : "Nem lehet csatlakozni a megfelelő Redis adatbázishoz.",
     "Optical character recognition" : "Optikai karakterfelismerés",
     "Installed languages" : "Telepített nyelvek",
