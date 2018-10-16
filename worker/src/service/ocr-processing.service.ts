@@ -1,7 +1,6 @@
 import { JobType } from '../poto/job-type.enum';
 import { IJob } from '../poto/job.poto';
 import { FinishedJob } from '../poto/finished-job.poto';
-import { IncomingJsonMessageToJobTf } from './transformer/incoming-json-message-to-job.tf';
 import { ServiceException } from './service.exception';
 import { Configuration } from '../configuration/worker.configuration';
 import { LoggerInstance } from 'winston';

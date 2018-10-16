@@ -1,4 +1,4 @@
-import { Logger, LoggerInstance, LoggerOptions, transports, config } from 'winston';
+import { Logger, LoggerInstance, LoggerOptions, transports } from 'winston';
 import { Configuration } from '../configuration/worker.configuration';
 
 /**

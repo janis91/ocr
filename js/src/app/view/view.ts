@@ -1,5 +1,4 @@
 import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
-import { IFile } from '../controller/poto/file.poto';
 
 declare var t: ISingleTranslation;
 declare var n: IMultiTranslation;

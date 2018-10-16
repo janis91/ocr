@@ -1,4 +1,3 @@
-import { ISingleTranslation } from './global-oc-functions';
 import { HttpService } from './admin/service/http.service';
 import { Controller } from './admin/controller/controller';
 import { Configuration } from './admin/configuration/configuration';

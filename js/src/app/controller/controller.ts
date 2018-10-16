@@ -1,7 +1,7 @@
 import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
 import { Util } from '../util/util';
 import { IStatus } from './poto/status.poto';
-import { IFile, File } from './poto/file.poto';
+import { IFile } from './poto/file.poto';
 import { HttpService } from '../service/http.service';
 import { OcaService } from '../service/oca.service';
 import { View } from '../view/view';

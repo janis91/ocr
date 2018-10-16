@@ -1,6 +1,5 @@
 import { LoggerInstance } from 'winston';
 import * as Redis from 'ioredis';
-import { Configuration } from './configuration/worker.configuration';
 import { LoggerUtil } from './util/logger.util';
 import { OcrProcessingService } from './service/ocr-processing.service';
 import { OcrProcessingServiceFactory } from './factory/ocr-processing-service.factory';

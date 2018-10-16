@@ -1,5 +1,4 @@
 import { View } from './personal/view/view';
-import { ISingleTranslation, IMultiTranslation } from './global-oc-functions';
 import { Controller } from './personal/controller/controller';
 import { Configuration } from './personal/configuration/configuration';
 import { HttpService } from './personal/service/http.service';

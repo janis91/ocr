@@ -1,4 +1,3 @@
-import { IMultiTranslation, ISingleTranslation } from './global-oc-functions';
 import { Util } from './app/util/util';
 import { HttpService } from './app/service/http.service';
 import { OcaService } from './app/service/oca.service';
