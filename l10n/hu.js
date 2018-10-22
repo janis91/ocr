@@ -32,7 +32,7 @@ OC.L10N.register(
     "Log" : "Naplózás",
     "Replace by result" : "Lecserélés az eredménnyel",
     "Saved" : "Elmentve",
-    "Please setup Redis in the administration settings first." : "Kérjük először állítsa be a Redist az adminisztrációs beállításoknál.",
+    "Please setup Redis in the administration settings first." : "Kérjük először állítsa be a Redist a rendszergazdai beállításoknál.",
     "The given settings key is empty." : "A megadott beállítás kulcs üres.",
     "The Redis host is not specified in the correct format." : "A Redis hostot nem a megfelelő formában adta meg.",
     "The Redis port number is not specified in the correct format." : "A Redis portszámot nem a megfelelő formában adta meg.",
