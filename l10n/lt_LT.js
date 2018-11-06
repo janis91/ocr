@@ -11,6 +11,7 @@ OC.L10N.register(
     "No file selected." : "Nepasirinktas joks failas.",
     "MIME type not supported." : "Nepalaikomas MIME tipas.",
     "OCR status could not be retrieved:" : "Nepavyko gauti OCR būsenos:",
+    "Available languages could not be retrieved:" : "Nepavyko gauti prieinamų kalbų:",
     "Process" : "Procesas",
     "Replace" : "Pakeisti",
     "No matches found." : "Atitikmenų nerasta",
