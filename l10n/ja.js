@@ -52,6 +52,7 @@ OC.L10N.register(
     "Cannot set permissions for temporary Tesseract file." : "一時的なTesseractファイルのパーミッションを設定できません。",
     "Message queueing capabilities are missing on the server (package php-redis)." : "メッセージキュー機能がサーバー上にありません（パッケージphp-redis）。",
     "Cannot connect to Redis." : "Redisに接続できません。",
-    "Redis authentication error." : "Redis認証エラーです。"
+    "Redis authentication error." : "Redis認証エラーです。",
+    "Apply" : "適用"
 },
 "nplurals=1; plural=0;");
