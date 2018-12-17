@@ -4,6 +4,8 @@ OC.L10N.register(
     "Saved." : "已保存",
     "Saving languages failed:" : "保存语言失败:",
     "The languages are not specified in the correct format." : "未指定正确的语言",
+    "Saving Redis settings failed:" : "保存 Redis 设置失败:",
+    "The Redis settings are not specified in the right format." : "Redis设置未以正确的格式指定。",
     "OCR" : "OCR",
     "Saved" : "已保存",
     "Please setup Redis in the administration settings first." : "请先在管理员设置中设置好Redis信息.",
