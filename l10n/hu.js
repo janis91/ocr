@@ -56,6 +56,7 @@ OC.L10N.register(
     "Redis authentication error." : "Redis hitelesítési hiba.",
     "Cannot connect to the right Redis database." : "Nem lehet csatlakozni a megfelelő Redis adatbázishoz.",
     "Optical character recognition" : "Optikai karakterfelismerés",
+    "Text recognition for your images and pdf files" : "Szövegfelismerő a képeidhez és pdf fájljaidhoz.",
     "Installed languages" : "Telepített nyelvek",
     "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "Ide egy pontosvesszővel elválasztott nyelvlista kerül amit a Docker Worker példány támogat. (további részletek a GitHub wiki-ben)",
     "Apply" : "Alkalmaz",
