@@ -1,7 +1,7 @@
 OC.L10N.register(
     "ocr",
     {
-    "Saved." : "Gardado",
+    "Saved." : "Gardado.",
     "Saving languages failed:" : "Produciuse un fallo ao gardar os idiomas:",
     "The languages are not specified in the correct format." : "Os idiomas non se especificaron no formato correcto.",
     "Saving Redis settings failed:" : "Produciuse un fallo ao gardar os axustes de Redis:",
