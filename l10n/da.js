@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "ocr",
+    {
+    "Saved." : "Gemt.",
+    "Saving languages failed:" : "Kunne ikke gemme sprog:",
+    "OCR" : "OCR",
+    "No file selected." : "Ingen fil valgt.",
+    "Replace" : "Erstat",
+    "Select language" : "Vælg sprog",
+    "Delete" : "Slet",
+    "Refresh" : "Opdater",
+    "File" : "Fil",
+    "Log" : "Log",
+    "Saved" : "Gemt",
+    "Wrong parameter." : "Forkert parameter.",
+    "Wrong MIME type." : "Forkert MIME-type",
+    "Temp file does not exist." : "Midlertidig fil eksistere ikke",
+    "Cannot connect to Redis." : "Kan ikke få forbindelse til Redis.",
+    "Cannot connect to the right Redis database." : "Kan ikke få forbindelse til Redis databasen.",
+    "Apply" : "Anvend",
+    "Redis host" : "Redis host",
+    "Redis port" : "Redis port",
+    "Redis database" : "Redis database"
+},
+"nplurals=2; plural=(n != 1);");
