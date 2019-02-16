@@ -58,6 +58,7 @@ OC.L10N.register(
     "Optical character recognition" : "זיהוי תווים אופטי",
     "Text recognition for your images and pdf files" : "זיהוי טקסט לקובצי התמונות וה־pdf שלך",
     "Installed languages" : "שפות מותקנות",
+    "Here goes a semicolon separated list of languages that are supported by the Docker worker instance (more details in the wiki on GitHub)." : "באיזור זה יש רשימת שפות מופרדות ב \";\" הנתמכות ב Docker worker instance (פרטים נוספים ב וויקי שב GitHub).",
     "Apply" : "החלה",
     "Redis host" : "מארח Redis",
     "The host of the Redis instance for communication with the OCR worker." : "מארח מופע ה־Redis לתקשורת עם מנגנון ה־OCR.",
