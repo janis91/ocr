@@ -51,7 +51,7 @@ OC.L10N.register(
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Kan ikke slette midlertidig fil under opprettelse av midlertidig fil for Tesseract.",
     "Cannot create temporary file for Tesseract." : "Kan ikke opprette midlertidig fil for Tesseract.",
     "Cannot set permissions for temporary Tesseract file." : "Kan ikke sette tilganger for midlertidig Tesseract-fil.",
-    "Message queueing capabilities are missing on the server (package php-redis)." : "Muligheter for å legge meldinger i kø mangler på tjeneren. (pakken php-redis).",
+    "Message queueing capabilities are missing on the server (package php-redis)." : "Muligheter for å legge meldinger i kø mangler på serveren. (pakken php-redis).",
     "Cannot connect to Redis." : "Kan ikke koble til Redis.",
     "Redis authentication error." : "Redis-autentiseringsfeil.",
     "Cannot connect to the right Redis database." : "Kan ikke koble til den riktige Redis databasen.",
