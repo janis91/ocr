@@ -44,7 +44,7 @@ OC.L10N.register(
     "Cannot delete because of wrong owner." : "所有者が間違っているために削除できません。",
     "Cannot delete because of wrong ID." : "IDが間違っているため、削除できません。",
     "Temp file does not exist." : "一時ファイルが存在しません。",
-    "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCRは、処理されたファイルを正しいターゲットフォルダに置くことができませんでした。 置換オプションを選択した場合は、ごみ箱を使用してファイルを復元できます。",
+    "OCR could not put processed file to the right target folder. If you selected the replace option, you can restore the file by using the trash bin." : "OCRは、処理されたファイルを正しいターゲットフォルダーに出力できませんでした。 置換オプションを選択した場合は、ごみ箱を使用してファイルを復元できます。",
     "Could not add files to the Redis OCR processing queue." : "Redis OCR処理キューにファイルを追加できませんでした。",
     "Temp file cannot be created." : "一時ファイルを作成できません。",
     "Cannot delete temporary file during creation of temp file for Tesseract." : "Tesseract用の一時ファイルの作成中に一時ファイルを削除できません。",
@@ -53,6 +53,13 @@ OC.L10N.register(
     "Message queueing capabilities are missing on the server (package php-redis)." : "メッセージキュー機能がサーバー上にありません（パッケージphp-redis）。",
     "Cannot connect to Redis." : "Redisに接続できません。",
     "Redis authentication error." : "Redis認証エラーです。",
-    "Apply" : "適用"
+    "Cannot connect to the right Redis database." : "正しいRedisデータベースに接続できませんでした。",
+    "Installed languages" : "インストール済みの言語",
+    "Apply" : "適用",
+    "Redis host" : "Redisホスト",
+    "Redis port" : "Redisポート",
+    "Redis database" : "Redisデータベース",
+    "The Redis database (normally 0)." : "Redisデータベース(通常は0)",
+    "Redis password" : "Redisパスワード"
 },
 "nplurals=1; plural=0;");
