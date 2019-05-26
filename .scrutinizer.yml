@@ -3,7 +3,6 @@ filter:
         - 'js/*'
         - 'l10n/*'
         - 'tests/*'
-        - 'worker/*'
 
 imports:
     - php

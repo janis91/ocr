@@ -9,11 +9,11 @@ addons:
 language: php
 php:
 - 5.6
-- 7.0
+- 7.1
 - 7.2
 env:
   global:
-  - CORE_BRANCH=stable13
+  - CORE_BRANCH=stable15
   - APP_NAME=ocr
   matrix:
   - DB=sqlite
@@ -21,11 +21,10 @@ branches:
   only:
   - master
 before_install:
-- echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
 - ". ./before_install.sh $APP_NAME $CORE_BRANCH $DB"
-- nvm install 6
-- nvm use 6
+- nvm install 12
+- nvm use 12
 - cd ../server
 - "./occ check"
 - "./occ status"
@@ -42,11 +41,6 @@ script:
 - cd tests/Unit
 - sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' -a '$RELEASE' != '1' ]; then phpunit --configuration phpunit.xml; fi"
 - cd ../..
-- cd worker
-- sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
-- sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build;
-  fi"
-- cd ..
 - cd js
 - sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
 - sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build; fi"
@@ -57,21 +51,21 @@ script:
 - cd ../..
 matrix:
   include:
-  - php: 7.0
+  - php: 7.1
     env: DB=mysql
-  - php: 7.0
+  - php: 7.1
     env: DB=pgsql
-  - php: 7.0
+  - php: 7.1
     env: DB=mysql;CODECHECK=1
-  - php: 7.0
+  - php: 7.1
     env: DB=mysql;CODECHECK=2
-  - php: 7.0
+  - php: 7.1
     env: DB=mysql;INTEGRATION=1
-  - php: 7.0
+  - php: 7.1
     env: DB=mysql;JSTESTS=1
-  - php: 7.0
+  - php: 7.1
     env: DB=mysql;COVERAGE=1
-  - php: 7.0
+  - php: 7.1
     env: DB=mysql;RELEASE=1
   allow_failures:
   - env: DB=mysql;CODECHECK=2

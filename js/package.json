@@ -1,14 +1,11 @@
 {
     "name": "ocr",
     "version": "0.0.0",
-    "description": "Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud 10.",
+    "description": "Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-jscbrings OCR capability to your Nextcloud.",
     "author": "Janis Koehr <janiskoehr@icloud.com>",
     "license": "AGPL-3.0",
     "main": "dist/ocrapp.min.js",
     "scripts": {
-        "build": "rm -rf dist && webpack --progress --colors && sh after-build.sh",
-        "test": "rm -rf spec/tsc-out && tsc -p tsconfig.spec.json && jasmine",
-        "lint": "tslint -c tslint.json -p tsconfig.json"
     },
     "repository": {
         "type": "git",
@@ -23,24 +20,7 @@
     "homepage": "https://github.com/janis91/ocr#readme",
     "private": true,
     "devDependencies": {
-        "@types/handlebars": "^4.0.32",
-        "@types/jasmine": "^2.5.47",
-        "@types/jquery": "^2.0.42",
-        "@types/node": "^9.4.7",
-        "@types/select2": "^4.0.35",
-        "@types/underscore": "^1.8.0",
-        "handlebars": "^4.0.8",
-        "handlebars-loader": "^1.5.0",
-        "jasmine": "^2.6.0",
-        "parallel-webpack": "^1.6.1",
-        "ts-loader": "^2.0.3",
-        "tslint": "^5.1.0",
-        "tslint-loader": "^3.5.3",
-        "typescript": "^2.3.2",
-        "webpack": "^1.15.0"
     },
     "dependencies": {
-        "jquery": "^3.2.1",
-        "underscore": "^1.8.3"
     }
 }

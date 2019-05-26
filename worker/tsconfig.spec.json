@@ -1,9 +1,0 @@
-{
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "outDir": "spec/tsc-out"
-    },
-    "include": [
-        "src/**/*.spec.ts"
-    ]
-}
