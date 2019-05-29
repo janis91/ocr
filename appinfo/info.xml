@@ -4,8 +4,7 @@
 	<id>ocr</id>
 	<name>Optical character recognition</name>
 	<summary>Text recognition for your images and pdf files</summary>
-	<description><![CDATA[
-# Description
+	<description><![CDATA[# Description
 
 Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-js brings OCR capability to your Nextcloud.
 The app uses tesseract-js in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it. (Hint: currently not all PDF-types are supported)
@@ -22,16 +21,15 @@ Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or down
 
 ## Disclaimer
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-CONDITIONS OF ANY KIND, either express or implied.
-]]></description>
-	<version>4.0.0-beta1</version>
+CONDITIONS OF ANY KIND, either express or implied.]]></description>
+	<version>4.0.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>
 	<documentation>
 		<user>https://github.com/janis91/ocr</user>
 		<admin>https://github.com/janis91/ocr</admin>
-		<developer>https://github.com/janis91/ocr/developer>
+		<developer>https://github.com/janis91/ocr</developer>
 	</documentation>
 	<category>tools</category>
 	<category>files</category>

@@ -16,12 +16,28 @@ cp README.md release/README.md
 
 # JS
 mkdir release/js
+mkdir release/vendor
+mkdir release/vendor/tesseract.js
+mkdir release/vendor/choices.js
 cd js/
 npm install
 npm run build
 cd ..
 # Copy js artifacts
-cp -R js/dist release/js/dist
+cp js/ocr.js release/js/ocr.js
+cp -R js/node_modules/tesseract.js/dist release/vendor/tesseract.js
+cp js/node_modules/tesseract.js-core/tesseract-core.wasm.js release/vendor/tesseract.js/tesseract-core.wasm.js
+cp js/node_modules/choices.js/public/assets/scripts/choices.min.js release/vendor/choices.js/choices.min.js
+
+# Copy css artifacts
+cp js/node_modules/choices.js/public/assets/styles/choices.min.css release/vendor/choices.js/choices.min.css
+
+# Create tessdata folder
+mkdir release/tessdata
+mkdir release/tessdata/4.0.0
+
+# Copy tessdata folder
+cp -R tessdata/4.0.0 release/tessdata/4.0.0
 
 # Package the release
 mv release ocr

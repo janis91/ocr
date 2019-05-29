@@ -38,11 +38,11 @@ class Application extends App {
         $eventDispatcher = \OC::$server->getEventDispatcher();
         $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', 
                 function () {
-                    script(OcrConstants::APP_NAME, 'dist/ocrapp');
-                    style(OcrConstants::APP_NAME, 'ocrstyle');
-                    // if not loaded before - load select2 for multi select languages
-                    vendor_script('select2/select2');
-                    vendor_style('select2/select2');
+                    vendor_script(OcrConstants::APP_NAME, 'tesseract.js/tesseract.min');
+                    vendor_script(OcrConstants::APP_NAME, 'choices.js/choices.min');
+                    vendor_style(OcrConstants::APP_NAME, 'choices.js/choices.min');
+                    script(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
+                    style(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
                 });
         /**
          * Register core services

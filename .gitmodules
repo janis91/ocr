@@ -1,0 +1,3 @@
+[submodule "tessdata"]
+	path = tessdata
+	url = git@github.com:naptha/tessdata.git

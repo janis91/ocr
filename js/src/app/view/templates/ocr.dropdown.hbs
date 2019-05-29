@@ -1,0 +1,27 @@
+<div id="ocrDialog">
+    <div class="ocr-modal-backdrop"></div>
+    <div class="ocr-modal">
+        <div class="ocr-modal-dialog">
+            <div class="ocr-modal-content">
+                <div class="ocr-modal-header nc-theming-main-background nc-theming-contrast" id="ocrModalHeader">
+                    <h2 class="ocr-modal-title nc-theming-contrast">{{title}}</h2>
+                    <button type="button" id="ocrDialogClose" class="ocr-close nc-theming-contrast">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="ocr-modal-body">
+                    <select id="ocrLanguage" multiple="multiple">
+                        {{#each languages}}
+                        <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="checkbox" id="ocrReplace" class="checkbox">
+                    <label for="ocrReplace">{{replaceText}}</label>
+                </div>
+                <div class="ocr-modal-footer">
+                    <input type="button" id="processOCR" value="{{buttonText}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
