@@ -33,7 +33,7 @@ export class App {
             this.util = new Util();
             this.view = new View(OC.Notification, handlebarsDropdownTemplate, $, document);
             this.ocaService = new OcaService(OC);
-            this.tesseractService = new TesseractService();
+            this.tesseractService = new TesseractService(this.ocaService);
             this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, document, $);
             try {
                 this.controller.init();

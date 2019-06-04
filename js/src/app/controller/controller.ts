@@ -77,32 +77,46 @@ export class Controller {
      * Triggers the OCR process for the selectedFiles array
      * and toggles the "pending" state for the ocr process.
      */
-    public clickOnProcessButtonEvent(): void {
+    public async clickOnProcessButtonEvent(): Promise<void> {
         if (this.selectedFiles.length === 0) {
             this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'No file selected.')}`);
             this.view.destroyOcrDialog();
             return;
         }
         const filteredFiles: Array<IFile> = this.util.filterFilesWithMimeTypes(this.selectedFiles);
+        this.view.toggleBusyStatus(filteredFiles.length);
         if (filteredFiles.length === 0) {
             this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'MIME type not supported.')}`);
             this.view.destroyOcrDialog();
             return;
         }
+        // TODO:
+        // error handling
+        // show indiviual status bar for all 4 tesseract workers
+        // update progress according to worker id and make file status bar show only files that are not queued
+        // pdf service
         const selectedLanguages: Array<string> = this.view.getSelectValues().length > 0 ? this.view.getSelectValues() : ['eng'];
         const replace = this.view.getReplaceValue();
-        // TODO: process
-        console.log("Process:", selectedLanguages, filteredFiles);
+        const tesseractPromises = filteredFiles.map(async (file: IFile) => {
+            this.view.stepFileStatus();
+                if (file.mimetype === 'application/pdf') {
+                    // TODO: prepare pdf
+                    console.log('pdf');
+                    throw new Error();
+                }
+                const pdf = await this.tesseractService.process(file, selectedLanguages, this.view.updateStatus.bind(this.view));
+                const newPath = this.createPutFileContentsPath(file, replace);
+                await this.ocaService.putFileContents(newPath, pdf, replace);
+                if (replace && file.mimetype !== 'application/pdf') {
+                    await this.ocaService.deleteFile(file);
+                }
+        });
+        try {
+            await Promise.all(tesseractPromises);
+        } catch (e) {
+            this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${e.message}`);
+        }
         this.view.destroyOcrDialog();
-        // this.httpService.startProcess(filteredFiles, selectedLanguages, replace).done(() => {
-        //     this.togglePendingState(true, filteredFiles.length);
-        //     this.selectedFiles = [];
-        //     setTimeout(this.jquery.proxy(this.loopForStatus, this), 4500);
-        // }).fail((jqXHR: JQueryXHR) => {
-        //     this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${jqXHR.responseText}`);
-        // }).always(() => {
-        //     this.view.destroyDropdown();
-        // });
     }
 
     /**
@@ -126,6 +140,13 @@ export class Controller {
     private hideSelectedFilesActionButton(): void {
         this.ocaService.unregisterMultiSelectMenuItem();
         this.selectedFiles = [];
+    }
+
+    private createPutFileContentsPath(file: IFile, replace: boolean): string {
+        const newFileName = file.name.split('.');
+        newFileName.pop();
+        const postFix = file.mimetype === 'application/pdf' && !replace ? '_ocr' : '';
+        return this.ocaService.getCurrentDirectory() + newFileName.join('.') + postFix + '.pdf';
     }
 
     /**

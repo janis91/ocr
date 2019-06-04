@@ -14,6 +14,7 @@ namespace OCA\Ocr\AppInfo;
 use OC\Files\View;
 use OCP\AppFramework\App;
 use OCP\IContainer;
+use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCA\Ocr\Constants\OcrConstants;
 
 
@@ -39,10 +40,18 @@ class Application extends App {
         $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', 
                 function () {
                     vendor_script(OcrConstants::APP_NAME, 'tesseract.js/tesseract.min');
+                    vendor_script(OcrConstants::APP_NAME, 'tesseract.js/worker.min');
                     vendor_script(OcrConstants::APP_NAME, 'choices.js/choices.min');
                     vendor_style(OcrConstants::APP_NAME, 'choices.js/choices.min');
                     script(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
                     style(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
+
+                    $cspManager = \OC::$server->getContentSecurityPolicyManager();
+                    $csp = new ContentSecurityPolicy();
+                    $csp->addAllowedWorkerSrcDomain("blob:");
+                    $csp->addAllowedScriptDomain("'strict-dynamic'");
+                    $csp->addAllowedConnectDomain('data:');
+                    $cspManager->addDefaultPolicy($csp);
                 });
         /**
          * Register core services

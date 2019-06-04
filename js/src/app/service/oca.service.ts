@@ -99,6 +99,37 @@ export class OcaService {
         (OCA.Files.App.fileList.multiSelectMenuItems as Array<any>).splice(index, 1);
     }
 
+    public getDownloadUrl(file: IFile): string {
+        return OCA.Files.App.fileList.getDownloadUrl(file.name);
+    }
+
+    public async putFileContents(path: string, body: any, replace: boolean) {
+        try {
+            await new Promise((resolve, reject) => {
+                OCA.Files.App.fileList.filesClient.putFileContents(path, body, { contentType: 'application/pdf', overwrite: !replace })
+                    .done(resolve).fail(reject);
+            });
+            await new Promise((resolve, reject) => {
+                OCA.Files.App.fileList.addAndFetchFileInfo(path, '', { scrollTo: true }).then(resolve).fail(reject);
+            });
+        } catch (e) {
+            if (e === 412) {
+                throw new Error(`${t('ocr', 'Target file already exists:')} ${path}`);
+            }
+        }
+    }
+
+    public async deleteFile(file: IFile): Promise<void> {
+        await new Promise((resolve, reject) => {
+            OCA.Files.App.fileList.filesClient.remove(file.path + file.name).done(resolve).fail(reject);
+        });
+        OCA.Files.App.fileList.remove(file);
+    }
+
+    public getCurrentDirectory(): string {
+        return OCA.Files.App.fileList.getCurrentDirectory();
+    }
+
     /**
      * Triggers the rendering of the OCR dropdown for a single file action.
      * Acts as the ActionHandler which is registered within the registerFileActions method.

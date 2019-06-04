@@ -19,7 +19,16 @@
                     <label for="ocrReplace">{{replaceText}}</label>
                 </div>
                 <div class="ocr-modal-footer">
-                    <input type="button" id="processOCR" value="{{buttonText}}" />
+                    <div class="ocr-progress-wrapper ocr-hidden">
+                        <progress id="ocrProgressFiles" class="ocr-progress" value="0"></progress>
+                        <span id="ocrProgressFilesDescription"></span>
+                    </div>
+                    <div class="ocr-progress-wrapper ocr-hidden">
+                        <progress id="ocrProgressTesseract" class="ocr-progress" value="0"></progress>
+                        <span id="ocrProgressTesseractDescription"></span>
+                    </div>
+                    <div id="ocrFill" class="ocr-fill"></div>
+                    <button type="button" id="processOCR" class="primary">{{buttonText}}</button>
                 </div>
             </div>
         </div>
