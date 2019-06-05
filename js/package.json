@@ -29,7 +29,7 @@
         "@types/node": "^9.4.7",
         "@types/select2": "^4.0.35",
         "@types/underscore": "^1.8.0",
-        "handlebars": "^4.0.8",
+        "handlebars": "^4.0.14",
         "handlebars-loader": "^1.5.0",
         "jasmine": "^2.6.0",
         "parallel-webpack": "^1.6.1",
