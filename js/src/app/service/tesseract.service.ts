@@ -14,8 +14,8 @@ import { OcaService } from './oca.service';
 type TesseractWorkerOptions = { corePath: string, langPath: string, workerPath: string };
 type TesseractProgressCallback = ({ status, progress }: { status: string, progress: number }) => void;
 
-interface TesseractWorkerPromise {
-    progress: (callback: TesseractProgressCallback) => Promise<any>;
+interface TesseractWorkerPromise extends Promise<any> {
+    progress: (callback: TesseractProgressCallback) => TesseractWorkerPromise;
 }
 
 interface TesseractRecognizeOptions {
@@ -36,45 +36,41 @@ export class TesseractService {
         langPath: '/apps/ocr/tessdata/4.0.0',
         workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
     };
-    private _tesseractWorkers: Array<TesseractWorker>;
+
+    private tesseractWorkers: Array<TesseractWorker> = [];
     private roundRobinIndex: number = 0;
 
     constructor(private ocaService: OcaService) {
-        this.tesseractWorkers = [
-            new Tesseract.TesseractWorker(TesseractService.TESSERACT_WORKER_CONFIG), new Tesseract.TesseractWorker(TesseractService.TESSERACT_WORKER_CONFIG),
-            new Tesseract.TesseractWorker(TesseractService.TESSERACT_WORKER_CONFIG), new Tesseract.TesseractWorker(TesseractService.TESSERACT_WORKER_CONFIG),
-        ];
+        const webWorkerCount = navigator.hardwareConcurrency || 4;
+        for (let i = 0; i < webWorkerCount; i++) {
+            this.tesseractWorkers.push(new Tesseract.TesseractWorker(TesseractService.TESSERACT_WORKER_CONFIG));
+        }
     }
 
-    public async process(file: IFile, languages: Array<string>, progressCallback: TesseractProgressCallback): Promise<void> {
+    public process: (file: IFile, languages: Array<string>) => Promise<void> = async (file, languages) => {
         return new Promise((resolve, reject) => {
-            this.tesseractWorker
+            this.getNextTesseractWorker()
                 .recognize(
                     this.ocaService.getDownloadUrl(file),
                     languages.join('+'),
                     {
                         'pdf_auto_download': false, // disable auto download
-                        'pdf_bin': true,            // add pdf file bin array in result
-                        'tessedit_create_pdf': '1',
+                        'pdf_bin': true,            // return pdf in binary format
+                        'tessedit_create_pdf': '1', // create pdf as result
                     },
                 )
-                .progress(progressCallback)
                 .then((result: any) => resolve(result.files.pdf))
                 .catch((err: any) => reject(err));
         });
     }
 
-    public get tesseractWorker(): TesseractWorker {
-        const worker = this._tesseractWorkers[this.roundRobinIndex];
-        if (this.roundRobinIndex === this._tesseractWorkers.length - 1) {
+    public getNextTesseractWorker: () => TesseractWorker = () => {
+        const worker = this.tesseractWorkers[this.roundRobinIndex];
+        if (this.roundRobinIndex === this.tesseractWorkers.length - 1) {
             this.roundRobinIndex = 0;
         } else {
             this.roundRobinIndex++;
         }
         return worker;
-    }
-
-    public set tesseractWorkers(v: Array<TesseractWorker>) {
-        this._tesseractWorkers = v;
     }
 }

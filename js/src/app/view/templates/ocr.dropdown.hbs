@@ -20,12 +20,9 @@
                 </div>
                 <div class="ocr-modal-footer">
                     <div class="ocr-progress-wrapper ocr-hidden">
-                        <progress id="ocrProgressFiles" class="ocr-progress" value="0"></progress>
-                        <span id="ocrProgressFilesDescription"></span>
-                    </div>
-                    <div class="ocr-progress-wrapper ocr-hidden">
-                        <progress id="ocrProgressTesseract" class="ocr-progress" value="0"></progress>
-                        <span id="ocrProgressTesseractDescription"></span>
+                        <div class="icon-loading ocr-loading"></div>
+                        <div>{{filesQueued}}</div>
+                        <div id="ocrProgressFilesDescription"></div>
                     </div>
                     <div id="ocrFill" class="ocr-fill"></div>
                     <button type="button" id="processOCR" class="primary">{{buttonText}}</button>

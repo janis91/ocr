@@ -40,22 +40,6 @@ module.exports = {
     },
     externals: [
         {
-            underscore: { // UMD
-                commonjs: 'underscore',
-                commonjs2: 'underscore',
-                amd: 'underscore',
-                root: '_'
-            }
-        },
-        {
-            jquery: { // UMD
-                commonjs: 'jQuery',
-                commonjs2: 'jQuery',
-                amd: 'jQuery',
-                root: '$'
-            }
-        },
-        {
             'handlebars/runtime': {
                 root: 'Handlebars',
                 amd: 'handlebars/runtime',

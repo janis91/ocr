@@ -1,11 +1,12 @@
 import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
 import { IFile } from '../controller/poto/file.poto';
-import _ from 'underscore';
-import { Controller } from '../controller/controller';
 
 declare var OCA: any;
+declare var OC: any;
 declare var t: ISingleTranslation;
 declare var n: IMultiTranslation;
+
+export type OCAFilesFileActionHandler = (ocaFilesFileName: string, context: any) => void;
 
 /**
  * Nextcloud - OCR
@@ -18,74 +19,74 @@ declare var n: IMultiTranslation;
  */
 export class OcaService {
 
-    constructor(private OC: any) { }
+    public static checkOCAvailability: () => boolean = () => {
+        return OC && OCA && OCA.Files && OCA.Files.fileActions && OCA.Files.App && OCA.Files.App.fileList && OCA.Files.App.fileList.filesClient;
+    }
+
+    constructor(private oc: any, private oca: any) { }
 
     /**
      * Destroy the OCR related FileActions.
      */
-    public destroy(): void {
-        OCA.Files.fileActions.clear();
-        OCA.Files.fileActions.registerDefaultActions();
+    public destroy: () => void = () => {
+        this.oca.Files.fileActions.clear();
+        this.oca.Files.fileActions.registerDefaultActions();
     }
 
     /**
-     * Binds the instances selectedFilesActionButton to the events of the FileList
+     * Binds the selectedFilesActionButton to the events of the FileList
      * of the OCA.Files app.
-     * @param instance The instance that the events should be bound to (this).
      */
-    public registerCheckBoxEvents(instance: Controller): void {
-        OCA.Files.App.fileList.$fileList.on('change', 'td.selection>.selectCheckBox', _.bind(instance.toggleSelectedFilesActionButton, instance));
-        OCA.Files.App.fileList.$el.find('.select-all').click(_.bind(instance.toggleSelectedFilesActionButton, instance));
+    public registerCheckBoxEvents: (handler: () => void) => void = (handler) => {
+        this.oca.Files.App.fileList.$fileList.on('change', 'td.selection>.selectCheckBox', handler);
+        this.oca.Files.App.fileList.$el.find('.select-all').click(handler);
     }
 
     /**
      * Retrieves the array of selected files in the FileList of the OCA.Files app.
      * @returns The array of files that is currently selected.
      */
-    public getSelectedFiles(): Array<IFile> {
-        return OCA.Files.App.fileList.getSelectedFiles();
+    public getSelectedFiles: () => Array<IFile> = () => {
+        return this.oca.Files.App.fileList.getSelectedFiles();
     }
 
     /**
      * Reloads the FileList of the OCA.Files app.
      */
-    public reloadFilelist(): void {
-        OCA.Files.App.fileList.reload();
+    public reloadFilelist: () => void = () => {
+        this.oca.Files.App.fileList.reload();
     }
 
     /**
-     * Registers the FileActions at OCA.Files app.
+     * Registers the FileActions at OCA.Files app for pdf and images.
      */
-    public registerFileActions(): void {
-        // Register FileAction for MIME type pdf
-        OCA.Files.fileActions.registerAction({
-            actionHandler: this.fileActionHandler,
+    public registerFileActions: (actionHandler: OCAFilesFileActionHandler) => void = (actionHandler) => {
+        this.oca.Files.fileActions.registerAction({
+            actionHandler,
             altText: t('ocr', 'OCR'),
             displayName: t('ocr', 'OCR'),
             iconClass: 'icon-ocr',
             mime: 'application/pdf',
             name: 'Ocr',
             order: 100,
-            permissions: this.OC.PERMISSION_UPDATE,
-
+            permissions: this.oc.PERMISSION_UPDATE,
         });
-        // Register FileAction for MIME type image
-        OCA.Files.fileActions.registerAction({
-            actionHandler: this.fileActionHandler,
+        this.oca.Files.fileActions.registerAction({
+            actionHandler,
             altText: t('ocr', 'OCR'),
             displayName: t('ocr', 'OCR'),
             iconClass: 'icon-ocr',
             mime: 'image',
             name: 'Ocr',
             order: 100,
-            permissions: this.OC.PERMISSION_UPDATE,
+            permissions: this.oc.PERMISSION_UPDATE,
         });
     }
 
-    public registerMultiSelectMenuItem(handler: () => void) {
-        const index = (OCA.Files.App.fileList.multiSelectMenuItems as Array<any>).findIndex(i => i.name === 'ocr');
+    public registerMultiSelectMenuItem: (handler: () => void) => void = (handler) => {
+        const index = (this.oca.Files.App.fileList.multiSelectMenuItems as Array<any>).findIndex(i => i.name === 'ocr');
         if (index !== -1) { return; }
-        OCA.Files.App.fileList.multiSelectMenuItems.push({
+        this.oca.Files.App.fileList.multiSelectMenuItems.push({
             action: handler,
             displayName: t('ocr', 'OCR'),
             iconClass: 'icon-ocr',
@@ -93,24 +94,24 @@ export class OcaService {
         });
     }
 
-    public unregisterMultiSelectMenuItem() {
-        const index = (OCA.Files.App.fileList.multiSelectMenuItems as Array<any>).findIndex(i => i.name === 'ocr');
+    public unregisterMultiSelectMenuItem: () => void = () => {
+        const index = (this.oca.Files.App.fileList.multiSelectMenuItems as Array<any>).findIndex(i => i.name === 'ocr');
         if (index === -1) { return; }
-        (OCA.Files.App.fileList.multiSelectMenuItems as Array<any>).splice(index, 1);
+        (this.oca.Files.App.fileList.multiSelectMenuItems as Array<any>).splice(index, 1);
     }
 
-    public getDownloadUrl(file: IFile): string {
-        return OCA.Files.App.fileList.getDownloadUrl(file.name);
+    public getDownloadUrl: (file: IFile) => string = (file) => {
+        return this.oca.Files.App.fileList.getDownloadUrl(file.name);
     }
 
-    public async putFileContents(path: string, body: any, replace: boolean) {
+    public putFileContents: (path: string, body: any, replace: boolean) => Promise<void> = async (path, body, replace) => {
         try {
             await new Promise((resolve, reject) => {
-                OCA.Files.App.fileList.filesClient.putFileContents(path, body, { contentType: 'application/pdf', overwrite: !replace })
+                this.oca.Files.App.fileList.filesClient.putFileContents(path, body, { contentType: 'application/pdf', overwrite: !replace })
                     .done(resolve).fail(reject);
             });
             await new Promise((resolve, reject) => {
-                OCA.Files.App.fileList.addAndFetchFileInfo(path, '', { scrollTo: true }).then(resolve).fail(reject);
+                this.oca.Files.App.fileList.addAndFetchFileInfo(path, '', { scrollTo: true }).then(resolve).fail(reject);
             });
         } catch (e) {
             if (e === 412) {
@@ -119,26 +120,14 @@ export class OcaService {
         }
     }
 
-    public async deleteFile(file: IFile): Promise<void> {
+    public deleteFile: (file: IFile) => Promise<void> = async (file) => {
         await new Promise((resolve, reject) => {
-            OCA.Files.App.fileList.filesClient.remove(file.path + file.name).done(resolve).fail(reject);
+            this.oca.Files.App.fileList.filesClient.remove(file.path + file.name).done(resolve).fail(reject);
         });
-        OCA.Files.App.fileList.remove(file);
+        this.oca.Files.App.fileList.remove(file);
     }
 
-    public getCurrentDirectory(): string {
-        return OCA.Files.App.fileList.getCurrentDirectory();
-    }
-
-    /**
-     * Triggers the rendering of the OCR dropdown for a single file action.
-     * Acts as the ActionHandler which is registered within the registerFileActions method.
-     * @param ocaFilesFileName The file name retrieved by the OCAFiles.fileActions.
-     * @param context The context object retrieved by the OCAFiles.fileActions.
-     */
-    private fileActionHandler(ocaFilesFileName: string, context: any): void {
-        // We are in a callback context, therefore we need to call it statically. (As we cannot pass "this")
-        OCA.Ocr.$app.controller.selectedFiles = [context.fileInfoModel.attributes];
-        OCA.Ocr.$app.view.renderFileAction(OCA.Ocr.$app.controller.selectedFiles);
+    public getCurrentDirectory: () => string = () => {
+        return this.oca.Files.App.fileList.getCurrentDirectory();
     }
 }
