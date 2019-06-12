@@ -1,10 +1,9 @@
-import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
+import { OCMultiTranslation, OCSingleTranslation, OCNotification, OCAFile } from '../../global-oc-types';
 import { Configuration } from '../configuration/configuration';
-import { IFile } from 'app/controller/poto/file.poto';
 
-declare var t: ISingleTranslation;
-declare var n: IMultiTranslation;
-declare var Choices: any;
+declare const t: OCSingleTranslation;
+declare const n: OCMultiTranslation;
+declare const Choices: any;
 
 /**
  * Nextcloud - OCR
@@ -22,7 +21,7 @@ export class View {
     private finishedFiles: number = undefined;
     private fileCount: number = undefined;
 
-    constructor(private notification: any, private ocrTemplateFunction: any, private document: Document) { }
+    constructor(private notification: OCNotification, private ocrTemplateFunction: any, private document: Document) { }
 
     /**
      * Destroys the view.
@@ -76,7 +75,7 @@ export class View {
     /**
      * Renders the Ocr dialog.
      */
-    public renderFileAction: (files: Array<IFile>) => void = (files) => {
+    public renderFileAction: (files: Array<OCAFile>) => void = (files) => {
         const html: any = this.renderOcrDialog(files);
         const container = this.document.createElement('div');
         container.innerHTML = html;
@@ -141,7 +140,7 @@ export class View {
      * @param languages The languages to give as an option for the user.
      * @returns The HTML template by Handlebars.
      */
-    private renderOcrDialog: (files: Array<IFile>) => string = (files) => {
+    private renderOcrDialog: (files: Array<OCAFile>) => string = (files) => {
         this.destroyOcrDialog();
         const template = this.ocrTemplateFunction;
 

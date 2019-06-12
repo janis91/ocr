@@ -1,12 +1,10 @@
-import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
+import { OCMultiTranslation, OCSingleTranslation, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
 import { Util } from '../util/util';
-import { IFile } from './poto/file.poto';
 import { OcaService } from '../service/oca.service';
 import { View } from '../view/view';
 import { TesseractService } from '../service/tesseract.service';
 
-declare var t: ISingleTranslation;
-declare var n: IMultiTranslation;
+declare var t: OCSingleTranslation;
 
 /**
  * Nextcloud - OCR
@@ -19,7 +17,7 @@ declare var n: IMultiTranslation;
  */
 export class Controller {
 
-    private selectedFiles: Array<IFile>;
+    private selectedFiles: Array<OCAFile>;
 
     constructor(private util: Util, private view: View, private tesseractService: TesseractService,
         private ocaService: OcaService, private document: Document) { }
@@ -78,7 +76,7 @@ export class Controller {
             this.view.destroyOcrDialog();
             return;
         }
-        const filteredFiles: Array<IFile> = this.util.filterFilesWithMimeTypes(this.selectedFiles);
+        const filteredFiles: Array<OCAFile> = this.util.filterFilesWithMimeTypes(this.selectedFiles);
         if (filteredFiles.length === 0) {
             this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'MIME type not supported.')}`);
             this.view.destroyOcrDialog();
@@ -104,7 +102,7 @@ export class Controller {
      * and sets the selectedFiles array.
      */
     public toggleSelectedFilesActionButton: () => void = () => {
-        const selFiles: Array<IFile> = this.util.filterFilesWithMimeTypes(this.ocaService.getSelectedFiles());
+        const selFiles: Array<OCAFile> = this.util.filterFilesWithMimeTypes(this.ocaService.getSelectedFiles());
         if (selFiles.length > 0) {
             this.ocaService.registerMultiSelectMenuItem(this.clickOnTopBarSelectedFilesActionButton);
             this.selectedFiles = selFiles;
@@ -116,7 +114,7 @@ export class Controller {
     /**
      * File action handler for single file actions.
      */
-    private fileActionHandler: (ocaFilesFileName: string, context: any) => void = (something, context) => {
+    private fileActionHandler: OCAFileActionHandler = (something, context) => {
         this.selectedFiles = [context.fileInfoModel.attributes];
         this.view.renderFileAction(this.selectedFiles);
     }
@@ -124,7 +122,7 @@ export class Controller {
     /**
      * Creates the Promise per file for tesseract.
      */
-    private process: (selectedLanguages: Array<string>, replace: boolean) => (file: IFile) => Promise<void> = (selectedLanguages, replace) => async (file) => {
+    private process: (selectedLanguages: Array<string>, replace: boolean) => (file: OCAFile) => Promise<void> = (selectedLanguages, replace) => async (file) => {
         if (file.mimetype === 'application/pdf') {
             console.log('pdf');
             throw new Error();
@@ -150,7 +148,7 @@ export class Controller {
     /**
      * Create the full path name to put the new file.
      */
-    private createPutFileContentsPath: (file: IFile, replace: boolean) => string = (file, replace) => {
+    private createPutFileContentsPath: (file: OCAFile, replace: boolean) => string = (file, replace) => {
         const newFileName = file.name.split('.');
         newFileName.pop();
         const postFix = file.mimetype === 'application/pdf' && !replace ? '_ocr' : '';

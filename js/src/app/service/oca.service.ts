@@ -1,12 +1,8 @@
-import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
-import { IFile } from '../controller/poto/file.poto';
+import { OCSingleTranslation, OCA, OC, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
 
-declare var OCA: any;
+declare var OCA: OCA;
 declare var OC: any;
-declare var t: ISingleTranslation;
-declare var n: IMultiTranslation;
-
-export type OCAFilesFileActionHandler = (ocaFilesFileName: string, context: any) => void;
+declare var t: OCSingleTranslation;
 
 /**
  * Nextcloud - OCR
@@ -20,10 +16,14 @@ export type OCAFilesFileActionHandler = (ocaFilesFileName: string, context: any)
 export class OcaService {
 
     public static checkOCAvailability: () => boolean = () => {
-        return OC && OCA && OCA.Files && OCA.Files.fileActions && OCA.Files.App && OCA.Files.App.fileList && OCA.Files.App.fileList.filesClient;
+        return OC !== undefined && OC.Notification !== undefined && // OC.Notification is used by the View
+            OCA !== undefined && OCA.Files !== undefined &&
+            OCA.Files.fileActions !== undefined &&
+            OCA.Files.App !== undefined && OCA.Files.App.fileList !== undefined &&
+            OCA.Files.App.fileList.filesClient !== undefined;
     }
 
-    constructor(private oc: any, private oca: any) { }
+    constructor(private oc: OC, private oca: OCA) { }
 
     /**
      * Destroy the OCR related FileActions.
@@ -46,7 +46,7 @@ export class OcaService {
      * Retrieves the array of selected files in the FileList of the OCA.Files app.
      * @returns The array of files that is currently selected.
      */
-    public getSelectedFiles: () => Array<IFile> = () => {
+    public getSelectedFiles: () => Array<OCAFile> = () => {
         return this.oca.Files.App.fileList.getSelectedFiles();
     }
 
@@ -60,7 +60,7 @@ export class OcaService {
     /**
      * Registers the FileActions at OCA.Files app for pdf and images.
      */
-    public registerFileActions: (actionHandler: OCAFilesFileActionHandler) => void = (actionHandler) => {
+    public registerFileActions: (actionHandler: OCAFileActionHandler) => void = (actionHandler) => {
         this.oca.Files.fileActions.registerAction({
             actionHandler,
             altText: t('ocr', 'OCR'),
@@ -84,7 +84,7 @@ export class OcaService {
     }
 
     public registerMultiSelectMenuItem: (handler: () => void) => void = (handler) => {
-        const index = (this.oca.Files.App.fileList.multiSelectMenuItems as Array<any>).findIndex(i => i.name === 'ocr');
+        const index = this.oca.Files.App.fileList.multiSelectMenuItems.findIndex(i => i.name === 'ocr');
         if (index !== -1) { return; }
         this.oca.Files.App.fileList.multiSelectMenuItems.push({
             action: handler,
@@ -95,12 +95,12 @@ export class OcaService {
     }
 
     public unregisterMultiSelectMenuItem: () => void = () => {
-        const index = (this.oca.Files.App.fileList.multiSelectMenuItems as Array<any>).findIndex(i => i.name === 'ocr');
+        const index = this.oca.Files.App.fileList.multiSelectMenuItems.findIndex(i => i.name === 'ocr');
         if (index === -1) { return; }
-        (this.oca.Files.App.fileList.multiSelectMenuItems as Array<any>).splice(index, 1);
+        this.oca.Files.App.fileList.multiSelectMenuItems.splice(index, 1);
     }
 
-    public getDownloadUrl: (file: IFile) => string = (file) => {
+    public getDownloadUrl: (file: OCAFile) => string = (file) => {
         return this.oca.Files.App.fileList.getDownloadUrl(file.name);
     }
 
@@ -120,11 +120,11 @@ export class OcaService {
         }
     }
 
-    public deleteFile: (file: IFile) => Promise<void> = async (file) => {
+    public deleteFile: (file: OCAFile) => Promise<void> = async (file) => {
         await new Promise((resolve, reject) => {
             this.oca.Files.App.fileList.filesClient.remove(file.path + file.name).done(resolve).fail(reject);
         });
-        this.oca.Files.App.fileList.remove(file);
+        this.oca.Files.App.fileList.remove(file.name);
     }
 
     public getCurrentDirectory: () => string = () => {

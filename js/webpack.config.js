@@ -2,41 +2,40 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        app: __dirname + '/src/app.ts'
+        app: path.resolve(__dirname, 'src/app/app.ts')
     },
     output: {
-        path: __dirname,
+        path: path.resolve(__dirname),
         filename: 'ocr.js',
         library: ['OCA', 'Ocr'],
         libraryTarget: 'umd',
     },
     module: {
-        preLoaders: [
+        rules: [
             {
                 test: /\.ts$/,
-                loader: 'tslint-loader'
-            }
-        ],
-        loaders: [
+                enforce: 'pre',
+                loader: 'tslint-loader',
+                options: {
+                    tsConfigFile: 'tsconfig.app.json',
+                }
+            },
             {
                 test: /\.hbs$/,
                 loader: "handlebars-loader?runtime=handlebars/runtime"
             },
             {
                 test: /\.ts?$/,
-                loader: 'ts',
+                loader: 'ts-loader',
+                options: {
+                    configFile: 'tsconfig.app.json',
+                }
             }
         ]
     },
-    tslint: {
-        tsConfigFile: 'tsconfig.app.json'
-    },
-    ts: {
-        configFileName: 'tsconfig.app.json'
-    },
     resolve: {
         modules: [path.resolve('./src')],
-        extensions: ['', '.ts']
+        extensions: ['.ts']
     },
     externals: [
         {
@@ -47,5 +46,5 @@ module.exports = {
                 commonjs: 'handlebars/runtime'
             }
         }
-    ]
+    ],
 };

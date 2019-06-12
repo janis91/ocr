@@ -1,6 +1,6 @@
-import { ISingleTranslation } from '../../global-oc-functions';
+import { OCSingleTranslation } from '../../global-oc-types';
 
-declare var t: ISingleTranslation;
+declare var t: OCSingleTranslation;
 
 /**
  * Nextcloud - OCR

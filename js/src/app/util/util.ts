@@ -1,5 +1,5 @@
 import { Configuration } from '../configuration/configuration';
-import { IFile } from '../controller/poto/file.poto';
+import { OCAFile } from '../../global-oc-types';
 
 /**
  * Nextcloud - OCR
@@ -18,10 +18,8 @@ export class Util {
      * @param files The array of files that should be filtered.
      * @returns The filtered resulting array.
      */
-    public filterFilesWithMimeTypes(files: Array<IFile>): Array<IFile> {
+    public filterFilesWithMimeTypes(files: Array<OCAFile>): Array<OCAFile> {
         if (files === undefined) { return []; }
-        return files.filter((file: IFile) => {
-            return Configuration.allowedMimeTypes.indexOf(file.mimetype) === -1 ? false : true;
-        });
+        return files.filter(file => Configuration.allowedMimeTypes.indexOf(file.mimetype) !== -1);
     }
 }

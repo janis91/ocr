@@ -57,6 +57,7 @@ nbproject
 npm-debug.log
 /js/spec/tsc-out
 /js/ocr.js
+/js/ocr.js.map
 /vendor
 
 # General node_modules

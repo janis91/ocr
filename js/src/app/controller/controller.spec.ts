@@ -1,8 +1,8 @@
 import { Controller } from './controller';
-import { IMultiTranslation, ISingleTranslation } from '../../global-oc-functions';
+import { OCMultiTranslation, OCSingleTranslation } from '../../global-oc-types';
 
-declare var t: ISingleTranslation;
-declare var n: IMultiTranslation;
+declare var t: OCSingleTranslation;
+declare var n: OCMultiTranslation;
 const globalAny: any = global;
 
 describe('For the controller', () => {

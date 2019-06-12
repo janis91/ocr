@@ -1,13 +1,14 @@
-import { Util } from './app/util/util';
-import { OcaService } from './app/service/oca.service';
-import { Controller } from './app/controller/controller';
-import { View } from './app/view/view';
-import * as handlebarsDropdownTemplate from './app/view/templates/ocr.dropdown.hbs';
-import { TesseractService } from './app/service/tesseract.service';
+import { Util } from './util/util';
+import { OcaService } from './service/oca.service';
+import { Controller } from './controller/controller';
+import { View } from './view/view';
+import * as handlebarsDropdownTemplate from './view/templates/ocr.hbs';
+import { TesseractService } from './service/tesseract.service';
+import { OC, OCA } from 'global-oc-types';
 
 
-declare var OC: any;
-declare var OCA: any;
+declare const OC: OC;
+declare const OCA: OCA;
 
 /**
  * Nextcloud - OCR
