@@ -54,7 +54,7 @@ interface FileList {
 
     /**
      * Gets the download url for one or more files in the given directory.
-     * 
+     *
      * @param {String|Array<String>} files the file name(s)
      * @param {String} dir (Optional) directory (default is the current directory)
      * @param {bool} isDir (Optional) if the given file name is a directory (default is false)
@@ -170,7 +170,6 @@ export type OCAFileActionHandler = (ocaFilesFileName: string, context: { dir: st
 
 interface OCAFileInfoModel {
     attributes: OCAFile;
-    mountType: string;
 }
 
 /**

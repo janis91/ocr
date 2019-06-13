@@ -88,9 +88,9 @@ export class View {
      * @param event The click event.
      * @returns If clicked beside the dialog or not.
      */
-    public checkClickToExit: (event: any) => boolean = (event) => {
+    public checkClickToExit: (event: Event) => boolean = (event) => {
         if ((this.fileCount === undefined && this.finishedFiles === undefined) &&
-            (event.target.closest('.ocr-close') || !event.target.closest('.ocr-modal-content'))) {
+            ((event.target as HTMLElement).closest('.ocr-close') || !(event.target as HTMLElement).closest('.ocr-modal-content'))) {
             this.destroyOcrDialog();
             return true;
         } else {

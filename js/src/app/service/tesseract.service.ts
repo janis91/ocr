@@ -47,7 +47,7 @@ export class TesseractService {
         }
     }
 
-    public process: (file: OCAFile, languages: Array<string>) => Promise<void> = async (file, languages) => {
+    public process: (file: OCAFile, languages: Array<string>) => Promise<object> = async (file, languages) => {
         return new Promise((resolve, reject) => {
             this.getNextTesseractWorker()
                 .recognize(
