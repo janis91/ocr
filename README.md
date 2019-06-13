@@ -1,5 +1,6 @@
 This project is not updated or maintained anymore. At the moment there is too much to do in other projects, so I won't have time for this in the near future. Sorry :-/
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e76b9a23aafe43d09aa71fe7fb870ee2)](https://app.codacy.com/app/janis91/ocr?utm_source=github.com&utm_medium=referral&utm_content=janis91/ocr&utm_campaign=Badge_Grade_Settings)
 [![OCR](https://raw.githubusercontent.com/janis91/ocr/master/screenshots/app.png)](https://github.com/janis91/ocr)
 # OCR
 [![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/janis91/ocr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/janis91/ocr/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
