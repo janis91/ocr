@@ -1,283 +1,346 @@
-// import { View } from './view';
-// import { OCMultiTranslation, OCSingleTranslation } from '../../global-oc-types';
-
-// declare var t: OCSingleTranslation;
-// declare var n: OCMultiTranslation;
-// const globalAny: any = global;
-
-// describe('For the view', () => {
-
-//     let cut: View;
-//     let notificationMock: any;
-//     let handlebarsDropdownTemplateMock: any;
-//     let jqueryMock: any;
-//     let documentMock: any;
-//     globalAny.t = (appName: string, translationString: string) => { return translationString; };
-//     globalAny.n = (appName: string, singleTranslationString: string, multipleTranslationString: string, count: number) => { return singleTranslationString; };
-
-//     beforeEach(() => {
-//         handlebarsDropdownTemplateMock = jasmine.createSpy('ocrDropdownTemplateFunction');
-//         notificationMock = jasmine.createSpyObj('notification', ['showHtml', 'hide']);
-//         jqueryMock = jasmine.createSpy('jquery');
-//         documentMock = jasmine.createSpyObj('document', ['getElementById', 'removeChild', 'querySelectorAll']);
-//         cut = new View(notificationMock, handlebarsDropdownTemplateMock, jqueryMock, documentMock);
-//     });
-
-//     describe('the displayError function', () => {
-//         it('should display an error message.', () => {
-//             const message = 'test';
-
-//             cut.displayError(message);
-
-//             expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>OCR: ${message}</div>`, { timeout: 10, type: 'error' });
-//         });
-//     });
-
-//     describe('the renderDropdown function', () => {
-//         it('should destroy the dropdown before rendering it new.', () => {
-//             const languages = ['deu', 'eng'];
-//             spyOn(cut, 'destroyDropdown');
-
-//             cut.renderOcrDialog(languages);
-
-//             expect(cut.destroyOcrDialog).toHaveBeenCalled();
-//         });
-
-//         it('should return the rendered template.', () => {
-//             const languages = ['deu', 'eng'];
-//             spyOn(cut, 'destroyDropdown');
-//             handlebarsDropdownTemplateMock.and.returnValue('template');
-
-//             const result = cut.renderOcrDialog(languages);
-
-//             expect(cut.destroyOcrDialog).toHaveBeenCalled();
-//             expect(handlebarsDropdownTemplateMock).toHaveBeenCalledWith({ languages: languages, buttonText: 'Process', replaceText: 'Replace' });
-//             expect(result).toBe('template');
-//         });
-//     });
-
-//     describe('the destroyDropdown function', () => {
-//         it('should try to destroy the dropdown, if it exists.', () => {
-//             const parent = jasmine.createSpyObj('parentNode', ['removeChild']);
-//             let element = {
-//                 parentNode: parent,
-//             };
-//             documentMock.getElementById.and.returnValue(element);
-
-//             cut.destroyOcrDialog();
-
-//             expect(element.parentNode.removeChild).toHaveBeenCalledWith(element);
-//         });
-
-//         it('should not try to destroy the dropdown, if it exists.', () => {
-//             const parent = jasmine.createSpyObj('parentNode', ['removeChild']);
-//             let element = {
-//                 parentNode: parent,
-//             };
-//             documentMock.getElementById.and.returnValue(null);
-
-//             cut.destroyOcrDialog();
-
-//             expect(element.parentNode.removeChild).not.toHaveBeenCalled();
-//         });
-//     });
-
-//     describe('the togglePendingNotification function', () => {
-//         it('should show the pending notification if force is true and count zero.', () => {
-//             spyOnProperty(cut, 'notificationRow', 'get').and.returnValue(1);
-//             const html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> OCR started: %n new file in queue.</span>`;
-
-//             cut.togglePendingNotification(true, 0);
-
-//             expect(notificationMock.hide).toHaveBeenCalledWith(1);
-//             expect(notificationMock.showHtml).toHaveBeenCalledWith(html);
-//         });
-
-//         it('should show the pending notification if force is false and count is a positive number.', () => {
-//             spyOnProperty(cut, 'notificationRow', 'get').and.returnValue(1);
-//             const html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> OCR: %n currently pending file in queue.</span>`;
-
-//             cut.togglePendingNotification(false, 2);
-
-//             expect(notificationMock.hide).toHaveBeenCalledWith(1);
-//             expect(notificationMock.showHtml).toHaveBeenCalledWith(html);
-//         });
-
-//         it('should hide the pending notification if force is false and count is zero.', () => {
-//             spyOnProperty(cut, 'notificationRow', 'get').and.returnValue(1);
-
-//             cut.togglePendingNotification(false, 0);
-
-//             expect(notificationMock.hide).toHaveBeenCalledWith(1);
-//             expect(notificationMock.showHtml).toHaveBeenCalledTimes(0);
-//         });
-
-//         it('should not hide if notificationRow is undefined and force is true or count is a positive number.', () => {
-//             spyOnProperty(cut, 'notificationRow', 'get').and.returnValue(undefined);
-//             const html = `<span class="icon icon-loading-small ocr-row-adjustment"></span>&nbsp;<span> OCR started: %n new file in queue.</span>`;
-
-//             cut.togglePendingNotification(true, 2);
-
-//             expect(notificationMock.hide).toHaveBeenCalledTimes(0);
-//             expect(notificationMock.showHtml).toHaveBeenCalledWith(html);
-//         });
-
-//         it('should not hide if notificationRow is undefined and force is false and count is zero.', () => {
-//             spyOnProperty(cut, 'notificationRow', 'get').and.returnValue(undefined);
-
-//             cut.togglePendingNotification(false, 0);
-
-//             expect(notificationMock.hide).toHaveBeenCalledTimes(0);
-//             expect(notificationMock.showHtml).toHaveBeenCalledTimes(0);
-//         });
-//     });
-
-//     describe('the toggleSelectedFilesActionButton function', () => {
-//         it('should show the SelectedFilesActionButton.', () => {
-//             const classList = jasmine.createSpyObj('classList', ['remove']);
-//             let element = {
-//                 classList: classList,
-//             };
-//             documentMock.getElementById.and.returnValue(element);
-
-//             cut.toggleSelectedFilesActionButton(true);
-
-//             expect(element.classList.remove).toHaveBeenCalledWith('hidden');
-//         });
-
-//         it('should hide the SelectedFilesActionButton.', () => {
-//             const classList = jasmine.createSpyObj('classList', ['add']);
-//             let element = {
-//                 classList: classList,
-//             };
-//             documentMock.getElementById.and.returnValue(element);
-
-//             cut.toggleSelectedFilesActionButton(false);
-
-//             expect(element.classList.add).toHaveBeenCalledWith('hidden');
-//         });
-//     });
-
-//     describe('the renderFileAction function', () => {
-//         it('should append the dropdown to the proper position for one file.', () => {
-//             const languages = ['deu', 'eng'];
-//             spyOn(cut, 'renderDropdown').and.returnValue('<div></div>');
-//             spyOn(cut, 'renderSelectTwo');
-//             spyOn(cut, 'appendHtmlToElement');
-//             const elementOne = jasmine.createSpyObj('elementOne', ['getAttribute', 'querySelectorAll']);
-//             elementOne.getAttribute.and.returnValue('file');
-//             elementOne.querySelectorAll.and.returnValue('a td element');
-//             const elementTwo = jasmine.createSpyObj('elementTwo', ['getAttribute']);
-//             elementTwo.getAttribute.and.returnValue('not the right file');
-//             const elementThree = jasmine.createSpyObj('elementThree', ['getAttribute']);
-//             elementThree.getAttribute.and.returnValue('also not the right file');
-//             documentMock.querySelectorAll.and.returnValue([elementOne, elementTwo, elementThree]);
-
-//             cut.renderFileAction('file', languages);
-
-//             expect(cut.renderSelect).toHaveBeenCalled();
-//             expect(cut.renderOcrDialog).toHaveBeenCalledWith(languages);
-//             expect(elementOne.getAttribute).toHaveBeenCalledWith('data-file');
-//             expect(elementTwo.getAttribute).toHaveBeenCalledWith('data-file');
-//             expect(elementThree.getAttribute).toHaveBeenCalledWith('data-file');
-//             expect(cut.appendHtmlToElement).toHaveBeenCalledWith('<div></div>', 'a td element');
-//         });
-
-//         it('should append the dropdown to the proper position for multiple files.', () => {
-//             const languages = ['deu', 'eng'];
-//             spyOn(cut, 'renderDropdown').and.returnValue('<div></div>');
-//             spyOn(cut, 'renderSelectTwo');
-//             spyOn(cut, 'appendHtmlToElement');
-//             documentMock.querySelectorAll.and.returnValue('the tr th.column-name elements');
-
-//             cut.renderFileAction(undefined, languages);
-
-//             expect(cut.renderSelect).toHaveBeenCalled();
-//             expect(cut.renderOcrDialog).toHaveBeenCalledWith(languages);
-//             expect(cut.appendHtmlToElement).toHaveBeenCalledWith('<div></div>', 'the tr th.column-name elements');
-//         });
-//     });
-
-//     describe('the checkClickOther function', () => {
-//         it('should return true and destroyDropdown if not clicked on ocrDropdown.', () => {
-//             const target = jasmine.createSpyObj('target', ['closest']);
-//             const event = {
-//                 target: target,
-//             };
-//             target.closest.and.returnValue(null);
-//             spyOn(cut, 'destroyDropdown');
-
-//             const result = cut.checkClickToExit(event);
-
-//             expect(cut.destroyOcrDialog).toHaveBeenCalled();
-//             expect(event.target.closest).toHaveBeenCalledWith('#ocrDropdown');
-//             expect(result).toBeTruthy();
-//         });
-
-//         it('should return false if clicked on ocrDropdown.', () => {
-//             const target = jasmine.createSpyObj('target', ['closest']);
-//             const event = {
-//                 target: target,
-//             };
-//             target.closest.and.returnValue({});
-
-//             const result = cut.checkClickToExit(event);
-
-//             expect(event.target.closest).toHaveBeenCalledWith('#ocrDropdown');
-//             expect(result).toBeFalsy();
-//         });
-//     });
-
-//     describe('the renderSelectedFilesActionButton function', () => {
-//         it('should render the selected files action button.', () => {
-//             spyOnProperty(cut, 'templateOCRSelectedFileAction', 'get').and.returnValue('template');
-//             spyOn(cut, 'prependHtmlToElement');
-//             documentMock.getElementById.and.returnValue('an element');
-
-//             cut.renderSelectedFilesActionButton();
-
-//             expect(documentMock.getElementById).toHaveBeenCalledWith('selectedActionsList');
-//             expect(cut.prependHtmlToElement).toHaveBeenCalledWith('template', 'an element');
-//         });
-//     });
-
-//     describe('the destroySelectedFilesActionButton function', () => {
-//         it('should remove the button.', () => {
-//             const parent = jasmine.createSpyObj('parentNode', ['removeChild']);
-//             let element = {
-//                 parentNode: parent,
-//             };
-//             documentMock.getElementById.and.returnValue(element);
-
-//             cut.destroySelectedFilesActionButton();
-
-//             expect(documentMock.getElementById).toHaveBeenCalledWith('process-ocr');
-//         });
-//     });
-
-//     describe('the destroy function', () => {
-//         it('should destroy the selectedFilesActionButton and the Dropdown on destroy.', () => {
-//             spyOn(cut, 'destroyDropdown');
-//             spyOn(cut, 'destroySelectedFilesActionButton');
-
-//             cut.destroy();
-
-//             expect(cut.destroySelectedFilesActionButton).toHaveBeenCalled();
-//             expect(cut.destroyOcrDialog).toHaveBeenCalled();
-//         });
-//     });
-
-//     describe('the getReplaceValue function', () => {
-//         it('should get the value from the checkbox.', () => {
-//             let element = {
-//                 checked: true,
-//             };
-//             documentMock.getElementById.and.returnValue(element);
-
-//             const result = cut.getReplaceValue();
-
-//             expect(documentMock.getElementById).toHaveBeenCalledWith('ocrReplace');
-//             expect(result).toBeTruthy();
-//         });
-//     });
-// });
+import { View, OcrHandleBarsTemplate } from '../../../src/app/view/view';
+import { windowAny, FilesFixtures } from '../../fixtures/fixtures';
+import { OCNotification } from '../../../src/global-oc-types';
+import { Configuration } from '../../../src/app/configuration/configuration';
+
+
+describe("The view's", () => {
+
+    let cut: View;
+    let notificationMock: jasmine.SpyObj<OCNotification>;
+    let ocrTemplateMock: jasmine.Spy<OcrHandleBarsTemplate>;
+    let documentMock: jasmine.SpyObj<Document>;
+
+
+    beforeEach(async () => {
+        windowAny.t = jasmine.createSpy('t');
+        windowAny.n = jasmine.createSpy('n');
+        windowAny.Choices = jasmine.createSpy('Choices');
+        notificationMock = jasmine.createSpyObj('notification', ['showHtml']);
+        ocrTemplateMock = jasmine.createSpy('ocrTemplate');
+        documentMock = jasmine.createSpyObj('document', ['createElement', 'querySelector', 'getElementById']);
+        cut = new (await import('../../../src/app/view/view')).View(notificationMock, ocrTemplateMock, documentMock);
+    });
+
+    describe('destroy function', () => {
+        it('should destroy the dialog correctly.', () => {
+            spyOn(cut, 'destroyOcrDialog').and.returnValue();
+
+            cut.destroy();
+
+            expect(cut.destroyOcrDialog).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('displayError function', () => {
+        it('should display an error message.', () => {
+            const message = 'test';
+            notificationMock.showHtml.and.returnValue({} as JQuery);
+            windowAny.t.and.returnValue('OCR');
+
+            cut.displayError(message);
+
+            expect(windowAny.t).toHaveBeenCalledWith('ocr', 'OCR');
+            expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>OCR: ${message}</div>`, { timeout: 10, type: 'error' });
+        });
+    });
+
+    describe('activateBusyState function', () => {
+        it('should activate the busy state (add and remove ocr-hidden classes respectively) for given file count = 1 and trigger drawing.', () => {
+            spyOn(cut, 'drawFileState').and.returnValue();
+            const ocrProgressWrapperElement = { classList: jasmine.createSpyObj('classList', ['remove']) } as unknown as HTMLDivElement;
+            (ocrProgressWrapperElement.classList.remove as any).and.returnValue();
+            documentMock.getElementById.withArgs('ocrProgressWrapper').and.returnValue(ocrProgressWrapperElement);
+            const ocrCloseDialogElement = { classList: jasmine.createSpyObj('classList', ['add']) } as unknown as HTMLButtonElement;
+            (ocrCloseDialogElement.classList.add as any).and.returnValue();
+            documentMock.getElementById.withArgs('ocrDialogClose').and.returnValue(ocrCloseDialogElement);
+            const ocrProcessElement = { classList: jasmine.createSpyObj('classList', ['add']) } as unknown as HTMLButtonElement;
+            (ocrProcessElement.classList.add as any).and.returnValue();
+            documentMock.getElementById.withArgs('processOCR').and.returnValue(ocrProcessElement);
+            const ocrFillElement = { classList: jasmine.createSpyObj('classList', ['add']) } as unknown as HTMLDivElement;
+            (ocrFillElement.classList.add as any).and.returnValue();
+            documentMock.getElementById.withArgs('ocrFill').and.returnValue(ocrFillElement);
+
+            cut.activateBusyState(1);
+
+            expect(cut.fileCount).toEqual(1);
+            expect(cut.finishedFiles).toEqual(0);
+            expect(ocrProgressWrapperElement.classList.remove).toHaveBeenCalledWith('ocr-hidden');
+            expect(ocrCloseDialogElement.classList.add).toHaveBeenCalledWith('ocr-hidden');
+            expect(ocrProcessElement.classList.add).toHaveBeenCalledWith('ocr-hidden');
+            expect(ocrFillElement.classList.add).toHaveBeenCalledWith('ocr-hidden');
+        });
+
+        it('should activate the busy state (add and remove ocr-hidden classes respectively) for given file count = 2 and trigger drawing.', () => {
+            spyOn(cut, 'drawFileState').and.returnValue();
+            const ocrProgressWrapperElement = { classList: jasmine.createSpyObj('classList', ['remove']) } as unknown as HTMLDivElement;
+            (ocrProgressWrapperElement.classList.remove as any).and.returnValue();
+            documentMock.getElementById.withArgs('ocrProgressWrapper').and.returnValue(ocrProgressWrapperElement);
+            const ocrCloseDialogElement = { classList: jasmine.createSpyObj('classList', ['add']) } as unknown as HTMLButtonElement;
+            (ocrCloseDialogElement.classList.add as any).and.returnValue();
+            documentMock.getElementById.withArgs('ocrDialogClose').and.returnValue(ocrCloseDialogElement);
+            const ocrProcessElement = { classList: jasmine.createSpyObj('classList', ['add']) } as unknown as HTMLButtonElement;
+            (ocrProcessElement.classList.add as any).and.returnValue();
+            documentMock.getElementById.withArgs('processOCR').and.returnValue(ocrProcessElement);
+            const ocrFillElement = { classList: jasmine.createSpyObj('classList', ['add']) } as unknown as HTMLDivElement;
+            (ocrFillElement.classList.add as any).and.returnValue();
+            documentMock.getElementById.withArgs('ocrFill').and.returnValue(ocrFillElement);
+
+            cut.activateBusyState(2);
+
+            expect(cut.fileCount).toEqual(2);
+            expect(cut.finishedFiles).toEqual(0);
+            expect(cut.drawFileState).toHaveBeenCalledTimes(1);
+            expect(ocrProgressWrapperElement.classList.remove).toHaveBeenCalledWith('ocr-hidden');
+            expect(ocrCloseDialogElement.classList.add).toHaveBeenCalledWith('ocr-hidden');
+            expect(ocrProcessElement.classList.add).toHaveBeenCalledWith('ocr-hidden');
+            expect(ocrFillElement.classList.add).toHaveBeenCalledWith('ocr-hidden');
+        });
+    });
+
+    describe('addFinishedFileToState function', () => {
+        it('should add another finished file to the state = 0 and trigger drawing.', () => {
+            spyOn(cut, 'drawFileState').and.returnValue();
+            cut.finishedFiles = 0;
+
+            cut.addFinishedFileToState();
+
+            expect(cut.drawFileState).toHaveBeenCalledTimes(1);
+            expect(cut.finishedFiles).toEqual(1);
+        });
+
+        it('should add another finished file to the state = 1 and trigger drawing.', () => {
+            spyOn(cut, 'drawFileState').and.returnValue();
+            cut.finishedFiles = 1;
+
+            cut.addFinishedFileToState();
+
+            expect(cut.drawFileState).toHaveBeenCalledTimes(1);
+            expect(cut.finishedFiles).toEqual(2);
+        });
+    });
+
+    describe('destroyOcrDialog function', () => {
+        it('should check if dialog is open and remove it from the DOM, if so.', () => {
+            const element = { parentNode: jasmine.createSpyObj('parentNode', ['removeChild']) };
+            element.parentNode.removeChild.and.returnValue();
+            documentMock.getElementById.and.returnValue(element as HTMLElement);
+
+            cut.destroyOcrDialog();
+
+            expect(element.parentNode.removeChild).toHaveBeenCalledWith(element);
+            expect(documentMock.getElementById).toHaveBeenCalledWith('ocrDialog');
+            expect(cut.choices).not.toBeDefined();
+            expect(cut.fileCount).not.toBeDefined();
+            expect(cut.finishedFiles).not.toBeDefined();
+        });
+
+        it('should check if dialog is open and not remove it from the DOM, if not.', () => {
+            documentMock.getElementById.and.returnValue(null);
+
+            cut.destroyOcrDialog();
+
+            expect(documentMock.getElementById).toHaveBeenCalledWith('ocrDialog');
+            expect(cut.choices).not.toBeDefined();
+            expect(cut.fileCount).not.toBeDefined();
+            expect(cut.finishedFiles).not.toBeDefined();
+        });
+    });
+
+    describe('renderFileAction function', () => {
+        it('should trigger the rendering of the ocrDialog and append it to the DOM for the given files.', () => {
+            const files = [FilesFixtures.PDF, FilesFixtures.PNG];
+            spyOn(cut, 'renderOcrDialog').and.returnValue('<div></div>');
+            const container = { innerHTML: '' };
+            documentMock.createElement.and.returnValue(container as HTMLElement);
+            const body = jasmine.createSpyObj('body', ['appendChild']);
+            body.appendChild.and.returnValue();
+            documentMock.querySelector.and.returnValue(body);
+            spyOn(cut, 'renderSelect').and.returnValue();
+
+            cut.renderFileAction(files);
+
+            expect(cut.renderOcrDialog).toHaveBeenCalledWith(files);
+            expect(documentMock.createElement).toHaveBeenCalledWith('div');
+            expect(container.innerHTML).toEqual('<div></div>');
+            expect(body.appendChild).toHaveBeenCalledWith(container);
+            expect(cut.renderSelect).toHaveBeenCalled();
+        });
+    });
+
+    describe('checkClickToExit function', () => {
+        it('should return false, when still in progress (fileCount defined).', () => {
+            cut.fileCount = 2;
+
+            const result = cut.checkClickToExit({} as Event);
+
+            expect(result).toBeFalsy();
+        });
+
+        it('should return false, when still in progress (finishedfiles defined).', () => {
+            cut.fileCount = undefined;
+            cut.finishedFiles = 1;
+
+            const result = cut.checkClickToExit({} as Event);
+
+            expect(result).toBeFalsy();
+        });
+
+        it('should return false, when not in progress but click was not at the right target.', () => {
+            cut.fileCount = undefined;
+            cut.finishedFiles = undefined;
+            const event = { target: jasmine.createSpyObj('target', ['closest']) };
+            event.target.closest.withArgs('.ocr-close').and.returnValue(null);
+            event.target.closest.withArgs('.ocr-modal-content').and.returnValue({});
+
+            const result = cut.checkClickToExit(event as Event);
+
+            expect(result).toBeFalsy();
+        });
+
+        it('should return true and destroy the dialog, when not in progress and clicked on close.', () => {
+            cut.fileCount = undefined;
+            cut.finishedFiles = undefined;
+            const event = { target: jasmine.createSpyObj('target', ['closest']) };
+            event.target.closest.withArgs('.ocr-close').and.returnValue({});
+            event.target.closest.withArgs('.ocr-modal-content').and.returnValue({});
+
+            const result = cut.checkClickToExit(event as Event);
+
+            expect(result).toBeTruthy();
+        });
+
+        it('should return true and destroy the dialog, when not in progress and clicked outside of the dialog.', () => {
+            cut.fileCount = undefined;
+            cut.finishedFiles = undefined;
+            const event = { target: jasmine.createSpyObj('target', ['closest']) };
+            event.target.closest.withArgs('.ocr-close').and.returnValue(null);
+            event.target.closest.withArgs('.ocr-modal-content').and.returnValue(null);
+
+            const result = cut.checkClickToExit(event as Event);
+
+            expect(result).toBeTruthy();
+        });
+    });
+
+    describe('getSelectValues function', () => {
+        it('should return the choices values.', () => {
+            cut.choices = { getValue: jasmine.createSpy('getValue') };
+            cut.choices.getValue.and.returnValue(['deu']);
+
+            const result = cut.getSelectValues();
+
+            expect(result).toEqual(['deu']);
+            expect(cut.choices.getValue).toHaveBeenCalledWith(true);
+        });
+    });
+
+    describe('getReplaceValue function', () => {
+        it('should return true if checked.', () => {
+            const element = { checked: true };
+            documentMock.getElementById.and.returnValue(element as HTMLInputElement);
+
+            const result = cut.getReplaceValue();
+
+            expect(result).toBeTruthy();
+        });
+
+        it('should return false if not checked.', () => {
+            const element = { checked: false };
+            documentMock.getElementById.and.returnValue(element as HTMLInputElement);
+
+            const result = cut.getReplaceValue();
+
+            expect(result).toBeFalsy();
+        });
+    });
+
+    describe('renderSelect function', () => {
+        it('should create the new Choices object and assign it to choices property.', () => {
+            windowAny.t.withArgs('ocr', 'Press to select').and.returnValue('Press to select');
+            windowAny.t.withArgs('ocr', 'No matches found').and.returnValue('No matches found');
+            windowAny.t.withArgs('ocr', 'Select language').and.returnValue('Select language');
+            const choices = {};
+            windowAny.Choices.and.returnValue(choices);
+
+            cut.renderSelect();
+
+            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'Press to select']);
+            expect(windowAny.t.calls.argsFor(1)).toEqual(['ocr', 'No matches found']);
+            expect(windowAny.t.calls.argsFor(2)).toEqual(['ocr', 'Select language']);
+            expect(cut.choices).toEqual(choices);
+            expect(windowAny.Choices).toHaveBeenCalledWith('#ocrLanguage', {
+                duplicateItemsAllowed: false,
+                itemSelectText: 'Press to select',
+                noResultsText: 'No matches found',
+                placeholderValue: 'Select language',
+                position: 'bottom',
+                removeItemButton: true,
+                removeItems: true,
+            });
+        });
+    });
+
+    describe('drawFileState function', () => {
+        it('should set the text content of the process description to the right state.', () => {
+            const element = { textContent: '' };
+            documentMock.getElementById.and.returnValue(element as HTMLSpanElement);
+            windowAny.t.and.returnValue('1/2 Files successfully processed');
+            cut.finishedFiles = 1;
+            cut.fileCount = 2;
+
+            cut.drawFileState();
+
+            expect(windowAny.t).toHaveBeenCalledWith('ocr', '{file}/{files} Files successfully processed', { file: '1', files: '2' });
+            expect(element.textContent).toEqual('1/2 Files successfully processed');
+            expect(documentMock.getElementById).toHaveBeenCalledWith('ocrProgressFilesDescription');
+        });
+    });
+
+    describe('renderOcrDialog function', () => {
+        it('should destroy the old dialog first and return the handlebar result for multiple given files.', () => {
+            spyOn(cut, 'destroyOcrDialog').and.returnValue();
+            const files = [FilesFixtures.PDF, FilesFixtures.PNG];
+            ocrTemplateMock.and.returnValue('<div></div>');
+            windowAny.t.withArgs('ocr', 'Process').and.returnValue('Process');
+            windowAny.t.withArgs('ocr', 'Replace target file if existing and delete original file').and.returnValue('Replace target file if existing and delete original file');
+            windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
+            windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 2).and.returnValue('2 files are being processed:');
+            windowAny.n.withArgs('ocr', '%n file', '%n files', 2).and.returnValue('2 files');
+
+            const result = cut.renderOcrDialog(files);
+
+            expect(result).toEqual('<div></div>');
+            expect(cut.destroyOcrDialog).toHaveBeenCalled();
+            expect(ocrTemplateMock).toHaveBeenCalledWith({
+                buttonText: 'Process',
+                filesQueued: '2 files are being processed:',
+                languages: Configuration.availableLanguages,
+                replaceText: 'Replace target file if existing and delete original file',
+                title: 'OCR: 2 files',
+            });
+        });
+
+        it('should destroy the old dialog first and return the handlebar result for single given file.', () => {
+            spyOn(cut, 'destroyOcrDialog').and.returnValue();
+            const files = [FilesFixtures.PNG];
+            ocrTemplateMock.and.returnValue('<div></div>');
+            windowAny.t.withArgs('ocr', 'Process').and.returnValue('Process');
+            windowAny.t.withArgs('ocr', 'Replace target file if existing and delete original file').and.returnValue('Replace target file if existing and delete original file');
+            windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
+            windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 1).and.returnValue('1 file is being processed:');
+
+            const result = cut.renderOcrDialog(files);
+
+            expect(result).toEqual('<div></div>');
+            expect(cut.destroyOcrDialog).toHaveBeenCalled();
+            expect(ocrTemplateMock).toHaveBeenCalledWith({
+                buttonText: 'Process',
+                filesQueued: '1 file is being processed:',
+                languages: Configuration.availableLanguages,
+                replaceText: 'Replace target file if existing and delete original file',
+                title: 'OCR: file3.png',
+            });
+        });
+    });
+});

@@ -1,10 +1,9 @@
-import { OCAFile, OCSingleTranslation, OCMultiTranslation } from '../../src/global-oc-types';
+import { OCAFile } from '../../src/global-oc-types';
 
-type globalAny = { t: jasmine.Spy<OCSingleTranslation>; n: jasmine.Spy<OCMultiTranslation>; };
-declare var global: any;
-export const globalAny: any = global;
-globalAny.t = jasmine.createSpy('t');
-globalAny.n = jasmine.createSpy('n');
+export const windowAny: any = window;
+windowAny.t = jasmine.createSpy('t');
+windowAny.n = jasmine.createSpy('n');
+windowAny.Choices = jasmine.createSpy('Choices');
 
 export class FilesFixtures {
     public static PDF: OCAFile = {
@@ -53,4 +52,20 @@ export class OCAFileActionsContextFixture {
             attributes: FilesFixtures.PNG,
         },
     };
+}
+
+export class JqPromiseMock {
+    constructor(private error?: number) { }
+    public done = (cb: () => void) => {
+        if (!this.error) {
+            cb();
+        }
+        return this;
+    }
+    public fail = (cb: (e: any) => void) => {
+        if (this.error) {
+            cb(this.error);
+        }
+        return this;
+    }
 }

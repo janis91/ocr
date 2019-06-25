@@ -1,7 +1,6 @@
 import { OCSingleTranslation, OCA, OC, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
+import { Util } from '../util/util';
 
-declare var OCA: OCA;
-declare var OC: any;
 declare var t: OCSingleTranslation;
 
 /**
@@ -16,11 +15,13 @@ declare var t: OCSingleTranslation;
 export class OcaService {
 
     public static checkOCAvailability: () => boolean = () => {
-        return OC !== undefined && OC.Notification !== undefined && // OC.Notification is used by the View
-            OCA !== undefined && OCA.Files !== undefined &&
-            OCA.Files.fileActions !== undefined &&
-            OCA.Files.App !== undefined && OCA.Files.App.fileList !== undefined &&
-            OCA.Files.App.fileList.filesClient !== undefined;
+        const isAvailable = Util.isDefinedIn;
+        const win = (window as any);
+        return isAvailable('OC', window) && isAvailable('Notification', win.OC) && // OC.Notification is used by the View
+            isAvailable('OCA', window) && isAvailable('Files', win.OCA) &&
+            isAvailable('fileActions', win.OCA.Files) &&
+            isAvailable('App', win.OCA.Files) && isAvailable('fileList', win.OCA.Files.App) &&
+            isAvailable('filesClient', win.OCA.Files.App.fileList);
     }
 
     constructor(private oc: OC, private oca: OCA) { }
@@ -31,6 +32,7 @@ export class OcaService {
     public destroy: () => void = () => {
         this.oca.Files.fileActions.clear();
         this.oca.Files.fileActions.registerDefaultActions();
+        this.unregisterMultiSelectMenuItem();
     }
 
     /**
@@ -108,21 +110,28 @@ export class OcaService {
         try {
             await new Promise((resolve, reject) => {
                 this.oca.Files.App.fileList.filesClient.putFileContents(path, body, { contentType: 'application/pdf', overwrite: !replace })
-                    .done(resolve).fail(reject);
+                    .done(resolve)
+                    .fail(reject);
             });
             await new Promise((resolve, reject) => {
-                this.oca.Files.App.fileList.addAndFetchFileInfo(path, '', { scrollTo: true }).then(resolve).fail(reject);
+                this.oca.Files.App.fileList.addAndFetchFileInfo(path, '', { scrollTo: true })
+                    .done(resolve)
+                    .fail(reject);
             });
         } catch (e) {
             if (e === 412) {
                 throw new Error(`${t('ocr', 'Target file already exists:')} ${path}`);
+            } else {
+                throw new Error(t('ocr', 'An unexpected error occured during the upload of the processed file.'));
             }
         }
     }
 
     public deleteFile: (file: OCAFile) => Promise<void> = async (file) => {
         await new Promise((resolve, reject) => {
-            this.oca.Files.App.fileList.filesClient.remove(file.path + file.name).done(resolve).fail(reject);
+            this.oca.Files.App.fileList.filesClient.remove(file.path + file.name)
+                .done(resolve)
+                .fail(reject);
         });
         this.oca.Files.App.fileList.remove(file.name);
     }

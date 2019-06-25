@@ -1,9 +1,19 @@
 import { OCMultiTranslation, OCSingleTranslation, OCNotification, OCAFile } from '../../global-oc-types';
 import { Configuration } from '../configuration/configuration';
 
-declare const t: OCSingleTranslation;
-declare const n: OCMultiTranslation;
-declare const Choices: any;
+declare var t: OCSingleTranslation;
+declare var n: OCMultiTranslation;
+declare var Choices: any;
+
+export type OcrHandleBarsTemplate = (options: OcrHandleBarsTemplateOptions) => string;
+
+interface OcrHandleBarsTemplateOptions {
+    buttonText: string;
+    filesQueued: string;
+    languages: {[value: string]: string};
+    replaceText: string;
+    title: string;
+}
 
 /**
  * Nextcloud - OCR
@@ -17,11 +27,11 @@ declare const Choices: any;
 export class View {
 
     /** The choices object. */
-    private choices: any = undefined;
-    private finishedFiles: number = undefined;
-    private fileCount: number = undefined;
+    public choices: any = undefined;
+    public finishedFiles: number = undefined;
+    public fileCount: number = undefined;
 
-    constructor(private notification: OCNotification, private ocrTemplateFunction: any, private document: Document) { }
+    constructor(private notification: OCNotification, private ocrTemplate: OcrHandleBarsTemplate, private document: Document) { }
 
     /**
      * Destroys the view.
@@ -45,7 +55,7 @@ export class View {
         this.fileCount = forFileCount;
         this.finishedFiles = 0;
         this.drawFileState();
-        this.document.querySelectorAll('.ocr-progress-wrapper').forEach(v => v.classList.remove('ocr-hidden'));
+        this.getElementById<HTMLDivElement>('ocrProgressWrapper').classList.remove('ocr-hidden');
         this.getElementById<HTMLButtonElement>('ocrDialogClose').classList.add('ocr-hidden');
         this.getElementById<HTMLDivElement>('ocrFill').classList.add('ocr-hidden');
         this.getElementById<HTMLButtonElement>('processOCR').classList.add('ocr-hidden');
@@ -66,10 +76,10 @@ export class View {
         const dialog = this.getElementById<HTMLDivElement | null>('ocrDialog');
         if (dialog) {
             this.removeElement(dialog);
-            this.choices = undefined;
-            this.fileCount = undefined;
-            this.finishedFiles = undefined;
         }
+        this.choices = undefined;
+        this.fileCount = undefined;
+        this.finishedFiles = undefined;
     }
 
     /**
@@ -130,9 +140,9 @@ export class View {
     /**
      * Writes the actual state of the progress.
      */
-    private drawFileState: () => void = () => {
+    public drawFileState: () => void = () => {
         this.getElementById<HTMLSpanElement>('ocrProgressFilesDescription').textContent =
-            t('ocr', `{file}/{files} Files`, { file: String(this.finishedFiles), files: String(this.fileCount) });
+            t('ocr', '{file}/{files} Files successfully processed', { file: String(this.finishedFiles), files: String(this.fileCount) });
     }
 
     /**
@@ -140,11 +150,9 @@ export class View {
      * @param languages The languages to give as an option for the user.
      * @returns The HTML template by Handlebars.
      */
-    private renderOcrDialog: (files: Array<OCAFile>) => string = (files) => {
+    public renderOcrDialog: (files: Array<OCAFile>) => string = (files) => {
         this.destroyOcrDialog();
-        const template = this.ocrTemplateFunction;
-
-        return template({
+        return this.ocrTemplate({
             buttonText: t('ocr', 'Process'),
             filesQueued: n('ocr', '%n file is being processed:', '%n files are being processed:', files.length),
             languages: Configuration.availableLanguages,

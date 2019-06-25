@@ -1,5 +1,6 @@
 import { OcaService } from './oca.service';
 import { OCAFile } from '../../global-oc-types';
+import { Util } from '../util/util';
 
 /**
  * Nextcloud - OCR
@@ -37,8 +38,13 @@ export class TesseractService {
         workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
     };
 
-    private tesseractWorkers: Array<TesseractWorker> = [];
+    public tesseractWorkers: Array<TesseractWorker> = [];
     private roundRobinIndex: number = 0;
+
+    public static checkTesseractAvailability: () => boolean = () => {
+        const isAvailable = Util.isDefinedIn;
+        return isAvailable('Tesseract', window) && isAvailable('TesseractWorker', (window as any).Tesseract);
+    }
 
     constructor(private ocaService: OcaService) {
         const webWorkerCount = navigator.hardwareConcurrency || 4;
@@ -48,7 +54,7 @@ export class TesseractService {
     }
 
     public process: (file: OCAFile, languages: Array<string>) => Promise<object> = async (file, languages) => {
-        return new Promise((resolve, reject) => {
+        return await new Promise((resolve, reject) => {
             this.getNextTesseractWorker()
                 .recognize(
                     this.ocaService.getDownloadUrl(file),

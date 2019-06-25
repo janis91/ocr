@@ -101,7 +101,7 @@ interface FileList {
     multiSelectMenuItems: Array<MultiSelectMenuItem>;
 }
 
-interface MultiSelectMenuItem {
+export interface MultiSelectMenuItem {
     /**
      * The click action handler.
      */

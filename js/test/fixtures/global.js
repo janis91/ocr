@@ -1,4 +1,2 @@
-t = (name, str, ...args) => str;
-n = (name, str, ...args) => str;
-OC = {};
-OCA = {}; 
+var t = (name, str, ...args) => str;
+var n = (name, str, ...args) => str;

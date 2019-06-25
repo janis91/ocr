@@ -3,7 +3,7 @@ import { Util } from '../../../src/app/util/util';
 import { View } from '../../../src/app/view/view';
 import { TesseractService } from '../../../src/app/service/tesseract.service';
 import { OcaService } from '../../../src/app/service/oca.service';
-import { FilesFixtures, globalAny, OCAFileActionsContextFixture } from '../../fixtures/fixtures';
+import { FilesFixtures, windowAny, OCAFileActionsContextFixture } from '../../fixtures/fixtures';
 
 describe("The controller's", () => {
 
@@ -16,8 +16,8 @@ describe("The controller's", () => {
 
 
     beforeEach(async () => {
-        globalAny.t = jasmine.createSpy('t');
-        globalAny.n = jasmine.createSpy('n');
+        windowAny.t = jasmine.createSpy('t');
+        windowAny.n = jasmine.createSpy('n');
         utilMock = jasmine.createSpyObj('util', ['filterFilesWithMimeTypes']);
         viewMock = jasmine.createSpyObj('view', ['destroy', 'checkClickToExit', 'displayError', 'destroyOcrDialog',
             'activateBusyState', 'getSelectValues', 'getReplaceValue', 'renderFileAction', 'addFinishedFileToState']);
@@ -105,28 +105,28 @@ describe("The controller's", () => {
     describe('clickOnProcessButtonEvent function', () => {
         it('should display an error when selectedFiles are empty and destroy the dialog.', async () => {
             cut.selectedFiles = [];
-            globalAny.t.and.returnValue('test');
+            windowAny.t.and.returnValue('test');
 
             await cut.clickOnProcessButtonEvent();
 
             expect(viewMock.displayError).toHaveBeenCalledWith('test test');
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
-            expect(globalAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
-            expect(globalAny.t.calls.argsFor(1)).toEqual(['ocr', 'No file selected.']);
+            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
+            expect(windowAny.t.calls.argsFor(1)).toEqual(['ocr', 'No file selected.']);
         });
 
         it('should display an error when filteredFiles are empty and destroy the dropdown.', async () => {
             cut.selectedFiles = [FilesFixtures.WRONG_MIME];
             utilMock.filterFilesWithMimeTypes.and.returnValue([]);
-            globalAny.t.and.returnValue('test');
+            windowAny.t.and.returnValue('test');
 
             await cut.clickOnProcessButtonEvent();
 
             expect(utilMock.filterFilesWithMimeTypes).toHaveBeenCalledWith(cut.selectedFiles);
             expect(viewMock.displayError).toHaveBeenCalledWith('test test');
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
-            expect(globalAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
-            expect(globalAny.t.calls.argsFor(1)).toEqual(['ocr', 'MIME type not supported.']);
+            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
+            expect(windowAny.t.calls.argsFor(1)).toEqual(['ocr', 'MIME type not supported.']);
         });
 
         it('should process when one filteredFile exists and language "deu" is set and replace is false.', async () => {
@@ -218,7 +218,7 @@ describe("The controller's", () => {
             const process = jasmine.createSpy('process').and.returnValue(Promise.reject(new Error('message')));
             spyOn(cut, 'process').and.returnValue(process);
             viewMock.destroyOcrDialog.and.returnValue();
-            globalAny.t.and.returnValue('test');
+            windowAny.t.and.returnValue('test');
 
             await cut.clickOnProcessButtonEvent();
 
@@ -229,7 +229,7 @@ describe("The controller's", () => {
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
             expect(viewMock.displayError).toHaveBeenCalledWith('test message');
-            expect(globalAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
+            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
         });
 
         it('should display an error with the message of the error when multiple filteredFiles exist and language "deu" is set and replace is true and process rejects.', async () => {
@@ -241,7 +241,7 @@ describe("The controller's", () => {
             const process = jasmine.createSpy('process').and.returnValue(Promise.reject(new Error('message')));
             spyOn(cut, 'process').and.returnValue(process);
             viewMock.destroyOcrDialog.and.returnValue();
-            globalAny.t.and.returnValue('test');
+            windowAny.t.and.returnValue('test');
 
             await cut.clickOnProcessButtonEvent();
 
@@ -252,7 +252,7 @@ describe("The controller's", () => {
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
             expect(viewMock.displayError).toHaveBeenCalledWith('test message');
-            expect(globalAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
+            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
         });
     });
 

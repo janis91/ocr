@@ -7,8 +7,8 @@ import { TesseractService } from './service/tesseract.service';
 import { OC, OCA } from 'global-oc-types';
 
 
-declare const OC: OC;
-declare const OCA: OCA;
+declare var OC: OC;
+declare var OCA: OCA;
 
 /**
  * Nextcloud - OCR
@@ -20,15 +20,16 @@ declare const OCA: OCA;
  * @copyright Janis Koehr 2019
  */
 export class App {
-    private util: Util;
-    private view: View;
-    private ocaService: OcaService;
-    private tesseractService: TesseractService;
-    private controller: Controller;
+    public util: Util;
+    public view: View;
+    public ocaService: OcaService;
+    public tesseractService: TesseractService;
+    public controller: Controller;
+    public initCounter: number = 0;
 
     constructor() {
         const interval = setInterval(() => {
-            if (OcaService.checkOCAvailability()) {
+            if (OcaService.checkOCAvailability() && TesseractService.checkTesseractAvailability()) {
                 this.util = new Util();
                 this.view = new View(OC.Notification, handlebarsDropdownTemplate, document);
                 this.ocaService = new OcaService(OC, OCA);
@@ -42,6 +43,11 @@ export class App {
                 }
                 clearInterval(interval);
             }
+            if (this.initCounter === 50) {
+                console.error('OCR could not be initiallized. Some of the required resources (OC, OCA, Tesseract, etc.) did not load in time.');
+                clearInterval(interval);
+            }
+            this.initCounter++;
         }, 100);
     }
 }

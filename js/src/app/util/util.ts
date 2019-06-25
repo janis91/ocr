@@ -12,6 +12,10 @@ import { OCAFile } from '../../global-oc-types';
  */
 export class Util {
 
+    public static isDefinedIn: (variable: string, obj: {[prop: string]: any}) => boolean = (variable, obj) => {
+        return typeof obj[variable] !== 'undefined';
+    }
+
     /**
      * Filters an array of files for the correct MIME type and
      * returns an array with only supported files.

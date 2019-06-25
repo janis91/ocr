@@ -28,7 +28,8 @@ module.exports = (config) => {
         },
         client: {
             // leave Jasmine Spec Runner output visible in browser
-            clearContext: false
+            clearContext: false,
+            captureConsole: false,
         },
         files: ['test/fixtures/global.js', { pattern: 'src/**/*.ts' }, { pattern: 'test/**/*.ts' }],
         preprocessors: {
