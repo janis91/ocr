@@ -21,6 +21,7 @@ const gitTagOldFloat = withoutDot(gitTagOld);
 if (appInfoFloat > gitTagOldFloat) {
     // git tag with appInfo
     console.log('major or minor version step');
+    fs.writeFileSync("new_version", appInfo);
     cp.execSync('git tag ' + appInfo);
 } else {
     console.log('they equal or git tag version is higher => patch version step');
