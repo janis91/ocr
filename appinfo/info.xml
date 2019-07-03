@@ -25,7 +25,7 @@ Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or down
 ## Disclaimer
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.]]></description>
-	<version>4.0.0</version>
+	<version>4.1.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>

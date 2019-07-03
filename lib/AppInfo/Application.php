@@ -54,8 +54,10 @@ class Application extends App {
                     $csp->addAllowedWorkerSrcDomain("blob:");
                     $csp->addAllowedScriptDomain("'strict-dynamic'");
                     $csp->addAllowedConnectDomain('data:');
+                    $csp->addAllowedConnectDomain("https://raw.githubusercontent.com");
                     $csp->addAllowedWorkerSrcDomain("self");
                     $csp->addAllowedChildSrcDomain("blob:");
+                    // Only needed for Safari: $csp->addAllowedScriptDomain("'unsafe-eval'");
                     $cspManager->addDefaultPolicy($csp);
                 });
         /**

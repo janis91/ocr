@@ -63,8 +63,6 @@ jobs:
   - stage: release
     php: 7.2
     before_install:
-    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-    - git submodule update --init
     - nvm install 12
     - nvm use 12
     - cd js
