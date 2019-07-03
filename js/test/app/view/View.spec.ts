@@ -1,10 +1,10 @@
-import { View, OcrHandleBarsTemplate } from '../../../src/app/view/view';
+import { View, OcrHandleBarsTemplate } from '../../../src/app/view/View';
 import { windowAny, FilesFixtures } from '../../fixtures/fixtures';
 import { OCNotification } from '../../../src/global-oc-types';
-import { Configuration } from '../../../src/app/configuration/configuration';
+import { Configuration } from '../../../src/app/configuration/Configuration';
 
 
-describe("The view's", () => {
+describe("The View's", () => {
 
     let cut: View;
     let notificationMock: jasmine.SpyObj<OCNotification>;
@@ -19,7 +19,7 @@ describe("The view's", () => {
         notificationMock = jasmine.createSpyObj('notification', ['showHtml']);
         ocrTemplateMock = jasmine.createSpy('ocrTemplate');
         documentMock = jasmine.createSpyObj('document', ['createElement', 'querySelector', 'getElementById']);
-        cut = new (await import('../../../src/app/view/view')).View(notificationMock, ocrTemplateMock, documentMock);
+        cut = new (await import('../../../src/app/view/View')).View(notificationMock, ocrTemplateMock, documentMock);
     });
 
     describe('destroy function', () => {

@@ -1,4 +1,4 @@
-import { OcrError } from './ocr.error';
+import { OcrError } from './OcrError';
 
 export class OcaError extends OcrError {
     constructor(message: string, original?: Error | any) {

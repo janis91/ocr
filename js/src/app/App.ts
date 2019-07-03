@@ -1,12 +1,12 @@
-import { Util } from './util/util';
-import { OcaService } from './service/oca.service';
-import { Controller } from './controller/controller';
-import { View } from './view/view';
+import { Util } from './util/Util';
+import { OcaService } from './service/OcaService';
+import { Controller } from './controller/Controller';
+import { View } from './view/View';
 import * as handlebarsDropdownTemplate from './view/templates/ocr.hbs';
-import { TesseractService } from './service/tesseract.service';
+import { TesseractService } from './service/TesseractService';
 import { OC, OCA } from 'global-oc-types';
 import { PDFJSStatic } from 'pdfjs-dist';
-import { PdfService } from './service/pdf.service';
+import { PdfService } from './service/PdfService';
 import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
 
 

@@ -1,13 +1,13 @@
 import { FilesFixtures } from '../../fixtures/fixtures';
 import { OCAFile } from '../../../src/global-oc-types';
-import { Util } from '../../../src/app/util/util';
+import { Util } from '../../../src/app/util/Util';
 
-describe("The util's", () => {
+describe("The Util's", () => {
 
     let cut: Util;
 
     beforeEach(async () => {
-        cut = new (await import('../../../src/app/util/util')).Util();
+        cut = new (await import('../../../src/app/util/Util')).Util();
     });
 
     describe('filterFilesWithMimeTypes function', () => {

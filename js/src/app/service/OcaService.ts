@@ -1,6 +1,6 @@
 import { OCSingleTranslation, OCA, OC, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
-import { Util } from '../util/util';
-import { OcaError } from './error/oca.error';
+import { Util } from '../util/Util';
+import { OcaError } from './error/OcaError';
 
 declare var t: OCSingleTranslation;
 

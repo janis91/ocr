@@ -1,4 +1,4 @@
-import { Configuration } from '../configuration/configuration';
+import { Configuration } from '../configuration/Configuration';
 import { OCAFile } from '../../global-oc-types';
 
 /**

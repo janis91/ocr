@@ -1,5 +1,5 @@
 import { OCMultiTranslation, OCSingleTranslation, OCNotification, OCAFile } from '../../global-oc-types';
-import { Configuration } from '../configuration/configuration';
+import { Configuration } from '../configuration/Configuration';
 
 declare var t: OCSingleTranslation;
 declare var n: OCMultiTranslation;

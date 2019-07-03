@@ -1,9 +1,9 @@
-import { OcaService } from '../../../src/app/service/oca.service';
+import { OcaService } from '../../../src/app/service/OcaService';
 import { OC, OCA, MultiSelectMenuItem } from '../../../src/global-oc-types';
 import { windowAny, FilesFixtures, JqPromiseMock } from '../../fixtures/fixtures';
-import { OcaError } from '../../../src/app/service/error/oca.error';
+import { OcaError } from '../../../src/app/service/error/OcaError';
 
-describe("The ocaService's", () => {
+describe("The OcaService's", () => {
 
     let cut: OcaService;
     let ocMock: OC;
@@ -19,7 +19,7 @@ describe("The ocaService's", () => {
             PERMISSION_UPDATE: 26,
         };
         ocaMock = createOCAMock();
-        cut = new (await import('../../../src/app/service/oca.service')).OcaService(ocMock, ocaMock);
+        cut = new (await import('../../../src/app/service/OcaService')).OcaService(ocMock, ocaMock);
     });
 
     afterEach(() => {

@@ -1,6 +1,6 @@
-import { Util } from '../util/util';
+import { Util } from '../util/Util';
 import { OCSingleTranslation } from '../../global-oc-types';
-import { TesseractError } from './error/tesseract.error';
+import { TesseractError } from './error/TesseractError';
 
 declare var t: OCSingleTranslation;
 

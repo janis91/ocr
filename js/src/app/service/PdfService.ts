@@ -1,8 +1,8 @@
-import { Util } from '../util/util';
+import { Util } from '../util/Util';
 import { PDFJSStatic } from 'pdfjs-dist';
 import { PDFDocumentFactory, PDFDocument, PDFDocumentWriter } from 'pdf-lib';
 import { OCSingleTranslation } from '../../global-oc-types';
-import { PdfError } from './error/pdf.error';
+import { PdfError } from './error/PdfError';
 
 declare var t: OCSingleTranslation;
 

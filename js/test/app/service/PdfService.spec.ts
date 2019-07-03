@@ -1,10 +1,10 @@
-import { PdfService } from '../../../src/app/service/pdf.service';
+import { PdfService } from '../../../src/app/service/PdfService';
 import { PDFJSStatic, PDFDocumentProxy, PDFPageProxy, PDFPageViewport } from 'pdfjs-dist';
 import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
 import { windowAny } from '../../fixtures/fixtures';
-import { PdfError } from '../../../src/app/service/error/pdf.error';
+import { PdfError } from '../../../src/app/service/error/PdfError';
 
-describe("The pdfService's", () => {
+describe("The PdfService's", () => {
 
     let pdfJsMock: jasmine.SpyObj<PDFJSStatic>;
     let pdfLibMock: jasmine.SpyObj<{ PDFDocumentFactory: PDFDocumentFactory, PDFDocumentWriter: PDFDocumentWriter }>;
@@ -19,7 +19,7 @@ describe("The pdfService's", () => {
         };
         documentMock = jasmine.createSpyObj('document', ['createElement']);
         windowAny.t = jasmine.createSpy('t');
-        cut = new (await import('../../../src/app/service/pdf.service')).PdfService(pdfJsMock, pdfLibMock, documentMock);
+        cut = new (await import('../../../src/app/service/PdfService')).PdfService(pdfJsMock, pdfLibMock, documentMock);
     });
 
     describe('getDocumentPagesAsImages function', () => {

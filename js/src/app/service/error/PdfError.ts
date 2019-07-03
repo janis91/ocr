@@ -1,4 +1,4 @@
-import { OcrError } from './ocr.error';
+import { OcrError } from './OcrError';
 
 export class PdfError extends OcrError {
     constructor(message: string, original?: Error | any) {

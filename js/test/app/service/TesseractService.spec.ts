@@ -1,8 +1,8 @@
-import { TesseractService } from '../../../src/app/service/tesseract.service';
+import { TesseractService } from '../../../src/app/service/TesseractService';
 import { windowAny } from '../../fixtures/fixtures';
-import { TesseractError } from '../../../src/app/service/error/tesseract.error';
+import { TesseractError } from '../../../src/app/service/error/TesseractError';
 
-describe("The tesseractService's", () => {
+describe("The TesseractService's", () => {
 
     let cut: TesseractService;
     let count: number;
@@ -13,7 +13,7 @@ describe("The tesseractService's", () => {
             TesseractWorker: WorkerMock,
         };
         count = 0;
-        cut = new (await import('../../../src/app/service/tesseract.service')).TesseractService();
+        cut = new (await import('../../../src/app/service/TesseractService')).TesseractService();
     });
 
     describe('process function', () => {

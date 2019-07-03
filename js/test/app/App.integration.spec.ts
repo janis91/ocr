@@ -1,7 +1,7 @@
-import { App } from '../../src/app/app';
+import { App } from '../../src/app/App';
 import { windowAny } from '../fixtures/fixtures';
 
-describe("The app's", () => {
+describe("The App's", () => {
 
     let cut: App;
 
@@ -44,7 +44,7 @@ describe("The app's", () => {
                 PDFDocumentWriter: jasmine.createSpyObj('PDFDocumentWriter', ['saveToBytes']),
             };
 
-            cut = new (await import('../../src/app/app')).App();
+            cut = new (await import('../../src/app/App')).App();
 
             jasmine.clock().tick(100);
 
@@ -80,7 +80,7 @@ describe("The app's", () => {
                 PDFDocumentWriter: jasmine.createSpyObj('PDFDocumentWriter', ['saveToBytes']),
             };
 
-            cut = new (await import('../../src/app/app')).App();
+            cut = new (await import('../../src/app/App')).App();
 
             jasmine.clock().tick(100);
 
@@ -95,7 +95,7 @@ describe("The app's", () => {
         xit('should not construct the app as long as everything necessary is not available yet.', async () => {
             windowAny.t = jasmine.createSpy('t').and.returnValue('OCR');
 
-            cut = new (await import('../../src/app/app')).App();
+            cut = new (await import('../../src/app/App')).App();
 
             // Next tick / init OC/OCA context
             expect(cut.controller).not.toBeDefined();
@@ -146,7 +146,7 @@ describe("The app's", () => {
             windowAny.t = jasmine.createSpy('t').and.returnValue('OCR');
             spyOn(console, 'error').and.callThrough();
 
-            cut = new (await import('../../src/app/app')).App();
+            cut = new (await import('../../src/app/App')).App();
 
             // Next tick / init OC/OCA context
             expect(cut.controller).not.toBeDefined();

@@ -1,12 +1,12 @@
-import { Controller } from '../../../src/app/controller/controller';
-import { Util } from '../../../src/app/util/util';
-import { View } from '../../../src/app/view/view';
-import { TesseractService } from '../../../src/app/service/tesseract.service';
-import { OcaService } from '../../../src/app/service/oca.service';
+import { Controller } from '../../../src/app/controller/Controller';
+import { Util } from '../../../src/app/util/Util';
+import { View } from '../../../src/app/view/View';
+import { TesseractService } from '../../../src/app/service/TesseractService';
+import { OcaService } from '../../../src/app/service/OcaService';
 import { FilesFixtures, windowAny, OCAFileActionsContextFixture } from '../../fixtures/fixtures';
-import { PdfService } from '../../../src/app/service/pdf.service';
+import { PdfService } from '../../../src/app/service/PdfService';
 
-describe("The controller's", () => {
+describe("The Controller's", () => {
 
     let cut: Controller;
     let utilMock: jasmine.SpyObj<Util>;
@@ -28,7 +28,7 @@ describe("The controller's", () => {
             'getSelectedFiles', 'registerMultiSelectMenuItem', 'putFileContents', 'deleteFile', 'unregisterMultiSelectMenuItem', 'getCurrentDirectory', 'getDownloadUrl']);
         pdfServiceMock = jasmine.createSpyObj('pdfService', ['getDocumentPagesAsImages', 'createPdfFromBuffers']);
         documentMock = jasmine.createSpyObj('document', ['addEventListener']);
-        cut = new (await import('../../../src/app/controller/controller')).Controller(utilMock, viewMock, tesseractServiceMock, ocaServiceMock, pdfServiceMock, documentMock);
+        cut = new (await import('../../../src/app/controller/Controller')).Controller(utilMock, viewMock, tesseractServiceMock, ocaServiceMock, pdfServiceMock, documentMock);
     });
 
     describe('init function', () => {

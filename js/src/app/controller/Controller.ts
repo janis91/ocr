@@ -1,9 +1,9 @@
 import { OCSingleTranslation, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
-import { Util } from '../util/util';
-import { OcaService } from '../service/oca.service';
-import { View } from '../view/view';
-import { TesseractService } from '../service/tesseract.service';
-import { PdfService } from '../service/pdf.service';
+import { Util } from '../util/Util';
+import { OcaService } from '../service/OcaService';
+import { View } from '../view/View';
+import { TesseractService } from '../service/TesseractService';
+import { PdfService } from '../service/PdfService';
 
 declare var t: OCSingleTranslation;
 
