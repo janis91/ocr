@@ -91,6 +91,5 @@ jobs:
         repo: janis91/ocr
         branch: master
     after_deploy:
-    - echo "Releasing ocr version $app_version to nextcloud appstore"
     - openssl aes-256-cbc -K $encrypted_db642c3b0665_key -iv $encrypted_db642c3b0665_iv -in signing.key.enc -out signing.key -d
     - "./ci/release_to_nextcloud.sh"
