@@ -7,11 +7,14 @@
 	<description><![CDATA[# Description
 
 Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-js brings OCR capability to your Nextcloud.
-The app uses tesseract-js in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it. (Hint: currently not all PDF-types are supported)
+The app uses tesseract-js in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it.
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
- - **[Nextcloud 15 or 16](https://nextcloud.com/)**.
+
+ - [Nextcloud 15 or 16](https://nextcloud.com/)
+
+ - Only supported on latest web browsers (Chrome, Edge, Firefox, Safari)
 
 ## Consideration
 The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.
@@ -36,11 +39,11 @@ CONDITIONS OF ANY KIND, either express or implied.]]></description>
 	<website>https://github.com/janis91/ocr</website>
 	<bugs>https://github.com/janis91/ocr/issues</bugs>
 	<repository type="git">https://github.com/janis91/ocr.git</repository>
-	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/app.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc1.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc5.png</screenshot>
 	<dependencies>
 		<php min-version="7" max-version="7.3" min-int-size="32" />
 		<nextcloud min-version="15" max-version="16" />

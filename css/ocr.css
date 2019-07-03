@@ -68,7 +68,7 @@
 	flex: 1 1 auto;
 	padding: 1rem;
 	overflow-y: auto;
-	min-height: 150px;
+	min-height: 200px;
 }
 
 .ocr-modal-body>.choices {
