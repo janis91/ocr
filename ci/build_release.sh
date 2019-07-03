@@ -9,33 +9,42 @@ cp -R css release/css
 cp -R img release/img
 cp -R l10n release/l10n
 cp -R lib release/lib
-cp -R redis release/redis
-cp -R templates release/templates
 cp AUTHORS.md release/AUTHORS.md
-cp CHANGELOG.md release/CHANGELOG.md
 cp COPYING release/COPYING
-cp personal.php release/personal.php
 cp README.md release/README.md
 
 # JS
 mkdir release/js
+mkdir release/vendor
+mkdir release/vendor/tesseract.js
+mkdir release/vendor/choices.js
+mkdir release/vendor/pdf.js
+mkdir release/vendor/pdf-lib
 cd js/
 npm install
 npm run build
 cd ..
 # Copy js artifacts
-cp -R js/dist release/js/dist
+cp js/ocr.js release/js/ocr.js
+cp -R js/node_modules/tesseract.js/dist/ release/vendor/tesseract.js
+cp js/node_modules/tesseract.js-core/tesseract-core.wasm.js release/vendor/tesseract.js/tesseract-core.wasm.js
+cp js/node_modules/tesseract.js-core/tesseract-core.js release/vendor/tesseract.js/tesseract-core.js
+cp js/node_modules/tesseract.js-core/tesseract-core.wasm release/vendor/tesseract.js/tesseract-core.wasm
+cp js/node_modules/tesseract.js-core/tesseract-core.asm.js release/vendor/tesseract.js/tesseract-core.asm.js
+cp js/node_modules/choices.js/public/assets/scripts/choices.min.js release/vendor/choices.js/choices.min.js
+cp js/node_modules/pdfjs-dist/build/pdf.min.js release/vendor/pdf.js/pdf.min.js
+cp js/node_modules/pdfjs-dist/build/pdf.worker.min.js release/vendor/pdf.js/pdf.worker.min.js
+cp js/node_modules/pdf-lib/dist/pdf-lib.min.js release/vendor/pdf-lib/pdf-lib.min.js
 
-# WORKER
-mkdir release/worker
-# Copy files for worker
-cp -R worker/src release/worker/src
-cp worker/.dockerignore release/worker/.dockerignore
-cp worker/Dockerfile release/worker/Dockerfile
-cp worker/package.json release/worker/package.json
-cp worker/tsconfig.json release/worker/tsconfig.json
-cp worker/tsconfig.app.json release/worker/tsconfig.app.json
+# Copy css artifacts
+cp js/node_modules/choices.js/public/assets/styles/choices.min.css release/vendor/choices.js/choices.min.css
 
+# Create tessdata folder
+mkdir release/tessdata
+mkdir release/tessdata/4.0.0
+
+# Copy tessdata folder
+cp -R tessdata/4.0.0/ release/tessdata/4.0.0
 
 # Package the release
 mv release ocr

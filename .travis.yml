@@ -1,31 +1,31 @@
 dist: trusty
 sudo: required
-addons:
-  apt:
-    packages:
-    - mysql-server-5.6
-    - mysql-client-core-5.6
-    - mysql-client-5.6
 language: php
 php:
-- 5.6
 - 7.0
+- 7.1
 - 7.2
+- 7.3
 env:
   global:
-  - CORE_BRANCH=stable13
+  - CORE_BRANCH=stable15
   - APP_NAME=ocr
   matrix:
   - DB=sqlite
 branches:
   only:
   - master
+git:
+  submodules: false
+stages:
+- test
+- name: release
+  if: NOT type IN (pull_request)
 before_install:
-- echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
 - ". ./before_install.sh $APP_NAME $CORE_BRANCH $DB"
-- nvm install 6
-- nvm use 6
+- nvm install 12
+- nvm use 12
 - cd ../server
 - "./occ check"
 - "./occ status"
@@ -33,62 +33,64 @@ before_install:
 - "./occ app:enable $APP_NAME"
 - "./occ app:list"
 - cd apps/$APP_NAME/
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+before_script:
+- sudo chown root /usr/lib/chromium-browser/chrome-sandbox
+- sudo chmod 4755 /usr/lib/chromium-browser/chrome-sandbox
 script:
-- sh -c "if [ '$CODECHECK' = '1' ]; then find . -name \*.php -exec php -l \"{}\" \;; fi"
+- sh -c "find . -name \*.php -exec php -l \"{}\" \;"
 - cd ../../
-- sh -c "if [ '$CODECHECK' = '1' ]; then ./occ app:check-code $APP_NAME -c private -c strong-comparison; fi"
-- sh -c "if [ '$CODECHECK' = '2' ]; then ./occ app:check-code $APP_NAME -c deprecation; fi"
+- echo "Running Nextcloud Code Check 1"
+- "./occ app:check-code $APP_NAME -c private -c strong-comparison"
+- echo "Running Nextcloud Code Check 2"
+- "./occ app:check-code $APP_NAME -c deprecation"
 - cd apps/$APP_NAME/
+- echo "Running PHP Unit Tests"
 - cd tests/Unit
-- sh -c "if [ '$INTEGRATION' != '1' -a '$JSTESTS' != '1' -a '$CODECHECK' != '1' -a '$CODECHECK' != '2' -a '$RELEASE' != '1' ]; then phpunit --configuration phpunit.xml; fi"
+- phpunit --configuration phpunit.xml
 - cd ../..
-- cd worker
-- sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
-- sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build;
-  fi"
-- cd ..
+- echo "Running JavaScript/TypeScript Unit Tests"
 - cd js
-- sh -c "if [ '$JSTESTS' = '1' ]; then npm install; fi"
-- sh -c "if [ '$JSTESTS' = '1' ]; then npm run lint && npm run test && npm run build; fi"
+- npm install
+- npm run lint && npm run test && npm run build
+- echo "Sending Test Coverage to Codacy"
+- npm run coverage
 - cd ..
-- cd tests/Unit
-- sh -c "if [ '$COVERAGE' = '1' ]; then wget https://scrutinizer-ci.com/ocular.phar; fi"
-- sh -c "if [ '$COVERAGE' = '1' ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi"
-- cd ../..
-matrix:
+jobs:
   include:
-  - php: 7.0
-    env: DB=mysql
-  - php: 7.0
-    env: DB=pgsql
-  - php: 7.0
-    env: DB=mysql;CODECHECK=1
-  - php: 7.0
-    env: DB=mysql;CODECHECK=2
-  - php: 7.0
-    env: DB=mysql;INTEGRATION=1
-  - php: 7.0
-    env: DB=mysql;JSTESTS=1
-  - php: 7.0
-    env: DB=mysql;COVERAGE=1
-  - php: 7.0
-    env: DB=mysql;RELEASE=1
-  allow_failures:
-  - env: DB=mysql;CODECHECK=2
-fast_finish: true
-before_deploy:
-- git config --local user.name "janis91"
-- git config --local user.email "janiskoehr@icloud.com"
-- node ci/gitTag.js
-- sh ci/build_release.sh
-deploy:
-  provider: releases
-  skip_cleanup: true
-  overwrite: true
-  api_key:
-    secure: rblLFytrl6G18z7H7f3cQcgJHYU6Hk7rrSpzlG0gMFfsWfgUKhHrj5no7/nO9rciK6TKlaj20mXK512oaZRIou9uj+hN4yVZA6bUsaQU4jL51JB/KHi5BMH7x6rU7lG2YbAk2LhGd1jIUcn9NB0KWB8fnfFKdCuGPSL/ebB8EwKYNgNuc/T3Wo1e75AnZRd8wzybGMlnpGnjoWLpqhOYRgEm4463vrBBszPLFY9Nd4Fvhv6R1P8clsEC3EwJRhSlOQztEUk0EnNRW1dSJqPMJMI+N8CuN0YBzbmpfpSgYUSJanPiB/lz8Q6Suc8EIwoAid7QIrwrnHEdYeBKLl0izjs3P/orwzkoRGilbYnH9ZgSo0ws7q12e8VArUzcs+M+B1dBm9Q3nePEGcmYm8nkYsU/dSlaEz0AMJatTClKP9329lGZRy3e9rHdZUBZZChm7qHDQZDG7HP4VRMH2pSHQQYl8jDH/G1me0RvqDeTPB2EIx/dJUtpbEEB5Ips55slX1HX1Va/UMpphM3YwabAd3VXG+NHHOeqjWc3zu+WWzMP0m8soVnqX1iuwJOE14mm5uPpEjV/863Ai4If37NLd5qs47ZIkzqe7hWnnClzdwkLShYh0ZxOO+VixdZjqyVE+fsoc6RnUCLatcNIzltCzEIFjGDGMidLz0gySilOD1M=
-  file: ocr.tar.gz
-  on:
-    repo: janis91/ocr
-    branch: master
-    condition: $RELEASE = 1
+  - stage: release
+    php: 7.2
+    before_install:
+    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+    - git submodule update --init
+    - nvm install 12
+    - nvm use 12
+    - cd js
+    - npm install
+    - cd ..
+    before_script: skip
+    script:
+    - cd js
+    - npm run build
+    - cd ..
+    before_deploy:
+    - git config --local user.name "janis91"
+    - git config --local user.email "janiskoehr@icloud.com"
+    - node ci/gitTag.js
+    - "./ci/build_release.sh"
+    deploy:
+      provider: releases
+      skip_cleanup: true
+      overwrite: true
+      api_key:
+        secure: rblLFytrl6G18z7H7f3cQcgJHYU6Hk7rrSpzlG0gMFfsWfgUKhHrj5no7/nO9rciK6TKlaj20mXK512oaZRIou9uj+hN4yVZA6bUsaQU4jL51JB/KHi5BMH7x6rU7lG2YbAk2LhGd1jIUcn9NB0KWB8fnfFKdCuGPSL/ebB8EwKYNgNuc/T3Wo1e75AnZRd8wzybGMlnpGnjoWLpqhOYRgEm4463vrBBszPLFY9Nd4Fvhv6R1P8clsEC3EwJRhSlOQztEUk0EnNRW1dSJqPMJMI+N8CuN0YBzbmpfpSgYUSJanPiB/lz8Q6Suc8EIwoAid7QIrwrnHEdYeBKLl0izjs3P/orwzkoRGilbYnH9ZgSo0ws7q12e8VArUzcs+M+B1dBm9Q3nePEGcmYm8nkYsU/dSlaEz0AMJatTClKP9329lGZRy3e9rHdZUBZZChm7qHDQZDG7HP4VRMH2pSHQQYl8jDH/G1me0RvqDeTPB2EIx/dJUtpbEEB5Ips55slX1HX1Va/UMpphM3YwabAd3VXG+NHHOeqjWc3zu+WWzMP0m8soVnqX1iuwJOE14mm5uPpEjV/863Ai4If37NLd5qs47ZIkzqe7hWnnClzdwkLShYh0ZxOO+VixdZjqyVE+fsoc6RnUCLatcNIzltCzEIFjGDGMidLz0gySilOD1M=
+      file: ocr.tar.gz
+      on:
+        repo: janis91/ocr
+        branch: master
+    after_deploy:
+    - echo "Releasing ocr version $app_version to nextcloud appstore"
+    - openssl aes-256-cbc -K $encrypted_db642c3b0665_key -iv $encrypted_db642c3b0665_iv -in signing.key.enc -out signing.key -d
+    - "./ci/release_to_nextcloud.sh"

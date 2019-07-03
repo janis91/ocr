@@ -1,0 +1,34 @@
+<div id="ocrDialog">
+    <div class="ocr-modal-backdrop"></div>
+    <div class="ocr-modal">
+        <div class="ocr-modal-dialog">
+            <div class="ocr-modal-content">
+                <div class="ocr-modal-header nc-theming-main-background nc-theming-contrast" id="ocrModalHeader">
+                    <h2 class="ocr-modal-title nc-theming-contrast">{{title}}</h2>
+                    <button type="button" id="ocrDialogClose" class="ocr-close nc-theming-contrast">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="ocr-modal-body">
+                    <select id="ocrLanguage" multiple="multiple">
+                        {{#each languages}}
+                        <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="checkbox" id="ocrReplace" class="checkbox">
+                    <label for="ocrReplace">{{replaceText}}</label>
+                    <div class="ocr-hint"><span class="icon icon-details"></span><span>{{hint}}</span></div>
+                </div>
+                <div class="ocr-modal-footer">
+                    <div id="ocrProgressWrapper" class="ocr-progress-wrapper ocr-hidden">
+                        <div class="icon-loading ocr-loading"></div>
+                        <div>{{filesQueued}}</div>
+                        <div id="ocrProgressFilesDescription"></div>
+                    </div>
+                    <div id="ocrFill" class="ocr-fill"></div>
+                    <button type="button" id="processOCR" class="primary">{{buttonText}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

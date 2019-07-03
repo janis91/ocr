@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "noImplicitAny": true,
-    "sourceMap": false,
-    "outDir": "dist",
+    "sourceMap": true,
+    "outDir": ".",
     "removeComments": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,

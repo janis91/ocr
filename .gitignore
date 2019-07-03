@@ -53,14 +53,12 @@ nbproject
 # Tests - auto-generated files
 /tests/Unit/coverage*
 
-# Worker Node.js Server
-/worker/dist
-/worker/spec/tsc-out
-
 # JS node_modules and dist
 npm-debug.log
-/js/spec/tsc-out
-/js/dist
+/js/ocr.js
+/js/ocr.js.map
+/js/coverage
+/vendor
 
 # General node_modules
 */node_modules
@@ -68,3 +66,6 @@ npm-debug.log
 # release files
 /release
 ocr.tar.gz
+
+# release signing key fopr nextcloud
+signing.key

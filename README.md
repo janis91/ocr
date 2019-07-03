@@ -1,32 +1,24 @@
-This project is not updated or maintained anymore. At the moment there is too much to do in other projects, so I won't have time for this in the near future. Sorry :-/
-
 [![OCR](https://raw.githubusercontent.com/janis91/ocr/master/screenshots/app.png)](https://github.com/janis91/ocr)
 # OCR
-[![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/janis91/ocr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/janis91/ocr/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/janis91/ocr/?branch=master) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/96e643bf329d473e9968b20ba4f11a50)](https://www.codacy.com/app/janis91/ocr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=janis91/ocr&amp;utm_campaign=Badge_Grade) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
-Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud.
-The app uses a docker container with tesseract-ocr, OCRmyPDF and communicates over redis in order to process images (png, jpeg, tiff) and PDF asynchronously and save the output file to the source folder in nextcloud. That for example enables you to search in it. (Hint: currently not all PDF-types are supported, for more information see [here](https://github.com/jbarlow83/OCRmyPDF))
+Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-js brings OCR capability to your Nextcloud.
+The app uses tesseract-js in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it.
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
- - **[Nextcloud 12 or 13](https://nextcloud.com/)**. For older versions take an older major version of this app.
- - **Linux** server as environment. (tested with Debian 8 and Ubuntu 14.04 (Trusty)) **currently not compatible to ARM processors like raspberry**
- - **Docker** is used for processing files. tesseract-ocr and OCRmyPDF reside in a docker container.
- - **php-redis** is used for the communication and has to be a part of your php.
+ - [Nextcloud 15 or 16](https://nextcloud.com/)
+ - Only supported on latest web browsers (Chrome, Edge, Firefox, Safari*)
 
-## Limitations
-Currently the app is not working with any activated encryption, nor is it working with files shared via external storage or federated sharing. This has to be considered. If one wants to process such a file, it must be copied to the local environment.
 
-For further information see the [homepage](https://github.com/janis91/ocr/wiki/Usage) or the appropriate documentation in the wiki.
+_* On Safari there is currently a problem with the [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), that requires an Administrator to set the 'script-src' to 'unsafe-eval' such that the app works properly. Because this is quite insecure the app itself does not set it._
 
 ## Installation
 Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download the release package from github (**NOT** the sources) and place the content in **nextcloud/apps/ocr/**.
 
-**Please consider: The app will not work as long as the Docker container isn't running. (more information in the [wiki](https://github.com/janis91/ocr/wiki))**
-
-## Administration and Usage
-Please read the related topics in the [wiki](https://github.com/janis91/ocr/wiki).
-
 ## Disclaimer
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.
+
+## Note
+The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.

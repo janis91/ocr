@@ -1,65 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   version="1.1"
-   viewBox="0 0 16 16"
-   width="16"
-   height="16"
-   id="svg3061">
-  <metadata
-     id="metadata3081">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs3079" />
-  <g
-     transform="scale(0.5,0.5)"
-     id="g3068"
-     style="fill:#000000">
-    <title
-       id="title3070">Layer 1</title>
-    <path
-       d="M 16,5.03125 C 9.5525978,5.03125 3.8558962,8.2846475 0,11.25 l 0,9.5 c 3.8558963,2.965725 9.5525984,6.21875 16,6.21875 5.30277,0 11.647299,-3.754987 16,-6.875 l 0,-8.1875 C 27.647299,8.7862366 21.30277,5.03125 16,5.03125 z m 0,4.125 c 4.150823,0 7.53125,3.077919 7.53125,6.84375 0,3.765831 -3.380395,6.84375 -7.53125,6.84375 -4.150825,0 -7.53125,-3.076505 -7.53125,-6.84375 0,-3.767245 3.380427,-6.84375 7.53125,-6.84375 z"
-       id="svg_1"
-       style="fill:#000000" />
-    <rect
-       width="9.3121557"
-       height="1.124958"
-       x="11.343922"
-       y="15.437521"
-       id="svg_4"
-       style="fill:#000000" />
-    <rect
-       width="9.3121557"
-       height="1.124958"
-       x="11.343922"
-       y="13.499501"
-       id="svg_5"
-       style="fill:#000000" />
-    <rect
-       width="9.3121557"
-       height="1.124958"
-       x="11.343922"
-       y="17.312452"
-       id="svg_6"
-       style="fill:#000000" />
-    <path
-       d=""
-       id="svg_2"
-       style="fill:#000000;stroke-width:0" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" version="1.1" viewBox="0 0 4.2333 4.2333" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 -292.77)">
+  <path d="m1.6667e-8 293.73v2.3136a3.0026 1.6328 0 0 0 2.1167 0.47594 3.0026 1.6328 0 0 0 2.1167-0.47645v-2.3136a3.0026 1.6328 0 0 0-2.1167-0.47594 3.0026 1.6328 0 0 0-2.1167 0.47646zm2.1167 0.15658a1 1 0 0 1 0.99994 0.99994 1 1 0 0 1-0.99994 0.99994 1 1 0 0 1-0.99994-0.99994 1 1 0 0 1 0.99994-0.99994z"/>
+  <text x="1.6805043" y="295.37552" fill="#000000" font-family="sans-serif" font-size="10.583px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="1.6805043" y="295.37552" font-family="Georgia" font-size="1.4111px" stroke-width=".26458">T</tspan></text>
+ </g>
 </svg>

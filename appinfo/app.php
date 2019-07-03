@@ -6,10 +6,8 @@
  * later. See the COPYING file.
  * 
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2017
+ * @copyright Janis Koehr 2019
  */
 namespace OCA\Ocr\AppInfo;
 
 $app = new \OCA\Ocr\AppInfo\Application();
-$app->registerPersonal();
-$app->registerHooks();

@@ -4,71 +4,53 @@
 	<id>ocr</id>
 	<name>Optical character recognition</name>
 	<summary>Text recognition for your images and pdf files</summary>
-	<description><![CDATA[
-# Description
+	<description><![CDATA[# Description
 
-Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-ocr and OCRmyPDF brings OCR capability to your Nextcloud.
-The app uses a docker container with tesseract-ocr, OCRmyPDF and communicates over redis in order to process images (png, jpeg, tiff) and PDF asynchronously and save the output file to the source folder in nextcloud. That for example enables you to search in it. (Hint: currently not all PDF-types are supported, for more information see [here](https://github.com/jbarlow83/OCRmyPDF))
+Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-js brings OCR capability to your Nextcloud.
+The app uses tesseract-js in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it.
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
- - **[Nextcloud 12 or 13](https://nextcloud.com/)**. For older versions take an older major version of this app.
- - **Linux** server as environment. (tested with Debian 8, Raspbian and Ubuntu 14.04 (Trusty))
- - **Docker** is used for processing files. tesseract-ocr and OCRmyPDF reside in a docker container.
- - **php-redis** is used for the communication and has to be a part of your php.
 
-## Limitations
-Currently the app is not working with any activated encryption, nor is it working with files shared via external storage or federated sharing. This has to be considered. If one wants to process such a file, it must be copied to the local environment.
+ - [Nextcloud 15 or 16](https://nextcloud.com/)
 
-For further information see the [homepage](https://github.com/janis91/ocr/wiki/Usage) or the appropriate documentation in the wiki.
+ - Only supported on latest web browsers (Chrome, Edge, Firefox, Safari)
+
+## Consideration
+The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.
 
 ## Installation
 Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download the release package from github (**NOT** the sources) and place the content in **nextcloud/apps/ocr/**.
 
-**Please consider: The app will not work as long as the Docker container isn't running. (more information in the [wiki](https://github.com/janis91/ocr/wiki))**
-
-## Administration and Usage
-Please read the related topics in the [wiki](https://github.com/janis91/ocr/wiki).
-
 ## Disclaimer
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-CONDITIONS OF ANY KIND, either express or implied.
-]]></description>
-	<version>3.3.0</version>
+CONDITIONS OF ANY KIND, either express or implied.]]></description>
+	<version>4.0.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>
 	<documentation>
-		<user>https://github.com/janis91/ocr/wiki/Usage</user>
-		<admin>https://github.com/janis91/ocr/wiki</admin>
-		<developer>https://github.com/janis91/ocr/wiki</developer>
+		<user>https://github.com/janis91/ocr</user>
+		<admin>https://github.com/janis91/ocr</admin>
+		<developer>https://github.com/janis91/ocr</developer>
 	</documentation>
 	<category>tools</category>
 	<category>files</category>
-	<website>https://github.com/janis91/ocr/wiki/Usage</website>
+	<website>https://github.com/janis91/ocr</website>
 	<bugs>https://github.com/janis91/ocr/issues</bugs>
 	<repository type="git">https://github.com/janis91/ocr.git</repository>
-	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/app.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc1.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc5.png</screenshot>
 	<dependencies>
-		<php min-version="5.6" max-version="7.2" min-int-size="32" />
-		<lib>redis</lib>
-		<database>sqlite</database>
-		<database>mysql</database>
-		<database>pgsql</database>
-		<nextcloud min-version="12" max-version="13" />
+		<php min-version="7" max-version="7.3" min-int-size="32" />
+		<nextcloud min-version="15" max-version="16" />
 	</dependencies>
 	<repair-steps>
 		<pre-migration>
 			<step>OCA\Ocr\Migration\DropOldTable</step>
 		</pre-migration>
 	</repair-steps>
-	<settings>
-		<admin>OCA\Ocr\Settings\Admin</admin>
-		<admin-section>OCA\Ocr\Settings\Section</admin-section>
-	</settings>
-
 </info>
