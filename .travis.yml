@@ -85,7 +85,7 @@ jobs:
         - git config --local user.name "janis91"
         - git config --local user.email "janiskoehr@icloud.com"
         - node ci/gitTag.js
-        - sh ci/build_release.sh
+        - ./ci/build_release.sh
       deploy:
         provider: releases
         skip_cleanup: true
@@ -96,3 +96,6 @@ jobs:
         on:
           repo: janis91/ocr
           branch: master
+      after_deploy:
+        - echo "Releasing ocr version $app_version to nextcloud appstore"
+        - ./ci/release_to_nextcloud.sh
