@@ -8,10 +8,10 @@ The app uses tesseract-js in the browser in order to process images (png, jpeg, 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
  - [Nextcloud 15 or 16](https://nextcloud.com/)
- - Only supported on latest web browsers (Chrome, Edge, Firefox, Safari)
+ - Only supported on latest web browsers (Chrome, Edge, Firefox, Safari*)
 
-## Consideration
-The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.
+
+_* On Safari there is currently a problem with the [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), that requires an Administrator to set the 'script-src' to 'unsafe-eval' such that the app works properly. Because this is quite insecure the app itself does not set it._
 
 ## Installation
 Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download the release package from github (**NOT** the sources) and place the content in **nextcloud/apps/ocr/**.
@@ -19,3 +19,6 @@ Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or down
 ## Disclaimer
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.
+
+## Note
+The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.

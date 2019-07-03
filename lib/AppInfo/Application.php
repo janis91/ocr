@@ -55,6 +55,7 @@ class Application extends App {
                     $csp->addAllowedScriptDomain("'strict-dynamic'");
                     $csp->addAllowedConnectDomain('data:');
                     $csp->addAllowedWorkerSrcDomain("self");
+                    $csp->addAllowedChildSrcDomain("blob:");
                     $cspManager->addDefaultPolicy($csp);
                 });
         /**
