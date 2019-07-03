@@ -27,7 +27,7 @@
     "private": true,
     "devDependencies": {
         "@types/jasmine": "^3.3.13",
-        "@types/jquery": "^3.3.29",
+        "@types/jquery": "^3.3.30",
         "@types/pdfjs-dist": "^0.1.2",
         "codacy-coverage": "^3.4.0",
         "handlebars": "^4.1.2",
@@ -38,20 +38,20 @@
         "karma-coverage": "^1.1.2",
         "karma-jasmine": "^2.0.1",
         "karma-spec-reporter": "0.0.32",
-        "karma-typescript": "^4.1.0",
+        "karma-typescript": "^4.1.1",
         "rimraf": "^2.6.3",
-        "tslint": "^5.17.0",
+        "tslint": "^5.18.0",
         "tslint-loader": "^3.5.4",
-        "typescript": "^3.5.1",
-        "webpack": "^4.33.0",
-        "webpack-cli": "^3.3.4"
+        "typescript": "^3.5.2",
+        "webpack": "^4.35.2",
+        "webpack-cli": "^3.3.5"
     },
     "dependencies": {
         "choices.js": "^7.0.0",
         "pdf-lib": "^0.6.3",
         "pdfjs-dist": "^1.10.100",
-        "tesseract.js": "^2.0.0-alpha.10",
+        "tesseract.js": "^2.0.0-alpha.11",
         "tesseract.js-core": "^2.0.0-beta.10",
-        "ts-loader": "^6.0.2"
+        "ts-loader": "^6.0.4"
     }
 }

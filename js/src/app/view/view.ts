@@ -10,6 +10,7 @@ export type OcrHandleBarsTemplate = (options: OcrHandleBarsTemplateOptions) => s
 interface OcrHandleBarsTemplateOptions {
     buttonText: string;
     filesQueued: string;
+    hint: string;
     languages: {[value: string]: string};
     replaceText: string;
     title: string;
@@ -155,6 +156,7 @@ export class View {
         return this.ocrTemplate({
             buttonText: t('ocr', 'Process'),
             filesQueued: n('ocr', '%n file is being processed:', '%n files are being processed:', files.length),
+            hint: t('ocr', 'PDF files and a large number of files may take a very long time.'),
             languages: Configuration.availableLanguages,
             replaceText: t('ocr', 'Replace target file if existing and delete original file'),
             title: files.length === 1 ? `${t('ocr', 'OCR')}: ${files[0].name}` : `${t('ocr', 'OCR')}: ${n('ocr', '%n file', '%n files', files.length)}`,

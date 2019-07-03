@@ -1,4 +1,4 @@
-import { OCMultiTranslation, OCSingleTranslation, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
+import { OCSingleTranslation, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
 import { Util } from '../util/util';
 import { OcaService } from '../service/oca.service';
 import { View } from '../view/view';
@@ -77,9 +77,6 @@ export class Controller {
             return;
         }
         this.view.activateBusyState(filteredFiles.length);
-        // TODO:
-        // error handling
-        // pdf service
         let selectedLanguages: Array<string> = this.view.getSelectValues();
         selectedLanguages = selectedLanguages.length > 0 ? selectedLanguages : ['eng'];
         const replace = this.view.getReplaceValue();
@@ -88,6 +85,7 @@ export class Controller {
             await Promise.all(tesseractPromises);
         } catch (e) {
             this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${e.message}`);
+            console.error('An error occured in OCR.', e, e.original);
         }
         this.view.destroyOcrDialog();
     }

@@ -1,5 +1,6 @@
 import { TesseractService } from '../../../src/app/service/tesseract.service';
 import { windowAny } from '../../fixtures/fixtures';
+import { TesseractError } from '../../../src/app/service/error/tesseract.error';
 
 describe("The tesseractService's", () => {
 
@@ -7,6 +8,7 @@ describe("The tesseractService's", () => {
     let count: number;
 
     beforeEach(async () => {
+        windowAny.t = jasmine.createSpy('t');
         windowAny.Tesseract = {
             TesseractWorker: WorkerMock,
         };
@@ -106,10 +108,12 @@ describe("The tesseractService's", () => {
             const error = new Error('test');
             worker.recognize.and.returnValue(Promise.reject(error));
             spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
+            windowAny.t.withArgs('ocr', 'An unexpected error occured during Tesseract processing.')
+                .and.returnValue('An unexpected error occured during Tesseract processing.');
 
             const result = cut.process('url', ['deu']);
 
-            await expectAsync(result).toBeRejectedWith(error);
+            await expectAsync(result).toBeRejectedWith(new TesseractError('An unexpected error occured during Tesseract processing.', 'url', error));
             expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
             expect(worker.recognize).toHaveBeenCalledWith('url', 'deu', {
                 'pdf_auto_download': false,

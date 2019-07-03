@@ -60,7 +60,7 @@
 	border-radius: var(--border-radius-large);
 	outline: 0;
 	max-height: none;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .ocr-modal-body {
@@ -68,7 +68,7 @@
 	flex: 1 1 auto;
 	padding: 1rem;
 	overflow-y: auto;
-	min-height: 200px;
+	min-height: 150px;
 }
 
 .ocr-modal-body>.choices {
@@ -189,4 +189,19 @@
 
 .ocr-fill {
 	flex: 1 1 auto;
+}
+
+.ocr-hint {
+	padding: 1rem 0;
+	color: #7e7e7e;
+}
+
+.ocr-hint>span.icon {
+	background-size: 16px 16px;
+	display: inline-block;
+	vertical-align: sub;
+}
+
+.ocr-hint>span:not(:first-child) {
+	padding-left: 1rem;
 }

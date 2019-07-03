@@ -303,9 +303,13 @@ describe("The view's", () => {
             const files = [FilesFixtures.PDF, FilesFixtures.PNG];
             ocrTemplateMock.and.returnValue('<div></div>');
             windowAny.t.withArgs('ocr', 'Process').and.returnValue('Process');
-            windowAny.t.withArgs('ocr', 'Replace target file if existing and delete original file').and.returnValue('Replace target file if existing and delete original file');
+            windowAny.t.withArgs('ocr', 'PDF files and a large number of files may take a very long time.')
+                .and.returnValue('PDF files and a large number of files may take a very long time.');
+            windowAny.t.withArgs('ocr', 'Replace target file if existing and delete original file')
+                .and.returnValue('Replace target file if existing and delete original file');
             windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
-            windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 2).and.returnValue('2 files are being processed:');
+            windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 2)
+                .and.returnValue('2 files are being processed:');
             windowAny.n.withArgs('ocr', '%n file', '%n files', 2).and.returnValue('2 files');
 
             const result = cut.renderOcrDialog(files);
@@ -315,6 +319,7 @@ describe("The view's", () => {
             expect(ocrTemplateMock).toHaveBeenCalledWith({
                 buttonText: 'Process',
                 filesQueued: '2 files are being processed:',
+                hint: 'PDF files and a large number of files may take a very long time.',
                 languages: Configuration.availableLanguages,
                 replaceText: 'Replace target file if existing and delete original file',
                 title: 'OCR: 2 files',
@@ -326,9 +331,13 @@ describe("The view's", () => {
             const files = [FilesFixtures.PNG];
             ocrTemplateMock.and.returnValue('<div></div>');
             windowAny.t.withArgs('ocr', 'Process').and.returnValue('Process');
-            windowAny.t.withArgs('ocr', 'Replace target file if existing and delete original file').and.returnValue('Replace target file if existing and delete original file');
+            windowAny.t.withArgs('ocr', 'PDF files and a large number of files may take a very long time.')
+                .and.returnValue('PDF files and a large number of files may take a very long time.');
+            windowAny.t.withArgs('ocr', 'Replace target file if existing and delete original file')
+                .and.returnValue('Replace target file if existing and delete original file');
             windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
-            windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 1).and.returnValue('1 file is being processed:');
+            windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 1)
+                .and.returnValue('1 file is being processed:');
 
             const result = cut.renderOcrDialog(files);
 
@@ -337,6 +346,7 @@ describe("The view's", () => {
             expect(ocrTemplateMock).toHaveBeenCalledWith({
                 buttonText: 'Process',
                 filesQueued: '1 file is being processed:',
+                hint: 'PDF files and a large number of files may take a very long time.',
                 languages: Configuration.availableLanguages,
                 replaceText: 'Replace target file if existing and delete original file',
                 title: 'OCR: file3.png',

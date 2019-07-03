@@ -1,5 +1,6 @@
 import { OCSingleTranslation, OCA, OC, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
 import { Util } from '../util/util';
+import { OcaError } from './error/oca.error';
 
 declare var t: OCSingleTranslation;
 
@@ -120,20 +121,24 @@ export class OcaService {
             });
         } catch (e) {
             if (e === 412) {
-                throw new Error(`${t('ocr', 'Target file already exists:')} ${path}`);
+                throw new OcaError(`${t('ocr', 'Target file already exists:')} ${path}`);
             } else {
-                throw new Error(t('ocr', 'An unexpected error occured during the upload of the processed file.'));
+                throw new OcaError(t('ocr', 'An unexpected error occured during the upload of the processed file.'), e);
             }
         }
     }
 
     public deleteFile: (file: OCAFile) => Promise<void> = async (file) => {
-        await new Promise((resolve, reject) => {
-            this.oca.Files.App.fileList.filesClient.remove(file.path + file.name)
-                .done(resolve)
-                .fail(reject);
-        });
-        this.oca.Files.App.fileList.remove(file.name);
+        try {
+            await new Promise((resolve, reject) => {
+                this.oca.Files.App.fileList.filesClient.remove(file.path + file.name)
+                    .done(resolve)
+                    .fail(reject);
+            });
+            this.oca.Files.App.fileList.remove(file.name);
+        } catch (e) {
+            throw new OcaError(t('ocr', 'An unexpected error occured during the deletion of the original file.'), e);
+        }
     }
 
     public getCurrentDirectory: () => string = () => {

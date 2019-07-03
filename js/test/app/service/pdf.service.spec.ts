@@ -1,6 +1,8 @@
 import { PdfService } from '../../../src/app/service/pdf.service';
-import { PDFJSStatic, PDFDocumentProxy, PDFPromise, PDFPageProxy, PDFPageViewport } from 'pdfjs-dist';
+import { PDFJSStatic, PDFDocumentProxy, PDFPageProxy, PDFPageViewport } from 'pdfjs-dist';
 import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
+import { windowAny } from '../../fixtures/fixtures';
+import { PdfError } from '../../../src/app/service/error/pdf.error';
 
 describe("The pdfService's", () => {
 
@@ -16,6 +18,7 @@ describe("The pdfService's", () => {
             PDFDocumentWriter: jasmine.createSpyObj('PDFDocumentWriter', ['saveToBytes']),
         };
         documentMock = jasmine.createSpyObj('document', ['createElement']);
+        windowAny.t = jasmine.createSpy('t');
         cut = new (await import('../../../src/app/service/pdf.service')).PdfService(pdfJsMock, pdfLibMock, documentMock);
     });
 
@@ -89,24 +92,27 @@ describe("The pdfService's", () => {
             expect(page2.render).toHaveBeenCalledWith({ canvasContext: canvasContext2, viewport: viewport2 });
         });
 
-        it('should throw an Error, given invalid url.', async () => {
+        it('should throw a PdfError, given invalid url.', async () => {
             const pdfDocumentProxy: jasmine.SpyObj<PDFDocumentProxy> = jasmine.createSpyObj('pdfDocumentProxy', ['getPage']);
             pdfDocumentProxy.numPages = 0;
             pdfJsMock.getDocument.and.returnValue(Promise.resolve(pdfDocumentProxy) as any);
+            windowAny.t.withArgs('ocr', 'An unexpected error occured during pdf processing.').and.returnValue('An unexpected error occured during pdf processing.');
+            windowAny.t.withArgs('ocr', 'PDF does not contain any Pages to process.').and.returnValue('PDF does not contain any Pages to process.');
 
             const result = cut.getDocumentPagesAsImages('url');
 
-            await expectAsync(result).toBeRejectedWith(new Error('PDF does not contain any Pages.'));
+            await expectAsync(result).toBeRejectedWith(new PdfError('PDF does not contain any Pages to process.'));
             expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
         });
 
         it('should throw an Error, when getDocument fails, given valid url.', async () => {
             const e = new Error('test');
             pdfJsMock.getDocument.and.returnValue(Promise.reject(e) as any);
+            windowAny.t.withArgs('ocr', 'An unexpected error occured during pdf processing.').and.returnValue('An unexpected error occured during pdf processing.');
 
             const result = cut.getDocumentPagesAsImages('url');
 
-            await expectAsync(result).toBeRejectedWith(e);
+            await expectAsync(result).toBeRejectedWith(new PdfError('An unexpected error occured during pdf processing.', e));
             expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
         });
     });
@@ -147,6 +153,15 @@ describe("The pdfService's", () => {
             expect(pdfDoc1.addPage).toHaveBeenCalledWith(page2);
             expect(pdfDoc2.getPages).toHaveBeenCalled();
             expect((pdfLibMock.PDFDocumentWriter as any).saveToBytes).toHaveBeenCalledWith(pdfDoc1);
+        });
+
+        it('should return a combined pdf, given one single page pdf in array.', () => {
+            const input = new Uint8Array(1);
+            const e = new Error('test');
+            (pdfLibMock.PDFDocumentFactory as any).load.and.callFake(() => { throw e; } );
+            windowAny.t.withArgs('ocr', 'An unexpected error occured during pdf processing.').and.returnValue('An unexpected error occured during pdf processing.');
+
+            expect(() => cut.createPdfFromBuffers([input])).toThrow(new PdfError('An unexpected error occured during pdf processing.', e));
         });
     });
 });

@@ -1,6 +1,8 @@
-import { OcaService } from './oca.service';
-import { OCAFile } from '../../global-oc-types';
 import { Util } from '../util/util';
+import { OCSingleTranslation } from '../../global-oc-types';
+import { TesseractError } from './error/tesseract.error';
+
+declare var t: OCSingleTranslation;
 
 /**
  * Nextcloud - OCR
@@ -54,22 +56,26 @@ export class TesseractService {
     }
 
     public process: (urlOrCanvas: string | HTMLCanvasElement, languages: Array<string>) => Promise<ArrayBuffer> = async (urlOrCanvas, languages) => {
-        return await new Promise((resolve, reject) => {
-            this.getNextTesseractWorker()
-                .recognize(
-                    urlOrCanvas,
-                    languages.join('+'),
-                    {
-                        'pdf_auto_download': false, // disable auto download
-                        'pdf_bin': true,            // return pdf in binary format
-                        'tessedit_create_pdf': '1', // create pdf as result
-                    },
-                )
-                .then((result: any) => {
-                    resolve(result.files.pdf);
-                })
-                .catch((err: any) => reject(err));
-        });
+        try {
+            return await new Promise((resolve, reject) => {
+                this.getNextTesseractWorker()
+                    .recognize(
+                        urlOrCanvas,
+                        languages.join('+'),
+                        {
+                            'pdf_auto_download': false, // disable auto download
+                            'pdf_bin': true,            // return pdf in binary format
+                            'tessedit_create_pdf': '1', // create pdf as result
+                        },
+                    )
+                    .then((result: any) => {
+                        resolve(result.files.pdf);
+                    })
+                    .catch((err: any) => reject(err));
+            });
+        } catch (e) {
+            throw new TesseractError(t('ocr', 'An unexpected error occured during Tesseract processing.'), urlOrCanvas, e);
+        }
     }
 
     public getNextTesseractWorker: () => TesseractWorker = () => {
