@@ -11,7 +11,7 @@
         "test": "karma start",
         "test:debug": "karma start --single-run=false --debug",
         "coverage": "cat ./coverage/report-lcov/lcov.info | codacy-coverage --token $codacy_api_key --language typescript",
-        "lint": "tslint -c tslint.json -p tsconfig.json"
+        "lint": "tslint -c ../tslint.json -p tsconfig.json"
     },
     "repository": {
         "type": "git",
