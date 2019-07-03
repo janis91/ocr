@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "$ocr_signing_key" > signing.key
 SIGNATURE=`openssl dgst -sha512 -sign signing.key ocr.tar.gz | openssl enc -A -base64`
 rm -f signing.key
 
