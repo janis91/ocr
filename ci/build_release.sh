@@ -20,10 +20,7 @@ mkdir release/vendor/tesseract.js
 mkdir release/vendor/choices.js
 mkdir release/vendor/pdf.js
 mkdir release/vendor/pdf-lib
-cd js/
-npm install
-npm run build
-cd ..
+
 # Copy js artifacts
 cp js/ocr.js release/js/ocr.js
 cp -R js/node_modules/tesseract.js/dist/ release/vendor/tesseract.js
@@ -38,13 +35,6 @@ cp js/node_modules/pdf-lib/dist/pdf-lib.min.js release/vendor/pdf-lib/pdf-lib.mi
 
 # Copy css artifacts
 cp js/node_modules/choices.js/public/assets/styles/choices.min.css release/vendor/choices.js/choices.min.css
-
-# Create tessdata folder
-mkdir release/tessdata
-mkdir release/tessdata/4.0.0
-
-# Copy tessdata folder
-cp -R tessdata/4.0.0/ release/tessdata/4.0.0
 
 # Package the release
 mv release ocr

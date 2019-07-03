@@ -36,7 +36,7 @@ export class TesseractService {
 
     private static TESSERACT_WORKER_CONFIG: TesseractWorkerOptions = {
         corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js', // can be directed to wasm file directly in the future hopefully
-        langPath: '/apps/ocr/tessdata/4.0.0',
+        langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0',
         workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
     };
 
