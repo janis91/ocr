@@ -4,6 +4,7 @@ import { View } from '../../../src/app/view/view';
 import { TesseractService } from '../../../src/app/service/tesseract.service';
 import { OcaService } from '../../../src/app/service/oca.service';
 import { FilesFixtures, windowAny, OCAFileActionsContextFixture } from '../../fixtures/fixtures';
+import { PdfService } from '../../../src/app/service/pdf.service';
 
 describe("The controller's", () => {
 
@@ -12,6 +13,7 @@ describe("The controller's", () => {
     let viewMock: jasmine.SpyObj<View>;
     let tesseractServiceMock: jasmine.SpyObj<TesseractService>;
     let ocaServiceMock: jasmine.SpyObj<OcaService>;
+    let pdfServiceMock: jasmine.SpyObj<PdfService>;
     let documentMock: jasmine.SpyObj<Document>;
 
 
@@ -23,9 +25,10 @@ describe("The controller's", () => {
             'activateBusyState', 'getSelectValues', 'getReplaceValue', 'renderFileAction', 'addFinishedFileToState']);
         tesseractServiceMock = jasmine.createSpyObj('tesseractService', ['process']);
         ocaServiceMock = jasmine.createSpyObj('ocaService', ['destroy', 'registerFileActions', 'registerCheckBoxEvents',
-            'getSelectedFiles', 'registerMultiSelectMenuItem', 'putFileContents', 'deleteFile', 'unregisterMultiSelectMenuItem', 'getCurrentDirectory']);
+            'getSelectedFiles', 'registerMultiSelectMenuItem', 'putFileContents', 'deleteFile', 'unregisterMultiSelectMenuItem', 'getCurrentDirectory', 'getDownloadUrl']);
+        pdfServiceMock = jasmine.createSpyObj('pdfService', ['getDocumentPagesAsImages', 'createPdfFromBuffers']);
         documentMock = jasmine.createSpyObj('document', ['addEventListener']);
-        cut = new (await import('../../../src/app/controller/controller')).Controller(utilMock, viewMock, tesseractServiceMock, ocaServiceMock, documentMock);
+        cut = new (await import('../../../src/app/controller/controller')).Controller(utilMock, viewMock, tesseractServiceMock, ocaServiceMock, pdfServiceMock, documentMock);
     });
 
     describe('init function', () => {
@@ -319,10 +322,11 @@ describe("The controller's", () => {
     describe('process function', () => {
         it('should return a function "process" for given languages and replace = true, that when executed with PNG, replaces the original file and processes it with tesseract.', async () => {
             const languages = ['deu'];
-            const pdf = {};
+            const pdf = new Uint8Array(1);
             const newPath = '/file3.pdf';
             tesseractServiceMock.process.and.returnValue(Promise.resolve(pdf));
             spyOn(cut, 'createPutFileContentsPath').and.returnValue(newPath);
+            ocaServiceMock.getDownloadUrl.and.returnValue('url');
             ocaServiceMock.putFileContents.and.returnValue(Promise.resolve());
             ocaServiceMock.deleteFile.and.returnValue(Promise.resolve());
             viewMock.addFinishedFileToState.and.returnValue();
@@ -334,7 +338,8 @@ describe("The controller's", () => {
             const result = intermediateResult(FilesFixtures.PNG);
 
             await expectAsync(result).toBeResolved();
-            expect(tesseractServiceMock.process).toHaveBeenCalledWith(FilesFixtures.PNG, languages);
+            expect(ocaServiceMock.getDownloadUrl).toHaveBeenCalledWith(FilesFixtures.PNG);
+            expect(tesseractServiceMock.process).toHaveBeenCalledWith('url', languages);
             expect(cut.createPutFileContentsPath).toHaveBeenCalledWith(FilesFixtures.PNG, true);
             expect(ocaServiceMock.putFileContents).toHaveBeenCalledWith(newPath, pdf, true);
             expect(ocaServiceMock.deleteFile).toHaveBeenCalledWith(FilesFixtures.PNG);
@@ -343,10 +348,11 @@ describe("The controller's", () => {
 
         it(`should return a function "process" for given languages and replace = false, that when executed with PNG, doesn't replace the original file and processes it with tesseract.`, async () => {
             const languages = ['deu'];
-            const pdf = {};
+            const pdf = new Uint8Array(1);
             const newPath = '/file3_ocr.pdf';
             tesseractServiceMock.process.and.returnValue(Promise.resolve(pdf));
             spyOn(cut, 'createPutFileContentsPath').and.returnValue(newPath);
+            ocaServiceMock.getDownloadUrl.and.returnValue('url');
             ocaServiceMock.putFileContents.and.returnValue(Promise.resolve());
             viewMock.addFinishedFileToState.and.returnValue();
 
@@ -357,15 +363,26 @@ describe("The controller's", () => {
             const result = intermediateResult(FilesFixtures.PNG);
 
             await expectAsync(result).toBeResolved();
-            expect(tesseractServiceMock.process).toHaveBeenCalledWith(FilesFixtures.PNG, languages);
+            expect(ocaServiceMock.getDownloadUrl).toHaveBeenCalledWith(FilesFixtures.PNG);
+            expect(tesseractServiceMock.process).toHaveBeenCalledWith('url', languages);
             expect(cut.createPutFileContentsPath).toHaveBeenCalledWith(FilesFixtures.PNG, false);
             expect(ocaServiceMock.putFileContents).toHaveBeenCalledWith(newPath, pdf, false);
             expect(ocaServiceMock.deleteFile).not.toHaveBeenCalled();
             expect(viewMock.addFinishedFileToState).toHaveBeenCalled();
         });
 
-        it(`should return a function "process" for given languages and replace = false, that when executed with PDF, throws an Error.`, async () => {
+        // tslint:disable-next-line: max-line-length
+        it(`should return a function "process" for given languages and replace = false, that when executed with single page PDF, doesn't replace the original file and processes the page with tesseract.`, async () => {
             const languages = ['deu'];
+            const inputPdf = new Uint8Array(1);
+            const outputPdf = new Uint8Array(2);
+            const newPath = '/file1_ocr.pdf';
+            const canvas = document.createElement('canvas');
+            ocaServiceMock.getDownloadUrl.and.returnValue('url');
+            pdfServiceMock.getDocumentPagesAsImages.and.returnValue(Promise.resolve([canvas]));
+            spyOn(cut, 'createPutFileContentsPath').and.returnValue(newPath);
+            tesseractServiceMock.process.and.returnValue(Promise.resolve(inputPdf));
+            pdfServiceMock.createPdfFromBuffers.and.returnValue(outputPdf);
 
             const intermediateResult = cut.process(languages, false);
 
@@ -373,11 +390,63 @@ describe("The controller's", () => {
 
             const result = intermediateResult(FilesFixtures.PDF);
 
-            await expectAsync(result).toBeRejected();
+            await expectAsync(result).toBeResolved();
+            expect(ocaServiceMock.getDownloadUrl).toHaveBeenCalledWith(FilesFixtures.PDF);
+            expect(pdfServiceMock.getDocumentPagesAsImages).toHaveBeenCalledWith('url');
+            expect(tesseractServiceMock.process).toHaveBeenCalledWith(canvas, languages);
+            expect(pdfServiceMock.createPdfFromBuffers).toHaveBeenCalledWith([inputPdf]);
+            expect(cut.createPutFileContentsPath).toHaveBeenCalledWith(FilesFixtures.PDF, false);
+            expect(ocaServiceMock.putFileContents).toHaveBeenCalledWith(newPath, outputPdf, false);
+            expect(ocaServiceMock.deleteFile).not.toHaveBeenCalled();
+            expect(viewMock.addFinishedFileToState).toHaveBeenCalled();
         });
 
-        it(`should return a function "process" for given languages and replace = true, that when executed with PDF, throws an Error.`, async () => {
+        // tslint:disable-next-line: max-line-length
+        it(`should return a function "process" for given languages and replace = false, that when executed with multi page PDF, doesn't replace the original file and processes the individual pages with tesseract and puts them together afterwards.`, async () => {
             const languages = ['deu'];
+            const inputPdf1 = new Uint8Array(1);
+            const inputPdf2 = new Uint8Array(1);
+            const outputPdf = new Uint8Array(2);
+            const newPath = '/file1_ocr.pdf';
+            const canvas1 = document.createElement('canvas');
+            const canvas2 = document.createElement('canvas');
+            ocaServiceMock.getDownloadUrl.and.returnValue('url');
+            pdfServiceMock.getDocumentPagesAsImages.and.returnValue(Promise.resolve([canvas1, canvas2]));
+            spyOn(cut, 'createPutFileContentsPath').and.returnValue(newPath);
+            tesseractServiceMock.process.withArgs(canvas1, languages).and.returnValue(Promise.resolve(inputPdf1));
+            tesseractServiceMock.process.withArgs(canvas2, languages).and.returnValue(Promise.resolve(inputPdf2));
+            pdfServiceMock.createPdfFromBuffers.and.returnValue(outputPdf);
+
+            const intermediateResult = cut.process(languages, false);
+
+            expect(typeof intermediateResult).toBe('function');
+
+            const result = intermediateResult(FilesFixtures.PDF);
+
+            await expectAsync(result).toBeResolved();
+            expect(ocaServiceMock.getDownloadUrl).toHaveBeenCalledWith(FilesFixtures.PDF);
+            expect(pdfServiceMock.getDocumentPagesAsImages).toHaveBeenCalledWith('url');
+            expect(tesseractServiceMock.process.calls.argsFor(0)).toEqual([canvas1, languages]);
+            expect(tesseractServiceMock.process.calls.argsFor(1)).toEqual([canvas2, languages]);
+            expect(pdfServiceMock.createPdfFromBuffers).toHaveBeenCalledWith([inputPdf1, inputPdf2]);
+            expect(cut.createPutFileContentsPath).toHaveBeenCalledWith(FilesFixtures.PDF, false);
+            expect(ocaServiceMock.putFileContents).toHaveBeenCalledWith(newPath, outputPdf, false);
+            expect(ocaServiceMock.deleteFile).not.toHaveBeenCalled();
+            expect(viewMock.addFinishedFileToState).toHaveBeenCalled();
+        });
+
+        // tslint:disable-next-line: max-line-length
+        it(`should return a function "process" for given languages and replace = true, that when executed with single page PDF, replaces the original file and processes the page with tesseract.`, async () => {
+            const languages = ['deu'];
+            const inputPdf = new Uint8Array(1);
+            const outputPdf = new Uint8Array(2);
+            const newPath = '/file1.pdf';
+            const canvas = document.createElement('canvas');
+            ocaServiceMock.getDownloadUrl.and.returnValue('url');
+            pdfServiceMock.getDocumentPagesAsImages.and.returnValue(Promise.resolve([canvas]));
+            spyOn(cut, 'createPutFileContentsPath').and.returnValue(newPath);
+            tesseractServiceMock.process.and.returnValue(Promise.resolve(inputPdf));
+            pdfServiceMock.createPdfFromBuffers.and.returnValue(outputPdf);
 
             const intermediateResult = cut.process(languages, true);
 
@@ -385,7 +454,49 @@ describe("The controller's", () => {
 
             const result = intermediateResult(FilesFixtures.PDF);
 
-            await expectAsync(result).toBeRejected();
+            await expectAsync(result).toBeResolved();
+            expect(ocaServiceMock.getDownloadUrl).toHaveBeenCalledWith(FilesFixtures.PDF);
+            expect(pdfServiceMock.getDocumentPagesAsImages).toHaveBeenCalledWith('url');
+            expect(tesseractServiceMock.process).toHaveBeenCalledWith(canvas, languages);
+            expect(pdfServiceMock.createPdfFromBuffers).toHaveBeenCalledWith([inputPdf]);
+            expect(cut.createPutFileContentsPath).toHaveBeenCalledWith(FilesFixtures.PDF, true);
+            expect(ocaServiceMock.putFileContents).toHaveBeenCalledWith(newPath, outputPdf, true);
+            expect(ocaServiceMock.deleteFile).not.toHaveBeenCalled();
+            expect(viewMock.addFinishedFileToState).toHaveBeenCalled();
+        });
+
+        // tslint:disable-next-line: max-line-length
+        it(`should return a function "process" for given languages and replace = true, that when executed with multi page PDF, replaces the original file and processes the individual pages with tesseract and puts them together afterwards.`, async () => {
+            const languages = ['deu'];
+            const inputPdf1 = new Uint8Array(1);
+            const inputPdf2 = new Uint8Array(1);
+            const outputPdf = new Uint8Array(2);
+            const newPath = '/file1.pdf';
+            const canvas1 = document.createElement('canvas');
+            const canvas2 = document.createElement('canvas');
+            ocaServiceMock.getDownloadUrl.and.returnValue('url');
+            pdfServiceMock.getDocumentPagesAsImages.and.returnValue(Promise.resolve([canvas1, canvas2]));
+            spyOn(cut, 'createPutFileContentsPath').and.returnValue(newPath);
+            tesseractServiceMock.process.withArgs(canvas1, languages).and.returnValue(Promise.resolve(inputPdf1));
+            tesseractServiceMock.process.withArgs(canvas2, languages).and.returnValue(Promise.resolve(inputPdf2));
+            pdfServiceMock.createPdfFromBuffers.and.returnValue(outputPdf);
+
+            const intermediateResult = cut.process(languages, true);
+
+            expect(typeof intermediateResult).toBe('function');
+
+            const result = intermediateResult(FilesFixtures.PDF);
+
+            await expectAsync(result).toBeResolved();
+            expect(ocaServiceMock.getDownloadUrl).toHaveBeenCalledWith(FilesFixtures.PDF);
+            expect(pdfServiceMock.getDocumentPagesAsImages).toHaveBeenCalledWith('url');
+            expect(tesseractServiceMock.process.calls.argsFor(0)).toEqual([canvas1, languages]);
+            expect(tesseractServiceMock.process.calls.argsFor(1)).toEqual([canvas2, languages]);
+            expect(pdfServiceMock.createPdfFromBuffers).toHaveBeenCalledWith([inputPdf1, inputPdf2]);
+            expect(cut.createPutFileContentsPath).toHaveBeenCalledWith(FilesFixtures.PDF, true);
+            expect(ocaServiceMock.putFileContents).toHaveBeenCalledWith(newPath, outputPdf, true);
+            expect(ocaServiceMock.deleteFile).not.toHaveBeenCalled();
+            expect(viewMock.addFinishedFileToState).toHaveBeenCalled();
         });
     });
 

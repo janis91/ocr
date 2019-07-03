@@ -123,7 +123,7 @@ interface FilesClient {
      *
      * @return {Promise}
      */
-    putFileContents: (path: string, body: string, options: { contentType: string, overwrite: boolean }) => JQueryPromise<void>;
+    putFileContents: (path: string, body: ArrayBuffer, options: { contentType: string, overwrite: boolean }) => JQueryPromise<void>;
 
     /**
      * Deletes a file or directory

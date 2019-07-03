@@ -43,6 +43,9 @@ class Application extends App {
                     vendor_script(OcrConstants::APP_NAME, 'tesseract.js/worker.min');
                     vendor_script(OcrConstants::APP_NAME, 'choices.js/choices.min');
                     vendor_style(OcrConstants::APP_NAME, 'choices.js/choices.min');
+                    vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.min');
+                    vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.worker.min');
+                    vendor_script(OcrConstants::APP_NAME, 'pdf-lib/pdf-lib.min');
                     script(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
                     style(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
 
@@ -51,6 +54,7 @@ class Application extends App {
                     $csp->addAllowedWorkerSrcDomain("blob:");
                     $csp->addAllowedScriptDomain("'strict-dynamic'");
                     $csp->addAllowedConnectDomain('data:');
+                    $csp->addAllowedWorkerSrcDomain("self");
                     $cspManager->addDefaultPolicy($csp);
                 });
         /**

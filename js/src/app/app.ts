@@ -5,10 +5,15 @@ import { View } from './view/view';
 import * as handlebarsDropdownTemplate from './view/templates/ocr.hbs';
 import { TesseractService } from './service/tesseract.service';
 import { OC, OCA } from 'global-oc-types';
+import { PDFJSStatic } from 'pdfjs-dist';
+import { PdfService } from './service/pdf.service';
+import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
 
 
 declare var OC: OC;
 declare var OCA: OCA;
+declare var PDFJS: PDFJSStatic;
+declare var PDFLib: { PDFDocumentFactory: PDFDocumentFactory, PDFDocumentWriter: PDFDocumentWriter };
 
 /**
  * Nextcloud - OCR
@@ -24,17 +29,19 @@ export class App {
     public view: View;
     public ocaService: OcaService;
     public tesseractService: TesseractService;
+    public pdfService: PdfService;
     public controller: Controller;
     public initCounter: number = 0;
 
     constructor() {
         const interval = setInterval(() => {
-            if (OcaService.checkOCAvailability() && TesseractService.checkTesseractAvailability()) {
+            if (OcaService.checkOCAvailability() && TesseractService.checkTesseractAvailability() && PdfService.checkPdfUtilAvailability()) {
                 this.util = new Util();
                 this.view = new View(OC.Notification, handlebarsDropdownTemplate, document);
                 this.ocaService = new OcaService(OC, OCA);
-                this.tesseractService = new TesseractService(this.ocaService);
-                this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, document);
+                this.tesseractService = new TesseractService();
+                this.pdfService = new PdfService(PDFJS, PDFLib, document);
+                this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, this.pdfService, document);
                 try {
                     this.controller.init();
                 } catch (e) {

@@ -106,7 +106,7 @@ export class OcaService {
         return this.oca.Files.App.fileList.getDownloadUrl(file.name);
     }
 
-    public putFileContents: (path: string, body: any, replace: boolean) => Promise<void> = async (path, body, replace) => {
+    public putFileContents: (path: string, body: ArrayBuffer, replace: boolean) => Promise<void> = async (path, body, replace) => {
         try {
             await new Promise((resolve, reject) => {
                 this.oca.Files.App.fileList.filesClient.putFileContents(path, body, { contentType: 'application/pdf', overwrite: !replace })

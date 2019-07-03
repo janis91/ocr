@@ -3,6 +3,7 @@ import { Util } from '../util/util';
 import { OcaService } from '../service/oca.service';
 import { View } from '../view/view';
 import { TesseractService } from '../service/tesseract.service';
+import { PdfService } from '../service/pdf.service';
 
 declare var t: OCSingleTranslation;
 
@@ -20,7 +21,7 @@ export class Controller {
     public selectedFiles: Array<OCAFile>;
 
     constructor(private util: Util, private view: View, private tesseractService: TesseractService,
-        private ocaService: OcaService, private document: Document) { }
+        private ocaService: OcaService, private pdfService: PdfService, private document: Document) { }
 
     /**
      * Initializes the Controller / OCR functions in the frontend of Nextcloud.
@@ -127,11 +128,14 @@ export class Controller {
      * Creates the Promise per file for tesseract.
      */
     public process: (selectedLanguages: Array<string>, replace: boolean) => (file: OCAFile) => Promise<void> = (selectedLanguages, replace) => async (file) => {
+        let pdf: ArrayBuffer;
         if (file.mimetype === 'application/pdf') {
-            console.log('pdf');
-            throw new Error();
+            const canvass = await this.pdfService.getDocumentPagesAsImages(this.ocaService.getDownloadUrl(file));
+            const pdfs = await Promise.all(canvass.map((canvas) => this.tesseractService.process(canvas, selectedLanguages)));
+            pdf = await this.pdfService.createPdfFromBuffers(pdfs);
+        } else {
+            pdf = await this.tesseractService.process(this.ocaService.getDownloadUrl(file), selectedLanguages);
         }
-        const pdf = await this.tesseractService.process(file, selectedLanguages);
         const newPath = this.createPutFileContentsPath(file, replace);
         await this.ocaService.putFileContents(newPath, pdf, replace);
         if (replace && file.mimetype !== 'application/pdf') {

@@ -228,61 +228,66 @@ describe("The ocaService's", () => {
         it('should put the given binary to the given path and overwrite the origin for replace = true AND add and fetch the file info in the filelist.', async () => {
             const putFileContentsPromise = new JqPromiseMock();
             const addAndFetchFileInfoPromise = new JqPromiseMock();
+            const file = new Uint8Array(1);
             (ocaMock.Files.App.fileList.filesClient.putFileContents as jasmine.Spy).and.returnValue(putFileContentsPromise);
             (ocaMock.Files.App.fileList.addAndFetchFileInfo as jasmine.Spy).and.returnValue(addAndFetchFileInfoPromise);
 
-            await cut.putFileContents('/file1.pdf', 'something', true);
+            await cut.putFileContents('/file1.pdf', file, true);
 
-            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', 'something', { contentType: 'application/pdf', overwrite: false });
+            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', file, { contentType: 'application/pdf', overwrite: false });
             expect(ocaMock.Files.App.fileList.addAndFetchFileInfo).toHaveBeenCalledWith('/file1.pdf', '', { scrollTo: true });
         });
 
         it('should put the given binary to the given path and do not overwrite the origin for replace = false AND add and fetch the file info in the filelist.', async () => {
             const putFileContentsPromise = new JqPromiseMock();
             const addAndFetchFileInfoPromise = new JqPromiseMock();
+            const file = new Uint8Array(1);
             (ocaMock.Files.App.fileList.filesClient.putFileContents as jasmine.Spy).and.returnValue(putFileContentsPromise);
             (ocaMock.Files.App.fileList.addAndFetchFileInfo as jasmine.Spy).and.returnValue(addAndFetchFileInfoPromise);
 
-            await cut.putFileContents('/file1.pdf', 'something', false);
+            await cut.putFileContents('/file1.pdf', file, false);
 
-            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', 'something', { contentType: 'application/pdf', overwrite: true });
+            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', file, { contentType: 'application/pdf', overwrite: true });
             expect(ocaMock.Files.App.fileList.addAndFetchFileInfo).toHaveBeenCalledWith('/file1.pdf', '', { scrollTo: true });
         });
 
         it('should reject with an error, if something goes wrong with the upload.', async () => {
             const putFileContentsPromise = new JqPromiseMock(3);
+            const file = new Uint8Array(1);
             (ocaMock.Files.App.fileList.filesClient.putFileContents as jasmine.Spy).and.returnValue(putFileContentsPromise);
             windowAny.t.withArgs('ocr', 'An unexpected error occured during the upload of the processed file.').and.returnValue('An unexpected error occured during the upload of the processed file.');
 
-            const result = cut.putFileContents('/file1.pdf', 'something', true);
+            const result = cut.putFileContents('/file1.pdf', file, true);
 
             await expectAsync(result).toBeRejectedWith(new Error('An unexpected error occured during the upload of the processed file.'));
-            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', 'something', { contentType: 'application/pdf', overwrite: false });
+            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', file, { contentType: 'application/pdf', overwrite: false });
         });
 
         it('should reject with an error, if something goes wrong with the data fetch.', async () => {
             const putFileContentsPromise = new JqPromiseMock();
             const addAndFetchFileInfoPromise = new JqPromiseMock(3);
+            const file = new Uint8Array(1);
             (ocaMock.Files.App.fileList.filesClient.putFileContents as jasmine.Spy).and.returnValue(putFileContentsPromise);
             (ocaMock.Files.App.fileList.addAndFetchFileInfo as jasmine.Spy).withArgs('/file1.pdf', '', { scrollTo: true }).and.returnValue(addAndFetchFileInfoPromise);
             windowAny.t.withArgs('ocr', 'An unexpected error occured during the upload of the processed file.').and.returnValue('An unexpected error occured during the upload of the processed file.');
 
-            const result = cut.putFileContents('/file1.pdf', 'something', true);
+            const result = cut.putFileContents('/file1.pdf', file, true);
 
             await expectAsync(result).toBeRejectedWith(new Error('An unexpected error occured during the upload of the processed file.'));
-            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', 'something', { contentType: 'application/pdf', overwrite: false });
+            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', file, { contentType: 'application/pdf', overwrite: false });
             expect(ocaMock.Files.App.fileList.addAndFetchFileInfo).toHaveBeenCalledWith('/file1.pdf', '', { scrollTo: true });
         });
 
         it('should reject with a specific error, if target file already exists when uploading a file with replace = false.', async () => {
             const putFileContentsPromise = new JqPromiseMock(412);
+            const file = new Uint8Array(1);
             (ocaMock.Files.App.fileList.filesClient.putFileContents as jasmine.Spy).and.returnValue(putFileContentsPromise);
             windowAny.t.withArgs('ocr', 'Target file already exists:').and.returnValue('Target file already exists:');
 
-            const result = cut.putFileContents('/file1.pdf', 'something', false);
+            const result = cut.putFileContents('/file1.pdf', file, false);
 
             await expectAsync(result).toBeRejectedWith(new Error('Target file already exists: /file1.pdf'));
-            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', 'something', { contentType: 'application/pdf', overwrite: true });
+            expect(ocaMock.Files.App.fileList.filesClient.putFileContents).toHaveBeenCalledWith('/file1.pdf', file, { contentType: 'application/pdf', overwrite: true });
         });
     });
 

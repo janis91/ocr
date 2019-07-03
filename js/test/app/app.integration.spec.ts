@@ -13,6 +13,8 @@ describe("The app's", () => {
         windowAny.OC = undefined;
         windowAny.OCA = undefined;
         windowAny.Tesseract = undefined;
+        windowAny.PDFJS = undefined;
+        windowAny.PDFLib = undefined;
         jasmine.clock().uninstall();
     });
 
@@ -36,6 +38,11 @@ describe("The app's", () => {
             windowAny.OCA.Files.App.fileList.$el.find.and.returnValue(jasmine.createSpyObj('found', ['click']));
             windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
             windowAny.t = jasmine.createSpy('t').and.returnValue('OCR');
+            windowAny.PDFJS = jasmine.createSpyObj('PDFJS', ['getDocument']);
+            windowAny.PDFLib = {
+                PDFDocumentFactory: jasmine.createSpyObj('PDFDocumentFactory', ['load']),
+                PDFDocumentWriter: jasmine.createSpyObj('PDFDocumentWriter', ['saveToBytes']),
+            };
 
             cut = new (await import('../../src/app/app')).App();
 
@@ -67,6 +74,11 @@ describe("The app's", () => {
             windowAny.OCA.Files.App.fileList.$el.find.and.throwError('Test');
             windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
             windowAny.t = jasmine.createSpy('t').withArgs('ocr', 'OCR').and.returnValue('OCR');
+            windowAny.PDFJS = jasmine.createSpyObj('PDFJS', ['getDocument']);
+            windowAny.PDFLib = {
+                PDFDocumentFactory: jasmine.createSpyObj('PDFDocumentFactory', ['load']),
+                PDFDocumentWriter: jasmine.createSpyObj('PDFDocumentWriter', ['saveToBytes']),
+            };
 
             cut = new (await import('../../src/app/app')).App();
 

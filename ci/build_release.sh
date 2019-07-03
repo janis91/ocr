@@ -31,6 +31,9 @@ cp js/node_modules/tesseract.js-core/tesseract-core.js release/vendor/tesseract.
 cp js/node_modules/tesseract.js-core/tesseract-core.wasm release/vendor/tesseract.js/tesseract-core.wasm
 cp js/node_modules/tesseract.js-core/tesseract-core.asm.js release/vendor/tesseract.js/tesseract-core.asm.js
 cp js/node_modules/choices.js/public/assets/scripts/choices.min.js release/vendor/choices.js/choices.min.js
+cp js/node_modules/pdfjs-dist/build/pdf.min.js release/vendor/pdf.js/pdf.min.js
+cp js/node_modules/pdfjs-dist/build/pdf.worker.min.js release/vendor/pdf.js/pdf.worker.min.js
+cp js/node_modules/pdf-lib/dist/pdf-lib.min.js release/vendor/pdf-lib/pdf-lib.min.js
 
 # Copy css artifacts
 cp js/node_modules/choices.js/public/assets/styles/choices.min.css release/vendor/choices.js/choices.min.css

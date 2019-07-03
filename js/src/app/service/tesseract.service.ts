@@ -24,7 +24,7 @@ interface TesseractRecognizeOptions {
 }
 
 interface TesseractWorker {
-    recognize: (imageUrl: string, languagesJoinedByPlus: string, options: TesseractRecognizeOptions) => TesseractWorkerPromise;
+    recognize: (imageUrlOrCanvas: string | HTMLCanvasElement, languagesJoinedByPlus: string, options: TesseractRecognizeOptions) => TesseractWorkerPromise;
     new(options: TesseractWorkerOptions): TesseractWorker;
 }
 
@@ -46,18 +46,18 @@ export class TesseractService {
         return isAvailable('Tesseract', window) && isAvailable('TesseractWorker', (window as any).Tesseract);
     }
 
-    constructor(private ocaService: OcaService) {
+    constructor() {
         const webWorkerCount = navigator.hardwareConcurrency || 4;
         for (let i = 0; i < webWorkerCount; i++) {
             this.tesseractWorkers.push(new Tesseract.TesseractWorker(TesseractService.TESSERACT_WORKER_CONFIG));
         }
     }
 
-    public process: (file: OCAFile, languages: Array<string>) => Promise<object> = async (file, languages) => {
+    public process: (urlOrCanvas: string | HTMLCanvasElement, languages: Array<string>) => Promise<ArrayBuffer> = async (urlOrCanvas, languages) => {
         return await new Promise((resolve, reject) => {
             this.getNextTesseractWorker()
                 .recognize(
-                    this.ocaService.getDownloadUrl(file),
+                    urlOrCanvas,
                     languages.join('+'),
                     {
                         'pdf_auto_download': false, // disable auto download
@@ -65,7 +65,9 @@ export class TesseractService {
                         'tessedit_create_pdf': '1', // create pdf as result
                     },
                 )
-                .then((result: any) => resolve(result.files.pdf))
+                .then((result: any) => {
+                    resolve(result.files.pdf);
+                })
                 .catch((err: any) => reject(err));
         });
     }
