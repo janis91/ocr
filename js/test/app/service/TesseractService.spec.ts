@@ -5,7 +5,7 @@ import { OC } from '../../../src/global-oc-types';
 
 describe("The TesseractService's", () => {
 
-    let ocMock: jasmine.SpyObj<OC>;
+    let documentMock: jasmine.SpyObj<Document>;
     let cut: TesseractService;
     let count: number;
 
@@ -14,44 +14,66 @@ describe("The TesseractService's", () => {
         windowAny.Tesseract = {
             TesseractWorker: WorkerMock,
         };
-        ocMock = {
-            Notification: jasmine.createSpyObj('Notification', ['showHtml']),
-            PERMISSION_UPDATE: 26,
-            generateUrl: jasmine.createSpy('generateUrl').and.returnValue('url'),
+        documentMock = jasmine.createSpyObj('document', ['querySelectorAll']);
+        const element = {
+            src: '/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
         };
+        documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
         count = 0;
-        cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(ocMock);
+        cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
     });
 
     describe('constructor', () => {
-        it('should construct the tesseract workers without index.php with the nextcloud url, given it is included in OC.generateUrl returnValue.', async () => {
-            ocMock.generateUrl.and.returnValue('/index.php/apps/ocr');
+        it('should construct the tesseract workers with the nextcloud url, given in the src of script.', async () => {
+            const element = {
+                src: '/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
+            };
+            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
 
-            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(ocMock);
+            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
 
             expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/apps/ocr/vendor/tesseract.js/worker.min.js');
             expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
             expect(cut.tesseractWorkers[0].options.corePath).toEqual('/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
         });
 
-        it('should construct the tesseract workers as is with the nextcloud url, given subtree OC.generateUrl returnValue.', async () => {
-            ocMock.generateUrl.and.returnValue('/nextcloud/apps/ocr');
+        it('should construct the tesseract workers as is with the nextcloud url, given subtree url in the src of script.', async () => {
+            const element = {
+                src: '/nextcloud/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
+            };
+            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
 
-            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(ocMock);
+            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
 
             expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/nextcloud/apps/ocr/vendor/tesseract.js/worker.min.js');
             expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
             expect(cut.tesseractWorkers[0].options.corePath).toEqual('/nextcloud/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
         });
 
-        it('should construct the tesseract workers as is with the nextcloud url, given root OC.generateUrl returnValue.', async () => {
-            ocMock.generateUrl.and.returnValue('/apps/ocr');
+        it('should construct the tesseract workers as is with the nextcloud url, given custom apps url in the src of script.', async () => {
+            const element = {
+                src: '/nextcloud/custom_apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
+            };
+            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
 
-            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(ocMock);
+            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
 
-            expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/apps/ocr/vendor/tesseract.js/worker.min.js');
+            expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/nextcloud/custom_apps/ocr/vendor/tesseract.js/worker.min.js');
             expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
-            expect(cut.tesseractWorkers[0].options.corePath).toEqual('/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
+            expect(cut.tesseractWorkers[0].options.corePath).toEqual('/nextcloud/custom_apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
+        });
+
+        it('should construct the tesseract workers as is with the nextcloud url, given root based custom apps url in the src of script.', async () => {
+            const element = {
+                src: '/custom_apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
+            };
+            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
+
+            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
+
+            expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/custom_apps/ocr/vendor/tesseract.js/worker.min.js');
+            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
+            expect(cut.tesseractWorkers[0].options.corePath).toEqual('/custom_apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
         });
     });
 

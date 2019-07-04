@@ -3,9 +3,14 @@ import { windowAny } from '../fixtures/fixtures';
 
 describe("The App's", () => {
 
+    let script: HTMLScriptElement;
     let cut: App;
 
     beforeEach(() => {
+        script = document.createElement('script');
+        script.src = '/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2';
+        script.defer = true;
+        document.head.appendChild(script);
         jasmine.clock().install();
     });
 
@@ -17,12 +22,13 @@ describe("The App's", () => {
         windowAny.Tesseract = undefined;
         windowAny.PDFJS = undefined;
         windowAny.PDFLib = undefined;
+        document.head.removeChild(script);
         jasmine.clock().uninstall();
     });
 
     describe('constructor', () => {
         it('should construct the app successfully (and asynchronously), if everything necessary is available/prepared.', async () => {
-            windowAny.OC = { Notification: {}, PERMISSION_UPDATE: 26, generateUrl: jasmine.createSpy('generateUrl').and.returnValue('url') };
+            windowAny.OC = { Notification: {}, PERMISSION_UPDATE: 26 };
             windowAny.OCA = {
                 Files: {
                     App: {
@@ -60,7 +66,7 @@ describe("The App's", () => {
         });
 
         it('should show an Error, if something during the initiallization phase goes wrong.', async () => {
-            windowAny.OC = { Notification: { showHtml: jasmine.createSpy('showHtml') }, PERMISSION_UPDATE: 26, generateUrl: jasmine.createSpy('generateUrl').and.returnValue('url') };
+            windowAny.OC = { Notification: { showHtml: jasmine.createSpy('showHtml') }, PERMISSION_UPDATE: 26 };
             windowAny.OCA = {
                 Files: {
                     App: {

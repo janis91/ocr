@@ -41,7 +41,7 @@ export class App {
                 this.util = new Util();
                 this.view = new View(OC.Notification, handlebarsDropdownTemplate, document);
                 this.ocaService = new OcaService(OC, OCA);
-                this.tesseractService = new TesseractService(OC);
+                this.tesseractService = new TesseractService(document);
                 this.pdfService = new PdfService(PDFJS, PDFLib, document);
                 this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, this.pdfService, document);
                 try {
