@@ -1,5 +1,5 @@
 import { Util } from '../util/Util';
-import { OCSingleTranslation } from '../../global-oc-types';
+import { OCSingleTranslation, OC } from '../../global-oc-types';
 import { TesseractError } from './error/TesseractError';
 
 declare var t: OCSingleTranslation;
@@ -26,6 +26,7 @@ interface TesseractRecognizeOptions {
 }
 
 interface TesseractWorker {
+    options: TesseractWorkerOptions;
     recognize: (imageUrlOrCanvas: string | HTMLCanvasElement, languagesJoinedByPlus: string, options: TesseractRecognizeOptions) => TesseractWorkerPromise;
     new(options: TesseractWorkerOptions): TesseractWorker;
 }
@@ -34,11 +35,9 @@ declare var Tesseract: { TesseractWorker: TesseractWorker };
 
 export class TesseractService {
 
-    private static TESSERACT_WORKER_CONFIG: TesseractWorkerOptions = {
-        corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js', // can be directed to wasm file directly in the future hopefully
-        langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0',
-        workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
-    };
+    private static LANG_PATH: string = 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0';
+    private static CORE_PATH: string = '/vendor/tesseract.js/tesseract-core.wasm.js'; // can be directed to wasm file directly in the future hopefully
+    private static WORKER_PATH: string = '/vendor/tesseract.js/worker.min.js';
 
     public tesseractWorkers: Array<TesseractWorker> = [];
     private roundRobinIndex: number = 0;
@@ -48,10 +47,15 @@ export class TesseractService {
         return isAvailable('Tesseract', window) && isAvailable('TesseractWorker', (window as any).Tesseract);
     }
 
-    constructor() {
+    constructor(oc: OC) {
         const webWorkerCount = navigator.hardwareConcurrency || 4;
+        const tesseractWorkerOptions: TesseractWorkerOptions = {
+            corePath: oc.generateUrl('apps/ocr').replace('index.php/', '') + TesseractService.CORE_PATH,
+            langPath: TesseractService.LANG_PATH,
+            workerPath: oc.generateUrl('apps/ocr').replace('index.php/', '') + TesseractService.WORKER_PATH,
+        };
         for (let i = 0; i < webWorkerCount; i++) {
-            this.tesseractWorkers.push(new Tesseract.TesseractWorker(TesseractService.TESSERACT_WORKER_CONFIG));
+            this.tesseractWorkers.push(new Tesseract.TesseractWorker(tesseractWorkerOptions));
         }
     }
 
