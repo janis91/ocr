@@ -158,7 +158,7 @@ export class View {
             filesQueued: n('ocr', '%n file is being processed:', '%n files are being processed:', files.length),
             hint: t('ocr', 'PDF files and a large number of files may take a very long time.'),
             languages: Configuration.availableLanguages,
-            replaceText: t('ocr', 'Replace target file if existing and delete original file'),
+            replaceText: n('ocr', 'Replace (PDF) or delete (image) orignal file', 'Replace (PDF) or delete (images) orignal files', files.length),
             title: files.length === 1 ? `${t('ocr', 'OCR')}: ${files[0].name}` : `${t('ocr', 'OCR')}: ${n('ocr', '%n file', '%n files', files.length)}`,
         });
     }
