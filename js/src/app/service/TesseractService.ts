@@ -35,7 +35,7 @@ declare var Tesseract: { TesseractWorker: TesseractWorker };
 
 export class TesseractService {
 
-    private static LANG_PATH: string = 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0';
+    private static LANG_PATH: string = 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast';
     private static CORE_PATH: string = '/vendor/tesseract.js/tesseract-core.wasm.js'; // can be directed to wasm file directly in the future hopefully
     private static WORKER_PATH: string = '/vendor/tesseract.js/worker.min.js';
 

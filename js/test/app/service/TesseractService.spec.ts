@@ -30,7 +30,7 @@ describe("The TesseractService's", () => {
             cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(ocMock);
 
             expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/apps/ocr/vendor/tesseract.js/worker.min.js');
-            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0');
+            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
             expect(cut.tesseractWorkers[0].options.corePath).toEqual('/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
         });
 
@@ -40,7 +40,7 @@ describe("The TesseractService's", () => {
             cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(ocMock);
 
             expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/nextcloud/apps/ocr/vendor/tesseract.js/worker.min.js');
-            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0');
+            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
             expect(cut.tesseractWorkers[0].options.corePath).toEqual('/nextcloud/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
         });
 
@@ -50,7 +50,7 @@ describe("The TesseractService's", () => {
             cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(ocMock);
 
             expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/apps/ocr/vendor/tesseract.js/worker.min.js');
-            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0');
+            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
             expect(cut.tesseractWorkers[0].options.corePath).toEqual('/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
         });
     });
