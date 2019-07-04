@@ -44,15 +44,18 @@ export class TesseractService {
 
     public static checkTesseractAvailability: () => boolean = () => {
         const isAvailable = Util.isDefinedIn;
-        return isAvailable('Tesseract', window) && isAvailable('TesseractWorker', (window as any).Tesseract);
+        return isAvailable('Tesseract', window) && isAvailable('TesseractWorker', (window as any).Tesseract) &&
+            [...document.querySelectorAll('script')].find(script => script.src.includes(TesseractService.WORKER_PATH)) !== undefined;
     }
 
-    constructor(oc: OC) {
+    constructor(private document: Document) {
         const webWorkerCount = navigator.hardwareConcurrency || 4;
+        const workerSrc = [...this.document.querySelectorAll('script')].find(script => script.src.includes(TesseractService.WORKER_PATH)).src;
+        const prefix = workerSrc.slice(0, workerSrc.indexOf(TesseractService.WORKER_PATH));
         const tesseractWorkerOptions: TesseractWorkerOptions = {
-            corePath: oc.generateUrl('apps/ocr').replace('index.php/', '') + TesseractService.CORE_PATH,
+            corePath: prefix + TesseractService.CORE_PATH,
             langPath: TesseractService.LANG_PATH,
-            workerPath: oc.generateUrl('apps/ocr').replace('index.php/', '') + TesseractService.WORKER_PATH,
+            workerPath: prefix + TesseractService.WORKER_PATH,
         };
         for (let i = 0; i < webWorkerCount; i++) {
             this.tesseractWorkers.push(new Tesseract.TesseractWorker(tesseractWorkerOptions));
