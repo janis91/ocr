@@ -23,7 +23,7 @@ mkdir release/vendor/pdf-lib
 
 # Copy js artifacts
 cp js/ocr.js release/js/ocr.js
-cp -R js/node_modules/tesseract.js/dist/ release/vendor/tesseract.js/
+cp -R js/node_modules/tesseract.js/dist/. release/vendor/tesseract.js/
 cp js/node_modules/tesseract.js-core/tesseract-core.wasm.js release/vendor/tesseract.js/tesseract-core.wasm.js
 cp js/node_modules/tesseract.js-core/tesseract-core.js release/vendor/tesseract.js/tesseract-core.js
 cp js/node_modules/tesseract.js-core/tesseract-core.wasm release/vendor/tesseract.js/tesseract-core.wasm
