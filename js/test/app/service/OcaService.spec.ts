@@ -320,12 +320,20 @@ describe("The OcaService's", () => {
     });
 
     describe('getCurrentDirectory function', () => {
-        it('should return the current directory as string.', () => {
+        it('should return the current directory as string, when in root.', () => {
             (ocaMock.Files.App.fileList.getCurrentDirectory as jasmine.Spy).and.returnValue('/');
 
             const result = cut.getCurrentDirectory();
 
             expect(result).toEqual('/');
+        });
+
+        it('should return the current directory as string, when in sub directory.', () => {
+            (ocaMock.Files.App.fileList.getCurrentDirectory as jasmine.Spy).and.returnValue('/test');
+
+            const result = cut.getCurrentDirectory();
+
+            expect(result).toEqual('/test/');
         });
     });
 

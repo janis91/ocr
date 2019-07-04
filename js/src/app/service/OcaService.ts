@@ -142,6 +142,7 @@ export class OcaService {
     }
 
     public getCurrentDirectory: () => string = () => {
-        return this.oca.Files.App.fileList.getCurrentDirectory();
+        const dir = this.oca.Files.App.fileList.getCurrentDirectory();
+        return dir === '/' ? dir : dir + '/';
     }
 }
