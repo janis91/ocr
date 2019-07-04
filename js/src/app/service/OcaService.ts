@@ -18,7 +18,7 @@ export class OcaService {
     public static checkOCAvailability: () => boolean = () => {
         const isAvailable = Util.isDefinedIn;
         const win = (window as any);
-        return isAvailable('OC', window) && isAvailable('Notification', win.OC) && // OC.Notification is used by the View
+        return isAvailable('OC', window) && isAvailable('Notification', win.OC) && isAvailable('generateUrl', win.OC) && // OC.Notification is used by the View, generateUrl is used by TesseractService
             isAvailable('OCA', window) && isAvailable('Files', win.OCA) &&
             isAvailable('fileActions', win.OCA.Files) &&
             isAvailable('App', win.OCA.Files) && isAvailable('fileList', win.OCA.Files.App) &&

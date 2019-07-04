@@ -10,6 +10,8 @@ describe("The App's", () => {
     });
 
     afterEach(() => {
+        windowAny.t = undefined;
+        windowAny.n = undefined;
         windowAny.OC = undefined;
         windowAny.OCA = undefined;
         windowAny.Tesseract = undefined;
@@ -20,7 +22,7 @@ describe("The App's", () => {
 
     describe('constructor', () => {
         it('should construct the app successfully (and asynchronously), if everything necessary is available/prepared.', async () => {
-            windowAny.OC = { Notification: {}, PERMISSION_UPDATE: 26 };
+            windowAny.OC = { Notification: {}, PERMISSION_UPDATE: 26, generateUrl: jasmine.createSpy('generateUrl').and.returnValue('url') };
             windowAny.OCA = {
                 Files: {
                     App: {
@@ -43,6 +45,8 @@ describe("The App's", () => {
                 PDFDocumentFactory: jasmine.createSpyObj('PDFDocumentFactory', ['load']),
                 PDFDocumentWriter: jasmine.createSpyObj('PDFDocumentWriter', ['saveToBytes']),
             };
+            windowAny.t = jasmine.createSpy('t').and.callFake((_x, y) => y);
+            windowAny.n = jasmine.createSpy('n');
 
             cut = new (await import('../../src/app/App')).App();
 
@@ -56,7 +60,7 @@ describe("The App's", () => {
         });
 
         it('should show an Error, if something during the initiallization phase goes wrong.', async () => {
-            windowAny.OC = { Notification: { showHtml: jasmine.createSpy('showHtml') }, PERMISSION_UPDATE: 26 };
+            windowAny.OC = { Notification: { showHtml: jasmine.createSpy('showHtml') }, PERMISSION_UPDATE: 26, generateUrl: jasmine.createSpy('generateUrl').and.returnValue('url') };
             windowAny.OCA = {
                 Files: {
                     App: {
@@ -79,6 +83,8 @@ describe("The App's", () => {
                 PDFDocumentFactory: jasmine.createSpyObj('PDFDocumentFactory', ['load']),
                 PDFDocumentWriter: jasmine.createSpyObj('PDFDocumentWriter', ['saveToBytes']),
             };
+            windowAny.t = jasmine.createSpy('t').and.callFake((_x, y) => y);
+            windowAny.n = jasmine.createSpy('n');
 
             cut = new (await import('../../src/app/App')).App();
 
