@@ -17,6 +17,10 @@
 	max-height: 150px;
 }
 
+input.choices__input.choices__input--cloned {
+	width: 33% !important; /* csslint allow: known-properties, important */
+}
+
 .ocr-modal {
 	position: fixed;
 	top: 0;
@@ -68,7 +72,7 @@
 	flex: 1 1 auto;
 	padding: 1rem;
 	overflow-y: auto;
-	min-height: 200px;
+	min-height: 250px;
 }
 
 .ocr-modal-body>.choices {
