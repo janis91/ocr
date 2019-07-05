@@ -51,13 +51,27 @@ class Application extends App {
 
                     $cspManager = \OC::$server->getContentSecurityPolicyManager();
                     $csp = new ContentSecurityPolicy();
-                    $csp->addAllowedWorkerSrcDomain("blob:");
-                    $csp->addAllowedScriptDomain("'strict-dynamic'");
-                    $csp->addAllowedConnectDomain('data:');
+                    
+                    // Allow loading languages from github tessdata fork
                     $csp->addAllowedConnectDomain("https://raw.githubusercontent.com");
-                    $csp->addAllowedWorkerSrcDomain("self");
-                    $csp->addAllowedChildSrcDomain("blob:");
-                    // Only needed for Safari: $csp->addAllowedScriptDomain("'unsafe-eval'");
+
+                    // Allow creating worker
+                    $csp->addAllowedChildSrcDomain("blob:"); // Needed for browser that don't know worker-src directive (like Safari or Edge)
+                    $csp->addAllowedWorkerSrcDomain("blob:");
+                    // Opera works already (data: missing in connect-src but processes successful)
+
+                    // Allow importScripts(worker.min.js) for Safari (will not be enabled by default, because this has massive security risks as implication)
+                    // $csp->addAllowedScriptDomain("'unsafe-eval'");
+                    // Safari works already (data: missing in connect-src but processes successful)
+
+                    // Allow importScripts(worker.min.js) for Firefox and Chrome (Because 'self' isn't working at the moment)
+                    $csp->addAllowedScriptDomain(\OC::$server->getURLGenerator()->getBaseUrl());
+                    // Chrome and Firefox work now (data: missing in connect-src but processes successful)
+
+                    // Allow connect to data:octet/stream for fully functioning tesseract web worker
+                    $csp->addAllowedConnectDomain('data:');
+                    // No browser complains anymore
+
                     $cspManager->addDefaultPolicy($csp);
                 });
         /**
