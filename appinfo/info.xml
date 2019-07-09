@@ -39,6 +39,9 @@ The version 3 and earlier versions are not supported/maintained anymore by the a
 	</documentation>
 	<category>tools</category>
 	<category>files</category>
+	<category>office</category>
+	<category>multimedia</category>
+	<category>integration</category>
 	<website>https://github.com/janis91/ocr</website>
 	<bugs>https://github.com/janis91/ocr/issues</bugs>
 	<repository type="git">https://github.com/janis91/ocr.git</repository>
