@@ -299,11 +299,13 @@ describe("The OcaService's", () => {
             const removePromise = new JqPromiseMock();
             (ocaMock.Files.App.fileList.filesClient.remove as jasmine.Spy).and.returnValue(removePromise);
             (ocaMock.Files.App.fileList.remove as jasmine.Spy).and.returnValue(undefined);
+            spyOn(cut, 'getCurrentDirectory').and.returnValue('/');
 
-            await cut.deleteFile(FilesFixtures.PDF);
+            await cut.deleteFile(FilesFixtures.PDF.name);
 
-            expect(ocaMock.Files.App.fileList.filesClient.remove).toHaveBeenCalledWith(FilesFixtures.PDF.path + FilesFixtures.PDF.name);
+            expect(ocaMock.Files.App.fileList.filesClient.remove).toHaveBeenCalledWith('/' + FilesFixtures.PDF.name);
             expect(ocaMock.Files.App.fileList.remove).toHaveBeenCalledWith(FilesFixtures.PDF.name);
+            expect(cut.getCurrentDirectory).toHaveBeenCalled();
         });
 
         it('should be rejected, if remove does not succeed.', async () => {
@@ -311,11 +313,26 @@ describe("The OcaService's", () => {
             (ocaMock.Files.App.fileList.filesClient.remove as jasmine.Spy).and.returnValue(removePromise);
             windowAny.t.withArgs('ocr', 'An unexpected error occured during the deletion of the original file.')
                 .and.returnValue('An unexpected error occured during the deletion of the original file.');
+            spyOn(cut, 'getCurrentDirectory').and.returnValue('/');
 
-            const result = cut.deleteFile(FilesFixtures.PDF);
+            const result = cut.deleteFile(FilesFixtures.PDF.name);
 
             await expectAsync(result).toBeRejectedWith(new OcaError('An unexpected error occured during the deletion of the original file.', 5));
             expect(ocaMock.Files.App.fileList.filesClient.remove).toHaveBeenCalledWith(FilesFixtures.PDF.path + FilesFixtures.PDF.name);
+            expect(cut.getCurrentDirectory).toHaveBeenCalled();
+        });
+
+        it('should remove the given file from the list and the server, when in a sub path.', async () => {
+            const removePromise = new JqPromiseMock();
+            (ocaMock.Files.App.fileList.filesClient.remove as jasmine.Spy).and.returnValue(removePromise);
+            (ocaMock.Files.App.fileList.remove as jasmine.Spy).and.returnValue(undefined);
+            spyOn(cut, 'getCurrentDirectory').and.returnValue('/testpath/');
+
+            await cut.deleteFile(FilesFixtures.PDF.name);
+
+            expect(ocaMock.Files.App.fileList.filesClient.remove).toHaveBeenCalledWith('/testpath/' + FilesFixtures.PDF.name);
+            expect(ocaMock.Files.App.fileList.remove).toHaveBeenCalledWith(FilesFixtures.PDF.name);
+            expect(cut.getCurrentDirectory).toHaveBeenCalled();
         });
     });
 

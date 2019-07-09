@@ -129,14 +129,14 @@ export class OcaService {
         }
     }
 
-    public deleteFile: (file: OCAFile) => Promise<void> = async (file) => {
+    public deleteFile: (fileName: string) => Promise<void> = async (name) => {
         try {
             await new Promise((resolve, reject) => {
-                this.oca.Files.App.fileList.filesClient.remove(file.path + file.name)
+                this.oca.Files.App.fileList.filesClient.remove(this.getCurrentDirectory() + name)
                     .done(resolve)
                     .fail(reject);
             });
-            this.oca.Files.App.fileList.remove(file.name);
+            this.oca.Files.App.fileList.remove(name);
         } catch (e) {
             throw new OcaError(Configuration.TRANSLATION_UNEXPECTED_ERROR_DELETION, e);
         }

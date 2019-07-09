@@ -95,4 +95,8 @@ export class TesseractService {
         }
         return worker;
     }
+
+    public resetRoundRobinIndex: () => void = () => {
+        this.roundRobinIndex = 0;
+    }
 }
