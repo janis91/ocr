@@ -1,6 +1,7 @@
 import { OCSingleTranslation, OCA, OC, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
 import { Util } from '../util/Util';
 import { OcaError } from './error/OcaError';
+import { Configuration } from '../configuration/Configuration';
 
 declare var t: OCSingleTranslation;
 
@@ -66,8 +67,8 @@ export class OcaService {
     public registerFileActions: (actionHandler: OCAFileActionHandler) => void = (actionHandler) => {
         this.oca.Files.fileActions.registerAction({
             actionHandler,
-            altText: t('ocr', 'OCR'),
-            displayName: t('ocr', 'OCR'),
+            altText: Configuration.TRANSLATION_OCR,
+            displayName: Configuration.TRANSLATION_OCR,
             iconClass: 'icon-ocr',
             mime: 'application/pdf',
             name: 'Ocr',
@@ -76,8 +77,8 @@ export class OcaService {
         });
         this.oca.Files.fileActions.registerAction({
             actionHandler,
-            altText: t('ocr', 'OCR'),
-            displayName: t('ocr', 'OCR'),
+            altText: Configuration.TRANSLATION_OCR,
+            displayName: Configuration.TRANSLATION_OCR,
             iconClass: 'icon-ocr',
             mime: 'image',
             name: 'Ocr',
@@ -91,7 +92,7 @@ export class OcaService {
         if (index !== -1) { return; }
         this.oca.Files.App.fileList.multiSelectMenuItems.push({
             action: handler,
-            displayName: t('ocr', 'OCR'),
+            displayName: Configuration.TRANSLATION_OCR,
             iconClass: 'icon-ocr',
             name: 'ocr',
         });
@@ -121,9 +122,9 @@ export class OcaService {
             });
         } catch (e) {
             if (e === 412) {
-                throw new OcaError(`${t('ocr', 'Target file already exists:')} ${path}`);
+                throw new OcaError(`${Configuration.TRANSLATION_TARGET_FILE_ALREADY_EXISTS} ${path}`);
             } else {
-                throw new OcaError(t('ocr', 'An unexpected error occured during the upload of the processed file.'), e);
+                throw new OcaError(Configuration.TRANSLATION_UNEXPECTED_ERROR_UPLOAD, e);
             }
         }
     }
@@ -137,7 +138,7 @@ export class OcaService {
             });
             this.oca.Files.App.fileList.remove(file.name);
         } catch (e) {
-            throw new OcaError(t('ocr', 'An unexpected error occured during the deletion of the original file.'), e);
+            throw new OcaError(Configuration.TRANSLATION_UNEXPECTED_ERROR_DELETION, e);
         }
     }
 

@@ -1,6 +1,7 @@
 import { Util } from '../util/Util';
-import { OCSingleTranslation, OC } from '../../global-oc-types';
+import { OCSingleTranslation } from '../../global-oc-types';
 import { TesseractError } from './error/TesseractError';
+import { Configuration } from '../configuration/Configuration';
 
 declare var t: OCSingleTranslation;
 
@@ -81,7 +82,7 @@ export class TesseractService {
                     .catch((err: any) => reject(err));
             });
         } catch (e) {
-            throw new TesseractError(t('ocr', 'An unexpected error occured during Tesseract processing.'), urlOrCanvas, e);
+            throw new TesseractError(Configuration.TRANSLATION_UNEXPECTED_ERROR_TESSERACT_PROCESSING, urlOrCanvas, e);
         }
     }
 

@@ -4,6 +4,7 @@ import { OcaService } from '../service/OcaService';
 import { View } from '../view/View';
 import { TesseractService } from '../service/TesseractService';
 import { PdfService } from '../service/PdfService';
+import { Configuration } from '../configuration/Configuration';
 
 declare var t: OCSingleTranslation;
 
@@ -66,13 +67,13 @@ export class Controller {
      */
     public clickOnProcessButtonEvent: () => Promise<void> = async () => {
         if (this.selectedFiles.length === 0) {
-            this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'No file selected.')}`);
+            this.view.displayError(`${Configuration.TRANSLATION_OCR_PROCESSING_FAILED} ${Configuration.TRANSLATION_NO_FILE_SELECTED}`);
             this.view.destroyOcrDialog();
             return;
         }
         const filteredFiles: Array<OCAFile> = this.util.filterFilesWithMimeTypes(this.selectedFiles);
         if (filteredFiles.length === 0) {
-            this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${t('ocr', 'MIME type not supported.')}`);
+            this.view.displayError(`${Configuration.TRANSLATION_OCR_PROCESSING_FAILED} ${Configuration.TRANSLATION_MIMETYPE_NOT_SUPPORTED}`);
             this.view.destroyOcrDialog();
             return;
         }
@@ -84,7 +85,7 @@ export class Controller {
         try {
             await Promise.all(tesseractPromises);
         } catch (e) {
-            this.view.displayError(`${t('ocr', 'OCR processing failed:')} ${e.message}`);
+            this.view.displayError(`${Configuration.TRANSLATION_OCR_PROCESSING_FAILED} ${e.message}`);
             console.error('An error occured in OCR.', e, e.original);
         }
         this.view.destroyOcrDialog();

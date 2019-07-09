@@ -108,28 +108,26 @@ describe("The Controller's", () => {
     describe('clickOnProcessButtonEvent function', () => {
         it('should display an error when selectedFiles are empty and destroy the dialog.', async () => {
             cut.selectedFiles = [];
-            windowAny.t.and.returnValue('test');
+            windowAny.t.withArgs('ocr', 'OCR processing failed:').and.returnValue('OCR processing failed:');
+            windowAny.t.withArgs('ocr', 'No file selected.').and.returnValue('No file selected.');
 
             await cut.clickOnProcessButtonEvent();
 
-            expect(viewMock.displayError).toHaveBeenCalledWith('test test');
+            expect(viewMock.displayError).toHaveBeenCalledWith('OCR processing failed: No file selected.');
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
-            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
-            expect(windowAny.t.calls.argsFor(1)).toEqual(['ocr', 'No file selected.']);
         });
 
         it('should display an error when filteredFiles are empty and destroy the dropdown.', async () => {
             cut.selectedFiles = [FilesFixtures.WRONG_MIME];
             utilMock.filterFilesWithMimeTypes.and.returnValue([]);
-            windowAny.t.and.returnValue('test');
+            windowAny.t.withArgs('ocr', 'OCR processing failed:').and.returnValue('OCR processing failed:');
+            windowAny.t.withArgs('ocr', 'MIME type not supported.').and.returnValue('MIME type not supported.');
 
             await cut.clickOnProcessButtonEvent();
 
             expect(utilMock.filterFilesWithMimeTypes).toHaveBeenCalledWith(cut.selectedFiles);
-            expect(viewMock.displayError).toHaveBeenCalledWith('test test');
+            expect(viewMock.displayError).toHaveBeenCalledWith('OCR processing failed: MIME type not supported.');
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
-            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
-            expect(windowAny.t.calls.argsFor(1)).toEqual(['ocr', 'MIME type not supported.']);
         });
 
         it('should process when one filteredFile exists and language "deu" is set and replace is false.', async () => {
@@ -218,10 +216,10 @@ describe("The Controller's", () => {
             viewMock.activateBusyState.and.returnValue();
             viewMock.getSelectValues.and.returnValue(['deu']);
             viewMock.getReplaceValue.and.returnValue(true);
-            const process = jasmine.createSpy('process').and.returnValue(Promise.reject(new Error('message')));
+            const process = jasmine.createSpy('process').and.returnValue(Promise.reject(new Error('Some message.')));
             spyOn(cut, 'process').and.returnValue(process);
             viewMock.destroyOcrDialog.and.returnValue();
-            windowAny.t.and.returnValue('test');
+            windowAny.t.withArgs('ocr', 'OCR processing failed:').and.returnValue('OCR processing failed:');
 
             await cut.clickOnProcessButtonEvent();
 
@@ -231,8 +229,7 @@ describe("The Controller's", () => {
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
-            expect(viewMock.displayError).toHaveBeenCalledWith('test message');
-            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
+            expect(viewMock.displayError).toHaveBeenCalledWith('OCR processing failed: Some message.');
         });
 
         it('should display an error with the message of the error when multiple filteredFiles exist and language "deu" is set and replace is true and process rejects.', async () => {
@@ -241,10 +238,10 @@ describe("The Controller's", () => {
             viewMock.activateBusyState.and.returnValue();
             viewMock.getSelectValues.and.returnValue(['deu']);
             viewMock.getReplaceValue.and.returnValue(true);
-            const process = jasmine.createSpy('process').and.returnValue(Promise.reject(new Error('message')));
+            const process = jasmine.createSpy('process').and.returnValue(Promise.reject(new Error('Some message.')));
             spyOn(cut, 'process').and.returnValue(process);
             viewMock.destroyOcrDialog.and.returnValue();
-            windowAny.t.and.returnValue('test');
+            windowAny.t.withArgs('ocr', 'OCR processing failed:').and.returnValue('OCR processing failed:');
 
             await cut.clickOnProcessButtonEvent();
 
@@ -254,8 +251,7 @@ describe("The Controller's", () => {
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
-            expect(viewMock.displayError).toHaveBeenCalledWith('test message');
-            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'OCR processing failed:']);
+            expect(viewMock.displayError).toHaveBeenCalledWith('OCR processing failed: Some message.');
         });
     });
 
