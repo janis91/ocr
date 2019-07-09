@@ -198,6 +198,18 @@ describe("The TesseractService's", () => {
         });
     });
 
+    describe('resetRoundRobinIndex function', () => {
+        it('should reset round robin index to 0.', () => {
+            const result1 = cut.getNextTesseractWorker();
+            expect((result1 as any).iAm).toEqual(1);
+
+            cut.resetRoundRobinIndex();
+
+            const result2 = cut.getNextTesseractWorker();
+            expect((result2 as any).iAm).toEqual(1);
+        });
+    });
+
     class WorkerMock {
         public iAm: number;
         public recognize = jasmine.createSpy('recognize');

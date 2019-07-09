@@ -116,7 +116,7 @@ interface FilesClient {
     /**
      * Puts the given data into the given file.
      *
-     * @param {String} path path to file
+     * @param {String} path path to file (including file name)
      * @param {String} body file body
      * @param {Object} [options]
      * @param {String} [options.contentType='text/plain'] content type
@@ -129,7 +129,7 @@ interface FilesClient {
     /**
      * Deletes a file or directory
      *
-     * @param {String} path path to delete
+     * @param {String} path path to delete (including file name)
      *
      * @return {Promise}
      */

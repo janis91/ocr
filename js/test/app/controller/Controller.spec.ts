@@ -23,7 +23,7 @@ describe("The Controller's", () => {
         utilMock = jasmine.createSpyObj('util', ['filterFilesWithMimeTypes']);
         viewMock = jasmine.createSpyObj('view', ['destroy', 'checkClickToExit', 'displayError', 'destroyOcrDialog',
             'activateBusyState', 'getSelectValues', 'getReplaceValue', 'renderFileAction', 'addFinishedFileToState']);
-        tesseractServiceMock = jasmine.createSpyObj('tesseractService', ['process']);
+        tesseractServiceMock = jasmine.createSpyObj('tesseractService', ['process', 'resetRoundRobinIndex']);
         ocaServiceMock = jasmine.createSpyObj('ocaService', ['destroy', 'registerFileActions', 'registerCheckBoxEvents',
             'getSelectedFiles', 'registerMultiSelectMenuItem', 'putFileContents', 'deleteFile', 'unregisterMultiSelectMenuItem', 'getCurrentDirectory', 'getDownloadUrl']);
         pdfServiceMock = jasmine.createSpyObj('pdfService', ['getDocumentPagesAsImages', 'createPdfFromBuffers']);
@@ -147,6 +147,7 @@ describe("The Controller's", () => {
             expect(viewMock.getSelectValues).toHaveBeenCalled();
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['deu'], false);
+            expect(tesseractServiceMock.resetRoundRobinIndex).toHaveBeenCalled();
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
         });
 
@@ -167,6 +168,7 @@ describe("The Controller's", () => {
             expect(viewMock.getSelectValues).toHaveBeenCalled();
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['eng'], false);
+            expect(tesseractServiceMock.resetRoundRobinIndex).toHaveBeenCalled();
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
         });
 
@@ -187,6 +189,7 @@ describe("The Controller's", () => {
             expect(viewMock.getSelectValues).toHaveBeenCalled();
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
+            expect(tesseractServiceMock.resetRoundRobinIndex).toHaveBeenCalled();
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
         });
 
@@ -207,6 +210,7 @@ describe("The Controller's", () => {
             expect(viewMock.getSelectValues).toHaveBeenCalled();
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
+            expect(tesseractServiceMock.resetRoundRobinIndex).toHaveBeenCalled();
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
         });
 
@@ -228,6 +232,7 @@ describe("The Controller's", () => {
             expect(viewMock.getSelectValues).toHaveBeenCalled();
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
+            expect(tesseractServiceMock.resetRoundRobinIndex).toHaveBeenCalled();
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
             expect(viewMock.displayError).toHaveBeenCalledWith('OCR processing failed: Some message.');
         });
@@ -250,6 +255,7 @@ describe("The Controller's", () => {
             expect(viewMock.getSelectValues).toHaveBeenCalled();
             expect(viewMock.getReplaceValue).toHaveBeenCalled();
             expect(cut.process).toHaveBeenCalledWith(['deu'], true);
+            expect(tesseractServiceMock.resetRoundRobinIndex).toHaveBeenCalled();
             expect(viewMock.destroyOcrDialog).toHaveBeenCalled();
             expect(viewMock.displayError).toHaveBeenCalledWith('OCR processing failed: Some message.');
         });
@@ -338,7 +344,7 @@ describe("The Controller's", () => {
             expect(tesseractServiceMock.process).toHaveBeenCalledWith('url', languages);
             expect(cut.createPutFileContentsPath).toHaveBeenCalledWith(FilesFixtures.PNG, true);
             expect(ocaServiceMock.putFileContents).toHaveBeenCalledWith(newPath, pdf, true);
-            expect(ocaServiceMock.deleteFile).toHaveBeenCalledWith(FilesFixtures.PNG);
+            expect(ocaServiceMock.deleteFile).toHaveBeenCalledWith(FilesFixtures.PNG.name);
             expect(viewMock.addFinishedFileToState).toHaveBeenCalled();
         });
 
