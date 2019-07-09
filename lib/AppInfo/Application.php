@@ -63,9 +63,12 @@ class Application extends App {
                     // Allow importScripts(worker.min.js) for Safari (will not be enabled by default, because this has massive security risks as implication)
                     // $csp->addAllowedScriptDomain("'unsafe-eval'");
                     // Safari works already (data: missing in connect-src but processes successful)
-
+                    $parsed_url = \parse_url(\OC::$server->getURLGenerator()->getBaseUrl() . "/nextcloud");
+                    $scheme = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : '';
+                    $host = isset($parsed_url['host']) ? $parsed_url['host'] : '';
+                    $port = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : '';
                     // Allow importScripts(worker.min.js) for Firefox and Chrome (Because 'self' isn't working at the moment)
-                    $csp->addAllowedScriptDomain(\OC::$server->getURLGenerator()->getBaseUrl());
+                    $csp->addAllowedScriptDomain("$scheme$host$port");
                     // Chrome and Firefox work now (data: missing in connect-src but processes successful)
 
                     // Allow connect to data:octet/stream for fully functioning tesseract web worker
