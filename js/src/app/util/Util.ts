@@ -13,7 +13,7 @@ import { OCAFile } from '../../global-oc-types';
 export class Util {
 
     public static isDefinedIn: (variable: string, obj: {[prop: string]: any}) => boolean = (variable, obj) => {
-        return typeof obj[variable] !== 'undefined';
+        return typeof obj[variable] !== 'undefined' && obj[variable] !== null;
     }
 
     /**

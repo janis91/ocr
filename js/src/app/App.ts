@@ -4,7 +4,7 @@ import { Controller } from './controller/Controller';
 import { View } from './view/View';
 import * as handlebarsDropdownTemplate from './view/templates/ocr.hbs';
 import { TesseractService } from './service/TesseractService';
-import { OC, OCA } from 'global-oc-types';
+import { OC, OCA, OCSingleTranslation, OCMultiTranslation } from 'global-oc-types';
 import { PDFJSStatic } from 'pdfjs-dist';
 import { PdfService } from './service/PdfService';
 import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
@@ -12,6 +12,8 @@ import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
 
 declare var OC: OC;
 declare var OCA: OCA;
+declare var t: OCSingleTranslation;
+declare var n: OCMultiTranslation;
 declare var PDFJS: PDFJSStatic;
 declare var PDFLib: { PDFDocumentFactory: PDFDocumentFactory, PDFDocumentWriter: PDFDocumentWriter };
 
@@ -35,7 +37,7 @@ export class App {
 
     constructor() {
         const interval = setInterval(() => {
-            if (Util.isDefinedIn('t', window) && Util.isDefinedIn('n', window) &&
+            if (Util.isDefinedIn('t', window) && typeof t === 'function' && Util.isDefinedIn('n', window) && typeof n === 'function' &&
                 OcaService.checkOCAvailability() && TesseractService.checkTesseractAvailability() &&
                 PdfService.checkPdfUtilAvailability()) {
                 this.util = new Util();
