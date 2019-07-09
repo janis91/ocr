@@ -40,7 +40,6 @@ describe("The View's", () => {
 
             cut.displayError(message);
 
-            expect(windowAny.t).toHaveBeenCalledWith('ocr', 'OCR');
             expect(notificationMock.showHtml).toHaveBeenCalledWith(`<div>OCR: ${message}</div>`, { timeout: 10, type: 'error' });
         });
     });
@@ -265,9 +264,6 @@ describe("The View's", () => {
 
             cut.renderSelect();
 
-            expect(windowAny.t.calls.argsFor(0)).toEqual(['ocr', 'Press to select']);
-            expect(windowAny.t.calls.argsFor(1)).toEqual(['ocr', 'No matches found']);
-            expect(windowAny.t.calls.argsFor(2)).toEqual(['ocr', 'Select language']);
             expect(cut.choices).toEqual(choices);
             expect(windowAny.Choices).toHaveBeenCalledWith('#ocrLanguage', {
                 duplicateItemsAllowed: false,
@@ -285,13 +281,12 @@ describe("The View's", () => {
         it('should set the text content of the process description to the right state.', () => {
             const element = { textContent: '' };
             documentMock.getElementById.and.returnValue(element as HTMLSpanElement);
-            windowAny.t.and.returnValue('1/2 Files successfully processed');
+            windowAny.t.withArgs('ocr', '{file}/{files} Files successfully processed', { file: '1', files: '2' }).and.returnValue('1/2 Files successfully processed');
             cut.finishedFiles = 1;
             cut.fileCount = 2;
 
             cut.drawFileState();
 
-            expect(windowAny.t).toHaveBeenCalledWith('ocr', '{file}/{files} Files successfully processed', { file: '1', files: '2' });
             expect(element.textContent).toEqual('1/2 Files successfully processed');
             expect(documentMock.getElementById).toHaveBeenCalledWith('ocrProgressFilesDescription');
         });
@@ -320,7 +315,7 @@ describe("The View's", () => {
                 buttonText: 'Process',
                 filesQueued: '2 files are being processed:',
                 hint: 'PDF files and a large number of files may take a very long time.',
-                languages: Configuration.availableLanguages,
+                languages: Configuration.AVAILABLE_LANGUAGES,
                 replaceText: 'Replace (PDF) or delete (images) orignal files',
                 title: 'OCR: 2 files',
             });
@@ -347,7 +342,7 @@ describe("The View's", () => {
                 buttonText: 'Process',
                 filesQueued: '1 file is being processed:',
                 hint: 'PDF files and a large number of files may take a very long time.',
-                languages: Configuration.availableLanguages,
+                languages: Configuration.AVAILABLE_LANGUAGES,
                 replaceText: 'Replace (PDF) or delete (image) orignal file',
                 title: 'OCR: file3.png',
             });

@@ -24,6 +24,6 @@ export class Util {
      */
     public filterFilesWithMimeTypes(files: Array<OCAFile>): Array<OCAFile> {
         if (files === undefined) { return []; }
-        return files.filter(file => Configuration.allowedMimeTypes.indexOf(file.mimetype) !== -1);
+        return files.filter(file => Configuration.ALLOWED_MIMETYPES.indexOf(file.mimetype) !== -1);
     }
 }

@@ -46,7 +46,7 @@ export class View {
      * @param message The message to display.
      */
     public displayError: (message: string) => void = (message) => {
-        this.notification.showHtml(`<div>${t('ocr', 'OCR')}: ${message}</div>`, { timeout: 10, type: 'error' });
+        this.notification.showHtml(`<div>${Configuration.TRANSLATION_OCR}: ${message}</div>`, { timeout: 10, type: 'error' });
     }
 
     /**
@@ -129,9 +129,9 @@ export class View {
     public renderSelect: () => void = () => {
         this.choices = new Choices('#ocrLanguage', {
             duplicateItemsAllowed: false,
-            itemSelectText: t('ocr', 'Press to select'),
-            noResultsText: t('ocr', 'No matches found'),
-            placeholderValue: t('ocr', 'Select language'),
+            itemSelectText: Configuration.TRANSLATION_PRESS_TO_SELECT,
+            noResultsText: Configuration.TRANSLATION_NO_MATCHES_FOUND,
+            placeholderValue: Configuration.TRANSLATION_SELECT_LANGUAGE,
             position: 'bottom',
             removeItemButton: true,
             removeItems: true,
@@ -143,7 +143,7 @@ export class View {
      */
     public drawFileState: () => void = () => {
         this.getElementById<HTMLSpanElement>('ocrProgressFilesDescription').textContent =
-            t('ocr', '{file}/{files} Files successfully processed', { file: String(this.finishedFiles), files: String(this.fileCount) });
+            Configuration.TRANSLATION_FILES_SUCCESSFULLY_PROCESSED(String(this.finishedFiles), String(this.fileCount));
     }
 
     /**
@@ -154,12 +154,12 @@ export class View {
     public renderOcrDialog: (files: Array<OCAFile>) => string = (files) => {
         this.destroyOcrDialog();
         return this.ocrTemplate({
-            buttonText: t('ocr', 'Process'),
-            filesQueued: n('ocr', '%n file is being processed:', '%n files are being processed:', files.length),
-            hint: t('ocr', 'PDF files and a large number of files may take a very long time.'),
-            languages: Configuration.availableLanguages,
-            replaceText: n('ocr', 'Replace (PDF) or delete (image) orignal file', 'Replace (PDF) or delete (images) orignal files', files.length),
-            title: files.length === 1 ? `${t('ocr', 'OCR')}: ${files[0].name}` : `${t('ocr', 'OCR')}: ${n('ocr', '%n file', '%n files', files.length)}`,
+            buttonText: Configuration.TRANSLATION_PROCESS,
+            filesQueued: Configuration.TRANSLATION_FILES_QUEUED(files.length),
+            hint: Configuration.TRANSLATION_LARGE_NUMBER_TAKES_VERY_LONG_TIME,
+            languages: Configuration.AVAILABLE_LANGUAGES,
+            replaceText: Configuration.TRANSLATION_REPLACE_OR_DELETE_ORIGINAL_FILE(files.length),
+            title: files.length === 1 ? `${Configuration.TRANSLATION_OCR}: ${files[0].name}` : `${Configuration.TRANSLATION_OCR}: ${Configuration.TRANSLATION_FILE_FILES(files.length)}`,
         });
     }
 

@@ -3,6 +3,7 @@ import { PDFJSStatic } from 'pdfjs-dist';
 import { PDFDocumentFactory, PDFDocument, PDFDocumentWriter } from 'pdf-lib';
 import { OCSingleTranslation } from '../../global-oc-types';
 import { PdfError } from './error/PdfError';
+import { Configuration } from '../configuration/Configuration';
 
 declare var t: OCSingleTranslation;
 
@@ -31,7 +32,7 @@ export class PdfService {
     public getDocumentPagesAsImages: (url: string) => Promise<HTMLCanvasElement[]> = async (url) => {
         try {
             const pdf = await this.pdfjs.getDocument(url);
-            if (pdf.numPages === 0) { throw new PdfError(t('ocr', 'PDF does not contain any Pages to process.')); }
+            if (pdf.numPages === 0) { throw new PdfError(Configuration.TRANSLATION_PDF_DOESNT_CONTAIN_PAGES); }
             const canvass = [...Array(pdf.numPages + 1).keys()].slice(1).map(async (i) => {
                 const page = await pdf.getPage(i);
                 const viewport = page.getViewport(1.5);
@@ -45,7 +46,7 @@ export class PdfService {
             return await Promise.all(canvass);
         } catch (e) {
             if (e instanceof PdfError) { throw e; }
-            throw new PdfError(t('ocr', 'An unexpected error occured during pdf processing.'), e);
+            throw new PdfError(Configuration.TRANSLATION_UNEXPECTED_ERROR_PDF_PROCESSING, e);
         }
     }
 
@@ -61,7 +62,7 @@ export class PdfService {
             }, undefined);
             return (this.pdfLib.PDFDocumentWriter as any).saveToBytes(pdf);
         } catch (e) {
-            throw new PdfError(t('ocr', 'An unexpected error occured during pdf processing.'), e);
+            throw new PdfError(Configuration.TRANSLATION_UNEXPECTED_ERROR_PDF_PROCESSING, e);
         }
     }
 }
