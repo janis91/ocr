@@ -1,0 +1,9 @@
+{ "translations": {
+    "OCR" : "OCR",
+    "OCR processing failed:" : "Procesamiento de OCR falló:",
+    "No file selected." : "No se ha seleccionado algun archivo.",
+    "MIME type not supported." : "El tipo MIME no está soportado.",
+    "Process" : "Proceso",
+    "Optical character recognition" : "Reconocimiento óptico de caracteres"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

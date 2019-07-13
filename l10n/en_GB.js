@@ -1,0 +1,12 @@
+OC.L10N.register(
+    "ocr",
+    {
+    "OCR" : "OCR",
+    "OCR processing failed:" : "OCR processing failed:",
+    "No file selected." : "No file selected.",
+    "MIME type not supported." : "MIME type not supported.",
+    "Process" : "Process",
+    "Optical character recognition" : "Optical character recognition",
+    "Text recognition for your images and pdf files" : "Text recognition for your images and pdf files"
+},
+"nplurals=2; plural=(n != 1);");
