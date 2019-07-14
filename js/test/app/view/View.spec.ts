@@ -300,8 +300,8 @@ describe("The View's", () => {
             windowAny.t.withArgs('ocr', 'Process').and.returnValue('Process');
             windowAny.t.withArgs('ocr', 'PDF files and a large number of files may take a very long time.')
                 .and.returnValue('PDF files and a large number of files may take a very long time.');
-            windowAny.n.withArgs('ocr', 'Replace (PDF) or delete (image) orignal file', 'Replace (PDF) or delete (images) orignal files', 2)
-                .and.returnValue('Replace (PDF) or delete (images) orignal files');
+            windowAny.n.withArgs('ocr', 'Replace (PDF) or delete (image) original file', 'Replace (PDF) or delete (images) original files', 2)
+                .and.returnValue('Replace (PDF) or delete (images) original files');
             windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
             windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 2)
                 .and.returnValue('2 files are being processed:');
@@ -316,7 +316,7 @@ describe("The View's", () => {
                 filesQueued: '2 files are being processed:',
                 hint: 'PDF files and a large number of files may take a very long time.',
                 languages: Configuration.AVAILABLE_LANGUAGES,
-                replaceText: 'Replace (PDF) or delete (images) orignal files',
+                replaceText: 'Replace (PDF) or delete (images) original files',
                 title: 'OCR: 2 files',
             });
         });
@@ -328,8 +328,8 @@ describe("The View's", () => {
             windowAny.t.withArgs('ocr', 'Process').and.returnValue('Process');
             windowAny.t.withArgs('ocr', 'PDF files and a large number of files may take a very long time.')
                 .and.returnValue('PDF files and a large number of files may take a very long time.');
-                windowAny.n.withArgs('ocr', 'Replace (PDF) or delete (image) orignal file', 'Replace (PDF) or delete (images) orignal files', 1)
-                .and.returnValue('Replace (PDF) or delete (image) orignal file');
+                windowAny.n.withArgs('ocr', 'Replace (PDF) or delete (image) original file', 'Replace (PDF) or delete (images) original files', 1)
+                .and.returnValue('Replace (PDF) or delete (image) original file');
             windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
             windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 1)
                 .and.returnValue('1 file is being processed:');
@@ -343,7 +343,7 @@ describe("The View's", () => {
                 filesQueued: '1 file is being processed:',
                 hint: 'PDF files and a large number of files may take a very long time.',
                 languages: Configuration.AVAILABLE_LANGUAGES,
-                replaceText: 'Replace (PDF) or delete (image) orignal file',
+                replaceText: 'Replace (PDF) or delete (image) original file',
                 title: 'OCR: file3.png',
             });
         });

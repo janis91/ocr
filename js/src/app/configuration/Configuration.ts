@@ -102,7 +102,7 @@ export class Configuration {
     public static TRANSLATION_FILES_QUEUED: (filesQueued: number) => string =
         (number) => n('ocr', '%n file is being processed:', '%n files are being processed:', number)
     public static TRANSLATION_REPLACE_OR_DELETE_ORIGINAL_FILE: (filesQueued: number) => string =
-        (number) => n('ocr', 'Replace (PDF) or delete (image) orignal file', 'Replace (PDF) or delete (images) orignal files', number)
+        (number) => n('ocr', 'Replace (PDF) or delete (image) original file', 'Replace (PDF) or delete (images) original files', number)
     public static TRANSLATION_FILE_FILES: (filesQueued: number) => string =
         (number) => n('ocr', '%n file', '%n files', number)
 }
