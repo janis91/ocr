@@ -82,7 +82,6 @@
     "PDF files and a large number of files may take a very long time." : "PDF文件及大量文件可能需要很长时间。",
     "{file}/{files} Files successfully processed" : "{单个文件}或者{多个文件}已成功处理",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n个文件将被处理："],
-    "_Replace (PDF) or delete (image) orignal file_::_Replace (PDF) or delete (images) orignal files_" : ["替换（PDF）或删除（图像）源文件"],
     "_%n file_::_%n files_" : ["%n 个文件"],
     "Optical character recognition" : "光学字符识别",
     "Text recognition for your images and pdf files" : "识别图像及pdf文件中的文字",
