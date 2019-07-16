@@ -84,6 +84,7 @@ OC.L10N.register(
     "PDF files and a large number of files may take a very long time." : "I file PDF e un gran numero di file potrebbero richiedere molto tempo.",
     "{file}/{files} Files successfully processed" : "{file}/{files} file elaborati correttamente",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n file è stato elaborato:","%n file sono stati elaborati:"],
+    "_Replace (PDF) or delete (image) original file_::_Replace (PDF) or delete (images) original files_" : ["Sostituisci (PDF) o elimina file originale (immagine)","Sostituisci (PDF) o elimina file originali (immagini)"],
     "_%n file_::_%n files_" : ["%n file","%n file"],
     "Optical character recognition" : "Riconoscimento ottico dei caratteri",
     "Text recognition for your images and pdf files" : "Riconoscimento del testo per immagini e file pdf",

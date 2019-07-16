@@ -82,6 +82,7 @@
     "PDF files and a large number of files may take a very long time." : "PDF-Dateien und eine große Anzahl an Dateien können sehr viel Zeit in Anspruch nehmen.",
     "{file}/{files} Files successfully processed" : "{file}/{files} Dateien erfolgreich verarbeitet",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n Datei wird verarbeitet:","%n Dateien werden verarbeitet:"],
+    "_Replace (PDF) or delete (image) original file_::_Replace (PDF) or delete (images) original files_" : ["Ersetze (PDF) oder lösche (Bild) die Ursprungsdatei","Ersetze (PDF) oder lösche (Bilder) die Ursprungsdateien"],
     "_%n file_::_%n files_" : ["%n Datei","%n Dateien"],
     "Optical character recognition" : "Texterkennung",
     "Text recognition for your images and pdf files" : "Texterkennung für Deine Bilder und PDF-Dateien",

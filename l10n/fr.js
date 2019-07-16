@@ -1,6 +1,7 @@
 OC.L10N.register(
     "ocr",
     {
+    "Vietnamese" : "Vietnamien",
     "OCR" : "OCR",
     "Target file already exists:" : "Le fichier cible existe déjà :",
     "An unexpected error occured during the upload of the processed file." : "Une erreur inattendue est survenue durant le téléversement du fichier traité.",
