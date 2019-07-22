@@ -35,7 +35,7 @@ export class PdfService {
             if (pdf.numPages === 0) { throw new PdfError(Configuration.TRANSLATION_PDF_DOESNT_CONTAIN_PAGES); }
             const canvass = [...Array(pdf.numPages + 1).keys()].slice(1).map(async (i) => {
                 const page = await pdf.getPage(i);
-                const viewport = page.getViewport(1.5);
+                const viewport = page.getViewport(3);
                 const canvas = this.document.createElement('canvas');
                 const canvasContext = canvas.getContext('2d');
                 canvas.height = viewport.height;

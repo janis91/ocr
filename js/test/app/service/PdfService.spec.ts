@@ -42,7 +42,7 @@ describe("The PdfService's", () => {
             await expectAsync(result).toBeResolvedTo([canvas]);
             expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
             expect(pdfDocumentProxy.getPage).toHaveBeenCalledWith(1);
-            expect(page.getViewport).toHaveBeenCalledWith(1.5);
+            expect(page.getViewport).toHaveBeenCalledWith(3);
             expect(documentMock.createElement).toHaveBeenCalledWith('canvas');
             expect(canvas.getContext).toHaveBeenCalledWith('2d');
             expect(canvas.height).toEqual(1);
@@ -78,8 +78,8 @@ describe("The PdfService's", () => {
             expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
             expect(pdfDocumentProxy.getPage.calls.argsFor(0)).toEqual([1]);
             expect(pdfDocumentProxy.getPage.calls.argsFor(1)).toEqual([2]);
-            expect(page1.getViewport).toHaveBeenCalledWith(1.5);
-            expect(page2.getViewport).toHaveBeenCalledWith(1.5);
+            expect(page1.getViewport).toHaveBeenCalledWith(3);
+            expect(page2.getViewport).toHaveBeenCalledWith(3);
             expect(documentMock.createElement.calls.argsFor(0)).toEqual(['canvas']);
             expect(documentMock.createElement.calls.argsFor(1)).toEqual(['canvas']);
             expect(canvas1.getContext).toHaveBeenCalledWith('2d');
