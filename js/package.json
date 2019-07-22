@@ -26,14 +26,14 @@
     "homepage": "https://github.com/janis91/ocr#readme",
     "private": true,
     "devDependencies": {
-        "@types/jasmine": "^3.3.13",
+        "@types/jasmine": "^3.3.15",
         "@types/jquery": "^3.3.30",
         "@types/pdfjs-dist": "^0.1.2",
         "codacy-coverage": "^3.4.0",
         "handlebars": "^4.1.2",
         "handlebars-loader": "^1.7.1",
         "jasmine-core": "^3.4.0",
-        "karma": "^4.1.0",
+        "karma": "^4.2.0",
         "karma-chrome-launcher": "^2.2.0",
         "karma-coverage": "^1.1.2",
         "karma-jasmine": "^2.0.1",
@@ -43,14 +43,14 @@
         "tslint": "^5.18.0",
         "tslint-loader": "^3.5.4",
         "typescript": "^3.5.3",
-        "webpack": "^4.35.3",
-        "webpack-cli": "^3.3.5"
+        "webpack": "^4.36.1",
+        "webpack-cli": "^3.3.6"
     },
     "dependencies": {
         "choices.js": "^7.0.0",
-        "pdf-lib": "^0.6.3",
+        "pdf-lib": "^0.6.4",
         "pdfjs-dist": "^1.10.100",
-        "tesseract.js": "^2.0.0-alpha.11",
+        "tesseract.js": "^2.0.0-alpha.12",
         "tesseract.js-core": "^2.0.0-beta.10",
         "ts-loader": "^6.0.4"
     }
