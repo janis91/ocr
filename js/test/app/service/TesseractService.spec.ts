@@ -86,6 +86,7 @@ describe("The TesseractService's", () => {
                 },
             };
             worker.recognize.and.returnValue(Promise.resolve(resultPdf));
+            worker.terminate.and.returnValue(undefined);
             spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
 
             const result = cut.process('url', ['deu']);
@@ -93,10 +94,11 @@ describe("The TesseractService's", () => {
             await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
             expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
             expect(worker.recognize).toHaveBeenCalledWith('url', 'deu', {
-                'pdf_auto_download': false,
-                'pdf_bin': true,
-                'tessedit_create_pdf': '1',
+                'tessjs_create_pdf': '1',
+                'tessjs_pdf_auto_download': false,
+                'tessjs_pdf_bin': true,
             });
+            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should resolve the worker result (pdf) for a given canvas and single language.', async () => {
@@ -108,6 +110,7 @@ describe("The TesseractService's", () => {
             };
             const canvas = document.createElement('canvas');
             worker.recognize.and.returnValue(Promise.resolve(resultPdf));
+            worker.terminate.and.returnValue(undefined);
             spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
 
             const result = cut.process(canvas, ['deu']);
@@ -115,10 +118,11 @@ describe("The TesseractService's", () => {
             await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
             expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
             expect(worker.recognize).toHaveBeenCalledWith(canvas, 'deu', {
-                'pdf_auto_download': false,
-                'pdf_bin': true,
-                'tessedit_create_pdf': '1',
+                'tessjs_create_pdf': '1',
+                'tessjs_pdf_auto_download': false,
+                'tessjs_pdf_bin': true,
             });
+            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should resolve the worker result (pdf) for a given url and multiple languages.', async () => {
@@ -129,6 +133,7 @@ describe("The TesseractService's", () => {
                 },
             };
             worker.recognize.and.returnValue(Promise.resolve(resultPdf));
+            worker.terminate.and.returnValue(undefined);
             spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
 
             const result = cut.process('url', ['deu', 'eng']);
@@ -136,10 +141,11 @@ describe("The TesseractService's", () => {
             await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
             expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
             expect(worker.recognize).toHaveBeenCalledWith('url', 'deu+eng', {
-                'pdf_auto_download': false,
-                'pdf_bin': true,
-                'tessedit_create_pdf': '1',
+                'tessjs_create_pdf': '1',
+                'tessjs_pdf_auto_download': false,
+                'tessjs_pdf_bin': true,
             });
+            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should resolve the worker result (pdf) for a given canvas and multiple languages.', async () => {
@@ -151,6 +157,7 @@ describe("The TesseractService's", () => {
             };
             const canvas = document.createElement('canvas');
             worker.recognize.and.returnValue(Promise.resolve(resultPdf));
+            worker.terminate.and.returnValue(undefined);
             spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
 
             const result = cut.process(canvas, ['deu', 'eng']);
@@ -158,10 +165,11 @@ describe("The TesseractService's", () => {
             await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
             expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
             expect(worker.recognize).toHaveBeenCalledWith(canvas, 'deu+eng', {
-                'pdf_auto_download': false,
-                'pdf_bin': true,
-                'tessedit_create_pdf': '1',
+                'tessjs_create_pdf': '1',
+                'tessjs_pdf_auto_download': false,
+                'tessjs_pdf_bin': true,
             });
+            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should reject for a given file and single language, when workerPromise rejects.', async () => {
@@ -177,10 +185,11 @@ describe("The TesseractService's", () => {
             await expectAsync(result).toBeRejectedWith(new TesseractError('An unexpected error occured during Tesseract processing.', 'url', error));
             expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
             expect(worker.recognize).toHaveBeenCalledWith('url', 'deu', {
-                'pdf_auto_download': false,
-                'pdf_bin': true,
-                'tessedit_create_pdf': '1',
+                'tessjs_create_pdf': '1',
+                'tessjs_pdf_auto_download': false,
+                'tessjs_pdf_bin': true,
             });
+            expect(worker.terminate).toHaveBeenCalledTimes(0);
         });
     });
 
@@ -213,6 +222,7 @@ describe("The TesseractService's", () => {
     class WorkerMock {
         public iAm: number;
         public recognize = jasmine.createSpy('recognize');
+        public terminate = jasmine.createSpy('terminate');
 
         constructor(public options?: any) {
             count++;

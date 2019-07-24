@@ -29,6 +29,7 @@ interface TesseractRecognizeOptions {
 interface TesseractWorker {
     options: TesseractWorkerOptions;
     recognize: (imageUrlOrCanvas: string | HTMLCanvasElement, languagesJoinedByPlus: string, options: TesseractRecognizeOptions) => TesseractWorkerPromise;
+    terminate: () => void;
     new(options: TesseractWorkerOptions): TesseractWorker;
 }
 
@@ -65,15 +66,16 @@ export class TesseractService {
 
     public process: (urlOrCanvas: string | HTMLCanvasElement, languages: Array<string>) => Promise<ArrayBuffer> = async (urlOrCanvas, languages) => {
         try {
-            return await new Promise((resolve, reject) => {
-                this.getNextTesseractWorker()
+            const worker = this.getNextTesseractWorker();
+            const buff: ArrayBuffer = await new Promise((resolve, reject) => {
+                worker
                     .recognize(
                         urlOrCanvas,
                         languages.join('+'),
                         {
-                            'pdf_auto_download': false, // disable auto download
-                            'pdf_bin': true,            // return pdf in binary format
-                            'tessedit_create_pdf': '1', // create pdf as result
+                            'tessjs_create_pdf': '1',
+                            'tessjs_pdf_auto_download': false, // disable auto download
+                            'tessjs_pdf_bin': true, // create pdf as result
                         },
                     )
                     .then((result: any) => {
@@ -81,6 +83,8 @@ export class TesseractService {
                     })
                     .catch((err: any) => reject(err));
             });
+            worker.terminate();
+            return buff;
         } catch (e) {
             throw new TesseractError(Configuration.TRANSLATION_UNEXPECTED_ERROR_TESSERACT_PROCESSING, urlOrCanvas, e);
         }
