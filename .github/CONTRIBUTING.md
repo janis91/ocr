@@ -20,14 +20,7 @@ Help me minimize the effort I spend fixing issues and adding new features, by no
 
 ### When reporting bugs
 
-* Enable debug mode by putting this at the bottom of **config/config.php**
-
-```
-DEFINE('DEBUG', true);
-```
-
-* Turn on debug level debug by adding **`loglevel" => 0,`** to your **config/config.php** and reproduce the problem
-* Check **data/owncloud.log**  or **data/nextcloud.log**
+* Check your browser console
 
 ## Contributing to Source Code
 

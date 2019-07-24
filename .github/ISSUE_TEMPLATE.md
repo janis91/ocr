@@ -39,4 +39,4 @@ Please choose between the "Bug report" and the "Feature request" and remove the 
 * Database version
 * Are you using encryption: yes/no
 
-## Log File Content (nextcloud/owncloud.log of the "data"-directory AND console output of the browser)
+## Logs (console output of the browser)
