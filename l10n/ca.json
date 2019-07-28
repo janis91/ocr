@@ -73,7 +73,7 @@
     "PDF does not contain any Pages to process." : "PDF no conté cap Plana per processar.",
     "An unexpected error occured during pdf processing." : "Hi ha hagut un error inesperat durant el processament del PDF.",
     "OCR processing failed:" : "S'ha produït un error mentre es processava l'OCR:",
-    "No file selected." : "No s'ha seleccionat cap fitxer",
+    "No file selected." : "No s'ha seleccionat cap fitxer.",
     "MIME type not supported." : "El tipus MIME no està suportat.",
     "Press to select" : "Premeu per seleccionar",
     "No matches found" : "No s'han trobat coincidències",
