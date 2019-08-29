@@ -1,5 +1,6 @@
 import { App } from '../../src/app/App';
 import { windowAny } from '../fixtures/fixtures';
+import 'jasmine-ajax';
 
 describe("The App's", () => {
 
@@ -12,6 +13,7 @@ describe("The App's", () => {
         script.defer = true;
         document.head.appendChild(script);
         jasmine.clock().install();
+        jasmine.Ajax.install();
     });
 
     afterEach(() => {
@@ -24,6 +26,7 @@ describe("The App's", () => {
         windowAny.PDFLib = undefined;
         document.head.removeChild(script);
         jasmine.clock().uninstall();
+        jasmine.Ajax.uninstall();
     });
 
     describe('constructor', () => {
@@ -53,6 +56,13 @@ describe("The App's", () => {
             };
             windowAny.t = jasmine.createSpy('t').and.callFake((_x, y) => y);
             windowAny.n = jasmine.createSpy('n');
+            jasmine.Ajax.stubRequest('/apps/ocr/api/personal/languages').andReturn({
+                status: 200,
+                response: '["deu"]',
+                responseHeaders: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                },
+            });
 
             cut = new (await import('../../src/app/App')).App();
 
@@ -62,6 +72,7 @@ describe("The App's", () => {
             expect(cut.view).toBeDefined();
             expect(cut.ocaService).toBeDefined();
             expect(cut.tesseractService).toBeDefined();
+            expect(cut.httpService).toBeDefined();
             expect(cut.util).toBeDefined();
         });
 
@@ -91,6 +102,13 @@ describe("The App's", () => {
             };
             windowAny.t = jasmine.createSpy('t').and.callFake((_x, y) => y);
             windowAny.n = jasmine.createSpy('n');
+            jasmine.Ajax.stubRequest('/apps/ocr/api/personal/languages').andReturn({
+                status: 200,
+                response: '["deu"]',
+                responseHeaders: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                },
+            });
 
             cut = new (await import('../../src/app/App')).App();
 
@@ -101,6 +119,7 @@ describe("The App's", () => {
             expect(cut.ocaService).toBeDefined();
             expect(cut.tesseractService).toBeDefined();
             expect(cut.util).toBeDefined();
+            expect(cut.httpService).toBeDefined();
             expect(windowAny.OC.Notification.showHtml).toHaveBeenCalledWith('<div>OCR: Test</div>', { timeout: 10, type: 'error' });
         });
         // FIXME: should work actually. But don't know why this is not working so often... I don't have a clue
@@ -140,6 +159,7 @@ describe("The App's", () => {
             expect(cut.view).not.toBeDefined();
             expect(cut.ocaService).not.toBeDefined();
             expect(cut.tesseractService).not.toBeDefined();
+            expect(cut.httpService).not.toBeDefined();
             expect(cut.util).not.toBeDefined();
 
             windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
@@ -152,6 +172,7 @@ describe("The App's", () => {
             expect(cut.ocaService).toBeDefined();
             expect(cut.tesseractService).toBeDefined();
             expect(cut.util).toBeDefined();
+            expect(cut.httpService).toBeDefined();
         });
         // FIXME: should work actually. But don't know why this is not working so often... I don't have a clue
         xit('should not construct the app at all, when resources are not available after 5 seconds.', async () => {
@@ -166,6 +187,7 @@ describe("The App's", () => {
             expect(cut.ocaService).not.toBeDefined();
             expect(cut.tesseractService).not.toBeDefined();
             expect(cut.util).not.toBeDefined();
+            expect(cut.httpService).not.toBeDefined();
 
             windowAny.OC = { Notification: {}, PERMISSION_UPDATE: 26 };
             windowAny.OCA = {
@@ -193,6 +215,7 @@ describe("The App's", () => {
             expect(cut.ocaService).not.toBeDefined();
             expect(cut.tesseractService).not.toBeDefined();
             expect(cut.util).not.toBeDefined();
+            expect(cut.httpService).not.toBeDefined();
 
             windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
 
@@ -204,6 +227,7 @@ describe("The App's", () => {
             expect(cut.ocaService).not.toBeDefined();
             expect(cut.tesseractService).not.toBeDefined();
             expect(cut.util).not.toBeDefined();
+            expect(cut.httpService).toBeDefined();
         });
     });
 });

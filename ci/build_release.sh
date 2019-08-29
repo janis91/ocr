@@ -9,6 +9,7 @@ cp -R css release/css
 cp -R img release/img
 cp -R l10n release/l10n
 cp -R lib release/lib
+cp -R templates release/templates
 cp AUTHORS.md release/AUTHORS.md
 cp COPYING release/COPYING
 cp README.md release/README.md
@@ -22,7 +23,8 @@ mkdir release/vendor/pdf.js
 mkdir release/vendor/pdf-lib
 
 # Copy js artifacts
-cp js/ocr.js release/js/ocr.js
+cp js/app.js release/js/app.js
+cp js/settings.js release/js/settings.js
 cp -R js/node_modules/tesseract.js/dist/. release/vendor/tesseract.js/
 cp js/node_modules/tesseract.js-core/tesseract-core.wasm.js release/vendor/tesseract.js/tesseract-core.wasm.js
 cp js/node_modules/tesseract.js-core/tesseract-core.js release/vendor/tesseract.js/tesseract-core.js

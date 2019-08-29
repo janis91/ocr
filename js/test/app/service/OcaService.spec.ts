@@ -15,9 +15,11 @@ describe("The OcaService's", () => {
         windowAny.t = jasmine.createSpy('t');
         windowAny.n = jasmine.createSpy('n');
         ocMock = {
+            appswebroots: { ocr: '/apps/ocr' },
+            generateUrl: jasmine.createSpy('generateUrl'),
             Notification: jasmine.createSpyObj('Notification', ['showHtml']),
             PERMISSION_UPDATE: 26,
-            generateUrl: jasmine.createSpy('generateUrl'),
+            requestToken: 'token',
         };
         ocaMock = createOCAMock();
         cut = new (await import('../../../src/app/service/OcaService')).OcaService(ocMock, ocaMock);

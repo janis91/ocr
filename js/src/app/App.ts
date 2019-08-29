@@ -4,10 +4,12 @@ import { Controller } from './controller/Controller';
 import { View } from './view/View';
 import * as handlebarsDropdownTemplate from './view/templates/ocr.hbs';
 import { TesseractService } from './service/TesseractService';
-import { OC, OCA, OCSingleTranslation, OCMultiTranslation } from 'global-oc-types';
+import { OC, OCA, OCSingleTranslation, OCMultiTranslation } from '../global-oc-types';
 import { PDFJSStatic } from 'pdfjs-dist';
 import { PdfService } from './service/PdfService';
 import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
+import { HttpService } from './service/HttpService';
+import axios from 'axios';
 
 
 declare var OC: OC;
@@ -32,6 +34,7 @@ export class App {
     public ocaService: OcaService;
     public tesseractService: TesseractService;
     public pdfService: PdfService;
+    public httpService: HttpService;
     public controller: Controller;
     public initCounter: number = 0;
 
@@ -45,7 +48,8 @@ export class App {
                 this.ocaService = new OcaService(OC, OCA);
                 this.tesseractService = new TesseractService(document);
                 this.pdfService = new PdfService(PDFJS, PDFLib, document);
-                this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, this.pdfService, document);
+                this.httpService = new HttpService(OC, axios);
+                this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, this.pdfService, this.httpService, document);
                 try {
                     this.controller.init();
                 } catch (e) {

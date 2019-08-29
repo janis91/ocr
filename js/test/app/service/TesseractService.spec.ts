@@ -1,7 +1,6 @@
 import { TesseractService } from '../../../src/app/service/TesseractService';
 import { windowAny } from '../../fixtures/fixtures';
 import { TesseractError } from '../../../src/app/service/error/TesseractError';
-import { OC } from '../../../src/global-oc-types';
 
 describe("The TesseractService's", () => {
 

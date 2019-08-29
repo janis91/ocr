@@ -55,8 +55,10 @@ nbproject
 
 # JS node_modules and dist
 npm-debug.log
-/js/ocr.js
-/js/ocr.js.map
+/js/app.js
+/js/app.js.map
+/js/settings.js
+/js/settings.js.map
 /js/coverage
 /vendor
 

@@ -1,7 +1,7 @@
 import { View, OcrHandleBarsTemplate } from '../../../src/app/view/View';
 import { windowAny, FilesFixtures } from '../../fixtures/fixtures';
 import { OCNotification } from '../../../src/global-oc-types';
-import { Configuration } from '../../../src/app/configuration/Configuration';
+import { Common } from '../../../src/common/Common';
 
 
 describe("The View's", () => {
@@ -259,8 +259,9 @@ describe("The View's", () => {
             windowAny.t.withArgs('ocr', 'Press to select').and.returnValue('Press to select');
             windowAny.t.withArgs('ocr', 'No matches found').and.returnValue('No matches found');
             windowAny.t.withArgs('ocr', 'Select language').and.returnValue('Select language');
-            const choices = {};
+            const choices = { setChoiceByValue: jasmine.createSpy('setChoiceByValue') };
             windowAny.Choices.and.returnValue(choices);
+            cut.favoriteLanguages = ['deu'];
 
             cut.renderSelect();
 
@@ -274,6 +275,7 @@ describe("The View's", () => {
                 removeItemButton: true,
                 removeItems: true,
             });
+            expect(choices.setChoiceByValue).toHaveBeenCalledWith(cut.favoriteLanguages);
         });
     });
 
@@ -315,7 +317,7 @@ describe("The View's", () => {
                 buttonText: 'Process',
                 filesQueued: '2 files are being processed:',
                 hint: 'PDF files and a large number of files may take a very long time.',
-                languages: Configuration.AVAILABLE_LANGUAGES,
+                languages: Common.AVAILABLE_LANGUAGES,
                 replaceText: 'Replace (PDF) or delete (images) original files',
                 title: 'OCR: 2 files',
             });
@@ -328,7 +330,7 @@ describe("The View's", () => {
             windowAny.t.withArgs('ocr', 'Process').and.returnValue('Process');
             windowAny.t.withArgs('ocr', 'PDF files and a large number of files may take a very long time.')
                 .and.returnValue('PDF files and a large number of files may take a very long time.');
-                windowAny.n.withArgs('ocr', 'Replace (PDF) or delete (image) original file', 'Replace (PDF) or delete (images) original files', 1)
+            windowAny.n.withArgs('ocr', 'Replace (PDF) or delete (image) original file', 'Replace (PDF) or delete (images) original files', 1)
                 .and.returnValue('Replace (PDF) or delete (image) original file');
             windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
             windowAny.n.withArgs('ocr', '%n file is being processed:', '%n files are being processed:', 1)
@@ -342,10 +344,20 @@ describe("The View's", () => {
                 buttonText: 'Process',
                 filesQueued: '1 file is being processed:',
                 hint: 'PDF files and a large number of files may take a very long time.',
-                languages: Configuration.AVAILABLE_LANGUAGES,
+                languages: Common.AVAILABLE_LANGUAGES,
                 replaceText: 'Replace (PDF) or delete (image) original file',
                 title: 'OCR: file3.png',
             });
+        });
+    });
+
+    describe('setFavoriteLanguages function', () => {
+        it('should set the favorite languages.', () => {
+            const languages = ['deu'];
+
+            cut.setFavoriteLanguages(languages);
+
+            expect(cut.favoriteLanguages).toEqual(['deu']);
         });
     });
 });
