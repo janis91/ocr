@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
-<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+<?xml version="1.0" ?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>ocr</id>
 	<name>Optical character recognition</name>
 	<summary>Text recognition for your images and pdf files</summary>
-	<description><![CDATA[# Description
+	<description>
+		<![CDATA[# Description
 
 Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-js brings OCR capability to your Nextcloud.
 The app uses tesseract-js in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it.
@@ -12,7 +12,7 @@ The app uses tesseract-js in the browser in order to process images (png, jpeg, 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
 
- - [Nextcloud 15 or 16](https://nextcloud.com/)
+ - [Nextcloud 15 and up](https://nextcloud.com/)
 
  - Only supported on latest modern web browsers (Chrome, Edge, Firefox, Opera, Safari*)
 
@@ -27,8 +27,9 @@ The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.
 
 ## Consideration
-The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.]]></description>
-	<version>4.2.0</version>
+The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.]]>
+	</description>
+	<version>4.3.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>
@@ -59,4 +60,8 @@ The version 3 and earlier versions are not supported/maintained anymore by the a
 			<step>OCA\Ocr\Migration\DropOldTable</step>
 		</pre-migration>
 	</repair-steps>
+	<settings>
+		<personal>OCA\Ocr\Settings\LanguageSettings</personal>
+		<personal-section>OCA\Ocr\Settings\OcrSection</personal-section>
+	</settings>
 </info>

@@ -1,12 +1,11 @@
-import { OCSingleTranslation, OCAFileActionHandler, OCAFile } from '../../global-oc-types';
+import { OCAFileActionHandler, OCAFile } from '../../global-oc-types';
 import { Util } from '../util/Util';
 import { OcaService } from '../service/OcaService';
 import { View } from '../view/View';
 import { TesseractService } from '../service/TesseractService';
 import { PdfService } from '../service/PdfService';
 import { Configuration } from '../configuration/Configuration';
-
-declare var t: OCSingleTranslation;
+import { HttpService } from '../service/HttpService';
 
 /**
  * Nextcloud - OCR
@@ -22,12 +21,13 @@ export class Controller {
     public selectedFiles: Array<OCAFile>;
 
     constructor(private util: Util, private view: View, private tesseractService: TesseractService,
-        private ocaService: OcaService, private pdfService: PdfService, private document: Document) { }
+        private ocaService: OcaService, private pdfService: PdfService, private httpService: HttpService, private document: Document) { }
 
     /**
      * Initializes the Controller / OCR functions in the frontend of Nextcloud.
      */
     public init: () => void = () => {
+        this.setDefaultLanguages();
         this.registerEvents();
     }
 
@@ -169,5 +169,19 @@ export class Controller {
      */
     public clickOnMultiSelectMenuItemHandler: () => void = () => {
         this.view.renderFileAction(this.selectedFiles);
+    }
+
+    /**
+     * Tries to set the default languages, of the user
+     */
+    public setDefaultLanguages: () => Promise<void> = async () => {
+        let languages: string[] = [];
+        try {
+            languages = await this.httpService.fetchFavoriteLanguages();
+        } catch (e) {
+            console.error(e);
+            this.view.displayError(Configuration.TRANSLATION_UNEXPECTED_ERROR_LOAD_FAVORITE_LANGUAGES);
+        }
+        this.view.setFavoriteLanguages(languages);
     }
 }

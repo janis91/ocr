@@ -2,11 +2,12 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        app: path.resolve(__dirname, 'src/app/App.ts')
+        app: path.resolve(__dirname, 'src/app/App.ts'),
+        settings: path.resolve(__dirname, 'src/settings/App.ts'),
     },
     output: {
         path: path.resolve(__dirname),
-        filename: 'ocr.js',
+        filename: '[name].js',
         library: ['OCA', 'Ocr'],
         libraryTarget: 'umd',
     },
@@ -34,8 +35,7 @@ module.exports = {
         ]
     },
     resolve: {
-        modules: [path.resolve('./src')],
-        extensions: ['.ts']
+        extensions: ['.ts', '.js']
     },
     externals: [
         {

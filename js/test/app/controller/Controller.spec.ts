@@ -5,6 +5,7 @@ import { TesseractService } from '../../../src/app/service/TesseractService';
 import { OcaService } from '../../../src/app/service/OcaService';
 import { FilesFixtures, windowAny, OCAFileActionsContextFixture } from '../../fixtures/fixtures';
 import { PdfService } from '../../../src/app/service/PdfService';
+import { HttpService } from '../../../src/app/service/HttpService';
 
 describe("The Controller's", () => {
 
@@ -14,6 +15,7 @@ describe("The Controller's", () => {
     let tesseractServiceMock: jasmine.SpyObj<TesseractService>;
     let ocaServiceMock: jasmine.SpyObj<OcaService>;
     let pdfServiceMock: jasmine.SpyObj<PdfService>;
+    let httpServiceMock: jasmine.SpyObj<HttpService>;
     let documentMock: jasmine.SpyObj<Document>;
 
 
@@ -22,22 +24,25 @@ describe("The Controller's", () => {
         windowAny.n = jasmine.createSpy('n');
         utilMock = jasmine.createSpyObj('util', ['filterFilesWithMimeTypes']);
         viewMock = jasmine.createSpyObj('view', ['destroy', 'checkClickToExit', 'displayError', 'destroyOcrDialog',
-            'activateBusyState', 'getSelectValues', 'getReplaceValue', 'renderFileAction', 'addFinishedFileToState']);
+            'activateBusyState', 'getSelectValues', 'getReplaceValue', 'renderFileAction', 'addFinishedFileToState', 'setFavoriteLanguages']);
         tesseractServiceMock = jasmine.createSpyObj('tesseractService', ['process', 'resetRoundRobinIndex']);
         ocaServiceMock = jasmine.createSpyObj('ocaService', ['destroy', 'registerFileActions', 'registerCheckBoxEvents',
             'getSelectedFiles', 'registerMultiSelectMenuItem', 'putFileContents', 'deleteFile', 'unregisterMultiSelectMenuItem', 'getCurrentDirectory', 'getDownloadUrl']);
         pdfServiceMock = jasmine.createSpyObj('pdfService', ['getDocumentPagesAsImages', 'createPdfFromBuffers']);
+        httpServiceMock = jasmine.createSpyObj('httpService', ['fetchFavoriteLanguages']);
         documentMock = jasmine.createSpyObj('document', ['addEventListener']);
-        cut = new (await import('../../../src/app/controller/Controller')).Controller(utilMock, viewMock, tesseractServiceMock, ocaServiceMock, pdfServiceMock, documentMock);
+        cut = new (await import('../../../src/app/controller/Controller')).Controller(utilMock, viewMock, tesseractServiceMock, ocaServiceMock, pdfServiceMock, httpServiceMock, documentMock);
     });
 
     describe('init function', () => {
         it('should initialize the app correctly.', () => {
             spyOn(cut, 'registerEvents').and.returnValue();
+            spyOn(cut, 'setDefaultLanguages').and.returnValue(Promise.resolve());
 
             cut.init();
 
             expect(cut.registerEvents).toHaveBeenCalledTimes(1);
+            expect(cut.setDefaultLanguages).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -559,6 +564,31 @@ describe("The Controller's", () => {
             cut.clickOnMultiSelectMenuItemHandler();
 
             expect(viewMock.renderFileAction).toHaveBeenCalledWith(cut.selectedFiles);
+        });
+    });
+
+    describe('setDefaultLanguages function', () => {
+        it('should fetch favorite languages and set it for the view.', async () => {
+            const langs = ['deu'];
+            httpServiceMock.fetchFavoriteLanguages.and.returnValue(Promise.resolve(langs));
+            viewMock.setFavoriteLanguages.withArgs(langs).and.returnValue();
+
+            await cut.setDefaultLanguages();
+
+            expect(viewMock.setFavoriteLanguages).toHaveBeenCalledWith(langs);
+        });
+
+        it('should show an error and set empty array as favorite languages when fetching fails.', async () => {
+            httpServiceMock.fetchFavoriteLanguages.and.returnValue(Promise.reject(new Error('test')));
+            viewMock.setFavoriteLanguages.withArgs([]).and.returnValue();
+            windowAny.t.withArgs('ocr', 'An unexpected error occured during the load of your favorite languages. No language will be set instead.')
+                .and.returnValue('An unexpected error occured during the load of your favorite languages. No language will be set instead.');
+            viewMock.displayError.withArgs('An unexpected error occured during the load of your favorite languages. No language will be set instead.').and.returnValue();
+
+            await cut.setDefaultLanguages();
+
+            expect(viewMock.setFavoriteLanguages).toHaveBeenCalledWith([]);
+            expect(viewMock.displayError).toHaveBeenCalledWith('An unexpected error occured during the load of your favorite languages. No language will be set instead.');
         });
     });
 });

@@ -5,6 +5,8 @@ export interface OC {
     PERMISSION_UPDATE: number;
     Notification: OCNotification;
     generateUrl: (path: string) => string;
+    requestToken: string;
+    appswebroots: { [appName: string]: string };
 }
 
 export interface OCNotification {

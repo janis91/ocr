@@ -1,8 +1,7 @@
-import { OCMultiTranslation, OCSingleTranslation, OCNotification, OCAFile } from '../../global-oc-types';
+import { OCNotification, OCAFile } from '../../global-oc-types';
 import { Configuration } from '../configuration/Configuration';
+import { Common } from '../../common/Common';
 
-declare var t: OCSingleTranslation;
-declare var n: OCMultiTranslation;
 declare var Choices: any;
 
 export type OcrHandleBarsTemplate = (options: OcrHandleBarsTemplateOptions) => string;
@@ -31,6 +30,7 @@ export class View {
     public choices: any = undefined;
     public finishedFiles: number = undefined;
     public fileCount: number = undefined;
+    public favoriteLanguages: string[] = [];
 
     constructor(private notification: OCNotification, private ocrTemplate: OcrHandleBarsTemplate, private document: Document) { }
 
@@ -87,7 +87,7 @@ export class View {
      * Renders the Ocr dialog.
      */
     public renderFileAction: (files: Array<OCAFile>) => void = (files) => {
-        const html: any = this.renderOcrDialog(files);
+        const html = this.renderOcrDialog(files);
         const container = this.document.createElement('div');
         container.innerHTML = html;
         this.document.querySelector('body').appendChild(container);
@@ -136,6 +136,7 @@ export class View {
             removeItemButton: true,
             removeItems: true,
         });
+        this.choices.setChoiceByValue(this.favoriteLanguages);
     }
 
     /**
@@ -147,8 +148,7 @@ export class View {
     }
 
     /**
-     * Renders the dropdown with the given languages.
-     * @param languages The languages to give as an option for the user.
+     * Renders the dropdown with the given files.
      * @returns The HTML template by Handlebars.
      */
     public renderOcrDialog: (files: Array<OCAFile>) => string = (files) => {
@@ -157,10 +157,17 @@ export class View {
             buttonText: Configuration.TRANSLATION_PROCESS,
             filesQueued: Configuration.TRANSLATION_FILES_QUEUED(files.length),
             hint: Configuration.TRANSLATION_LARGE_NUMBER_TAKES_VERY_LONG_TIME,
-            languages: Configuration.AVAILABLE_LANGUAGES,
+            languages: false || Common.AVAILABLE_LANGUAGES, // TODO: remote call for settings
             replaceText: Configuration.TRANSLATION_REPLACE_OR_DELETE_ORIGINAL_FILE(files.length),
             title: files.length === 1 ? `${Configuration.TRANSLATION_OCR}: ${files[0].name}` : `${Configuration.TRANSLATION_OCR}: ${Configuration.TRANSLATION_FILE_FILES(files.length)}`,
         });
+    }
+
+    /**
+     * Sets the favorite languages, that should be selected by default.
+     */
+    public setFavoriteLanguages: (favoriteLanguages: string[]) => void = (favoriteLanguages) => {
+        this.favoriteLanguages = favoriteLanguages;
     }
 
     /**

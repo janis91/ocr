@@ -13,6 +13,7 @@ namespace OCA\Ocr\AppInfo;
 
 use OC\Files\View;
 use OCP\AppFramework\App;
+use OCA\Ocr\Controller\PersonalSettingsController;
 use OCP\IContainer;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCA\Ocr\Constants\OcrConstants;
@@ -46,8 +47,8 @@ class Application extends App {
                     vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.min');
                     vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.worker.min');
                     vendor_script(OcrConstants::APP_NAME, 'pdf-lib/pdf-lib.min');
-                    script(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
-                    style(OcrConstants::APP_NAME, OcrConstants::APP_NAME);
+                    script(OcrConstants::APP_NAME, "app");
+                    style(OcrConstants::APP_NAME, "app");
 
                     $cspManager = \OC::$server->getContentSecurityPolicyManager();
                     $csp = new ContentSecurityPolicy();
@@ -92,5 +93,6 @@ class Application extends App {
         $container->registerService(View::class, function () {
             return new View('');
         }, false);
+
     }
 }

@@ -27,11 +27,13 @@
     "private": true,
     "devDependencies": {
         "@types/jasmine": "^3.3.15",
+        "@types/jasmine-ajax": "^3.1.40",
         "@types/jquery": "^3.3.30",
         "@types/pdfjs-dist": "^0.1.2",
         "codacy-coverage": "^3.4.0",
         "handlebars": "^4.1.2",
         "handlebars-loader": "^1.7.1",
+        "jasmine-ajax": "^4.0.0",
         "jasmine-core": "^3.4.0",
         "karma": "^4.2.0",
         "karma-chrome-launcher": "^2.2.0",
@@ -47,6 +49,7 @@
         "webpack-cli": "^3.3.6"
     },
     "dependencies": {
+        "axios": "^0.19.0",
         "choices.js": "^7.0.0",
         "pdf-lib": "^0.6.4",
         "pdfjs-dist": "^1.10.100",

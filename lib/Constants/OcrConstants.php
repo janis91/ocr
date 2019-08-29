@@ -4,19 +4,92 @@
  * Nextcloud - OCR
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
- * 
+ *
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2017
  */
+
 namespace OCA\Ocr\Constants;
 
 
 abstract class OcrConstants {
-    
-    /**
-     * The app name
-     * 
-     * @var string
-     */
-    const APP_NAME = 'ocr';
+
+	/**
+	 * The app name
+	 *
+	 * @var string
+	 */
+	const APP_NAME = 'ocr';
+
+	/**
+	 * The languages that can be set as default / preferred ones.
+	 */
+	const ALLOWED_LANGUAGES = [
+		'afr',
+		'ara',
+		'aze',
+		'bel',
+		'ben',
+		'bul',
+		'cat',
+		'ces',
+		'chi_sim',
+		'chi_tra',
+		'chr',
+		'dan',
+		'deu',
+		'ell',
+		'eng',
+		'enm',
+		'epo',
+		'epo_alt',
+		'equ',
+		'est',
+		'eus',
+		'fas',
+		'fin',
+		'fra',
+		'frk',
+		'frm',
+		'glg',
+		'grc',
+		'heb',
+		'hin',
+		'hrv',
+		'hun',
+		'ind',
+		'isl',
+		'ita',
+		'ita_old',
+		'jpn',
+		'kan',
+		'kor',
+		'lav',
+		'lit',
+		'mal',
+		'mkd',
+		'mlt',
+		'msa',
+		'nld',
+		'nor',
+		'pol',
+		'por',
+		'ron',
+		'rus',
+		'slk',
+		'slv',
+		'spa',
+		'spa_old',
+		'sqi',
+		'srp',
+		'swa',
+		'swe',
+		'tam',
+		'tel',
+		'tgl',
+		'tha',
+		'tur',
+		'ukr',
+		'vie',
+	];
 }
