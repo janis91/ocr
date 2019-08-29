@@ -19,7 +19,7 @@ class OcrSection implements IIconSection {
 	/**
 	 * @var IL10N
 	 */
-	private $l;
+	private $l10n;
 	/**
 	 * @var IURLGenerator
 	 */
@@ -28,9 +28,9 @@ class OcrSection implements IIconSection {
 	 * @param IURLGenerator $url
 	 * @param IL10N $l
 	 */
-	public function __construct(IURLGenerator $url, IL10N $l) {
+	public function __construct(IURLGenerator $url, IL10N $l10n) {
 		$this->url = $url;
-		$this->l = $l;
+		$this->l10n = $l10n;
 	}
 	/**
 	 * returns the ID of the section. It is supposed to be a lower case string,
@@ -48,7 +48,7 @@ class OcrSection implements IIconSection {
 	 * @return string
 	 */
 	public function getName() {
-		return $this->l->t('OCR');
+		return $this->l10n->t('OCR');
 	}
 	/**
 	 * @return int whether the form should be rather on the top or bottom of

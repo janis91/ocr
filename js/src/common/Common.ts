@@ -1,4 +1,4 @@
-import { OCSingleTranslation, OCMultiTranslation } from '../global-oc-types';
+import { OCSingleTranslation } from '../global-oc-types';
 
 declare var t: OCSingleTranslation;
 
