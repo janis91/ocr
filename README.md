@@ -7,7 +7,7 @@ The app uses tesseract-js in the browser in order to process images (png, jpeg, 
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
- - [Nextcloud 15 or 16](https://nextcloud.com/)
+ - [Nextcloud 15 and up](https://nextcloud.com/)
  - Only supported on latest modern web browsers (Chrome, Edge, Firefox, Opera, Safari*)
 
 
