@@ -76,7 +76,7 @@ class PersonalSettingsController extends ApiController {
 			$languages = json_decode($favoriteLanguages);
 			if (!is_null($languages) && is_array($languages)) {
 				if (empty($languages)) {
-					$this->config->setUserValue($this->userId, OcrConstants::APP_NAME, 'favoriteLanguages', '');
+					$this->config->deleteUserValue($this->userId, OcrConstants::APP_NAME, 'favoriteLanguages');
 					$this->logger->info('Set favorite languages to empty set for user: {user}',
 						[
 							'user' => $this->userId,

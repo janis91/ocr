@@ -105,8 +105,8 @@ class PersonalSettingsControllerTest extends TestCase {
 
 	public function testSet_GIVEN_empty_JSON_array_THEN_returns_JSONResponse_OK_with_empty_array() {
 		$this->config->expects($this->once())
-			->method('setUserValue')
-			->with($this->userId, OcrConstants::APP_NAME, 'favoriteLanguages', '')
+			->method('deleteUserValue')
+			->with($this->userId, OcrConstants::APP_NAME, 'favoriteLanguages')
 			->will($this->returnValue(null));
 
 		$result = $this->cut->set('[]');
