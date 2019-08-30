@@ -1,3 +1,8 @@
+.choices__inner {
+	background-color: var(--color-background-dark);
+	border-color: var(--color-border-dark);
+}
+
 .choices__list--multiple .choices__item {
 	background-color: var(--color-primary);
 	border: none;
@@ -6,7 +11,18 @@
 
 .choices__list--multiple .choices__item.is-highlighted {
 	background-color: var(--color-primary);
-	border: 1px solid #3d3d3d;
+	border: 1px solid var(--color-border);
+}
+
+.choices__list--dropdown {
+	background-color: var(--color-background-dark);
+	border-color: var(--color-border-dark);
+	color: var(--color-text-light);
+}
+
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+	background-color: var(--color-background-darker);
+	color: var(--color-text-lighter);
 }
 
 .choices__list--dropdown .choices__list {
@@ -43,7 +59,7 @@ input.choices__input.choices__input--cloned {
 
 .ocr-hint {
 	padding: 1rem 0;
-	color: #7e7e7e;
+	color: var(--color-text-lighter);
 }
 
 .ocr-hint>span.icon {
