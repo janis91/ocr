@@ -7,6 +7,7 @@ export interface OC {
     generateUrl: (path: string) => string;
     requestToken: string;
     appswebroots: { [appName: string]: string };
+    webroot: string;
 }
 
 export interface OCNotification {

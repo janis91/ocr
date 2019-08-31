@@ -20,6 +20,7 @@ describe("The OcaService's", () => {
             Notification: jasmine.createSpyObj('Notification', ['showHtml']),
             PERMISSION_UPDATE: 26,
             requestToken: 'token',
+            webroot: '',
         };
         ocaMock = createOCAMock();
         cut = new (await import('../../../src/app/service/OcaService')).OcaService(ocMock, ocaMock);

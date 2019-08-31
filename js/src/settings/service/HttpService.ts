@@ -9,12 +9,12 @@ export class HttpService {
     constructor(private oc: OC, private axios: AxiosInstance) { }
 
     public fetchFavoriteLanguages: () => Promise<string[]> = async () => {
-        const url = this.oc.generateUrl(this.oc.appswebroots.ocr + HttpService.API_URL_LANGUAGES);
+        const url = this.generateAppUrl();
         return (await this.axios.get<any, AxiosResponse<string[]>>(url)).data;
     }
 
     public postFavoriteLanguages: (languages: string[]) => Promise<string[]> = async (languages) => {
-        const url = this.oc.generateUrl(this.oc.appswebroots.ocr + HttpService.API_URL_LANGUAGES);
+        const url = this.generateAppUrl();
         const data = { favoriteLanguages: JSON.stringify(languages) };
         try {
             const response = await this.axios.post<{ favoriteLanguages: string }, AxiosResponse<string[]>>(url, data, {
@@ -30,5 +30,9 @@ export class HttpService {
                 throw new Error(Configuration.TRANSLATION_UNEXPECTED_ERROR_SAVE);
             }
         }
+    }
+
+    private generateAppUrl: () => string = () => {
+        return this.oc.generateUrl(this.oc.appswebroots.ocr.replace(this.oc.webroot, '') + HttpService.API_URL_LANGUAGES);
     }
 }
