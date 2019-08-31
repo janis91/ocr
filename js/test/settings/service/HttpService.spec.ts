@@ -14,22 +14,68 @@ describe("The HttpService's", () => {
         windowAny.t = jasmine.createSpy('t');
         windowAny.n = jasmine.createSpy('n');
         ocMock = {
-            appswebroots: { ocr: '/apps/ocr' },
+            appswebroots: { ocr: '/nextcloud/apps/ocr' },
             generateUrl: jasmine.createSpy('generateUrl'),
             Notification: jasmine.createSpyObj('Notification', ['showHtml']),
             PERMISSION_UPDATE: 26,
             requestToken: 'token',
+            webroot: '/nextcloud',
         };
         axiosMock = jasmine.createSpyObj('axios', ['get', 'post']);
         cut = new (await import('../../../src/settings/service/HttpService')).HttpService(ocMock, axiosMock);
     });
 
     describe('fetchFavoriteLanguages function', () => {
-        it('should return the favorite languages.', async () => {
+        it('should return the favorite languages for a nextcloud with webroot "/nextcloud".', async () => {
+            const url = 'nextcloud/apps/ocr/api/personal/languages';
+            const langs = ['deu'];
+            const response = { data: langs };
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps/ocr/api/personal/languages')
+                .and.returnValue(url);
+            axiosMock.get.withArgs(url).and.returnValue(Promise.resolve(response));
+
+            const result = await cut.fetchFavoriteLanguages();
+
+            expect(result).toEqual(langs);
+        });
+
+        it('should return the favorite languages for a nextcloud with webroot "/".', async () => {
+            ocMock.webroot = '';
+            ocMock.appswebroots.ocr = '/apps/ocr';
             const url = '/apps/ocr/api/personal/languages';
             const langs = ['deu'];
             const response = { data: langs };
-            (ocMock.generateUrl as jasmine.Spy).withArgs(ocMock.appswebroots.ocr + '/api/personal/languages')
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps/ocr/api/personal/languages')
+                .and.returnValue(url);
+            axiosMock.get.withArgs(url).and.returnValue(Promise.resolve(response));
+
+            const result = await cut.fetchFavoriteLanguages();
+
+            expect(result).toEqual(langs);
+        });
+
+        it('should return the favorite languages for a nextcloud with webroot "/" and other app root.', async () => {
+            ocMock.webroot = '';
+            ocMock.appswebroots.ocr = '/apps3/ocr';
+            const url = '/apps3/ocr/api/personal/languages';
+            const langs = ['deu'];
+            const response = { data: langs };
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps3/ocr/api/personal/languages')
+                .and.returnValue(url);
+            axiosMock.get.withArgs(url).and.returnValue(Promise.resolve(response));
+
+            const result = await cut.fetchFavoriteLanguages();
+
+            expect(result).toEqual(langs);
+        });
+
+        it('should return the favorite languages for a nextcloud with webroot "/nextcloud" and other app root.', async () => {
+            ocMock.webroot = '/nextcloud';
+            ocMock.appswebroots.ocr = '/nextcloud/apps3/ocr';
+            const url = '/nextcloud/apps3/ocr/api/personal/languages';
+            const langs = ['deu'];
+            const response = { data: langs };
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps3/ocr/api/personal/languages')
                 .and.returnValue(url);
             axiosMock.get.withArgs(url).and.returnValue(Promise.resolve(response));
 
@@ -39,9 +85,9 @@ describe("The HttpService's", () => {
         });
 
         it('should throw an error when axios fails to load the favorite languages.', async () => {
-            const url = '/apps/ocr/api/personal/languages';
+            const url = '/nextcloud/apps/ocr/api/personal/languages';
             const error = new Error('test');
-            (ocMock.generateUrl as jasmine.Spy).withArgs(ocMock.appswebroots.ocr + '/api/personal/languages')
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps/ocr/api/personal/languages')
                 .and.returnValue(url);
             axiosMock.get.withArgs(url).and.returnValue(Promise.reject(error));
 
@@ -53,9 +99,9 @@ describe("The HttpService's", () => {
 
     describe('postFavoriteLanguages function', () => {
         it('should return the favorite languages after posting them.', async () => {
-            const url = '/apps/ocr/api/personal/languages';
+            const url = '/nextcloud/apps/ocr/api/personal/languages';
             const langs = ['deu'];
-            (ocMock.generateUrl as jasmine.Spy).withArgs(ocMock.appswebroots.ocr + '/api/personal/languages')
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps/ocr/api/personal/languages')
                 .and.returnValue(url);
             axiosMock.post.withArgs(url, { favoriteLanguages: '["deu"]' }, { headers: { 'requesttoken': 'token' } }).and.returnValue(Promise.resolve({ data: langs }));
 
@@ -65,14 +111,14 @@ describe("The HttpService's", () => {
         });
 
         it('should throw the corresponding error when a 400 error occurs when posting the favorite languages.', async () => {
-            const url = '/apps/ocr/api/personal/languages';
+            const url = '/nextcloud/apps/ocr/api/personal/languages';
             const error = {
                 response: {
                     status: 400,
                 },
             };
             const langs = ['deu'];
-            (ocMock.generateUrl as jasmine.Spy).withArgs(ocMock.appswebroots.ocr + '/api/personal/languages')
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps/ocr/api/personal/languages')
                 .and.returnValue(url);
             axiosMock.post.withArgs(url, { favoriteLanguages: '["deu"]' }, { headers: { 'requesttoken': 'token' } }).and.returnValue(Promise.reject(error));
             windowAny.t.withArgs('ocr', 'An error occured during save of your favorite languages. Please check your input.')
@@ -84,14 +130,14 @@ describe("The HttpService's", () => {
         });
 
         it('should throw the corresponding error when another error occurs when posting the favorite languages.', async () => {
-            const url = '/apps/ocr/api/personal/languages';
+            const url = '/nextcloud/apps/ocr/api/personal/languages';
             const error = {
                 response: {
                     status: 500,
                 },
             };
             const langs = ['deu'];
-            (ocMock.generateUrl as jasmine.Spy).withArgs(ocMock.appswebroots.ocr + '/api/personal/languages')
+            (ocMock.generateUrl as jasmine.Spy).withArgs('/apps/ocr/api/personal/languages')
                 .and.returnValue(url);
             axiosMock.post.withArgs(url, { favoriteLanguages: '["deu"]' }, { headers: { 'requesttoken': 'token' } }).and.returnValue(Promise.reject(error));
             windowAny.t.withArgs('ocr', 'An unexpected error occured during save of your favorite languages. Please try again.')

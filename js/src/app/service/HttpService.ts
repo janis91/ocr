@@ -8,7 +8,7 @@ export class HttpService {
     constructor(private oc: OC, private axios: AxiosInstance) { }
 
     public fetchFavoriteLanguages: () => Promise<string[]> = async () => {
-        const url = this.oc.generateUrl(this.oc.appswebroots.ocr + HttpService.API_URL_LANGUAGES);
+        const url = this.oc.generateUrl(this.oc.appswebroots.ocr.replace(this.oc.webroot, '') + HttpService.API_URL_LANGUAGES);
         return (await this.axios.get<any, AxiosResponse<string[]>>(url)).data;
     }
 }
