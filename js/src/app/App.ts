@@ -44,7 +44,7 @@ export class App {
                 OcaService.checkOCAvailability() && TesseractService.checkTesseractAvailability() &&
                 PdfService.checkPdfUtilAvailability()) {
                 this.util = new Util();
-                this.view = new View(OC.Notification, handlebarsDropdownTemplate, document);
+                this.view = new View(OC.Notification, handlebarsDropdownTemplate, document); // lgtm [js/property-access-on-non-object]
                 this.ocaService = new OcaService(OC, OCA);
                 this.tesseractService = new TesseractService(document);
                 this.pdfService = new PdfService(PDFJS, PDFLib, document);

@@ -30,7 +30,7 @@ export class App {
         const interval = setInterval(() => {
             if (Util.isDefinedIn('t', window) && typeof t === 'function' && Util.isDefinedIn('n', window) && typeof n === 'function'
                 && Util.isDefinedIn('OC', window) && Util.isDefinedIn('Notification', (window as any).OC)) {
-                this.view = new View(OC.Notification, handlebarsSettingsTemplate, document);
+                this.view = new View(OC.Notification, handlebarsSettingsTemplate, document);  // lgtm [js/property-access-on-non-object]
                 this.httpService = new HttpService(OC, axios);
                 this.controller = new Controller(this.view, this.httpService, document);
                 this.controller.init()
