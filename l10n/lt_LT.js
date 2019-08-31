@@ -2,6 +2,7 @@ OC.L10N.register(
     "ocr",
     {
     "OCR" : "OCR (Optinis ženklų atpažinimas)",
+    "Target file already exists:" : "Paskirties failas jau yra:",
     "An unexpected error occured during Tesseract processing." : "Tesseract apdorojimo metu įvyko netikėta klaida.",
     "An unexpected error occured during pdf processing." : "Pdf apdorojimo metu įvyko netikėta klaida.",
     "OCR processing failed:" : "OCR apdorojimas patyrė nesėkmę:",

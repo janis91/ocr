@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Target file already exists:" : "Le fichier cible existe déjà :",
+    "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Une erreur inattendue est survenue pendant le chargement de vos langues favorites. Aucune langue ne sera définie.",
     "An unexpected error occured during the upload of the processed file." : "Une erreur inattendue est survenue durant le téléversement du fichier traité.",
     "An unexpected error occured during the deletion of the original file." : "Une erreur inattendue est survenue lors de la suppression du fichier original.",
     "An unexpected error occured during Tesseract processing." : "Une erreur inattendue est survenue lors du traitement Tesseract.",
@@ -86,7 +87,13 @@ OC.L10N.register(
     "Turkish" : "Turc",
     "Ukrainian" : "Ukrainien",
     "Vietnamese" : "Vietnamien",
+    "Save" : "Enregistrer",
+    "An unexpected error occured during save of your favorite languages. Please try again." : "Une erreur inattendue est survenue pendant l’enregistrement de vos langues favorites. Veuillez réessayer plus tard.",
+    "An unexpected error occured during load of your favorite languages. Please try again." : "Une erreur inattendue est survenue pendant le chargement de vos langues favorites. Veuillez réessayer plus tard.",
+    "An error occured during save of your favorite languages. Please check your input." : "Une erreur est survenue pendant l'enregistrement de vos langues favorites. Veuillez vérifier votre saisie.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Sélectionnez les langues qui seront affichées par défaut dans la boite de dialogue OCR.",
     "Optical character recognition" : "Reconnaissance optique des caractères",
-    "Text recognition for your images and pdf files" : "Reconnaissance de texte pour vos images et fichiers pdf"
+    "Text recognition for your images and pdf files" : "Reconnaissance de texte pour vos images et fichiers pdf",
+    "Favorite languages" : "Langues favorites"
 },
 "nplurals=2; plural=(n > 1);");
