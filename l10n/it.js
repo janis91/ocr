@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Target file already exists:" : "Il file di destinazione esiste già",
+    "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Si è verificato un errore durante il caricamento delle tue lingue preferite. Non sarà impostata alcuna lingua.",
     "An unexpected error occured during the upload of the processed file." : "Si è verificato un errore durante il caricamento del file elaborato.",
     "An unexpected error occured during the deletion of the original file." : "Si è verificato un errore durante l'eliminazione del file originale.",
     "An unexpected error occured during Tesseract processing." : "Si è verificato un errore durante l'elaborazione Tesseract.",
@@ -86,7 +87,13 @@ OC.L10N.register(
     "Turkish" : "Turco",
     "Ukrainian" : "Ucraino",
     "Vietnamese" : "Vietnamita",
+    "Save" : "Salva",
+    "An unexpected error occured during save of your favorite languages. Please try again." : "Si è verificato un errore durante il salvataggio delle tue lingue preferite. Prova ancora.",
+    "An unexpected error occured during load of your favorite languages. Please try again." : "Si è verificato un errore durante il caricamento delle tue lingue preferite. Prova ancora.",
+    "An error occured during save of your favorite languages. Please check your input." : "Si è verificato un errore durante il salvataggio delle tue lingue preferite. Controlla le informazioni inserite.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Le lingue selezionate saranno preselezionate in modo predefinito nella finestra OCR.",
     "Optical character recognition" : "Riconoscimento ottico dei caratteri",
-    "Text recognition for your images and pdf files" : "Riconoscimento del testo per immagini e file pdf"
+    "Text recognition for your images and pdf files" : "Riconoscimento del testo per immagini e file pdf",
+    "Favorite languages" : "Lingue preferite"
 },
 "nplurals=2; plural=(n != 1);");
