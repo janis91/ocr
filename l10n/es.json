@@ -1,6 +1,7 @@
 { "translations": {
     "OCR" : "OCR",
     "Target file already exists:" : "El archivo destino ya existe:",
+    "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Ha ocurrido un error inesperado mientras cargaba sus idiomas favoritos. No se usarán idiomas en su lugar.",
     "An unexpected error occured during the upload of the processed file." : "Ha ocurrido un error inesperado durante la subida del archivo procesado.",
     "An unexpected error occured during the deletion of the original file." : "Ha ocurrido un error inesperado durante la eliminación del archivo original.",
     "An unexpected error occured during Tesseract processing." : "Ha ocurrido un error inesperado durante el procesamiento de Tesseract.",
@@ -84,6 +85,11 @@
     "Turkish" : "turco",
     "Ukrainian" : "ucraniano",
     "Vietnamese" : "vietamita",
+    "Save" : "Guardar",
+    "An unexpected error occured during save of your favorite languages. Please try again." : "Ha ocurrido un error inesperado mientras guardaba sus idiomas favoritos. Por favor, inténtelo de nuevo.",
+    "An unexpected error occured during load of your favorite languages. Please try again." : "Ha ocurrido un error inesperado mientras cargaba sus idiomas favoritos. Por favor, inténtelo de nuevo.",
+    "An error occured during save of your favorite languages. Please check your input." : "Ha ocurrido un error inesperado mientras guardaba sus idiomas favoritos. Por favor, revise su entrada.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Los idiomas seleccionados serás preseleccionados de forma predeterminada en el lenguaje del OCR.",
     "Optical character recognition" : "Reconocimiento óptico de caracteres",
     "Text recognition for your images and pdf files" : "Reconocimiento de texto para tus imágenes y archivos pdf"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
