@@ -17,7 +17,7 @@
     "PDF files and a large number of files may take a very long time." : "PDF-bestanden en grote aantallen bestanden kunnen veel tijd vergen.",
     "{file}/{files} Files successfully processed" : "{file}/{files} bestanden succesvol verwerkt",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n bestand wordt verwerkt:","%n bestanden worden verwerkt:"],
-    "_Replace (PDF) or delete (image) original file_::_Replace (PDF) or delete (images) original files_" : ["Vervang (PDF) of verwijder (images) origineel bestand","Vervang (PDF) of verwijder (images) originele bestanden"],
+    "_Replace (PDF) or delete (image) original file_::_Replace (PDF) or delete (images) original files_" : ["Vervang (PDF) of verwijder (images) origineel bestand","Vervang (PDF) of verwijder (afbeeldingen) originele bestanden"],
     "_%n file_::_%n files_" : ["%n bestand","%n bestanden"],
     "Afrikaans" : "Afrikaans",
     "Arabic" : "Arabisch",
