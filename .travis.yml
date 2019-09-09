@@ -64,11 +64,10 @@ jobs:
   - stage: release
     php: 7.2
     before_install:
-    - cd ..
     - git clone --depth 1 -b $CORE_BRANCH https://github.com/nextcloud/server
     - cd server
     - git submodule update --init
-    - cd $PWD
+    - cd ..
     - nvm install 12
     - nvm use 12
     - cd js
@@ -85,7 +84,7 @@ jobs:
     - node ci/gitTag.js
     - "./ci/build_release.sh"
     - openssl aes-256-cbc -K $encrypted_db642c3b0665_key -iv $encrypted_db642c3b0665_iv -in ocr.key.enc -out ocr.key -d
-    - "../server/occ integrity:sign-app --privateKey=$PWD/ocr.key --certificate=$PWD/ocr.crt --path=$PWD/release"
+    - "./server/occ integrity:sign-app --privateKey=$PWD/ocr.key --certificate=$PWD/ocr.crt --path=$PWD/release"
     - mv release ocr
     - tar cfz ocr.tar.gz ocr
     - rm -rf ocr/
