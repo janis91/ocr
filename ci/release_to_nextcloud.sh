@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SIGNATURE=`openssl dgst -sha512 -sign signing.key ocr.tar.gz | openssl enc -A -base64`
-rm -f signing.key
+SIGNATURE=`openssl dgst -sha512 -sign ocr.key ocr.tar.gz | openssl enc -A -base64`
 
 app_version=$(cat new_version)
 

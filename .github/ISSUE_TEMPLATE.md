@@ -34,7 +34,7 @@ Please choose between the "Bug report" and the "Feature request" and remove the 
 * OCR version used:
 * Browser Name and version:
 * Operating System and version (desktop or mobile):
-* ownCloud/nextcloud version: (see ownCloud admin page or version.php)
+* nextcloud version: (see admin page or version.php)
 * PHP version
 * Database version
 * Are you using encryption: yes/no
