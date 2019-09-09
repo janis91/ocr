@@ -32,6 +32,9 @@ before_install:
 - "./occ app:enable $APP_NAME"
 - "./occ app:list"
 - cd apps/$APP_NAME/
+- cd js
+- npm install
+- cd ..
 - export CHROME_BIN=chromium-browser
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
@@ -52,7 +55,6 @@ script:
 - cd ../..
 - echo "Running JavaScript/TypeScript Unit Tests"
 - cd js
-- npm install
 - npm run lint && npm run test && npm run build
 - echo "Sending Test Coverage to Codacy"
 - npm run coverage
@@ -62,9 +64,11 @@ jobs:
   - stage: release
     php: 7.2
     before_install:
+    - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+    - ". ./before_install.sh $APP_NAME $CORE_BRANCH $DB"
     - nvm install 12
     - nvm use 12
-    - cd js
+    - cd ../server/apps/$APP_NAME/js
     - npm install
     - cd ..
     before_script: skip
