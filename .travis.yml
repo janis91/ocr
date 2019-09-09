@@ -64,11 +64,14 @@ jobs:
   - stage: release
     php: 7.2
     before_install:
-    - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
-    - ". ./before_install.sh $APP_NAME $CORE_BRANCH $DB"
+    - cd ..
+    - git clone --depth 1 -b $CORE_BRANCH https://github.com/nextcloud/server
+    - cd server
+    - git submodule update --init
+    - cd $PWD
     - nvm install 12
     - nvm use 12
-    - cd ../server/apps/$APP_NAME/js
+    - cd js
     - npm install
     - cd ..
     before_script: skip
@@ -81,7 +84,8 @@ jobs:
     - git config --local user.email "janiskoehr@icloud.com"
     - node ci/gitTag.js
     - "./ci/build_release.sh"
-    - "../../occ integrity:sign-app --privateKey=apps/$APP_NAME/ocr.key --certificate=apps/$APP_NAME/ocr.crt --path=apps/$APP_NAME/release"
+    - openssl aes-256-cbc -K $encrypted_db642c3b0665_key -iv $encrypted_db642c3b0665_iv -in ocr.key.enc -out ocr.key -d
+    - "../server/occ integrity:sign-app --privateKey=$PWD/ocr.key --certificate=$PWD/ocr.crt --path=$PWD/release"
     - mv release ocr
     - tar cfz ocr.tar.gz ocr
     - rm -rf ocr/
@@ -96,6 +100,5 @@ jobs:
         repo: janis91/ocr
         branch: master
     after_deploy:
-    - openssl aes-256-cbc -K $encrypted_db642c3b0665_key -iv $encrypted_db642c3b0665_iv -in ocr.key.enc -out ocr.key -d
     - "./ci/release_to_nextcloud.sh"
     - rm -f ocr.key
