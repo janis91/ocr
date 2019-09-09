@@ -37,10 +37,3 @@ cp js/node_modules/pdf-lib/dist/pdf-lib.min.js release/vendor/pdf-lib/pdf-lib.mi
 
 # Copy css artifacts
 cp js/node_modules/choices.js/public/assets/styles/choices.min.css release/vendor/choices.js/choices.min.css
-
-# Package the release
-mv release ocr
-tar cfz ocr.tar.gz ocr
-
-# Cleanup
-rm -rf ocr/

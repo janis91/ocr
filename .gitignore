@@ -70,4 +70,4 @@ npm-debug.log
 ocr.tar.gz
 
 # release signing key fopr nextcloud
-signing.key
+ocr.key
