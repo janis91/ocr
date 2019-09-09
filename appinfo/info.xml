@@ -29,7 +29,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 ## Consideration
 The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.]]>
 	</description>
-	<version>4.3.0</version>
+	<version>4.4.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>
