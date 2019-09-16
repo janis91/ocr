@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Target file already exists:" : "目標ファイルは既に存在します。",
+    "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "よく使う言語の読込中に予期しないエラーが発生しました。言語は設定されません。",
     "An unexpected error occured during the upload of the processed file." : "処理済みファイルのアップロード中に予期しないエラーが発生しました",
     "An unexpected error occured during the deletion of the original file." : "元ファイルの削除中に予期しないエラーが発生しました",
     "An unexpected error occured during Tesseract processing." : "Tesseract処理中に予期しないエラーが発生しました。",
@@ -86,6 +87,10 @@ OC.L10N.register(
     "Turkish" : "トルコ語",
     "Ukrainian" : "ウクライナ語",
     "Vietnamese" : "ベトナム語",
+    "Save" : "保存",
+    "An unexpected error occured during save of your favorite languages. Please try again." : "よく使う言語の保存中に予期しないエラーが発生しました。もう一度保存してください。",
+    "An unexpected error occured during load of your favorite languages. Please try again." : "よく使う言語の読込中に予期しないエラーが発生しました。もう一度読込してください。",
+    "An error occured during save of your favorite languages. Please check your input." : "よく使う言語の保存中にエラーが発生っしました。入力の内容をもう一度確認してください。",
     "Optical character recognition" : "OCR",
     "Text recognition for your images and pdf files" : "画像とpdfファイルの文字認識"
 },
