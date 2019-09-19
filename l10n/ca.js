@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Target file already exists:" : "El fitxer de destinació ja existeix:",
+    "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "S'ha produït un error inesperat durant la càrrega de les llengües preferides. No s’establirà cap llengua.",
     "An unexpected error occured during the upload of the processed file." : "H hagut un error inesperat mentre es processava la pujada del fitxer.",
     "An unexpected error occured during the deletion of the original file." : "Hi ha hagut un error inesperat mentre es suprimia el fitxer original.",
     "An unexpected error occured during Tesseract processing." : "Hi ha hagut un error inesperat durant el processament del Tesseract.",
@@ -86,7 +87,13 @@ OC.L10N.register(
     "Turkish" : "Turc",
     "Ukrainian" : "Ucraïnès",
     "Vietnamese" : "Vietnamita",
+    "Save" : "Desa",
+    "An unexpected error occured during save of your favorite languages. Please try again." : "S'ha produït un error inesperat en desar les llengües preferides. Si us plau, torneu-ho a provar.",
+    "An unexpected error occured during load of your favorite languages. Please try again." : "S'ha produït un error inesperat durant la càrrega de les llengües preferides. Si us plau, torneu-ho a provar.",
+    "An error occured during save of your favorite languages. Please check your input." : "S'ha produït un error en desar les llengües preferides. Si us plau, comproveu la vostra entrada.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Les llengües seleccionades es preseleccionaran per defecte al diàleg de ROC.",
     "Optical character recognition" : "Reconeixement òptic de caràcters",
-    "Text recognition for your images and pdf files" : "Reconeixement de text per a les vostres imatges i fitxers pdf"
+    "Text recognition for your images and pdf files" : "Reconeixement de text per a les vostres imatges i fitxers pdf",
+    "Favorite languages" : "Llengües preferides"
 },
 "nplurals=2; plural=(n != 1);");
