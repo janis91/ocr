@@ -3,7 +3,7 @@
 
 <img align="left" src="screenshots/app.png" height="100">
 Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-js brings OCR capability to your Nextcloud.
-The app uses tesseract-js in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it.
+The app uses [tesseract-js](https://tesseract.projectnaptha.com/) by [@jeromewu](https://github.com/jeromewu) in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it.
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
