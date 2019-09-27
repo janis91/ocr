@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/janis91/ocr.svg?branch=master)](https://travis-ci.org/janis91/ocr) [![Total alerts](https://img.shields.io/lgtm/alerts/g/janis91/ocr.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/janis91/ocr/alerts/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/96e643bf329d473e9968b20ba4f11a50)](https://www.codacy.com/app/janis91/ocr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=janis91/ocr&amp;utm_campaign=Badge_Grade) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 <img align="left" src="screenshots/app.png" height="100">
+
 Nextcloud OCR (optical character recognition) processing for images and PDF with tesseract-js brings OCR capability to your Nextcloud.
 The app uses [tesseract-js](https://tesseract.projectnaptha.com/) by [@jeromewu](https://github.com/jeromewu) in the browser in order to process images (png, jpeg, tiff) and PDFs and saves the output file to the source folder in nextcloud. That for example enables you to search in it.
 
