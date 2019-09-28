@@ -78,7 +78,10 @@ OC.L10N.register(
     "Turkish" : "turečtina",
     "Ukrainian" : "ukrajinština",
     "Vietnamese" : "vietnamština",
+    "Save" : "Uložit",
+    "Selected languages will be preselected by default in the OCR dialog." : "Vyberte jazyky, které budou předvybrány v OCR dialogu.",
     "Optical character recognition" : "Optické rozpoznávání znaků",
-    "Text recognition for your images and pdf files" : "Rozpoznávání textu v obrázcích a pdf souborech"
+    "Text recognition for your images and pdf files" : "Rozpoznávání textu v obrázcích a pdf souborech",
+    "Favorite languages" : "Často používané jazyky"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
