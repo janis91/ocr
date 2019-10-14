@@ -26,7 +26,7 @@ OC.L10N.register(
     "Bengali" : "bengálština",
     "Bulgarian" : "bulharština",
     "Catalan" : "katalánština",
-    "Czech" : "čeština",
+    "Czech" : "Česko",
     "Chinese" : "čínština",
     "Traditional Chinese" : "tradiční čínština",
     "Danish" : "dánština",
