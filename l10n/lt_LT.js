@@ -8,6 +8,7 @@ OC.L10N.register(
     "OCR processing failed:" : "OCR apdorojimas patyrė nesėkmę:",
     "No file selected." : "Nepasirinktas joks failas.",
     "MIME type not supported." : "Nepalaikomas MIME tipas.",
+    "No matches found" : "Nerasta jokių atitikmenų",
     "Process" : "Procesas",
     "Latvian" : "Latvių",
     "Lithuanian" : "Lietuvių",
