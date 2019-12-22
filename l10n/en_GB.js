@@ -5,7 +5,9 @@ OC.L10N.register(
     "OCR processing failed:" : "OCR processing failed:",
     "No file selected." : "No file selected.",
     "MIME type not supported." : "MIME type not supported.",
+    "Select language" : "Select language",
     "Process" : "Process",
+    "Save" : "Save",
     "Optical character recognition" : "Optical character recognition",
     "Text recognition for your images and pdf files" : "Text recognition for your images and pdf files"
 },

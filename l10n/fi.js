@@ -7,6 +7,7 @@ OC.L10N.register(
     "No file selected." : "Tiedostoa ei ole valittu.",
     "MIME type not supported." : "MIME-tyyppi ei ole tuettu.",
     "Select language" : "Valitse kieli",
+    "Process" : "Käsittely",
     "_%n file_::_%n files_" : ["%n tiedosto","%n tiedostoa"],
     "Save" : "Tallenna"
 },

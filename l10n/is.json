@@ -73,6 +73,7 @@
     "Turkish" : "Tyrkneska",
     "Ukrainian" : "Úkraínska",
     "Vietnamese" : "Víetnamska",
+    "Save" : "Vista",
     "Optical character recognition" : "Ljóslestur (OCR)",
     "Text recognition for your images and pdf files" : "Greining texta í myndum og PDF-skrám"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"

@@ -75,6 +75,7 @@ OC.L10N.register(
     "Turkish" : "Tyrkneska",
     "Ukrainian" : "Úkraínska",
     "Vietnamese" : "Víetnamska",
+    "Save" : "Vista",
     "Optical character recognition" : "Ljóslestur (OCR)",
     "Text recognition for your images and pdf files" : "Greining texta í myndum og PDF-skrám"
 },

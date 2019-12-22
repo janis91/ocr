@@ -1,0 +1,8 @@
+{ "translations": {
+    "OCR" : "OCR",
+    "OCR processing failed:" : "Falla en el procesamiento OCR:",
+    "Select language" : "Seleccionar idioma",
+    "Process" : "Proceso",
+    "Save" : "Guardar"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
