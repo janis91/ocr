@@ -28,6 +28,7 @@ OC.L10N.register(
     "English (Old)" : "Ingelesa (Zaharra)",
     "Esperanto" : "Esperantoa",
     "Esperanto alternative" : "Esperanto alternatiboa",
+    "Math" : "Matematika",
     "Estonian" : "Estoniera",
     "Basque" : "Euskara",
     "Persian (Farsi)" : "Persiera (Farsia)",
