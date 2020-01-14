@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "ocr",
+    {
+    "Afrikaans" : "افریقایی",
+    "Arabic" : "عربی",
+    "Azerbaijani" : "آذربایجانی",
+    "Belarusian" : "بلاروس",
+    "Bengali" : "بنگالی",
+    "Bulgarian" : "بلغاری",
+    "Catalan" : "کاتالان",
+    "Czech" : "چک",
+    "Chinese" : "چینی",
+    "Cherokee" : "چروکی",
+    "Danish" : "دانمارکی",
+    "English" : "انگلیسی",
+    "Esperanto" : "اسپرانتو",
+    "Estonian" : "استونیایی",
+    "Basque" : "باسک",
+    "Finnish" : "فنلاندی",
+    "Croatian" : "کرواتی",
+    "Dutch" : "هلندی",
+    "Albanian" : "آلبانیایی",
+    "Save" : "ذخیره"
+},
+"nplurals=2; plural=(n > 1);");
