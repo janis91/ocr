@@ -10,6 +10,7 @@ import { PdfService } from './service/PdfService';
 import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
 import { HttpService } from './service/HttpService';
 import axios from 'axios';
+import * as Tess from 'tesseract.js';
 
 
 declare var OC: OC;
@@ -18,6 +19,7 @@ declare var t: OCSingleTranslation;
 declare var n: OCMultiTranslation;
 declare var PDFJS: PDFJSStatic;
 declare var PDFLib: { PDFDocumentFactory: PDFDocumentFactory, PDFDocumentWriter: PDFDocumentWriter };
+declare var Tesseract: typeof Tess;
 
 /**
  * Nextcloud - OCR
@@ -46,7 +48,7 @@ export class App {
                 this.util = new Util();
                 this.view = new View(OC.Notification, handlebarsDropdownTemplate, document); // lgtm [js/property-access-on-non-object]
                 this.ocaService = new OcaService(OC, OCA);
-                this.tesseractService = new TesseractService(document);
+                this.tesseractService = new TesseractService(document, Tesseract);
                 this.pdfService = new PdfService(PDFJS, PDFLib, document);
                 this.httpService = new HttpService(OC, axios);
                 this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, this.pdfService, this.httpService, document);

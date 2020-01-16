@@ -40,7 +40,7 @@ describe("The PdfService's", () => {
             const result = cut.getDocumentPagesAsImages('url');
 
             await expectAsync(result).toBeResolvedTo([canvas]);
-            expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
+            expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
             expect(pdfDocumentProxy.getPage).toHaveBeenCalledWith(1);
             expect(page.getViewport).toHaveBeenCalledWith(3);
             expect(documentMock.createElement).toHaveBeenCalledWith('canvas');
@@ -75,7 +75,7 @@ describe("The PdfService's", () => {
             const result = cut.getDocumentPagesAsImages('url');
 
             await expectAsync(result).toBeResolvedTo([canvas1, canvas2]);
-            expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
+            expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
             expect(pdfDocumentProxy.getPage.calls.argsFor(0)).toEqual([1]);
             expect(pdfDocumentProxy.getPage.calls.argsFor(1)).toEqual([2]);
             expect(page1.getViewport).toHaveBeenCalledWith(3);
@@ -102,7 +102,7 @@ describe("The PdfService's", () => {
             const result = cut.getDocumentPagesAsImages('url');
 
             await expectAsync(result).toBeRejectedWith(new PdfError('PDF does not contain any Pages to process.'));
-            expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
+            expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
         });
 
         it('should throw an Error, when getDocument fails, given valid url.', async () => {
@@ -113,7 +113,7 @@ describe("The PdfService's", () => {
             const result = cut.getDocumentPagesAsImages('url');
 
             await expectAsync(result).toBeRejectedWith(new PdfError('An unexpected error occured during pdf processing.', e));
-            expect(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
+            expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
         });
     });
 
