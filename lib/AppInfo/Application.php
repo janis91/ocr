@@ -5,7 +5,7 @@
  * This file is licensed under the Affero General Public License version 3 or
  * later.
  * See the COPYING file.
- * 
+ *
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2019
  */
@@ -21,15 +21,15 @@ use OCA\Ocr\Constants\OcrConstants;
 
 /**
  * Class Application
- * 
+ *
  * @package OCA\Ocr\AppInfo
  */
 class Application extends App {
 
     /**
      * Application constructor.
-     * 
-     * @param array $urlParams            
+     *
+     * @param array $urlParams
      */
     public function __construct(array $urlParams = array()) {
         parent::__construct(OcrConstants::APP_NAME, $urlParams);
@@ -38,9 +38,9 @@ class Application extends App {
          * Add the js and style if OCA\Files app is loaded
          */
         $eventDispatcher = \OC::$server->getEventDispatcher();
-        $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', 
+        $eventDispatcher->addListener('OCA\Files::loadAdditionalScripts',
                 function () {
-                    vendor_script(OcrConstants::APP_NAME, 'tesseract.js/tesseract.min');
+					vendor_script(OcrConstants::APP_NAME, 'tesseract.js/tesseract.min');
                     vendor_script(OcrConstants::APP_NAME, 'tesseract.js/worker.min');
                     vendor_script(OcrConstants::APP_NAME, 'choices.js/choices.min');
                     vendor_style(OcrConstants::APP_NAME, 'choices.js/choices.min');
@@ -52,7 +52,7 @@ class Application extends App {
 
                     $cspManager = \OC::$server->getContentSecurityPolicyManager();
                     $csp = new ContentSecurityPolicy();
-                    
+
                     // Allow loading languages from github tessdata fork
                     $csp->addAllowedConnectDomain("https://raw.githubusercontent.com");
 
@@ -81,7 +81,7 @@ class Application extends App {
         /**
          * Register core services
          */
-        $container->registerService('CurrentUID', 
+        $container->registerService('CurrentUID',
                 function (IContainer $c) {
                     /** @var \OC\Server $server */
                     $server = $c->query('ServerContainer');

@@ -54,7 +54,7 @@ describe("The OcaService's", () => {
 
             cut.registerCheckBoxEvents(handler);
 
-            expect(ocaMock.Files.App.fileList.$fileList.on).toHaveBeenCalledWith('change', 'td.selection>.selectCheckBox', handler);
+            expect<any>(ocaMock.Files.App.fileList.$fileList.on).toHaveBeenCalledWith('change', 'td.selection>.selectCheckBox', handler);
             expect(ocaMock.Files.App.fileList.$el.find).toHaveBeenCalledWith('.select-all');
             expect(el.click).toHaveBeenCalledWith(handler);
         });

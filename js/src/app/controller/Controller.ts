@@ -88,7 +88,6 @@ export class Controller {
             this.view.displayError(`${Configuration.TRANSLATION_OCR_PROCESSING_FAILED} ${e.message}`);
             console.error('An error occured in OCR.', e, e.original);
         }
-        this.tesseractService.resetRoundRobinIndex();
         this.view.destroyOcrDialog();
     }
 

@@ -29,7 +29,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 ## Consideration
 The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.]]>
 	</description>
-	<version>4.4.0</version>
+	<version>4.5.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>
@@ -45,14 +45,14 @@ The version 3 and earlier versions are not supported/maintained anymore by the a
 	<category>integration</category>
 	<website>https://github.com/janis91/ocr</website>
 	<bugs>https://github.com/janis91/ocr/issues</bugs>
-	<repository type="git">https://github.com/janis91/ocr.git</repository>
+	<repository>https://github.com/janis91/ocr.git</repository>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc1.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc5.png</screenshot>
 	<dependencies>
-		<php min-version="7" max-version="7.3" min-int-size="32" />
+		<php min-version="7" max-version="7.4" />
 		<nextcloud min-version="15" max-version="17" />
 	</dependencies>
 	<repair-steps>
