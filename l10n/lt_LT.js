@@ -11,6 +11,7 @@ OC.L10N.register(
     "No matches found" : "Nerasta jokių atitikmenų",
     "Select language" : "Pasirinkite kalbą",
     "Process" : "Procesas",
+    "_%n file_::_%n files_" : ["%n failas","%n failai","%n failų","%n failas"],
     "Arabic" : "Arabų",
     "Bulgarian" : "Bulgarų",
     "Czech" : "Čekų",
