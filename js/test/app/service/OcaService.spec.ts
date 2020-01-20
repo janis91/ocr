@@ -126,6 +126,7 @@ describe("The OcaService's", () => {
             ocaMock.Files.App.fileList.multiSelectMenuItems = [];
             const handler = jasmine.createSpy('handler');
             windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
+            (ocaMock.Files.App.fileList.fileMultiSelectMenu.render as jasmine.Spy).and.returnValue(undefined);
 
             cut.registerMultiSelectMenuItem(handler);
 
@@ -136,12 +137,14 @@ describe("The OcaService's", () => {
                 iconClass: 'icon-ocr',
                 name: 'ocr',
             });
+            expect(ocaMock.Files.App.fileList.fileMultiSelectMenu.render).toHaveBeenCalledWith(ocaMock.Files.App.fileList.multiSelectMenuItems);
         });
 
         it('should add the MultiSelectMenuItem to the menu if not existing and others are not touched.', () => {
             ocaMock.Files.App.fileList.multiSelectMenuItems = [{ action: () => console.log, displayName: 'Test', iconClass: 'icon-test', name: 'test' }];
             const handler = jasmine.createSpy('handler');
             windowAny.t.withArgs('ocr', 'OCR').and.returnValue('OCR');
+            (ocaMock.Files.App.fileList.fileMultiSelectMenu.render as jasmine.Spy).and.returnValue(undefined);
 
             cut.registerMultiSelectMenuItem(handler);
 
@@ -152,6 +155,7 @@ describe("The OcaService's", () => {
                 iconClass: 'icon-ocr',
                 name: 'ocr',
             });
+            expect(ocaMock.Files.App.fileList.fileMultiSelectMenu.render).toHaveBeenCalledWith(ocaMock.Files.App.fileList.multiSelectMenuItems);
         });
 
         it('should do nothing to the menu if item exists already.', () => {
@@ -177,6 +181,7 @@ describe("The OcaService's", () => {
                 iconClass: 'icon-ocr',
                 name: 'ocr',
             }];
+            (ocaMock.Files.App.fileList.fileMultiSelectMenu.render as jasmine.Spy).and.returnValue(undefined);
 
             cut.unregisterMultiSelectMenuItem();
 
@@ -187,6 +192,7 @@ describe("The OcaService's", () => {
                 name: 'ocr',
             });
             expect(ocaMock.Files.App.fileList.multiSelectMenuItems.length).toEqual(0);
+            expect(ocaMock.Files.App.fileList.fileMultiSelectMenu.render).toHaveBeenCalledWith(ocaMock.Files.App.fileList.multiSelectMenuItems);
         });
 
         it('should not unregister the MultiSelectMenuItem, if not existing.', () => {
@@ -205,6 +211,7 @@ describe("The OcaService's", () => {
                 iconClass: 'icon-ocr',
                 name: 'ocr',
             }, { action: () => console.log, displayName: 'Test', iconClass: 'icon-test', name: 'test' }];
+            (ocaMock.Files.App.fileList.fileMultiSelectMenu.render as jasmine.Spy).and.returnValue(undefined);
 
             cut.unregisterMultiSelectMenuItem();
 
@@ -215,6 +222,7 @@ describe("The OcaService's", () => {
                 iconClass: 'icon-ocr',
                 name: 'ocr',
             });
+            expect(ocaMock.Files.App.fileList.fileMultiSelectMenu.render).toHaveBeenCalledWith(ocaMock.Files.App.fileList.multiSelectMenuItems);
         });
     });
 
@@ -371,6 +379,7 @@ describe("The OcaService's", () => {
                         getDownloadUrl: jasmine.createSpy('getDownloadUrl'),
                         getSelectedFiles: jasmine.createSpy('getSelectedFiles'),
                         multiSelectMenuItems,
+                        fileMultiSelectMenu: jasmine.createSpyObj('FileMultiSelectMenu', ['render']),
                         reload: jasmine.createSpy('reload'),
                         remove: jasmine.createSpy('remove'),
                     },

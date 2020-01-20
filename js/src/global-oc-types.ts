@@ -103,6 +103,16 @@ interface FileList {
     getCurrentDirectory: () => string;
 
     multiSelectMenuItems: Array<MultiSelectMenuItem>;
+
+    /**
+     * File selection menu, defaults to OCA.Files.FileSelectionMenu
+     * @type OCA.Files.FileSelectionMenu
+     */
+    fileMultiSelectMenu: FileMultiSelectMenu;
+}
+
+interface FileMultiSelectMenu {
+    render: (items: Array<MultiSelectMenuItem>) => void;
 }
 
 export interface MultiSelectMenuItem {

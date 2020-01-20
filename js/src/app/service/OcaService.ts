@@ -96,12 +96,14 @@ export class OcaService {
             iconClass: 'icon-ocr',
             name: 'ocr',
         });
+        this.oca.Files.App.fileList.fileMultiSelectMenu.render(this.oca.Files.App.fileList.multiSelectMenuItems);
     }
 
     public unregisterMultiSelectMenuItem: () => void = () => {
         const index = this.oca.Files.App.fileList.multiSelectMenuItems.findIndex(i => i.name === 'ocr');
         if (index === -1) { return; }
         this.oca.Files.App.fileList.multiSelectMenuItems.splice(index, 1);
+        this.oca.Files.App.fileList.fileMultiSelectMenu.render(this.oca.Files.App.fileList.multiSelectMenuItems);
     }
 
     public getDownloadUrl: (file: OCAFile) => string = (file) => {
