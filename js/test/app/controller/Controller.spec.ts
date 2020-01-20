@@ -548,6 +548,15 @@ describe("The Controller's", () => {
             expect(result).toBe('/file1_ocr.pdf');
             expect(ocaServiceMock.getCurrentDirectory).toHaveBeenCalled();
         });
+
+        it('should create the right path (without postfix) for PDF and replace = true, when file name contains multiple "." and uppercase ending.', () => {
+            ocaServiceMock.getCurrentDirectory.and.returnValue(FilesFixtures.PDF_UNUSUAL.path);
+
+            const result = cut.createPutFileContentsPath(FilesFixtures.PDF_UNUSUAL, true);
+
+            expect(result).toBe('/file4.cool.PDF');
+            expect(ocaServiceMock.getCurrentDirectory).toHaveBeenCalled();
+        });
     });
 
     describe('clickOnTopBarSelectedFilesActionButton function', () => {

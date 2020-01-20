@@ -38,6 +38,17 @@ export class FilesFixtures {
         permissions: 27,
         size: 1234,
     };
+
+    public static PDF_UNUSUAL: OCAFile = {
+        etag: '12asefw4t23r23sgfw',
+        id: 1,
+        mimetype: 'application/pdf',
+        mtime: new Date().getTime(),
+        name: 'file4.cool.PDF',
+        path: '/',
+        permissions: 27,
+        size: 1234,
+    };
 }
 
 export class OCAFileActionsContextFixture {
