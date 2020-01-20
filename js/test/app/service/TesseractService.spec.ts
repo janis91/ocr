@@ -5,227 +5,153 @@ import { TesseractError } from '../../../src/app/service/error/TesseractError';
 describe("The TesseractService's", () => {
 
     let documentMock: jasmine.SpyObj<Document>;
+    let tesseractMock: jasmine.SpyObj<any>;
+    let worker: jasmine.SpyObj<any>;
     let cut: TesseractService;
-    let count: number;
 
     beforeEach(async () => {
         windowAny.t = jasmine.createSpy('t');
-        windowAny.Tesseract = {
-            TesseractWorker: WorkerMock,
-        };
+        windowAny.Tesseract = {};
+        worker = jasmine.createSpyObj('TesseractWorker', ['load', 'loadLanguage', 'initialize', 'setParameters', 'recognize', 'getPDF', 'terminate']);
+        tesseractMock = jasmine.createSpyObj('Tesseract', ['createWorker']);
+        tesseractMock.OEM = { LSTM_ONLY: 1 };
         documentMock = jasmine.createSpyObj('document', ['querySelectorAll']);
         const element = {
             src: '/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
         };
         documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
-        count = 0;
-        cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
-    });
-
-    describe('constructor', () => {
-        it('should construct the tesseract workers with the nextcloud url, given in the src of script.', async () => {
-            const element = {
-                src: '/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
-            };
-            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
-
-            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
-
-            expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/apps/ocr/vendor/tesseract.js/worker.min.js');
-            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
-            expect(cut.tesseractWorkers[0].options.corePath).toEqual('/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
-        });
-
-        it('should construct the tesseract workers as is with the nextcloud url, given subtree url in the src of script.', async () => {
-            const element = {
-                src: '/nextcloud/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
-            };
-            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
-
-            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
-
-            expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/nextcloud/apps/ocr/vendor/tesseract.js/worker.min.js');
-            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
-            expect(cut.tesseractWorkers[0].options.corePath).toEqual('/nextcloud/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
-        });
-
-        it('should construct the tesseract workers as is with the nextcloud url, given custom apps url in the src of script.', async () => {
-            const element = {
-                src: '/nextcloud/custom_apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
-            };
-            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
-
-            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
-
-            expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/nextcloud/custom_apps/ocr/vendor/tesseract.js/worker.min.js');
-            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
-            expect(cut.tesseractWorkers[0].options.corePath).toEqual('/nextcloud/custom_apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
-        });
-
-        it('should construct the tesseract workers as is with the nextcloud url, given root based custom apps url in the src of script.', async () => {
-            const element = {
-                src: '/custom_apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
-            };
-            documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
-
-            cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock);
-
-            expect(cut.tesseractWorkers[0].options.workerPath).toEqual('/custom_apps/ocr/vendor/tesseract.js/worker.min.js');
-            expect(cut.tesseractWorkers[0].options.langPath).toEqual('https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast');
-            expect(cut.tesseractWorkers[0].options.corePath).toEqual('/custom_apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js');
-        });
+        worker.load.and.returnValue(null);
+        worker.loadLanguage.and.returnValue(null);
+        worker.initialize.and.returnValue(null);
+        worker.setParameters.and.returnValue(null);
+        worker.recognize.and.returnValue(null);
+        worker.terminate.and.returnValue(null);
+        cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock, tesseractMock);
     });
 
     describe('process function', () => {
         it('should resolve the worker result (pdf) for a given url and single language.', async () => {
-            const worker = new WorkerMock();
+            tesseractMock.createWorker.and.returnValue(worker);
             const resultPdf = {
-                files: {
-                    pdf: new Uint8Array(1),
-                },
+                data: 1,
             };
-            worker.recognize.and.returnValue(Promise.resolve(resultPdf));
-            worker.terminate.and.returnValue(undefined);
-            spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
+            worker.getPDF.and.returnValue(resultPdf);
 
             const result = cut.process('url', ['deu']);
 
-            await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
-            expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
-            expect(worker.recognize).toHaveBeenCalledWith('url', 'deu', {
-                'tessjs_create_pdf': '1',
-                'tessjs_pdf_auto_download': false,
-                'tessjs_pdf_bin': true,
+            await expectAsync(result).toBeResolvedTo(new Uint8Array(1));
+            expect(worker.load).toHaveBeenCalled();
+            expect(worker.loadLanguage).toHaveBeenCalledWith('deu');
+            expect(worker.initialize).toHaveBeenCalledWith('deu');
+            expect(worker.setParameters).toHaveBeenCalledWith({ tessedit_ocr_engine_mode: 1 });
+            expect(worker.recognize).toHaveBeenCalledWith('url');
+            expect(worker.getPDF).toHaveBeenCalled();
+            expect(worker.terminate).toHaveBeenCalled();
+            expect(tesseractMock.createWorker).toHaveBeenCalledWith({
+                corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
+                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
-            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should resolve the worker result (pdf) for a given canvas and single language.', async () => {
-            const worker = new WorkerMock();
-            const resultPdf = {
-                files: {
-                    pdf: new Uint8Array(1),
-                },
-            };
             const canvas = document.createElement('canvas');
-            worker.recognize.and.returnValue(Promise.resolve(resultPdf));
-            worker.terminate.and.returnValue(undefined);
-            spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
+            tesseractMock.createWorker.and.returnValue(worker);
+            const resultPdf = {
+                data: 1,
+            };
+            worker.getPDF.and.returnValue(resultPdf);
 
             const result = cut.process(canvas, ['deu']);
 
-            await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
-            expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
-            expect(worker.recognize).toHaveBeenCalledWith(canvas, 'deu', {
-                'tessjs_create_pdf': '1',
-                'tessjs_pdf_auto_download': false,
-                'tessjs_pdf_bin': true,
+            await expectAsync(result).toBeResolvedTo(new Uint8Array(1));
+            expect(worker.load).toHaveBeenCalled();
+            expect(worker.loadLanguage).toHaveBeenCalledWith('deu');
+            expect(worker.initialize).toHaveBeenCalledWith('deu');
+            expect(worker.setParameters).toHaveBeenCalledWith({ tessedit_ocr_engine_mode: 1 });
+            expect(worker.recognize).toHaveBeenCalledWith(canvas);
+            expect(worker.getPDF).toHaveBeenCalled();
+            expect(worker.terminate).toHaveBeenCalled();
+            expect(tesseractMock.createWorker).toHaveBeenCalledWith({
+                corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
+                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
-            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should resolve the worker result (pdf) for a given url and multiple languages.', async () => {
-            const worker = new WorkerMock();
+            tesseractMock.createWorker.and.returnValue(worker);
             const resultPdf = {
-                files: {
-                    pdf: new Uint8Array(1),
-                },
+                data: 1,
             };
-            worker.recognize.and.returnValue(Promise.resolve(resultPdf));
-            worker.terminate.and.returnValue(undefined);
-            spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
+            worker.getPDF.and.returnValue(resultPdf);
 
             const result = cut.process('url', ['deu', 'eng']);
 
-            await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
-            expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
-            expect(worker.recognize).toHaveBeenCalledWith('url', 'deu+eng', {
-                'tessjs_create_pdf': '1',
-                'tessjs_pdf_auto_download': false,
-                'tessjs_pdf_bin': true,
+            await expectAsync(result).toBeResolvedTo(new Uint8Array(1));
+            expect(worker.load).toHaveBeenCalled();
+            expect(worker.loadLanguage).toHaveBeenCalledWith('deu+eng');
+            expect(worker.initialize).toHaveBeenCalledWith('deu+eng');
+            expect(worker.setParameters).toHaveBeenCalledWith({ tessedit_ocr_engine_mode: 1 });
+            expect(worker.recognize).toHaveBeenCalledWith('url');
+            expect(worker.getPDF).toHaveBeenCalled();
+            expect(worker.terminate).toHaveBeenCalled();
+            expect(tesseractMock.createWorker).toHaveBeenCalledWith({
+                corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
+                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
-            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should resolve the worker result (pdf) for a given canvas and multiple languages.', async () => {
-            const worker = new WorkerMock();
-            const resultPdf = {
-                files: {
-                    pdf: new Uint8Array(1),
-                },
-            };
             const canvas = document.createElement('canvas');
-            worker.recognize.and.returnValue(Promise.resolve(resultPdf));
-            worker.terminate.and.returnValue(undefined);
-            spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
+            tesseractMock.createWorker.and.returnValue(worker);
+            const resultPdf = {
+                data: 1,
+            };
+            worker.getPDF.and.returnValue(resultPdf);
 
             const result = cut.process(canvas, ['deu', 'eng']);
 
-            await expectAsync(result).toBeResolvedTo(resultPdf.files.pdf);
-            expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
-            expect(worker.recognize).toHaveBeenCalledWith(canvas, 'deu+eng', {
-                'tessjs_create_pdf': '1',
-                'tessjs_pdf_auto_download': false,
-                'tessjs_pdf_bin': true,
+            await expectAsync(result).toBeResolvedTo(new Uint8Array(1));
+            expect(worker.load).toHaveBeenCalled();
+            expect(worker.loadLanguage).toHaveBeenCalledWith('deu+eng');
+            expect(worker.initialize).toHaveBeenCalledWith('deu+eng');
+            expect(worker.setParameters).toHaveBeenCalledWith({ tessedit_ocr_engine_mode: 1 });
+            expect(worker.recognize).toHaveBeenCalledWith(canvas);
+            expect(worker.getPDF).toHaveBeenCalled();
+            expect(worker.terminate).toHaveBeenCalled();
+            expect(tesseractMock.createWorker).toHaveBeenCalledWith({
+                corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
+                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
-            expect(worker.terminate).toHaveBeenCalledTimes(1);
         });
 
         it('should reject for a given file and single language, when workerPromise rejects.', async () => {
-            const worker = new WorkerMock();
             const error = new Error('test');
-            worker.recognize.and.returnValue(Promise.reject(error));
-            spyOn(cut, 'getNextTesseractWorker').and.returnValue(worker as any);
             windowAny.t.withArgs('ocr', 'An unexpected error occured during Tesseract processing.')
                 .and.returnValue('An unexpected error occured during Tesseract processing.');
+            tesseractMock.createWorker.and.returnValue(worker);
+            const resultPdf = {
+                data: 1,
+            };
+            worker.recognize.and.returnValue(Promise.reject(error));
+            worker.getPDF.and.returnValue(resultPdf);
 
             const result = cut.process('url', ['deu']);
 
             await expectAsync(result).toBeRejectedWith(new TesseractError('An unexpected error occured during Tesseract processing.', 'url', error));
-            expect(cut.getNextTesseractWorker).toHaveBeenCalledTimes(1);
-            expect(worker.recognize).toHaveBeenCalledWith('url', 'deu', {
-                'tessjs_create_pdf': '1',
-                'tessjs_pdf_auto_download': false,
-                'tessjs_pdf_bin': true,
+            expect(worker.load).toHaveBeenCalled();
+            expect(worker.loadLanguage).toHaveBeenCalledWith('deu');
+            expect(worker.initialize).toHaveBeenCalledWith('deu');
+            expect(worker.setParameters).toHaveBeenCalledWith({ tessedit_ocr_engine_mode: 1 });
+            expect(worker.recognize).toHaveBeenCalledWith('url');
+            expect(tesseractMock.createWorker).toHaveBeenCalledWith({
+                corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
+                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
-            expect(worker.terminate).toHaveBeenCalledTimes(0);
         });
     });
-
-    describe('getNextTesseractWorker function', () => {
-        it('should get the next worker in the list with round robin logic.', () => {
-            const workerNumber = navigator.hardwareConcurrency || 4;
-
-            for (let index = 1; index <= workerNumber; index++) {
-                const result = cut.getNextTesseractWorker();
-
-                expect((result as any).iAm).toEqual(index);
-            }
-
-            expect(cut.tesseractWorkers.length).toEqual(workerNumber);
-        });
-    });
-
-    describe('resetRoundRobinIndex function', () => {
-        it('should reset round robin index to 0.', () => {
-            const result1 = cut.getNextTesseractWorker();
-            expect((result1 as any).iAm).toEqual(1);
-
-            cut.resetRoundRobinIndex();
-
-            const result2 = cut.getNextTesseractWorker();
-            expect((result2 as any).iAm).toEqual(1);
-        });
-    });
-
-    class WorkerMock {
-        public iAm: number;
-        public recognize = jasmine.createSpy('recognize');
-        public terminate = jasmine.createSpy('terminate');
-
-        constructor(public options?: any) {
-            count++;
-            this.iAm = count;
-        }
-    }
 });

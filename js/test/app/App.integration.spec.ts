@@ -47,7 +47,7 @@ describe("The App's", () => {
                 },
             };
             windowAny.OCA.Files.App.fileList.$el.find.and.returnValue(jasmine.createSpyObj('found', ['click']));
-            windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
+            windowAny.Tesseract = {};
             windowAny.t = jasmine.createSpy('t').and.returnValue('OCR');
             windowAny.PDFJS = jasmine.createSpyObj('PDFJS', ['getDocument']);
             windowAny.PDFLib = {
@@ -93,7 +93,7 @@ describe("The App's", () => {
                 },
             };
             windowAny.OCA.Files.App.fileList.$el.find.and.throwError('Test');
-            windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
+            windowAny.Tesseract = {};
             windowAny.t = jasmine.createSpy('t').withArgs('ocr', 'OCR').and.returnValue('OCR');
             windowAny.PDFJS = jasmine.createSpyObj('PDFJS', ['getDocument']);
             windowAny.PDFLib = {
@@ -162,7 +162,7 @@ describe("The App's", () => {
             expect(cut.httpService).not.toBeDefined();
             expect(cut.util).not.toBeDefined();
 
-            windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
+            windowAny.Tesseract = {};
 
             // Next tick / everything should setup correctly
             jasmine.clock().tick(1000);
@@ -217,7 +217,7 @@ describe("The App's", () => {
             expect(cut.util).not.toBeDefined();
             expect(cut.httpService).not.toBeDefined();
 
-            windowAny.Tesseract = { TesseractWorker: jasmine.createSpy('TesseractWorker') };
+            windowAny.Tesseract = {};
 
             // Next tick / everything should setup correctly
             jasmine.clock().tick(100);

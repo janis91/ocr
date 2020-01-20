@@ -4,7 +4,7 @@ import { Configuration } from '../configuration/Configuration';
 
 export class HttpService {
 
-    private static API_URL_LANGUAGES: string = '/api/personal/languages';
+    private static API_URL_LANGUAGES: string = '/apps/ocr/api/personal/languages';
 
     constructor(private oc: OC, private axios: AxiosInstance) { }
 
@@ -33,6 +33,6 @@ export class HttpService {
     }
 
     private generateAppUrl: () => string = () => {
-        return this.oc.generateUrl(this.oc.appswebroots.ocr.replace(this.oc.webroot, '') + HttpService.API_URL_LANGUAGES);
+        return this.oc.generateUrl(HttpService.API_URL_LANGUAGES);
     }
 }
