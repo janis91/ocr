@@ -10,7 +10,6 @@ import { PdfService } from './service/PdfService';
 import { PDFDocumentFactory, PDFDocumentWriter } from 'pdf-lib';
 import { HttpService } from './service/HttpService';
 import axios from 'axios';
-import * as Tess from 'tesseract.js';
 
 
 declare var OC: OC;
@@ -19,7 +18,7 @@ declare var t: OCSingleTranslation;
 declare var n: OCMultiTranslation;
 declare var PDFJS: PDFJSStatic;
 declare var PDFLib: { PDFDocumentFactory: PDFDocumentFactory, PDFDocumentWriter: PDFDocumentWriter };
-declare var Tesseract: typeof Tess;
+declare var Tesseract: any;
 
 /**
  * Nextcloud - OCR

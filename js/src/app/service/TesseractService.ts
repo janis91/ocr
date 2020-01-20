@@ -1,7 +1,8 @@
 import { Util } from '../util/Util';
 import { TesseractError } from './error/TesseractError';
 import { Configuration } from '../configuration/Configuration';
-import Tesseract from 'tesseract.js';
+// FIXME: Karma typescript error: cannot read spread operator in the tesseract.js package. therefore using <any> for now. Consider changing App.ts and tests as well.
+// import Tesseract from 'tesseract.js';
 
 /**
  * Nextcloud - OCR
@@ -19,7 +20,7 @@ export class TesseractService {
         ? '/vendor/tesseract.js/tesseract-core.asm.js' : '/vendor/tesseract.js/tesseract-core.wasm.js'; // can be directed to wasm file directly in the future hopefully
     private static WORKER_PATH: string = '/vendor/tesseract.js/worker.min.js';
 
-    private tesseractWorkerOptions: Partial<Tesseract.WorkerOptions>;
+    private tesseractWorkerOptions: Partial<any>;
 
     public static checkTesseractAvailability: () => boolean = () => {
         const isAvailable = Util.isDefinedIn;
@@ -27,7 +28,7 @@ export class TesseractService {
             [...document.querySelectorAll('script')].find(script => script.src.includes(TesseractService.WORKER_PATH)) !== undefined;
     }
 
-    constructor(private document: Document, private tess: typeof Tesseract) {
+    constructor(private document: Document, private tesseract: any) {
         const workerSrc = [...this.document.querySelectorAll('script')].find(script => script.src.includes(TesseractService.WORKER_PATH)).src;
         const prefix = workerSrc.slice(0, workerSrc.indexOf(TesseractService.WORKER_PATH));
         this.tesseractWorkerOptions = {
@@ -39,12 +40,12 @@ export class TesseractService {
 
     public process: (urlOrCanvas: string | HTMLCanvasElement, languages: Array<string>) => Promise<ArrayBuffer> = async (urlOrCanvas, languages) => {
         try {
-            const worker = this.tess.createWorker(this.tesseractWorkerOptions);
+            const worker = this.tesseract.createWorker(this.tesseractWorkerOptions);
             await worker.load();
             await worker.loadLanguage(languages.join('+'));
             await worker.initialize(languages.join('+'));
             await worker.setParameters({
-                tessedit_ocr_engine_mode: Tesseract.OEM.LSTM_ONLY,
+                tessedit_ocr_engine_mode: this.tesseract.OEM.LSTM_ONLY,
             });
             await worker.recognize(urlOrCanvas);
             const { data } = await (worker as any).getPDF();
