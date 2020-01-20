@@ -20,12 +20,12 @@ describe("The TesseractService's", () => {
             src: '/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
         };
         documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
-        worker.load.and.returnValue(null);
-        worker.loadLanguage.and.returnValue(null);
-        worker.initialize.and.returnValue(null);
-        worker.setParameters.and.returnValue(null);
-        worker.recognize.and.returnValue(null);
-        worker.terminate.and.returnValue(null);
+        worker.load.and.returnValue(undefined);
+        worker.loadLanguage.and.returnValue(undefined);
+        worker.initialize.and.returnValue(undefined);
+        worker.setParameters.and.returnValue(undefined);
+        worker.recognize.and.returnValue(undefined);
+        worker.terminate.and.returnValue(undefined);
         cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock, tesseractMock);
     });
 
