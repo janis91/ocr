@@ -157,9 +157,10 @@ export class Controller {
      */
     public createPutFileContentsPath: (file: OCAFile, replace: boolean) => string = (file, replace) => {
         const newFileName = file.name.split('.');
+        const ending = newFileName[newFileName.length - 1].toLowerCase() === 'pdf' ? newFileName[newFileName.length - 1] : 'pdf';
         newFileName.pop();
         const postFix = file.mimetype === 'application/pdf' && !replace ? '_ocr' : '';
-        return this.ocaService.getCurrentDirectory() + newFileName.join('.') + postFix + '.pdf';
+        return this.ocaService.getCurrentDirectory() + newFileName.join('.') + postFix + '.' + ending;
     }
 
     /**
