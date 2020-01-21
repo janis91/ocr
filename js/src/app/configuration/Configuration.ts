@@ -13,8 +13,7 @@ declare var n: OCMultiTranslation;
  * @copyright Janis Koehr 2019
  */
 export class Configuration {
-    // TODO: allowed mimetypes are not correct: https://github.com/naptha/tesseract.js/blob/master/docs/image-format.md
-    public static ALLOWED_MIMETYPES: Array<string> = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'image/jp2', 'image/jpm', 'image/jpx', 'image/webp', 'image/gif'];
+    public static ALLOWED_MIMETYPES: Array<string> = ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'image/bmp', 'image/x-portable-bitmap'];
     public static TRANSLATION_OCR: string = t('ocr', 'OCR');
     public static TRANSLATION_TARGET_FILE_ALREADY_EXISTS: string = t('ocr', 'Target file already exists:');
     public static TRANSLATION_UNEXPECTED_ERROR_LOAD_FAVORITE_LANGUAGES: string = t('ocr', 'An unexpected error occured during the load of your favorite languages. No language will be set instead.');

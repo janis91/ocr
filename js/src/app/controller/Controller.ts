@@ -81,9 +81,10 @@ export class Controller {
         let selectedLanguages: Array<string> = this.view.getSelectValues();
         selectedLanguages = selectedLanguages.length > 0 ? selectedLanguages : ['eng'];
         const replace = this.view.getReplaceValue();
-        const tesseractPromises = filteredFiles.map(this.process(selectedLanguages, replace));
         try {
-            await Promise.all(tesseractPromises);
+            for (let i = 0; i < filteredFiles.length; i++) {
+                await this.process(selectedLanguages, replace)(filteredFiles[i]);
+            }
         } catch (e) {
             this.view.displayError(`${Configuration.TRANSLATION_OCR_PROCESSING_FAILED} ${e.message}`);
             console.error('An error occured in OCR.', e, e.original);
@@ -127,11 +128,11 @@ export class Controller {
      * Creates the Promise per file for tesseract.
      */
     public process: (selectedLanguages: Array<string>, replace: boolean) => (file: OCAFile) => Promise<void> = (selectedLanguages, replace) => async (file) => {
-        let pdf: ArrayBuffer;
+        let pdf: Uint8Array;
         if (file.mimetype === 'application/pdf') {
-            const canvass = await this.pdfService.getDocumentPagesAsImages(this.ocaService.getDownloadUrl(file));
-            const pdfs = await Promise.all(canvass.map((canvas) => this.tesseractService.process(canvas, selectedLanguages)));
-            pdf = await this.pdfService.createPdfFromBuffers(pdfs);
+            const canvass = await this.pdfService.getDocumentPagesAsScaledImages(this.ocaService.getDownloadUrl(file));
+            const pdfs = await this.processStepWise(canvass, selectedLanguages);
+            pdf = this.pdfService.createPdfFromBuffers(pdfs);
         } else {
             pdf = await this.tesseractService.process(this.ocaService.getDownloadUrl(file), selectedLanguages);
         }
@@ -183,5 +184,14 @@ export class Controller {
             this.view.displayError(Configuration.TRANSLATION_UNEXPECTED_ERROR_LOAD_FAVORITE_LANGUAGES);
         }
         this.view.setFavoriteLanguages(languages);
+    }
+
+    private processStepWise: (canvass: HTMLCanvasElement[], selectedLanguages: Array<string>) => Promise<Uint8Array[]> = async (canvass, selectedLanguages) => {
+        const pdfs = [];
+        // Create chunks of 4
+        for (let i = 0; i < canvass.length; i += 4) {
+            pdfs.push(...(await Promise.all(canvass.slice(i, i + 4).map((canvas) => this.tesseractService.process(canvas, selectedLanguages)))));
+        }
+        return pdfs;
     }
 }

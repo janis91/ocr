@@ -22,7 +22,7 @@ describe("The PdfService's", () => {
         cut = new (await import('../../../src/app/service/PdfService')).PdfService(pdfJsMock, pdfLibMock, documentMock);
     });
 
-    describe('getDocumentPagesAsImages function', () => {
+    describe('getDocumentPagesAsScaledImages function', () => {
         it('should return single pdf page as canvas element in array, given a url.', async () => {
             const page: jasmine.SpyObj<PDFPageProxy> = jasmine.createSpyObj('pdfPageProxy', ['getViewport', 'render']);
             const viewport = { height: 1, width: 2 } as PDFPageViewport;
@@ -37,12 +37,12 @@ describe("The PdfService's", () => {
             canvas.getContext.and.returnValue(canvasContext);
             page.render.and.returnValue(Promise.resolve(undefined) as any);
 
-            const result = cut.getDocumentPagesAsImages('url');
+            const result = cut.getDocumentPagesAsScaledImages('url');
 
             await expectAsync(result).toBeResolvedTo([canvas]);
             expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
             expect(pdfDocumentProxy.getPage).toHaveBeenCalledWith(1);
-            expect(page.getViewport).toHaveBeenCalledWith(3);
+            expect(page.getViewport).toHaveBeenCalledWith(3 / 0.72);
             expect(documentMock.createElement).toHaveBeenCalledWith('canvas');
             expect(canvas.getContext).toHaveBeenCalledWith('2d');
             expect(canvas.height).toEqual(1);
@@ -72,14 +72,14 @@ describe("The PdfService's", () => {
             page1.render.and.returnValue(Promise.resolve(undefined) as any);
             page2.render.and.returnValue(Promise.resolve(undefined) as any);
 
-            const result = cut.getDocumentPagesAsImages('url');
+            const result = cut.getDocumentPagesAsScaledImages('url');
 
             await expectAsync(result).toBeResolvedTo([canvas1, canvas2]);
             expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
             expect(pdfDocumentProxy.getPage.calls.argsFor(0)).toEqual([1]);
             expect(pdfDocumentProxy.getPage.calls.argsFor(1)).toEqual([2]);
-            expect(page1.getViewport).toHaveBeenCalledWith(3);
-            expect(page2.getViewport).toHaveBeenCalledWith(3);
+            expect(page1.getViewport).toHaveBeenCalledWith(3 / 0.72);
+            expect(page2.getViewport).toHaveBeenCalledWith(3 / 0.72);
             expect(documentMock.createElement.calls.argsFor(0)).toEqual(['canvas']);
             expect(documentMock.createElement.calls.argsFor(1)).toEqual(['canvas']);
             expect(canvas1.getContext).toHaveBeenCalledWith('2d');
@@ -99,7 +99,7 @@ describe("The PdfService's", () => {
             windowAny.t.withArgs('ocr', 'An unexpected error occured during pdf processing.').and.returnValue('An unexpected error occured during pdf processing.');
             windowAny.t.withArgs('ocr', 'PDF does not contain any Pages to process.').and.returnValue('PDF does not contain any Pages to process.');
 
-            const result = cut.getDocumentPagesAsImages('url');
+            const result = cut.getDocumentPagesAsScaledImages('url');
 
             await expectAsync(result).toBeRejectedWith(new PdfError('PDF does not contain any Pages to process.'));
             expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
@@ -110,7 +110,7 @@ describe("The PdfService's", () => {
             pdfJsMock.getDocument.and.returnValue(Promise.reject(e) as any);
             windowAny.t.withArgs('ocr', 'An unexpected error occured during pdf processing.').and.returnValue('An unexpected error occured during pdf processing.');
 
-            const result = cut.getDocumentPagesAsImages('url');
+            const result = cut.getDocumentPagesAsScaledImages('url');
 
             await expectAsync(result).toBeRejectedWith(new PdfError('An unexpected error occured during pdf processing.', e));
             expect<any>(pdfJsMock.getDocument).toHaveBeenCalledWith('url');
