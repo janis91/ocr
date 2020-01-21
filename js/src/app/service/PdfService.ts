@@ -1,11 +1,8 @@
 import { Util } from '../util/Util';
 import { PDFJSStatic } from 'pdfjs-dist';
 import { PDFDocumentFactory, PDFDocument, PDFDocumentWriter } from 'pdf-lib';
-import { OCSingleTranslation } from '../../global-oc-types';
 import { PdfError } from './error/PdfError';
 import { Configuration } from '../configuration/Configuration';
-
-declare var t: OCSingleTranslation;
 
 /**
  * Nextcloud - OCR
@@ -29,13 +26,13 @@ export class PdfService {
         this.pdfjs.disableWorker = true;
     }
 
-    public getDocumentPagesAsImages: (url: string) => Promise<HTMLCanvasElement[]> = async (url) => {
+    public getDocumentPagesAsScaledImages: (url: string) => Promise<HTMLCanvasElement[]> = async (url) => {
         try {
             const pdf = await this.pdfjs.getDocument(url);
             if (pdf.numPages === 0) { throw new PdfError(Configuration.TRANSLATION_PDF_DOESNT_CONTAIN_PAGES); }
             const canvass = [...Array(pdf.numPages + 1).keys()].slice(1).map(async (i) => {
                 const page = await pdf.getPage(i);
-                const viewport = page.getViewport(3);
+                const viewport = page.getViewport(3 / 0.72); // needed for exact the same page size and a good dpi for tesseract.
                 const canvas = this.document.createElement('canvas');
                 const canvasContext = canvas.getContext('2d');
                 canvas.height = viewport.height;
@@ -50,7 +47,7 @@ export class PdfService {
         }
     }
 
-    public createPdfFromBuffers: (buffers: ArrayBuffer[]) => ArrayBuffer = (buffers) => {
+    public createPdfFromBuffers: (buffers: Uint8Array[]) => Uint8Array = (buffers) => {
         try {
             const pdfs: PDFDocument[] = buffers.map((buffer) => (this.pdfLib.PDFDocumentFactory as any).load(buffer));
             const pdf = pdfs.reduce((prev, curr) => {

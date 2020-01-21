@@ -38,7 +38,7 @@ export class TesseractService {
         };
     }
 
-    public process: (urlOrCanvas: string | HTMLCanvasElement, languages: Array<string>) => Promise<ArrayBuffer> = async (urlOrCanvas, languages) => {
+    public process: (urlOrCanvas: string | HTMLCanvasElement, languages: Array<string>) => Promise<Uint8Array> = async (urlOrCanvas, languages) => {
         try {
             const worker = this.tesseract.createWorker(this.tesseractWorkerOptions);
             await worker.load();

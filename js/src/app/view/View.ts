@@ -157,7 +157,7 @@ export class View {
             buttonText: Configuration.TRANSLATION_PROCESS,
             filesQueued: Configuration.TRANSLATION_FILES_QUEUED(files.length),
             hint: Configuration.TRANSLATION_LARGE_NUMBER_TAKES_VERY_LONG_TIME,
-            languages: false || Common.AVAILABLE_LANGUAGES, // TODO: remote call for settings
+            languages: false || Common.AVAILABLE_LANGUAGES,
             replaceText: Configuration.TRANSLATION_REPLACE_OR_DELETE_ORIGINAL_FILE(files.length),
             title: files.length === 1 ? `${Configuration.TRANSLATION_OCR}: ${files[0].name}` : `${Configuration.TRANSLATION_OCR}: ${Configuration.TRANSLATION_FILE_FILES(files.length)}`,
         });
