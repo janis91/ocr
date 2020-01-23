@@ -14,6 +14,7 @@ namespace OCA\Ocr\Migration;
 
 
 use Exception;
+use GuzzleHttp\RequestOptions;
 use OC\Archive\TAR;
 use OC\IntegrityCheck\Helpers\FileAccessHelper;
 use OCA\Ocr\Constants\OcrConstants;
@@ -75,7 +76,7 @@ class FetchTessdata implements IRepairStep {
 			// Download
 			$tempFile = $this->tempManager->getTemporaryFile('.tar.gz');
 			$client = $this->clientService->newClient();
-			$client->get(OcrConstants::TESSDATA_DOWNLOAD_URL, ['save_to' => $tempFile]);
+			$client->get(OcrConstants::TESSDATA_DOWNLOAD_URL, ['save_to' => $tempFile, RequestOptions::TIMEOUT => 600, RequestOptions::CONNECT_TIMEOUT => 10]);
 			$output->advance(1, 'Downloaded tessdata archive.');
 			// Extract and Verify
 			$extractDir = $this->extract($tempFile);
