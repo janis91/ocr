@@ -21,6 +21,7 @@ mkdir release/vendor/tesseract.js
 mkdir release/vendor/choices.js
 mkdir release/vendor/pdf.js
 mkdir release/vendor/pdf-lib
+mkdir release/vendor/tessdata
 
 # Copy js artifacts
 cp js/app.js release/js/app.js

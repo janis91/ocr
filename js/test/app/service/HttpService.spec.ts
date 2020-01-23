@@ -6,19 +6,14 @@ import { AxiosInstance } from 'axios';
 describe("The HttpService's", () => {
 
     let cut: HttpService;
-    let ocMock: OC;
+    let ocMock: jasmine.SpyObj<OC>;
     let axiosMock: jasmine.SpyObj<AxiosInstance>;
 
 
     beforeEach(async () => {
         windowAny.t = jasmine.createSpy('t');
         windowAny.n = jasmine.createSpy('n');
-        ocMock = {
-            generateUrl: jasmine.createSpy('generateUrl'),
-            Notification: jasmine.createSpyObj('Notification', ['showHtml']),
-            PERMISSION_UPDATE: 26,
-            requestToken: 'token',
-        };
+        ocMock = jasmine.createSpyObj('OC', ['generateUrl']);
         axiosMock = jasmine.createSpyObj('axios', ['get', 'post']);
         cut = new (await import('../../../src/app/service/HttpService')).HttpService(ocMock, axiosMock);
     });

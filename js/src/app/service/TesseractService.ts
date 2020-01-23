@@ -1,6 +1,7 @@
 import { Util } from '../util/Util';
 import { TesseractError } from './error/TesseractError';
 import { Configuration } from '../configuration/Configuration';
+import { OC } from '../../global-oc-types';
 // FIXME: Karma typescript error: cannot read spread operator in the tesseract.js package. therefore using <any> for now. Consider changing App.ts and tests as well.
 // import Tesseract from 'tesseract.js';
 
@@ -15,7 +16,7 @@ import { Configuration } from '../configuration/Configuration';
  */
 export class TesseractService {
 
-    private static LANG_PATH: string = 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast';
+    private static LANG_PATH: string = '/apps/ocr/tessdata';
     private static CORE_PATH: string = window.navigator.userAgent.indexOf('Edge') > -1
         ? '/vendor/tesseract.js/tesseract-core.asm.js' : '/vendor/tesseract.js/tesseract-core.wasm.js'; // can be directed to wasm file directly in the future hopefully
     private static WORKER_PATH: string = '/vendor/tesseract.js/worker.min.js';
@@ -28,12 +29,12 @@ export class TesseractService {
             [...document.querySelectorAll('script')].find(script => script.src.includes(TesseractService.WORKER_PATH)) !== undefined;
     }
 
-    constructor(private document: Document, private tesseract: any) {
+    constructor(private document: Document, private tesseract: any, private oc: OC) {
         const workerSrc = [...this.document.querySelectorAll('script')].find(script => script.src.includes(TesseractService.WORKER_PATH)).src;
         const prefix = workerSrc.slice(0, workerSrc.indexOf(TesseractService.WORKER_PATH));
         this.tesseractWorkerOptions = {
             corePath: prefix + TesseractService.CORE_PATH,
-            langPath: TesseractService.LANG_PATH,
+            langPath: this.oc.generateUrl(TesseractService.LANG_PATH),
             workerPath: prefix + TesseractService.WORKER_PATH,
         };
     }

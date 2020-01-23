@@ -22,6 +22,20 @@ abstract class OcrConstants {
 	const APP_NAME = 'ocr';
 
 	/**
+	 * The tessdata folder name.
+	 *
+	 * @var string
+	 */
+	const TESSDATA_FOLDER = 'tessdata';
+
+	/**
+	 * The download url for packed tessdata.
+	 *
+	 * @var string
+	 */
+	const TESSDATA_DOWNLOAD_URL = 'https://github.com/janis91/tessdata/releases/download/v1.0.0/tessdata.tar.gz';
+
+	/**
 	 * The languages that can be set as default / preferred ones.
 	 */
 	const ALLOWED_LANGUAGES = [

@@ -1,11 +1,13 @@
 import { TesseractService } from '../../../src/app/service/TesseractService';
 import { windowAny } from '../../fixtures/fixtures';
+import { OC } from '../../../src/global-oc-types';
 import { TesseractError } from '../../../src/app/service/error/TesseractError';
 
 describe("The TesseractService's", () => {
 
     let documentMock: jasmine.SpyObj<Document>;
     let tesseractMock: jasmine.SpyObj<any>;
+    let ocMock: jasmine.SpyObj<OC>;
     let worker: jasmine.SpyObj<any>;
     let cut: TesseractService;
 
@@ -19,6 +21,8 @@ describe("The TesseractService's", () => {
         const element = {
             src: '/apps/ocr/vendor/tesseract.js/worker.min.js?v=8ae2d5f0-2',
         };
+        ocMock = jasmine.createSpyObj('OC', ['generateUrl']);
+        ocMock.generateUrl.withArgs('/apps/ocr/tessdata').and.returnValue('/apps/ocr/tessdata');
         documentMock.querySelectorAll.and.returnValue([element] as any as NodeListOf<HTMLScriptElement>);
         worker.load.and.returnValue(undefined);
         worker.loadLanguage.and.returnValue(undefined);
@@ -26,7 +30,7 @@ describe("The TesseractService's", () => {
         worker.setParameters.and.returnValue(undefined);
         worker.recognize.and.returnValue(undefined);
         worker.terminate.and.returnValue(undefined);
-        cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock, tesseractMock);
+        cut = new (await import('../../../src/app/service/TesseractService')).TesseractService(documentMock, tesseractMock, ocMock);
     });
 
     describe('process function', () => {
@@ -49,7 +53,7 @@ describe("The TesseractService's", () => {
             expect(worker.terminate).toHaveBeenCalled();
             expect(tesseractMock.createWorker).toHaveBeenCalledWith({
                 corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
-                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                langPath: '/apps/ocr/tessdata',
                 workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
         });
@@ -74,7 +78,7 @@ describe("The TesseractService's", () => {
             expect(worker.terminate).toHaveBeenCalled();
             expect(tesseractMock.createWorker).toHaveBeenCalledWith({
                 corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
-                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                langPath: '/apps/ocr/tessdata',
                 workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
         });
@@ -98,7 +102,7 @@ describe("The TesseractService's", () => {
             expect(worker.terminate).toHaveBeenCalled();
             expect(tesseractMock.createWorker).toHaveBeenCalledWith({
                 corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
-                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                langPath: '/apps/ocr/tessdata',
                 workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
         });
@@ -123,7 +127,7 @@ describe("The TesseractService's", () => {
             expect(worker.terminate).toHaveBeenCalled();
             expect(tesseractMock.createWorker).toHaveBeenCalledWith({
                 corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
-                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                langPath: '/apps/ocr/tessdata',
                 workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
         });
@@ -149,7 +153,7 @@ describe("The TesseractService's", () => {
             expect(worker.recognize).toHaveBeenCalledWith('url');
             expect(tesseractMock.createWorker).toHaveBeenCalledWith({
                 corePath: '/apps/ocr/vendor/tesseract.js/tesseract-core.wasm.js',
-                langPath: 'https://raw.githubusercontent.com/janis91/tessdata/fcc04f158939977d1e04922b808add72c003d407/4.0.0_fast',
+                langPath: '/apps/ocr/tessdata',
                 workerPath: '/apps/ocr/vendor/tesseract.js/worker.min.js',
             });
         });

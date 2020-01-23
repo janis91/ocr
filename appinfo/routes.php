@@ -13,5 +13,6 @@ return [
 		//settings
 		['name' => 'personal_settings#set', 'url' => 'api/personal/languages', 'verb' => 'POST'],
 		['name' => 'personal_settings#get', 'url' => 'api/personal/languages', 'verb' => 'GET'],
+		['name' => 'tessdata#getFile', 'url' => 'tessdata/{file}', 'verb' => 'GET'],
 	],
 ];
