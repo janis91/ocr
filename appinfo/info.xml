@@ -56,7 +56,7 @@ Moreover this project is based on a webassembly port of tesseract and some in br
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc5.png</screenshot>
 	<dependencies>
 		<php min-version="7.1" max-version="7.4" />
-		<nextcloud min-version="16" max-version="17" />
+		<nextcloud min-version="16" max-version="18" />
 	</dependencies>
 	<repair-steps>
 		<pre-migration>
