@@ -13,6 +13,7 @@
 namespace OCA\Ocr\Tests\Unit\Migration;
 
 
+use GuzzleHttp\RequestOptions;
 use OC\IntegrityCheck\Helpers\FileAccessHelper;
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Migration\FetchTessdata;
@@ -98,7 +99,7 @@ class FetchTessdataTest extends TestCase {
 			->will($this->returnValue($client));
 		$client->expects($this->once())
 			->method('get')
-			->with(OcrConstants::TESSDATA_DOWNLOAD_URL, ['save_to' => '/tmp/temp.tar.gz']);
+			->with(OcrConstants::TESSDATA_DOWNLOAD_URL, ['save_to' => '/tmp/temp.tar.gz', RequestOptions::TIMEOUT => 600, RequestOptions::CONNECT_TIMEOUT => 10]);
 		$this->tempManager->expects($this->once())
 			->method('getTemporaryFolder')
 			->will($this->returnValue('/tmp/temp/'));
