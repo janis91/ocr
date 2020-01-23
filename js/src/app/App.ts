@@ -47,7 +47,7 @@ export class App {
                 this.util = new Util();
                 this.view = new View(OC.Notification, handlebarsDropdownTemplate, document); // lgtm [js/property-access-on-non-object]
                 this.ocaService = new OcaService(OC, OCA);
-                this.tesseractService = new TesseractService(document, Tesseract);
+                this.tesseractService = new TesseractService(document, Tesseract, OC);
                 this.pdfService = new PdfService(PDFJS, PDFLib, document);
                 this.httpService = new HttpService(OC, axios);
                 this.controller = new Controller(this.util, this.view, this.tesseractService, this.ocaService, this.pdfService, this.httpService, document);

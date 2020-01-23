@@ -6,7 +6,7 @@
  * later. See the COPYING file.
  * 
  * @author Janis Koehr <janiskoehr@icloud.com>
- * @copyright Janis Koehr 2017
+ * @copyright Janis Koehr 2020
  */
 namespace OCA\Ocr\Migration;
 
@@ -29,19 +29,14 @@ class DropOldTable implements IRepairStep {
     }
 
     /**
-     * Returns the step's name
-     * 
-     * @return string
+     * @inheritDoc
      */
     public function getName() {
         return 'Drop old database table';
     }
 
     /**
-     * Run repair step.
-     * Must throw exception on error.
-     * 
-     * @throws \Exception in case of failure
+     * @inheritDoc
      */
     public function run(IOutput $output) {
         $output->startProgress(1);

@@ -8,8 +8,9 @@ The app uses [tesseract-js](https://tesseract.projectnaptha.com/) by [@jeromewu]
 
 ## Prerequisites, Requirements and Dependencies
 The OCR app has some prerequisites:
- - [Nextcloud 15 and up](https://nextcloud.com/)
+ - [Nextcloud 16 and up](https://nextcloud.com/)
  - Only supported on latest modern web browsers (Chrome, Edge, Firefox, Opera, Safari*)
+ - Tesseract traineddata needs about 200 MB space on your server (will be installed automatically).
 
 
 _* On Safari there is currently a problem with the [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), that requires an Administrator to set the 'script-src' to 'unsafe-eval' such that the app works properly. Because this is quite insecure the app itself does not set it and recommends to decide that on your own risk (please make sure, that you know what CSP is and what e.g. unsafe-eval causes)._

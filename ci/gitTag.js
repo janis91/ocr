@@ -30,7 +30,7 @@ if (appInfoFloat > gitTagOldFloat) {
     console.log('New version: '+ newVersion);
     fs.writeFileSync("new_version", newVersion);
     cp.execSync('git tag ' + newVersion);
-    cp.execSync('sed -i \"s\/\\(<version.*>\\)[^<>]*\\(<\\\/version.*\\)\/\\1' + newVersion + '\\2\/\" ' + path.resolve(__dirname, '..\/appinfo\/info.xml'));
+    cp.execSync('sed -i \"s\/\\(<version.*>\\)[^<>]*\\(<\\\/version.*\\)\/\\1' + newVersion + '\\2\/\" ' + path.resolve(__dirname, '..\/appinfo\/info.xml')); // lgtm [js/shell-command-injection-from-environment]
 }
 
 function patch(v) {

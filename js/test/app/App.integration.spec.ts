@@ -31,7 +31,7 @@ describe("The App's", () => {
 
     describe('constructor', () => {
         it('should construct the app successfully (and asynchronously), if everything necessary is available/prepared.', async () => {
-            windowAny.OC = { Notification: {}, PERMISSION_UPDATE: 26 };
+            windowAny.OC = { Notification: {}, PERMISSION_UPDATE: 26, generateUrl: jasmine.createSpy('generateUrl') };
             windowAny.OCA = {
                 Files: {
                     App: {
@@ -46,6 +46,7 @@ describe("The App's", () => {
                     },
                 },
             };
+            windowAny.OC.generateUrl.and.returnValue('/apps/ocr/tessdata');
             windowAny.OCA.Files.App.fileList.$el.find.and.returnValue(jasmine.createSpyObj('found', ['click']));
             windowAny.Tesseract = {};
             windowAny.t = jasmine.createSpy('t').and.returnValue('OCR');
@@ -77,7 +78,7 @@ describe("The App's", () => {
         });
 
         it('should show an Error, if something during the initiallization phase goes wrong.', async () => {
-            windowAny.OC = { Notification: { showHtml: jasmine.createSpy('showHtml') }, PERMISSION_UPDATE: 26 };
+            windowAny.OC = { Notification: { showHtml: jasmine.createSpy('showHtml') }, PERMISSION_UPDATE: 26, generateUrl: jasmine.createSpy('generateUrl') };
             windowAny.OCA = {
                 Files: {
                     App: {
@@ -92,6 +93,7 @@ describe("The App's", () => {
                     },
                 },
             };
+            windowAny.OC.generateUrl.and.returnValue('/apps/ocr/tessdata');
             windowAny.OCA.Files.App.fileList.$el.find.and.throwError('Test');
             windowAny.Tesseract = {};
             windowAny.t = jasmine.createSpy('t').withArgs('ocr', 'OCR').and.returnValue('OCR');
