@@ -16,6 +16,7 @@ OC.L10N.register(
     "Bulgarian" : "Bulgarų",
     "Czech" : "Čekų",
     "Chinese" : "Kinų",
+    "Traditional Chinese" : "Tradicinė kinų",
     "Danish" : "Danų",
     "German" : "Vokiečių",
     "Greek" : "Graikų",
@@ -42,6 +43,8 @@ OC.L10N.register(
     "Turkish" : "Turkų",
     "Ukrainian" : "Ukrainiečių",
     "Vietnamese" : "Vietnamiečių",
-    "Save" : "Įrašyti"
+    "Save" : "Įrašyti",
+    "Optical character recognition" : "Optinis ženklų atpažinimas",
+    "Favorite languages" : "Mėgstamos kalbos"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");
