@@ -52,6 +52,7 @@ class Application extends App {
 			vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.worker.min');
 			vendor_script(OcrConstants::APP_NAME, 'pdf-lib/pdf-lib.min');
 			script(OcrConstants::APP_NAME, "app");
+			script(OcrConstants::APP_NAME, "chunk-vendors");
 			style(OcrConstants::APP_NAME, "app");
 		});
 		$eventDispatcher->addListener(AddContentSecurityPolicyEvent::class, function (AddContentSecurityPolicyEvent $e) {

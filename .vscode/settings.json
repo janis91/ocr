@@ -15,5 +15,16 @@
         "statusBar.foreground": "#15202b"
     },
     "peacock.affectStatusBar": true,
-    "peacock.color": "#24f371"
+    "peacock.color": "#24f371",
+    "eslint.format.enable": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
 }

@@ -9,8 +9,8 @@ module.exports = {
     '@vue/typescript'
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-console': process.env.LOCAL === undefined ? 'error' : 'off',
+    'no-debugger': process.env.LOCAL === undefined ? 'error' : 'off'
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'
