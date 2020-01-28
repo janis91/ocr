@@ -6,5 +6,9 @@ module.exports = {
   },
   testMatch: [
     '**/tests/js/unit/**/*.spec.[jt]s?(x)'
-  ]
+  ],
+  collectCoverage: true,
+  collectCoverageFrom: ['**/*.{ts,vue}', '!**/node_modules/**'],
+  coverageDirectory: 'tests/js/unit/coverage',
+  coverageReporters: ['lcov']
 }
