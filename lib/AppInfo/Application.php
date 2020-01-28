@@ -48,8 +48,6 @@ class Application extends App {
 		$eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function () {
 			vendor_script(OcrConstants::APP_NAME, 'tesseract.js/tesseract.min');
 			vendor_script(OcrConstants::APP_NAME, 'tesseract.js/worker.min');
-			vendor_script(OcrConstants::APP_NAME, 'choices.js/choices.min');
-			vendor_style(OcrConstants::APP_NAME, 'choices.js/choices.min');
 			vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.min');
 			vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.worker.min');
 			vendor_script(OcrConstants::APP_NAME, 'pdf-lib/pdf-lib.min');
