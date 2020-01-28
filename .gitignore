@@ -51,19 +51,17 @@ nbproject
 /.buildpath
 
 # Tests - auto-generated files
-/tests/Unit/coverage*
+/tests/php/unit/coverage*
 
 # JS node_modules and dist
 npm-debug.log
-/js/app.js
-/js/app.js.map
-/js/settings.js
-/js/settings.js.map
-/js/coverage
+/js
+/css
+/dist
 /vendor
 
 # General node_modules
-*/node_modules
+/node_modules
 
 # release files
 /release

@@ -32,7 +32,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 The version 3 and earlier versions are not supported/maintained anymore by the author. So for asynchronous background processing please fork the repository and use the "not-maintained" branch to work on improvements. The author wasn't able to support it because of too much effort.
 Moreover this project is based on a webassembly port of tesseract and some in browser tools for pdf handling, which especially in case of processing PDF files leads to quite some overhead compared to tools like [OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF). Please consider, that output files can get quite big and the process may take quite long, too.]]>
 	</description>
-	<version>5.1.0</version>
+	<version>6.0.0</version>
 	<licence>agpl</licence>
 	<author>Janis Koehr</author>
 	<namespace>Ocr</namespace>
