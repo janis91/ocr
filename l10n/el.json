@@ -17,6 +17,7 @@
     "PDF files and a large number of files may take a very long time." : "Τα μεγάλα και τα PDF αρχεία χρειάζονται περισσότερο χρόνο.",
     "{file}/{files} Files successfully processed" : "{file}/{files} Τα αρχεία επεξεργάστηκαν με επιτυχία",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n αρχείο επεξεργάζεται:","%n αρχεία επεξεργάζονται"],
+    "_Replace (PDF) or delete (image) original file_::_Replace (PDF) or delete (images) original files_" : ["Αντικατάσταση (PDF) ή διαγραφή (εικόνας) πρωτότυπου αρχείου","Αντικατάσταση (PDF) ή διαγραφή (εικόνων) πρωτότυπων αρχείων"],
     "_%n file_::_%n files_" : ["%n αρχείο","%n αρχεία"],
     "Afrikaans" : "Αφρικανικά",
     "Arabic" : "Αραβικά",
@@ -36,6 +37,7 @@
     "English (Old)" : "English (Old)",
     "Esperanto" : "Εσπεράντο",
     "Esperanto alternative" : "Esperanto alternative",
+    "Math" : "Μαθηματικά",
     "Estonian" : "Εσθονικά",
     "Basque" : "Βασικικά",
     "Persian (Farsi)" : "Persian (Farsi)",
@@ -83,6 +85,13 @@
     "Turkish" : "Τούρκος",
     "Ukrainian" : "Ουκρανικά",
     "Vietnamese" : "Vietnamese",
-    "Save" : "Αποθήκευση"
+    "Save" : "Αποθήκευση",
+    "An unexpected error occured during save of your favorite languages. Please try again." : "Μη αναμενόμενο σφάλμα κατά την αποθήκευση των αγαπημένων σας γλωσσών. Παρακαλώ προσπαθήστε ξανά.",
+    "An unexpected error occured during load of your favorite languages. Please try again." : "Μη αναμενόμενο σφάλμα κατά την φόρτωση των αγαπημένων σας γλωσσών. Παρακαλώ προσπαθήστε ξανά.",
+    "An error occured during save of your favorite languages. Please check your input." : "Σφάλμα κατά την αποθήκευση των αγαπημένων σας γλωσσών. Παρακαλώ ελέξτε τα στοιχεία.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Οι επιλεγμένες γλώσσες θα προεπιλεγούν στο παράθυρο διαλόγου OCR.",
+    "Optical character recognition" : "Οπτική αναγνώριση χαρακτήρων",
+    "Text recognition for your images and pdf files" : "Αναγνώριση κειμένου για τις εικόνες και τα αρχεία pdf",
+    "Favorite languages" : "Αγαπημένες γλώσσες"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

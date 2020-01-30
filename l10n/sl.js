@@ -52,6 +52,7 @@ OC.L10N.register(
     "Italian" : "Italijanščina",
     "Italian (Old)" : "Italijanščina (stara)",
     "Japanese" : "Japonščina",
+    "Kannada" : "Kanada",
     "Korean" : "Korejščina",
     "Latvian" : "Latvijščina",
     "Lithuanian" : "Litvanščina",
