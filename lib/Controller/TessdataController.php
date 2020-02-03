@@ -14,6 +14,7 @@ namespace OCA\Ocr\Controller;
 
 use OCA\Ocr\Service\TessdataService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\FileDisplayResponse;
 use OCP\AppFramework\Http\NotFoundResponse;
 use OCP\AppFramework\Http\Response;
@@ -46,7 +47,7 @@ class TessdataController extends Controller {
 	public function getFile(string $file): Response {
 		try {
 			$appFile = $this->tessdataService->getAppFile($file);
-			$response = new FileDisplayResponse($appFile);
+			$response = new FileDisplayResponse($appFile, Http::STATUS_OK, ["Content-Type" => "application/gzip"]);
 			$response->cacheFor(172800);
 			return $response;
 		} catch (NotFoundException $e) {

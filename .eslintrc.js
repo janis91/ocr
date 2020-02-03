@@ -10,7 +10,11 @@ module.exports = {
   ],
   rules: {
     'no-console': process.env.LOCAL === undefined ? 'error' : 'off',
-    'no-debugger': process.env.LOCAL === undefined ? 'error' : 'off'
+    'no-debugger': process.env.LOCAL === undefined ? 'error' : 'off',
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"}]
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'

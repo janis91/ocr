@@ -26,5 +26,7 @@
     ],
     "editor.codeActionsOnSave": {
         "source.fixAll": true
-    }
+    },
+    "vetur.format.defaultFormatter.ts": "none",
+    "vetur.experimental.templateInterpolationService": true
 }

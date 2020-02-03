@@ -164,7 +164,7 @@ declare global {
     /**
      * This is the maximal subset defined by the intersection of a selected file and a file given by file action.
      */
-    interface OCAFile {
+    export interface OCAFile {
         id: number;
         name: string;
         path: string;

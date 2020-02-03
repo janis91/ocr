@@ -18,16 +18,11 @@ cp README.md release/README.md
 # JS
 mkdir release/vendor
 mkdir release/vendor/tesseract.js
-mkdir release/vendor/pdf.js
-mkdir release/vendor/pdf-lib
-mkdir release/vendor/tessdata
 
 # Copy js artifacts
-cp -R js/node_modules/tesseract.js/dist/. release/vendor/tesseract.js/
+cp node_modules/tesseract.js/dist/worker.min.js release/vendor/tesseract.js/worker.min.js
+cp node_modules/tesseract.js/dist/worker.min.js.map release/vendor/tesseract.js/worker.min.js.map
 cp node_modules/tesseract.js-core/tesseract-core.wasm.js release/vendor/tesseract.js/tesseract-core.wasm.js
 cp node_modules/tesseract.js-core/tesseract-core.js release/vendor/tesseract.js/tesseract-core.js
 cp node_modules/tesseract.js-core/tesseract-core.wasm release/vendor/tesseract.js/tesseract-core.wasm
 cp node_modules/tesseract.js-core/tesseract-core.asm.js release/vendor/tesseract.js/tesseract-core.asm.js
-cp node_modules/pdfjs-dist/build/pdf.min.js release/vendor/pdf.js/pdf.min.js
-cp node_modules/pdfjs-dist/build/pdf.worker.min.js release/vendor/pdf.js/pdf.worker.min.js
-cp node_modules/pdf-lib/dist/pdf-lib.min.js release/vendor/pdf-lib/pdf-lib.min.js

@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
+    "noImplicitAny": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
@@ -12,9 +13,13 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "node"
     ],
     "paths": {
+      "@/*": [
+        "src/*"
+      ],
       "@a/*": [
         "src/app/*"
       ],

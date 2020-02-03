@@ -15,6 +15,7 @@ namespace OCA\Ocr\AppInfo;
 use OC\Files\View;
 use OC\Server;
 use OCA\Ocr\Controller\TessdataController;
+use OCA\Ocr\Middleware\ServiceWorkerMiddleware;
 use OCA\Ocr\Service\TessdataService;
 use OCP\AppFramework\App;
 use OCA\Ocr\Controller\PersonalSettingsController;
@@ -46,13 +47,11 @@ class Application extends App {
 		 */
 		$eventDispatcher = \OC::$server->getEventDispatcher();
 		$eventDispatcher->addListener('OCA\Files::loadAdditionalScripts', function () {
-			vendor_script(OcrConstants::APP_NAME, 'tesseract.js/tesseract.min');
-			vendor_script(OcrConstants::APP_NAME, 'tesseract.js/worker.min');
-			vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.min');
-			vendor_script(OcrConstants::APP_NAME, 'pdf.js/pdf.worker.min');
-			vendor_script(OcrConstants::APP_NAME, 'pdf-lib/pdf-lib.min');
+			script(OcrConstants::APP_NAME, "chunk-common");
+			script(OcrConstants::APP_NAME, "chunk-app-vendors");
 			script(OcrConstants::APP_NAME, "app");
-			script(OcrConstants::APP_NAME, "chunk-vendors");
+			style(OcrConstants::APP_NAME, "chunk-common");
+			style(OcrConstants::APP_NAME, "chunk-app-vendors");
 			style(OcrConstants::APP_NAME, "app");
 		});
 		$eventDispatcher->addListener(AddContentSecurityPolicyEvent::class, function (AddContentSecurityPolicyEvent $e) {
@@ -74,6 +73,10 @@ class Application extends App {
 			$port = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : '';
 			$csp->addAllowedScriptDomain("$scheme$host$port");
 			// Chrome and Firefox work now (data: missing in connect-src but processes successful)
+
+			// Service worker registration for caching
+			$csp->addAllowedChildSrcDomain("$scheme$host$port");
+			$csp->addAllowedWorkerSrcDomain("$scheme$host$port");
 
 			// Allow connect to data:octet/stream for fully functioning tesseract web worker
 			$csp->addAllowedConnectDomain('data:');
