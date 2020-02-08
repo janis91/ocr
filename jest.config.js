@@ -11,11 +11,11 @@ module.exports = {
     '^@s/(.*)$': '<rootDir>/src/settings/$1'
   },
   testMatch: [
-    '**/tests/js/unit/**/*.spec.[jt]s?(x)'
+    '**/tests/js/**/*.spec.[jt]s?(x)'
   ],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{ts,vue}', '!**/node_modules/**'],
-  coverageDirectory: 'tests/js/unit/coverage',
+  coverageDirectory: 'tests/js/coverage',
   coverageReporters: ['lcov'],
   silent: true
 }

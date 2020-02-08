@@ -52,7 +52,7 @@ nbproject
 
 # Tests - auto-generated files
 /tests/php/unit/coverage
-/tests/js/unit/coverage
+/tests/js/coverage
 
 # JS node_modules and dist
 npm-debug.log

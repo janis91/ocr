@@ -6,9 +6,8 @@
   "author": "Janis Koehr <janiskoehr@icloud.com>",
   "scripts": {
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "coverage": "cat ./tests/js/unit/coverage/lcov.info | codacy-coverage --token $codacy_api_key --language typescript",
+    "test": "vue-cli-service test:unit",
+	"coverage": "cat ./tests/js/coverage/lcov.info | codacy-coverage --token $codacy_api_key --language typescript",
     "lint": "vue-cli-service lint",
     "postbuild": "rimraf js && rimraf css && ncp dist/js js && ncp dist/css css"
   },
@@ -32,7 +31,6 @@
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.5.3",
     "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-e2e-cypress": "^4.1.2",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-typescript": "^4.1.0",
     "@vue/cli-plugin-unit-jest": "^4.1.0",
