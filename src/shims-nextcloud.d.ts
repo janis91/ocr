@@ -1,5 +1,7 @@
 import { translate, translatePlural } from '@nextcloud/l10n'
 import JQuery from 'jquery'
+import { App } from '@/app/App'
+import { Store } from 'vuex'
 
 declare global {
     interface OC {
@@ -23,6 +25,12 @@ declare global {
     }
     interface OCA {
         Files: Files;
+        Ocr: Ocr;
+    }
+    interface Ocr {
+        app: App,
+        view: Vue,
+        store: Store<any>
     }
     interface Files {
         App: FilesApp;
@@ -41,12 +49,6 @@ declare global {
          * @return array of files
          */
         getSelectedFiles: () => Array<OCAFile>;
-        /**
-         * Reloads the file list using ajax call
-         *
-         * @return ajax call object
-         */
-        reload: () => void;
         /**
          * Gets the download url for one or more files in the given directory.
          *
@@ -132,14 +134,6 @@ declare global {
     }
     interface FileActions {
         /**
-         * Clears all registered file actions.
-         */
-        clear: () => void;
-        /**
-         * Register the actions that are used by default for the files app.
-         */
-        registerDefaultActions: () => void;
-        /**
          * Register action
          *
          * @param action FileAction
@@ -157,7 +151,7 @@ declare global {
         actionHandler: OCAFileActionHandler;
         altText: string | ((context: any) => string);
     }
-    type OCAFileActionHandler = (ocaFilesFileName: string, context: { dir: string, fileInfoModel: OCAFileInfoModel, fileActions: FileActions }) => void;
+    type OCAFileActionHandler = (ocaFilesFileName: string, context: { fileInfoModel: OCAFileInfoModel }) => void;
     interface OCAFileInfoModel {
         attributes: OCAFile;
     }

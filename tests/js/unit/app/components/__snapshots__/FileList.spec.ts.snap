@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileList.vue GIVEN five files in list, WHEN FileList is mounted, THEN matches snapshot with five list items. 1`] = `
+<div>
+  <ul
+    class="ocr-list"
+  >
+    <li>
+      file3.png
+    </li>
+    <li>
+      file3.jpg
+    </li>
+    <li>
+      file3.bmp
+    </li>
+    <li>
+      file3.tiff
+    </li>
+    <li>
+      file3.bmpx
+    </li>
+     
+    <!---->
+  </ul>
+</div>
+`;
+
+exports[`FileList.vue GIVEN one file in list, WHEN FileList is mounted, THEN matches snapshot with one list item. 1`] = `
+<div>
+  <ul
+    class="ocr-list"
+  >
+    <li>
+      file3.png
+    </li>
+     
+    <!---->
+  </ul>
+</div>
+`;
+
+exports[`FileList.vue GIVEN six files in list, WHEN FileList is mounted, THEN matches snapshot with five list items plus "..." as last item. 1`] = `
+<div>
+  <ul
+    class="ocr-list"
+  >
+    <li>
+      file3.png
+    </li>
+    <li>
+      file3.jpg
+    </li>
+    <li>
+      file3.bmp
+    </li>
+    <li>
+      file3.tiff
+    </li>
+    <li>
+      file3.bmpx
+    </li>
+     
+    <li>
+      ...
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`FileList.vue GIVEN standard props, WHEN FileList is mounted, THEN matches snapshot with zero list items. 1`] = `
+<div>
+  <ul
+    class="ocr-list"
+  >
+     
+    <!---->
+  </ul>
+</div>
+`;

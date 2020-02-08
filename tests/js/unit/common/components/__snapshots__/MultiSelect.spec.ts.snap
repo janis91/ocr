@@ -1,0 +1,2295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiSelect GIVEN selectedLanguages has been set to empty array AND disabled is set, WHEN snapshot is taken, THEN matches snapshot without clear-all option and without selected language AND disabled input. 1`] = `
+<div
+  class="multiselect fix-select2-pollution color-adjustments clear-button multiselect--disabled"
+  tabindex="-1"
+>
+  <div
+    class="multiselect__select"
+  />
+    
+  <div
+    class="multiselect__tags"
+  >
+    <div
+      class="multiselect__tags-wrap"
+      style="display: none;"
+    />
+     
+    <!---->
+     
+    <div
+      class="multiselect__spinner"
+      style="display: none;"
+    />
+     
+    <input
+      autocomplete="nope"
+      class="multiselect__input"
+      disabled="disabled"
+      name=""
+      placeholder="Select language"
+      style="width: 0px; position: absolute; padding: 0px;"
+      tabindex="0"
+      type="text"
+    />
+     
+    <!---->
+     
+    <span
+      class="multiselect__placeholder"
+    >
+      
+          Select language
+        
+    </span>
+  </div>
+   
+  <div
+    class="multiselect__content-wrapper"
+    style="max-height: 150px; display: none;"
+    tabindex="-1"
+  >
+    <ul
+      class="multiselect__content"
+      style="display: inline-block;"
+    >
+       
+      <!---->
+       
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option multiselect__option--highlight"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Afrikaans
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Arabic
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Azerbaijani
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Belarusian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Bengali
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Bulgarian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Catalan
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Czech
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Chinese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Traditional Chinese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Cherokee
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Danish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            German
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Greek
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            English
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            English (Old)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Esperanto
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Esperanto alternative
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Math
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Estonian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Basque
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Persian (Farsi)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Finnish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            French
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Frankish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            French (Old)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Galician
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Ancient Greek
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Hebrew
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Hindi
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Croatian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Hungarian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Indonesian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Icelandic
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Italian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Italian (Old)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Japanese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Kannada
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Korean
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Latvian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Lithuanian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Malayalam
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Macedonian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Maltese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Malay
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Dutch
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Norwegian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Polish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Portuguese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Romanian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Russian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Slovakian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Slovenian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Spanish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Old Spanish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Albanian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Serbian (Latin)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Swahili
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Swedish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Tamil
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Telugu
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Tagalog
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Thai
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Turkish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Ukrainian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Vietnamese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+       
+      <li
+        style="display: none;"
+      >
+        <span
+          class="multiselect__option"
+        >
+          <span>
+            No matches found
+          </span>
+        </span>
+      </li>
+       
+      <li
+        style="display: none;"
+      >
+        <span
+          class="multiselect__option"
+        >
+          List is empty.
+        </span>
+      </li>
+       
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`MultiSelect GIVEN standard props, WHEN snapshot is taken, THEN matches snapshot. 1`] = `
+<div
+  class="multiselect fix-select2-pollution color-adjustments clear-button"
+  tabindex="-1"
+>
+  <div
+    class="multiselect__select"
+  />
+   
+  <div
+    class="multiselect__clear"
+  />
+   
+  <div
+    class="multiselect__tags"
+  >
+    <div
+      class="multiselect__tags-wrap"
+    >
+      <span
+        class="multiselect__tag"
+      >
+        <span>
+          German
+        </span>
+         
+        <i
+          aria-hidden="true"
+          class="multiselect__tag-icon"
+          tabindex="1"
+        />
+      </span>
+    </div>
+     
+    <!---->
+     
+    <div
+      class="multiselect__spinner"
+      style="display: none;"
+    />
+     
+    <input
+      autocomplete="nope"
+      class="multiselect__input"
+      name=""
+      placeholder="Select language"
+      style="width: 0px; position: absolute; padding: 0px;"
+      tabindex="0"
+      type="text"
+    />
+     
+    <!---->
+     
+    <!---->
+  </div>
+   
+  <div
+    class="multiselect__content-wrapper"
+    style="max-height: 150px; display: none;"
+    tabindex="-1"
+  >
+    <ul
+      class="multiselect__content"
+      style="display: inline-block;"
+    >
+       
+      <!---->
+       
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option multiselect__option--highlight"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Afrikaans
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Arabic
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Azerbaijani
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Belarusian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Bengali
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Bulgarian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Catalan
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Czech
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Chinese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Traditional Chinese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Cherokee
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Danish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option multiselect__option--selected"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            German
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Greek
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            English
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            English (Old)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Esperanto
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Esperanto alternative
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Math
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Estonian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Basque
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Persian (Farsi)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Finnish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            French
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Frankish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            French (Old)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Galician
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Ancient Greek
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Hebrew
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Hindi
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Croatian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Hungarian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Indonesian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Icelandic
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Italian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Italian (Old)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Japanese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Kannada
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Korean
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Latvian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Lithuanian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Malayalam
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Macedonian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Maltese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Malay
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Dutch
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Norwegian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Polish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Portuguese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Romanian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Russian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Slovakian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Slovenian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Spanish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Old Spanish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Albanian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Serbian (Latin)
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Swahili
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Swedish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Tamil
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Telugu
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Tagalog
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Thai
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Turkish
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Ukrainian
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+      <li
+        class="multiselect__element"
+      >
+        <span
+          class="multiselect__option"
+          data-deselect="Press enter to remove"
+          data-select="Press enter to select"
+          data-selected="Selected"
+        >
+          <span>
+            Vietnamese
+          </span>
+        </span>
+         
+        <!---->
+      </li>
+       
+      <li
+        style="display: none;"
+      >
+        <span
+          class="multiselect__option"
+        >
+          <span>
+            No matches found
+          </span>
+        </span>
+      </li>
+       
+      <li
+        style="display: none;"
+      >
+        <span
+          class="multiselect__option"
+        >
+          List is empty.
+        </span>
+      </li>
+       
+    </ul>
+  </div>
+</div>
+`;

@@ -1,13 +1,10 @@
-import Vue from 'vue'
-import Vuex, { Store } from 'vuex'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { AxiosResponse } from 'axios'
 import { NextcloudGuiApiService } from '@s/services/NextcloudGuiApiService'
 import { Translations } from '@s/configuration/Translations'
 import { Util, LanguageOption } from '@/common/Util'
-
-Vue.use(Vuex)
+import { StoreOptions } from 'vuex'
 
 export const SAVE_FAVORITE_LANGUAGES = 'SAVE_FAVORITE_LANGUAGES'
 export const LOAD_FAVORITE_LANGUAGES = 'LOAD_FAVORITE_LANGUAGES'
@@ -16,7 +13,12 @@ export const CLEAR_FAVORITE_LANGUAGES = 'CLEAR_FAVORITE_LANGUAGES'
 const SET_STATUS_LOAD = 'SET_STATUS_LOAD'
 const SET_STATUS_READY = 'SET_STATUS_READY'
 
-export default new Store({
+export interface State {
+  favoriteLanguages: Map<string, string>;
+  loading: boolean;
+}
+
+export default {
   strict: true,
   state: {
     favoriteLanguages: new Map<string, string>(),
@@ -73,4 +75,4 @@ export default new Store({
       }
     }
   }
-})
+} as StoreOptions<State>

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check.vue GIVEN file count 1 and value = false, WHEN mounted, THEN displays text for single file. 1`] = `
+<div
+  class="ocr-check-replace"
+>
+  <input
+    class="checkbox"
+    id="check-replace"
+    type="checkbox"
+  />
+   
+  <label
+    for="check-replace"
+  >
+    Delete original file (image)
+  </label>
+</div>
+`;
+
+exports[`Check.vue GIVEN file count 2, WHEN mounted, THEN displays text for multiple files. 1`] = `
+<div
+  class="ocr-check-replace"
+>
+  <input
+    class="checkbox"
+    id="check-replace"
+    type="checkbox"
+  />
+   
+  <label
+    for="check-replace"
+  >
+    Delete original files (images)
+  </label>
+</div>
+`;

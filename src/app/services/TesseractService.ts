@@ -20,12 +20,13 @@ export class TesseractService {
     }
 
     public process: (url: string, languages: Array<string>) => Promise<Uint8Array> = async (url, languages) => {
+      const langs = (languages.length > 0 ? languages : ['eng']).join('+')
+      const tesseract = await import('tesseract.js')
+      const worker = tesseract.createWorker(this.tesseractWorkerOptions)
       try {
-        const tesseract = await import('tesseract.js')
-        const worker = tesseract.createWorker(this.tesseractWorkerOptions)
         await worker.load()
-        await worker.loadLanguage(languages.join('+'))
-        await worker.initialize(languages.join('+'))
+        await worker.loadLanguage(langs)
+        await worker.initialize(langs)
         await worker.setParameters({
           tessedit_ocr_engine_mode: tesseract.OEM.LSTM_ONLY
         })
@@ -34,6 +35,7 @@ export class TesseractService {
         await worker.terminate()
         return new Uint8Array(data)
       } catch (e) {
+        await worker.terminate()
         throw new TesseractError(Translations.TRANSLATION_UNEXPECTED_ERROR_TESSERACT_PROCESSING, e)
       }
     }

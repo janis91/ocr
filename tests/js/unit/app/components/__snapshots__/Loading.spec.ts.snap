@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading.vue GIVEN standard props, WHEN Loading is mounted, THEN matches snapshot with translation for files queued and processed. 1`] = `
+<div
+  class="ocr-load"
+>
+  <span
+    class="icon icon-loading"
+  />
+   
+  <span>
+    
+    %n file is being processed:
+    
+    <br />
+    
+    {file}/{files} Files successfully processed
+  
+  </span>
+</div>
+`;

@@ -5,12 +5,9 @@
       :selectedLanguages="favoriteLanguages"
       @[clear]="clearAll"
       @[update]="updateSelectedLanguages"
-      class="select"
-    ></multi-select>
-    <div class="hint">
-      <span class="icon icon-details"></span>
-      <span>{{hint}}</span>
-    </div>
+      class="ocr-select"
+    />
+    <hint :hint="hint" />
     <button @click="save" :disabled="loading">{{saveText}}</button>
   </div>
 </template>
@@ -18,14 +15,17 @@
 <script lang="ts">
 import Vue from 'vue'
 import { LOAD_FAVORITE_LANGUAGES, CLEAR_FAVORITE_LANGUAGES, SET_FAVORITE_LANGUAGES, SAVE_FAVORITE_LANGUAGES } from '@s/store/Store'
-import MultiSelect, { MultiSelectEvents } from '@/common/components/MultiSelect.vue'
+import MultiSelect from '@/common/components/MultiSelect.vue'
+import { MultiSelectEvents } from '@/common/components/MultiSelectEvents'
 import { LanguageOption, Util } from '@/common/Util'
 import { Translations } from '@s/configuration/Translations'
+import Hint from '@/common/components/Hint.vue'
 
 export default Vue.extend({
   name: 'app',
   components: {
-    MultiSelect
+    MultiSelect,
+    Hint
   },
   data: () => ({
     clear: MultiSelectEvents.CLEAR_ALL,
@@ -59,19 +59,8 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.select {
+.ocr-select {
   width: 50vw;
   padding-bottom: 10px;
-}
-.hint {
-  padding: 0.5rem 4px;
-  color: var(--color-text-lighter);
-}
-
-.hint >>> span.icon {
-  background-size: 16px 16px;
-  display: inline-block;
-  vertical-align: text-top;
-  margin-right: .3rem;
 }
 </style>
