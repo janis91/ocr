@@ -18,17 +18,11 @@ export default Vue.extend({
   name: 'App',
   components: { Modal, ModalContent },
   computed: {
-    favoriteLanguages(): string[] {
-      return this.$store.state.favoriteLanguages
-    },
     show(): boolean {
       return this.$store.state.showModal
     },
-    selectedFiles(): OCAFile[] {
-      return this.$store.state.selectedFiles
-    },
     title(): string {
-      return `${CommonTranslations.TRANSLATION_OCR}: ${Translations.TRANSLATION_FILE_FILES(this.selectedFiles.length)}`
+      return `${CommonTranslations.TRANSLATION_OCR}: ${Translations.TRANSLATION_FILE_FILES(this.$store.state.selectedFiles.length)}`
     },
     canClose(): boolean {
       return !this.$store.state.processing
@@ -53,7 +47,10 @@ export default Vue.extend({
 
 <style scoped>
 .modal__content {
-  width: 50vw;
-  margin: 10vw 15px;
+  min-width: 50vw;
+  max-width: 90vw;
+  margin: 15px 15px;
+  min-height: 50vh;
+  max-height: 90vh;
 }
 </style>

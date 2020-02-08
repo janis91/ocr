@@ -1,5 +1,10 @@
 module.exports = {
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
+  globals: {
+    'ts-jest': {
+      disableSourceMapSupport: true
+    }
+  },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@a/(.*)$': '<rootDir>/src/app/$1',
@@ -9,7 +14,8 @@ module.exports = {
     '**/tests/js/unit/**/*.spec.[jt]s?(x)'
   ],
   collectCoverage: true,
-  collectCoverageFrom: ['**/*.{ts,vue}', '!**/node_modules/**'],
+  collectCoverageFrom: ['src/**/*.{ts,vue}', '!**/node_modules/**'],
   coverageDirectory: 'tests/js/unit/coverage',
-  coverageReporters: ['lcov']
+  coverageReporters: ['lcov'],
+  silent: true
 }

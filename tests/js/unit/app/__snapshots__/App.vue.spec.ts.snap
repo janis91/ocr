@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiSelect GIVEN standard state, WHEN snapshot is taken, THEN matches snapshot (modal). 1`] = `
+<div
+  id="ocr-view"
+>
+  <modal-stub
+    canclose="true"
+    clearviewdelay="5000"
+    enableswipe="true"
+    size="normal"
+    slideshowdelay="3000"
+    title="OCR: %n file"
+  >
+    <modal-content-stub
+      class="modal__content"
+    />
+  </modal-stub>
+</div>
+`;
+
+exports[`MultiSelect GIVEN state with showModal = false, WHEN snapshot is taken, THEN matches snapshot (no modal). 1`] = `
+<div
+  id="ocr-view"
+>
+  <!---->
+</div>
+`;

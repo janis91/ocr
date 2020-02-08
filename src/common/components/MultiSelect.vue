@@ -19,7 +19,7 @@
       <div
         class="multiselect__clear"
         v-if="selectedLanguages.length"
-        @mousedown.prevent.stop="clearAll"
+        @click.prevent.stop="clearAll"
       ></div>
     </template>
     <span slot="noResult">{{noResult}}</span>
@@ -32,11 +32,7 @@ import { Common } from '@/common/Common'
 import { Util, LanguageOption } from '@/common/Util'
 import { Multiselect } from 'vue-multiselect'
 import { Translations } from '@/common/Translations'
-
-export class MultiSelectEvents {
-  public static UPDATE_LANGS = 'update-langs';
-  public static CLEAR_ALL = 'clear-all';
-}
+import { MultiSelectEvents } from '@/common/components/MultiSelectEvents'
 
 export default Vue.extend({
   name: 'MultiSelect',
@@ -62,7 +58,7 @@ export default Vue.extend({
   }),
   methods: {
     updateSelectedLanguages(value: LanguageOption[]) {
-      this.$emit(MultiSelectEvents.UPDATE_LANGS, value)
+      this.$emit(MultiSelectEvents.UPDATE_LANGS, Util.mapOptionsToLanguages(value))
     },
     clearAll() {
       this.$emit(MultiSelectEvents.CLEAR_ALL)
@@ -129,7 +125,7 @@ export default Vue.extend({
 
 .color-adjustments.multiselect--disabled {
   background: initial;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .color-adjustments.multiselect--disabled >>> .multiselect__select {

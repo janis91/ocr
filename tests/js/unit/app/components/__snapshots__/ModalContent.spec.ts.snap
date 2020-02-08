@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalContent.vue GIVEN standard state, WHEN ModalContent is mounted, THEN matches snapshot with button to trigger process and without loading indicator. 1`] = `
+<div
+  class="ocr-content"
+>
+  <file-list-stub
+    files="[object Object]"
+  />
+   
+  <div
+    class="ocr-options"
+  >
+    <multi-select-stub
+      selectedlanguages="[object Object]"
+    />
+     
+    <check-stub
+      filescount="1"
+    />
+     
+    <hint-stub
+      hint="A large number of files may take a very long time."
+    />
+  </div>
+   
+  <!---->
+   
+  <button>
+    Process
+  </button>
+</div>
+`;
+
+exports[`ModalContent.vue GIVEN state with processing = true, WHEN ModalContent is mounted, THEN matches snapshot with loading indicator instead of button. 1`] = `
+<div
+  class="ocr-content"
+>
+  <file-list-stub
+    files="[object Object]"
+  />
+   
+  <div
+    class="ocr-options"
+  >
+    <multi-select-stub
+      disabled="true"
+      selectedlanguages="[object Object]"
+    />
+     
+    <check-stub
+      disabled="true"
+      filescount="1"
+    />
+     
+    <hint-stub
+      hint="A large number of files may take a very long time."
+    />
+  </div>
+   
+  <loading-stub
+    filesqueued="1"
+    successfullyprocessed="0"
+  />
+   
+  <!---->
+</div>
+`;
