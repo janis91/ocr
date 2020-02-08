@@ -8,10 +8,10 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2017
  */
-namespace OCA\Ocr\Tests\Php\Unit\Migration;
+namespace OCA\Ocr\Tests\Unit\Migration;
 
 use OCA\Ocr\Migration\DropOldTable;
-use OCA\Ocr\Tests\Php\Unit\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCP\Migration\IOutput;
 use OCP\IDBConnection;
 

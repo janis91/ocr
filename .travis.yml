@@ -42,9 +42,9 @@ script:
 - "./occ app:check-code $APP_NAME -c deprecation"
 - cd apps/$APP_NAME/
 - echo "Running PHP Unit Tests"
-- cd tests/php/unit
+- cd tests/Unit
 - phpunit --configuration phpunit.xml
-- cd ../../..
+- cd ../..
 - echo "Running JavaScript/TypeScript Unit Tests"
 - npm run lint && npm run test && npm run build
 - echo "Sending Test Coverage to Codacy"

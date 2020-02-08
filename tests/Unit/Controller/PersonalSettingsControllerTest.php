@@ -9,11 +9,11 @@
  * @copyright Janis Koehr 2019
  */
 
-namespace OCA\Ocr\Tests\Php\Unit\Controller;
+namespace OCA\Ocr\Tests\Unit\Controller;
 
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Controller\PersonalSettingsController;
-use OCA\Ocr\Tests\Php\Unit\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCP\AppFramework\Http;
 use OCP\IConfig;
 use OCP\ILogger;
