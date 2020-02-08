@@ -38,6 +38,7 @@
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.31",
+    "codacy-coverage": "^3.4.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "lodash": "^4.17.15",
