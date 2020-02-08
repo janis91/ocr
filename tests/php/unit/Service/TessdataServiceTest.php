@@ -9,11 +9,11 @@
  * @copyright Janis Koehr 2020
  */
 
-namespace OCA\Ocr\Tests\Unit\Service;
+namespace OCA\Ocr\Tests\Php\Unit\Service;
 
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Service\TessdataService;
-use OCA\Ocr\Tests\Unit\TestCase;
+use OCA\Ocr\Tests\Php\Unit\TestCase;
 use OCP\Files\IAppData;
 use OCP\Files\NotFoundException;
 use OCP\ILogger;

@@ -9,7 +9,7 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2019
  */
-namespace OCA\Ocr\Tests\Unit;
+namespace OCA\Ocr\Tests\Php\Unit;
 
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase {}

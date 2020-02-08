@@ -8,13 +8,13 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2020
  */
-namespace OCA\Ocr\Tests\Unit\Controller;
+namespace OCA\Ocr\Tests\Php\Unit\Controller;
 
 
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Controller\TessdataController;
 use OCA\Ocr\Service\TessdataService;
-use OCA\Ocr\Tests\Unit\TestCase;
+use OCA\Ocr\Tests\Php\Unit\TestCase;
 use OCP\Files\NotFoundException;
 use OCP\IRequest;
 
