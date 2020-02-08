@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.vue GIVEN standard state, WHEN App is mounted, THEN matches snapshot with button to trigger save and without loading state. 1`] = `
+<div>
+  <multi-select-stub
+    class="ocr-select"
+    selectedlanguages="[object Object]"
+  />
+   
+  <hint-stub
+    hint="Selected languages will be preselected by default in the OCR dialog."
+  />
+   
+  <button>
+    Save
+  </button>
+</div>
+`;
+
+exports[`App.vue GIVEN state with loading = true, WHEN App is mounted, THEN matches snapshot with button to trigger save and in loading state. 1`] = `
+<div>
+  <multi-select-stub
+    class="ocr-select"
+    disabled="true"
+    selectedlanguages="[object Object]"
+  />
+   
+  <hint-stub
+    hint="Selected languages will be preselected by default in the OCR dialog."
+  />
+   
+  <button
+    disabled="disabled"
+  >
+    Save
+  </button>
+</div>
+`;

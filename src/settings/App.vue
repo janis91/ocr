@@ -22,7 +22,7 @@ import { Translations } from '@s/configuration/Translations'
 import Hint from '@/common/components/Hint.vue'
 
 export default Vue.extend({
-  name: 'app',
+  name: 'App',
   components: {
     MultiSelect,
     Hint
@@ -45,8 +45,8 @@ export default Vue.extend({
     clearAll() {
       this.$store.commit(CLEAR_FAVORITE_LANGUAGES)
     },
-    updateSelectedLanguages(value: LanguageOption[]) {
-      this.$store.commit(SET_FAVORITE_LANGUAGES, { favoriteLanguages: Util.mapOptionsToLanguages(value) })
+    updateSelectedLanguages(value: Map<string, string>) {
+      this.$store.commit(SET_FAVORITE_LANGUAGES, { favoriteLanguages: value })
     },
     save() {
       this.$store.dispatch(SAVE_FAVORITE_LANGUAGES)

@@ -21,18 +21,18 @@ export interface State {
 export default {
   strict: true,
   state: {
-    favoriteLanguages: new Map<string, string>(),
-    loading: true as boolean
+    favoriteLanguages: new Map(),
+    loading: true
   },
   mutations: {
-    [SET_FAVORITE_LANGUAGES](state, payload: {favoriteLanguages: Map<string, string>}) {
-      state.favoriteLanguages = payload.favoriteLanguages
-    },
     [SET_STATUS_LOAD](state) {
       state.loading = true
     },
     [SET_STATUS_READY](state) {
       state.loading = false
+    },
+    [SET_FAVORITE_LANGUAGES](state, payload: { favoriteLanguages: Map<string, string> }) {
+      state.favoriteLanguages = payload.favoriteLanguages
     },
     [CLEAR_FAVORITE_LANGUAGES](state) {
       state.favoriteLanguages = new Map()
