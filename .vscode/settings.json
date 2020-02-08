@@ -28,5 +28,6 @@
         "source.fixAll": true
     },
     "vetur.format.defaultFormatter.ts": "none",
-    "vetur.experimental.templateInterpolationService": true
+    "vetur.experimental.templateInterpolationService": true,
+    "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -220,7 +220,7 @@ describe('Store', () => {
 
   describe('getters', () => {
     describe('selectedOptions', () => {
-      it('GIVEN a selected language has been commited, WHEN selectOptions is called, THEN returns that language as option.', () => {
+      it('GIVEN a selected language has been commited, WHEN selectedOptions is called, THEN returns that language as option.', () => {
         (Util.mapToOptions as jest.Mock).mockReturnValueOnce(['deu'])
         expect(store.state.selectedLanguages).toEqual(new Map())
 
@@ -231,7 +231,7 @@ describe('Store', () => {
         expect(Util.mapToOptions).toHaveBeenCalledWith(new Map([['deu', 'German']]))
       })
 
-      it('GIVEN initial state, WHEN selectOptions is called, THEN returns that empty array.', () => {
+      it('GIVEN initial state, WHEN selectedOptions is called, THEN returns that empty array.', () => {
         (Util.mapToOptions as jest.Mock).mockReturnValueOnce([])
         expect(store.state.selectedLanguages).toEqual(new Map())
 
@@ -319,7 +319,7 @@ describe('Store', () => {
     })
 
     describe('LOAD_FAVORITE_LANGUAGES', () => {
-      it('GIVEN initial state AND axios responds with a language = "deu", WHEN LOAD_FAVORITE_LANGUAGES is commited, THEN favoriteLanguages AND selectedLanguages are set to corresponding value.', async () => {
+      it('GIVEN initial state AND axios responds with a language = "deu", WHEN LOAD_FAVORITE_LANGUAGES is dispatched, THEN favoriteLanguages AND selectedLanguages are set to corresponding value.', async () => {
         (axios.get as jest.Mock).mockResolvedValueOnce({ data: ['deu'] });
         (generateUrl as jest.Mock).mockReturnValueOnce('http://test.com/apps/ocr/api/personal/languages');
         (Util.mapToCommonLanguages as jest.Mock).mockReturnValueOnce(new Map([['deu', 'German']]))
@@ -335,7 +335,7 @@ describe('Store', () => {
         expect(generateUrl).toHaveBeenCalledWith('/apps/ocr/api/personal/languages')
       })
 
-      it('GIVEN favoriteLanguages and selectedLanguages = Map("eng" => "English") AND axios responds with languages = ["deu", "spa"], WHEN LOAD_FAVORITE_LANGUAGES is commited, THEN favoriteLanguages AND selectedLanguages are set to corresponding value.', async () => {
+      it('GIVEN favoriteLanguages and selectedLanguages = Map("eng" => "English") AND axios responds with languages = ["deu", "spa"], WHEN LOAD_FAVORITE_LANGUAGES is dispatched, THEN favoriteLanguages AND selectedLanguages are set to corresponding value.', async () => {
         (axios.get as jest.Mock).mockResolvedValueOnce({ data: ['deu', 'spa'] });
         (generateUrl as jest.Mock).mockReturnValueOnce('http://test.com/apps/ocr/api/personal/languages');
         (Util.mapToCommonLanguages as jest.Mock).mockReturnValueOnce(new Map([['deu', 'German'], ['spa', 'Spanish']]))
@@ -355,7 +355,7 @@ describe('Store', () => {
         expect(generateUrl).toHaveBeenCalledWith('/apps/ocr/api/personal/languages')
       })
 
-      it('GIVEN initial state AND axios throws an Error, WHEN LOAD_FAVORITE_LANGUAGES is commited, THEN favoriteLanguages AND selectedLanguages are left unchanged AND error is displayed.', async () => {
+      it('GIVEN initial state AND axios throws an Error, WHEN LOAD_FAVORITE_LANGUAGES is dispatched, THEN favoriteLanguages AND selectedLanguages are left unchanged AND error is displayed.', async () => {
         (axios.get as jest.Mock).mockRejectedValueOnce(new Error('test'));
         (generateUrl as jest.Mock).mockReturnValueOnce('http://test.com/apps/ocr/api/personal/languages');
         (NextcloudGuiApiService.displayError as jest.Mock).mockImplementationOnce(() => {})
