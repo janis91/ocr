@@ -10,12 +10,12 @@
  * @copyright Janis Koehr 2020
  */
 
-namespace OCA\Ocr\Tests\Php\Unit\Migration;
+namespace OCA\Ocr\Tests\Unit\Migration;
 
 
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Migration\CleanupTessdata;
-use OCA\Ocr\Tests\Php\Unit\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCP\Files\IAppData;
 use OCP\Files\NotPermittedException;
 use OCP\Migration\IOutput;

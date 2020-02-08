@@ -16,24 +16,25 @@
  *          You should have received a copy of the GNU Affero General Public License, version 3,
  *          along with this program. If not, see <http://www.gnu.org/licenses/>
  */
-namespace OCA\Ocr\Tests\Php\Unit\AppInfo;
+namespace OCA\Ocr\Tests\Unit\AppInfo;
 
 use OCA\Ocr\AppInfo\Application;
-use OCA\Ocr\Tests\Php\Unit\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
+use OCP\AppFramework\IAppContainer;
 
 
 /**
  * Class ApplicationTest
  * @group DB
  *
- * @package OCA\Ocr\Tests\Php\Unit\AppInfo
+ * @package OCA\Ocr\Tests\Unit\AppInfo
  */
 class ApplicationTest extends TestCase {
 
-    /** @var \OCA\Ocr\AppInfo\Application */
+    /** @var Application */
     protected $app;
 
-    /** @var \OCP\AppFramework\IAppContainer */
+    /** @var IAppContainer */
     protected $container;
 
     protected function setUp() {

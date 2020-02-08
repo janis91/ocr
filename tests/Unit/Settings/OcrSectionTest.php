@@ -8,9 +8,9 @@
  * @author Janis Koehr <janiskoehr@icloud.com>
  * @copyright Janis Koehr 2019
  */
-namespace OCA\Ocr\Tests\Php\Unit\Settings;
+namespace OCA\Ocr\Tests\Unit\Settings;
 
-use OCA\Ocr\Tests\Php\Unit\TestCase;
+use OCA\Ocr\Tests\Unit\TestCase;
 use OCA\Ocr\Settings\OcrSection;
 use OCA\Ocr\Constants\OcrConstants;
 use OCP\IL10N;

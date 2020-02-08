@@ -10,8 +10,8 @@
 	<!-- filters for code coverage -->
 	<filter>
 		<whitelist>
-			<directory suffix=".php">../../../../ocr/appinfo</directory>
-			<directory suffix=".php">../../../../ocr/lib</directory>
+			<directory suffix=".php">../../../ocr/appinfo</directory>
+			<directory suffix=".php">../../../ocr/lib</directory>
 		</whitelist>
 	</filter>
 	<logging>
