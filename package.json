@@ -2,12 +2,12 @@
   "name": "ocr",
   "version": "6.0.0",
   "private": true,
-  "description": "Nextcloud OCR (optical character recoginition) processing for images and PDF with tesseract-js",
+  "description": "Nextcloud OCR (optical character recoginition) processing for images with tesseract-js",
   "author": "Janis Koehr <janiskoehr@icloud.com>",
   "scripts": {
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
-	"coverage": "cat ./tests/js/coverage/lcov.info | codacy-coverage --token $codacy_api_key --language typescript",
+    "coverage": "cat ./tests/js/coverage/lcov.info | codacy-coverage --token $codacy_api_key --language typescript",
     "lint": "vue-cli-service lint",
     "postbuild": "rimraf js && rimraf css && ncp dist/js js && ncp dist/css css"
   },
