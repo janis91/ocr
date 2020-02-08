@@ -10,14 +10,14 @@
  * @copyright Janis Koehr 2020
  */
 
-namespace OCA\Ocr\Tests\Unit\Migration;
+namespace OCA\Ocr\Tests\Php\Unit\Migration;
 
 
 use GuzzleHttp\RequestOptions;
 use OC\IntegrityCheck\Helpers\FileAccessHelper;
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Migration\FetchTessdata;
-use OCA\Ocr\Tests\Unit\TestCase;
+use OCA\Ocr\Tests\Php\Unit\TestCase;
 use OCA\Ocr\Util\FetchTessdataUtil;
 use OCP\Files\IAppData;
 use OCP\Files\NotPermittedException;

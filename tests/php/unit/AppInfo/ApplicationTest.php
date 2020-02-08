@@ -16,17 +16,17 @@
  *          You should have received a copy of the GNU Affero General Public License, version 3,
  *          along with this program. If not, see <http://www.gnu.org/licenses/>
  */
-namespace OCA\Ocr\Tests\Unit\AppInfo;
+namespace OCA\Ocr\Tests\Php\Unit\AppInfo;
 
 use OCA\Ocr\AppInfo\Application;
-use OCA\Ocr\Tests\Unit\TestCase;
+use OCA\Ocr\Tests\Php\Unit\TestCase;
 
 
 /**
  * Class ApplicationTest
  * @group DB
- * 
- * @package OCA\Ocr\Tests\Unit\AppInfo
+ *
+ * @package OCA\Ocr\Tests\Php\Unit\AppInfo
  */
 class ApplicationTest extends TestCase {
 

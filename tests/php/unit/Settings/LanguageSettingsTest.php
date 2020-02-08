@@ -9,10 +9,10 @@
  * @copyright Janis Koehr 2019
  */
 
-namespace OCA\Ocr\Tests\Unit\Settings;
+namespace OCA\Ocr\Tests\Php\Unit\Settings;
 
 use OCA\Ocr\Settings\LanguageSettings;
-use OCA\Ocr\Tests\Unit\TestCase;
+use OCA\Ocr\Tests\Php\Unit\TestCase;
 use OCA\Ocr\Constants\OcrConstants;
 
 class LanguageSettingsTest extends TestCase {
