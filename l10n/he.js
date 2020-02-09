@@ -2,10 +2,10 @@ OC.L10N.register(
     "ocr",
     {
     "OCR" : "OCR",
+    "Optical character recognition" : "זיהוי תווים אופטי",
+    "Text recognition for your images and pdf files" : "זיהוי טקסט לקובצי התמונות וה־pdf שלך",
     "OCR processing failed:" : "עיבוד ה־OCR נכשל:",
-    "No file selected." : "לא נבחר קובץ.",
     "MIME type not supported." : "סוג ה־MIME לא נתמך.",
-    "Select language" : "בחירת שפה",
     "Process" : "עיבוד",
     "Afrikaans" : "אפריקאנס",
     "Arabic" : "ערבית",
@@ -35,8 +35,8 @@ OC.L10N.register(
     "Japanese" : "יפנית",
     "Dutch" : "הולנדית",
     "Albanian" : "אלבנית",
-    "Save" : "שמור",
-    "Optical character recognition" : "זיהוי תווים אופטי",
-    "Text recognition for your images and pdf files" : "זיהוי טקסט לקובצי התמונות וה־pdf שלך"
+    "Selected" : "Selected",
+    "Select language" : "בחירת שפה",
+    "Save" : "שמור"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");

@@ -2,13 +2,11 @@ OC.L10N.register(
     "ocr",
     {
     "OCR" : "OCR-ljóslestur",
+    "Optical character recognition" : "Ljóslestur (OCR)",
+    "Text recognition for your images and pdf files" : "Greining texta í myndum og PDF-skrám",
     "An unexpected error occured during the deletion of the original file." : "Villa kom upp við að eyða upprunalegu skránni",
     "OCR processing failed:" : "OCR-ljóslestur mistókst:",
-    "No file selected." : "Engin skrá valin.",
     "MIME type not supported." : "MIME-tegund ekki studd.",
-    "Press to select" : "Ýttu til að velja",
-    "No matches found" : "Engar samsvaranir fundust",
-    "Select language" : "Veldu tungumál",
     "Process" : "Ferli",
     "_%n file_::_%n files_" : ["%n skrá","%n skrár"],
     "Afrikaans" : "Afríkanska",
@@ -75,8 +73,9 @@ OC.L10N.register(
     "Turkish" : "Tyrkneska",
     "Ukrainian" : "Úkraínska",
     "Vietnamese" : "Víetnamska",
-    "Save" : "Vista",
-    "Optical character recognition" : "Ljóslestur (OCR)",
-    "Text recognition for your images and pdf files" : "Greining texta í myndum og PDF-skrám"
+    "Selected" : "Valið",
+    "No matches found" : "Engar samsvaranir fundust",
+    "Select language" : "Veldu tungumál",
+    "Save" : "Vista"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

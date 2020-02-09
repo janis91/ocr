@@ -3,8 +3,9 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "OCR processing failed:" : "Falla en el procesamiento OCR:",
-    "Select language" : "Seleccionar idioma",
     "Process" : "Proceso",
+    "Selected" : "Seleccionado",
+    "Select language" : "Seleccionar idioma",
     "Save" : "Guardar"
 },
 "nplurals=2; plural=(n != 1);");

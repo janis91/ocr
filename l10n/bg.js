@@ -51,6 +51,7 @@ OC.L10N.register(
     "Turkish" : "турски",
     "Ukrainian" : "украински",
     "Vietnamese" : "виетнамски",
+    "Selected" : "Избранo",
     "Save" : "Запазване"
 },
 "nplurals=2; plural=(n != 1);");

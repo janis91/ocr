@@ -3,9 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "OCR processing failed:" : "OCR bearbejdningen fejlede",
-    "No file selected." : "Ingen fil valgt.",
     "MIME type not supported." : "MIME-type er ikke understøttet.",
-    "Select language" : "Vælg sprog",
     "Process" : "Proces",
     "Arabic" : "Arabisk",
     "Chinese" : "Kinesisk",
@@ -27,6 +25,8 @@ OC.L10N.register(
     "Portuguese" : "Portugisisk",
     "Russian" : "Russisk",
     "Swedish" : "Svensk",
+    "Selected" : "Valgt",
+    "Select language" : "Vælg sprog",
     "Save" : "Gem"
 },
 "nplurals=2; plural=(n != 1);");

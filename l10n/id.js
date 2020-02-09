@@ -15,6 +15,7 @@ OC.L10N.register(
     "Swedish" : "Swedia",
     "Turkish" : "Turki",
     "Ukrainian" : "Ukraina",
+    "Selected" : "Dipilih",
     "Save" : "Simpan"
 },
 "nplurals=1; plural=0;");

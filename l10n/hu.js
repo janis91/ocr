@@ -2,10 +2,10 @@ OC.L10N.register(
     "ocr",
     {
     "OCR" : "OCR",
+    "Optical character recognition" : "Optikai karakterfelismerés",
+    "Text recognition for your images and pdf files" : "Szövegfelismerő a képeidhez és pdf fájljaidhoz.",
     "OCR processing failed:" : "OCR feldolgozás sikertelen:",
-    "No file selected." : "Egy fájl sincs kiválasztva.",
     "MIME type not supported." : "Nem támogatott MIME típus.",
-    "Select language" : "Nyelvválasztás",
     "Process" : "Feldolgozás",
     "Afrikaans" : "Afrikai",
     "Arabic" : "Arab",
@@ -55,8 +55,8 @@ OC.L10N.register(
     "Turkish" : "Török",
     "Ukrainian" : "Ukrán",
     "Vietnamese" : "Vietnámi",
-    "Save" : "Mentés",
-    "Optical character recognition" : "Optikai karakterfelismerés",
-    "Text recognition for your images and pdf files" : "Szövegfelismerő a képeidhez és pdf fájljaidhoz."
+    "Selected" : "Kiválasztott",
+    "Select language" : "Nyelvválasztás",
+    "Save" : "Mentés"
 },
 "nplurals=2; plural=(n != 1);");

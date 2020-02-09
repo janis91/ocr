@@ -3,11 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Target file already exists:" : "Helburuko fitxategia lehendik dago:",
-    "No file selected." : "Ez da fitxategirik aukeratu.",
     "MIME type not supported." : "MIME mota ez da onartzen.",
-    "Press to select" : "Sakatu hautatzeko",
-    "No matches found" : "Ez dira emaitzarik aurkitu",
-    "Select language" : "Hautatu hizkuntza",
     "Process" : "Prozesua",
     "_%n file_::_%n files_" : ["fitxategi %n","%n fitxategi"],
     "Afrikaans" : "Afrikaans",
@@ -75,6 +71,9 @@ OC.L10N.register(
     "Turkish" : "Turkiera",
     "Ukrainian" : "Ukrainera",
     "Vietnamese" : "Vietnamera",
+    "Selected" : "Hautatua",
+    "No matches found" : "Ez dira emaitzarik aurkitu",
+    "Select language" : "Hautatu hizkuntza",
     "Save" : "Gorde",
     "Favorite languages" : "Gogoko hizkuntzak"
 },

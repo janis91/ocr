@@ -2,10 +2,10 @@ OC.L10N.register(
     "ocr",
     {
     "OCR" : "OCR",
+    "Optical character recognition" : "Optisk teckenigenkänning",
+    "Text recognition for your images and pdf files" : "Textigenkänning för dina bilder och pdf-filer",
     "OCR processing failed:" : "OCR-bearbetning misslyckades:",
-    "No file selected." : "Ingen fil vald.",
     "MIME type not supported." : "MIME-typ stöds inte.",
-    "Select language" : "Välj språk",
     "Process" : "Process",
     "Afrikaans" : "Afrikaans",
     "Arabic" : "Arabic",
@@ -62,8 +62,8 @@ OC.L10N.register(
     "Turkish" : "Turkish",
     "Ukrainian" : "Ukrainian",
     "Vietnamese" : "Vietnamese",
-    "Save" : "Spara",
-    "Optical character recognition" : "Optisk teckenigenkänning",
-    "Text recognition for your images and pdf files" : "Textigenkänning för dina bilder och pdf-filer"
+    "Selected" : "Vald",
+    "Select language" : "Välj språk",
+    "Save" : "Spara"
 },
 "nplurals=2; plural=(n != 1);");

@@ -1,9 +1,9 @@
 { "translations": {
     "OCR" : "OCR",
+    "Optical character recognition" : "Optikai karakterfelismerés",
+    "Text recognition for your images and pdf files" : "Szövegfelismerő a képeidhez és pdf fájljaidhoz.",
     "OCR processing failed:" : "OCR feldolgozás sikertelen:",
-    "No file selected." : "Egy fájl sincs kiválasztva.",
     "MIME type not supported." : "Nem támogatott MIME típus.",
-    "Select language" : "Nyelvválasztás",
     "Process" : "Feldolgozás",
     "Afrikaans" : "Afrikai",
     "Arabic" : "Arab",
@@ -53,8 +53,8 @@
     "Turkish" : "Török",
     "Ukrainian" : "Ukrán",
     "Vietnamese" : "Vietnámi",
-    "Save" : "Mentés",
-    "Optical character recognition" : "Optikai karakterfelismerés",
-    "Text recognition for your images and pdf files" : "Szövegfelismerő a képeidhez és pdf fájljaidhoz."
+    "Selected" : "Kiválasztott",
+    "Select language" : "Nyelvválasztás",
+    "Save" : "Mentés"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
