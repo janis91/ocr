@@ -15,7 +15,6 @@ namespace OCA\Ocr\AppInfo;
 use OC\Files\View;
 use OC\Server;
 use OCA\Ocr\Controller\TessdataController;
-use OCA\Ocr\Middleware\ServiceWorkerMiddleware;
 use OCA\Ocr\Service\TessdataService;
 use OCP\AppFramework\App;
 use OCA\Ocr\Controller\PersonalSettingsController;

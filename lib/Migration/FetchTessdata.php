@@ -19,6 +19,7 @@ use OC\Archive\TAR;
 use OC\IntegrityCheck\Helpers\FileAccessHelper;
 use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Util\FetchTessdataUtil;
+use OCP\App\IAppManager;
 use OCP\Files\IAppData;
 use OCP\Files\NotFoundException;
 use OCP\Files\SimpleFS\ISimpleFile;
@@ -40,13 +41,16 @@ class FetchTessdata implements IRepairStep {
 	private $fileAccessHelper;
 	/** @var FetchTessdataUtil */
 	private $fetchTessdataUtil;
+	/** @var IAppManager */
+	private $appManager;
 
-	public function __construct(IAppData $appData, ITempManager $tempManager, IClientService $clientService, FileAccessHelper $fileAccessHelper, FetchTessdataUtil $fetchTessdataUtil) {
+	public function __construct(IAppData $appData, ITempManager $tempManager, IClientService $clientService, FileAccessHelper $fileAccessHelper, FetchTessdataUtil $fetchTessdataUtil, IAppManager $appManager) {
 		$this->appData = $appData;
 		$this->tempManager = $tempManager;
 		$this->clientService = $clientService;
 		$this->fileAccessHelper = $fileAccessHelper;
 		$this->fetchTessdataUtil = $fetchTessdataUtil;
+		$this->appManager = $appManager;
 	}
 
 	/**
@@ -96,7 +100,7 @@ class FetchTessdata implements IRepairStep {
 		} catch (Exception $e) {
 			$this->tempManager->clean();
 			$output->warning("Installation cannot not be completed, because an Exception was thrown.");
-			throw $e;
+			$this->appManager->disableApp(OcrConstants::APP_NAME);
 		}
 	}
 

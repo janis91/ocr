@@ -28,7 +28,7 @@ Thanks for wanting to contribute source code to OCR. You are great!
 
 Before I am able to merge your code into the OCR app, you need to agree to release your code under the AGPL license.
 
-* It's required to add PHPUnit tests and/or Javascript tests (Jasmine) to your pull requests in order to make sure your patches work as intended
+* It's required to add PHPUnit tests and/or TypeScript tests (Jest) to your pull requests in order to make sure your patches work as intended
 * Don't use bleeding edge `core` features unless you have to, instead use the OCP interfaces.
  
 We're looking forward to your contributions!

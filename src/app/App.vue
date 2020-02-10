@@ -47,10 +47,10 @@ export default Vue.extend({
 
 <style scoped>
 .modal__content {
-  min-width: 50vw;
-  max-width: 90vw;
+  width: 100%;
+  max-width: 900px;
   margin: 15px 15px;
   min-height: 50vh;
-  max-height: 90vh;
+  max-height: 80%;
 }
 </style>
