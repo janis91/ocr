@@ -12,7 +12,7 @@ cp -R l10n release/l10n
 cp -R lib release/lib
 cp -R templates release/templates
 cp AUTHORS.md release/AUTHORS.md
-cp COPYING release/COPYING
+cp LICENSE release/LICENSE
 cp README.md release/README.md
 
 # JS

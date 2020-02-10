@@ -19,6 +19,7 @@ use OCA\Ocr\Constants\OcrConstants;
 use OCA\Ocr\Migration\FetchTessdata;
 use OCA\Ocr\Tests\Unit\TestCase;
 use OCA\Ocr\Util\FetchTessdataUtil;
+use OCP\App\IAppManager;
 use OCP\Files\IAppData;
 use OCP\Files\NotPermittedException;
 use OCP\Http\Client\IClientService;
@@ -38,6 +39,8 @@ class FetchTessdataTest extends TestCase {
 	private $fileAccessHelper;
 	/** @var FetchTessdataUtil|MockObject */
 	private $fetchTessdataUtil;
+	/** @var IAppManager|MockObject */
+	private $appManager;
 	/** @var FetchTessdata */
 	private $repairStep;
 
@@ -49,6 +52,8 @@ class FetchTessdataTest extends TestCase {
 			->getMock();
 		$this->tempManager = $this->getMockBuilder('OCP\ITempManager')
 			->getMock();
+		$this->appManager = $this->getMockBuilder('OCP\App\IAppManager')
+			->getMock();
 		$this->clientService = $this->getMockBuilder('OCP\Http\Client\IClientService')
 			->getMock();
 		$this->fileAccessHelper = $this->getMockBuilder('OC\IntegrityCheck\Helpers\FileAccessHelper')
@@ -56,7 +61,7 @@ class FetchTessdataTest extends TestCase {
 		$this->fetchTessdataUtil = $this->getMockBuilder('OCA\Ocr\Util\FetchTessdataUtil')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->repairStep = new FetchTessdata($this->appData, $this->tempManager, $this->clientService, $this->fileAccessHelper, $this->fetchTessdataUtil);
+		$this->repairStep = new FetchTessdata($this->appData, $this->tempManager, $this->clientService, $this->fileAccessHelper, $this->fetchTessdataUtil, $this->appManager);
 	}
 
 	public function testRun_WHEN_tessdata_folder_already_exists_and_traineddata_exists_THEN_finish_progress() {
@@ -151,8 +156,6 @@ class FetchTessdataTest extends TestCase {
 	}
 
 	public function testRun_GIVEN_getTemporaryFile_throws_Exception_WHEN_tessdata_folder_not_exists_and_traineddata_not_exists_THEN_download_extract_and_finish_progress() {
-		$this->expectException(NotPermittedException::class);
-
 		$folder = $this->getMockBuilder('OCP\Files\SimpleFS\ISimpleFolder')
 			->getMock();
 		$folder->expects($this->once())
@@ -168,6 +171,9 @@ class FetchTessdataTest extends TestCase {
 			->will($this->throwException(new NotPermittedException()));
 		$this->tempManager->expects($this->once())
 			->method('clean');
+		$this->appManager->expects($this->once())
+			->method('disableApp')
+			->with(OcrConstants::APP_NAME);
 
 		$this->repairStep->run($this->output);
 	}

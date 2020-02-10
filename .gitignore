@@ -51,7 +51,7 @@ nbproject
 /.buildpath
 
 # Tests - auto-generated files
-/tests/php/unit/coverage
+/tests/Unit/coverage
 /tests/js/coverage
 
 # JS node_modules and dist
