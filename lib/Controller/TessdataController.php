@@ -37,6 +37,7 @@ class TessdataController extends Controller {
 	}
 
 	/**
+         * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
 	 * Sends the requested tessdata from the app data dir.
