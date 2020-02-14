@@ -22,7 +22,7 @@ The OCR app has some prerequisites:
 _* On Safari there is currently a problem with the [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), that requires an Administrator to set the 'script-src' to 'unsafe-eval' such that the app works properly. Because this is quite insecure the app itself does not set it and recommends to decide that on your own risk (please make sure, that you know what CSP is and what e.g. unsafe-eval causes)._
 
 ## Installation
-Install the app from the [Nextcloud AppStore](http://apps.nextcloud.com) or download the release package from github (**NOT** the sources) and place the content in **nextcloud/apps/ocr/**.
+Install the app from the [Nextcloud AppStore](https://apps.nextcloud.com/apps/ocr) or download the release package from github (**NOT** the sources) and place the content in **nextcloud/apps/ocr/**.
 
 ## Disclaimer
 The software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -53,7 +53,6 @@ Moreover this project is based on a webassembly port of tesseract. The maintaine
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc2.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc3.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc4.png</screenshot>
-	<screenshot>https://raw.githubusercontent.com/janis91/ocr/master/screenshots/sc5.png</screenshot>
 	<dependencies>
 		<php min-version="7.1" max-version="7.4" />
 		<nextcloud min-version="16" max-version="18" />

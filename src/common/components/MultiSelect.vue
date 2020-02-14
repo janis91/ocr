@@ -13,7 +13,7 @@
     :selectedLabel="selectedLabel"
     :deselectLabel="deselectLabel"
     :disabled="disabled"
-    :maxHeight="150"
+    :maxHeight="100"
   >
     <template slot="clear">
       <div

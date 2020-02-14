@@ -48,7 +48,7 @@ exports[`MultiSelect GIVEN selectedLanguages has been set to empty array AND dis
    
   <div
     class="multiselect__content-wrapper"
-    style="max-height: 150px; display: none;"
+    style="max-height: 100px; display: none;"
     tabindex="-1"
   >
     <ul
@@ -1200,7 +1200,7 @@ exports[`MultiSelect GIVEN standard props, WHEN snapshot is taken, THEN matches 
    
   <div
     class="multiselect__content-wrapper"
-    style="max-height: 150px; display: none;"
+    style="max-height: 100px; display: none;"
     tabindex="-1"
   >
     <ul
