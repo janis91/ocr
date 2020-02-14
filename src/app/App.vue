@@ -1,6 +1,6 @@
 <template>
   <div id="ocr-view">
-    <modal v-if="show" @close="closeModal" :can-close="canClose" :title="title">
+    <modal v-if="show" @close="closeModal" :can-close="canClose" :title="title" class="ocr-modal">
       <modal-content class="modal__content"></modal-content>
     </modal>
   </div>
@@ -47,10 +47,13 @@ export default Vue.extend({
 
 <style scoped>
 .modal__content {
-  width: 100%;
+  min-width: 30vw;
   max-width: 900px;
   margin: 15px 15px;
-  min-height: 50vh;
+  min-height: 300px;
   max-height: 80%;
+}
+.ocr-modal >>> .modal-wrapper .modal-container {
+  overflow: auto;
 }
 </style>
