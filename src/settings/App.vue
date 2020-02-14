@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ocr">
     <multi-select
       :disabled="loading"
       :selectedLanguages="favoriteLanguages"
@@ -61,6 +61,9 @@ export default Vue.extend({
 <style scoped>
 .ocr-select {
   width: 50vw;
+  padding-bottom: 10px;
+}
+.ocr>div {
   padding-bottom: 10px;
 }
 </style>

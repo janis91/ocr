@@ -5,19 +5,29 @@ exports[`FileList.vue GIVEN five files in list, WHEN FileList is mounted, THEN m
   <ul
     class="ocr-list"
   >
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.png
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.jpg
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.bmp
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.tiff
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.bmpx
     </li>
      
@@ -31,7 +41,9 @@ exports[`FileList.vue GIVEN one file in list, WHEN FileList is mounted, THEN mat
   <ul
     class="ocr-list"
   >
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.png
     </li>
      
@@ -45,23 +57,35 @@ exports[`FileList.vue GIVEN six files in list, WHEN FileList is mounted, THEN ma
   <ul
     class="ocr-list"
   >
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.png
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.jpg
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.bmp
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.tiff
     </li>
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       file3.bmpx
     </li>
      
-    <li>
+    <li
+      class="ocr-list-item"
+    >
       ...
     </li>
   </ul>

@@ -6,6 +6,7 @@ exports[`MultiSelect GIVEN standard state, WHEN snapshot is taken, THEN matches 
 >
   <modal-stub
     canclose="true"
+    class="ocr-modal"
     clearviewdelay="5000"
     enableswipe="true"
     size="normal"
