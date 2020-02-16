@@ -81,6 +81,7 @@ OC.L10N.register(
     "Turkish" : "Turski",
     "Ukrainian" : "Ukrajinski",
     "Vietnamese" : "Vijetnamski",
+    "Selected" : "Odabrano",
     "No matches found" : "Nema pronađenih podudaranja",
     "Select language" : "Izaberi jezik",
     "Save" : "Spremi",

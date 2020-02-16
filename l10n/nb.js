@@ -9,6 +9,7 @@ OC.L10N.register(
     "Arabic" : "Arabisk",
     "Norwegian" : "Norsk",
     "Albanian" : "Albansk",
+    "Selected" : "Valgt",
     "Select language" : "Velg språk",
     "Save" : "Lagre"
 },

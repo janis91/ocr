@@ -4,6 +4,7 @@ OC.L10N.register(
     "OCR" : "OCR",
     "MIME type not supported." : "Nepodporovaný MIME typ.",
     "Czech" : "Česká republika",
+    "Selected" : "Vybrané",
     "Select language" : "Vybrať jazyk",
     "Save" : "Uložiť"
 },

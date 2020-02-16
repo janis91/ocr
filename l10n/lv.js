@@ -4,6 +4,7 @@ OC.L10N.register(
     "OCR" : "OCR",
     "OCR processing failed:" : "OCR apstrāde neizdevās:",
     "Process" : "Process",
+    "Selected" : "Selected",
     "Select language" : "Izvēlies valodu",
     "Save" : "Saglabāt"
 },

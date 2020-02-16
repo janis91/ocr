@@ -54,6 +54,7 @@ OC.L10N.register(
     "Turkish" : "Turka",
     "Ukrainian" : "Ukraina",
     "Vietnamese" : "Vjetnama",
+    "Selected" : "Selected",
     "Save" : "Konservi"
 },
 "nplurals=2; plural=(n != 1);");

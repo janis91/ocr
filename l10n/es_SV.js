@@ -6,6 +6,7 @@ OC.L10N.register(
     "OCR processing failed:" : "Procesamiento de OCR falló:",
     "MIME type not supported." : "El tipo MIME no está soportado.",
     "Process" : "Proceso",
+    "Selected" : "Seleccionado",
     "Select language" : "Selecciona el idioma",
     "Save" : "Guardar"
 },
