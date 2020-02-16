@@ -2,7 +2,7 @@
 <info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>ocr</id>
 	<name>Optical character recognition</name>
-	<summary>Text recognition for your images and pdf files</summary>
+	<summary>Text recognition for your images</summary>
 	<description>
 		<![CDATA[# Description
 
