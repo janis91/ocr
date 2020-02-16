@@ -79,7 +79,6 @@ jobs:
     - rm -rf ocr/
     deploy:
       provider: releases
-      cleanup: false
       overwrite: true
       token:
         secure: rblLFytrl6G18z7H7f3cQcgJHYU6Hk7rrSpzlG0gMFfsWfgUKhHrj5no7/nO9rciK6TKlaj20mXK512oaZRIou9uj+hN4yVZA6bUsaQU4jL51JB/KHi5BMH7x6rU7lG2YbAk2LhGd1jIUcn9NB0KWB8fnfFKdCuGPSL/ebB8EwKYNgNuc/T3Wo1e75AnZRd8wzybGMlnpGnjoWLpqhOYRgEm4463vrBBszPLFY9Nd4Fvhv6R1P8clsEC3EwJRhSlOQztEUk0EnNRW1dSJqPMJMI+N8CuN0YBzbmpfpSgYUSJanPiB/lz8Q6Suc8EIwoAid7QIrwrnHEdYeBKLl0izjs3P/orwzkoRGilbYnH9ZgSo0ws7q12e8VArUzcs+M+B1dBm9Q3nePEGcmYm8nkYsU/dSlaEz0AMJatTClKP9329lGZRy3e9rHdZUBZZChm7qHDQZDG7HP4VRMH2pSHQQYl8jDH/G1me0RvqDeTPB2EIx/dJUtpbEEB5Ips55slX1HX1Va/UMpphM3YwabAd3VXG+NHHOeqjWc3zu+WWzMP0m8soVnqX1iuwJOE14mm5uPpEjV/863Ai4If37NLd5qs47ZIkzqe7hWnnClzdwkLShYh0ZxOO+VixdZjqyVE+fsoc6RnUCLatcNIzltCzEIFjGDGMidLz0gySilOD1M=
