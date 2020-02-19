@@ -30,14 +30,14 @@ module.exports = {
     config.optimization.splitChunks({
       cacheGroups: {
         app: {
-          name: `chunk-app-vendors`,
+          name: 'chunk-app-vendors',
           priority: -11,
           chunks: chunk => chunk.name === 'app',
           test: IS_VENDOR,
           enforce: true
         },
         settings: {
-          name: `chunk-settings-vendors`,
+          name: 'chunk-settings-vendors',
           priority: -11,
           chunks: chunk => chunk.name === 'settings',
           test: IS_VENDOR,

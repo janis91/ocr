@@ -28,7 +28,7 @@ export class App {
 
   public process = async (file: OCAFile, selectedLanguages: string[], replace: boolean): Promise<void> => {
     const pdf = await this.tesseractService.process(OCA.Files.App.fileList.getDownloadUrl(file.name), selectedLanguages)
-    const newPath = this.ocaService.getCurrentDirectory() + file.name.split('.').filter((k, i) => i !== file.name.split('.').length - 1).join('.') + '.pdf'
+    const newPath = this.ocaService.getCurrentDirectory() + file.name.split('.').filter((_k, i) => i !== file.name.split('.').length - 1).join('.') + '.pdf'
     await this.ocaService.putFileContents(newPath, pdf)
     if (replace) {
       await this.ocaService.deleteFile(file.name)

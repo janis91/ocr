@@ -10,10 +10,13 @@ export class Translations {
     public static TRANSLATION_LARGE_NUMBER_TAKES_VERY_LONG_TIME: string = t('ocr', 'A large number of files may take a very long time.');
     public static TRANSLATION_FILES_SUCCESSFULLY_PROCESSED: (finishedFileCount: string, allFilesCount: string) => string =
         (file, files) => t('ocr', '{file}/{files} Files successfully processed', { file, files })
+
     public static TRANSLATION_FILES_QUEUED: (filesQueued: number) => string =
         (number) => n('ocr', '%n file is being processed:', '%n files are being processed:', number)
+
     public static TRANSLATION_DELETE_ORIGINAL_FILE: (filesQueued: number) => string =
         (number) => n('ocr', 'Delete original file (image)', 'Delete original files (images)', number)
+
     public static TRANSLATION_FILE_FILES: (filesQueued: number) => string =
         (number) => n('ocr', '%n file', '%n files', number)
 }

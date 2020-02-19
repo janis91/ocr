@@ -35,17 +35,17 @@ describe('Check.vue', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.emitted()['input']).toBeTruthy()
-    expect(wrapper.emitted()['input'].length).toBe(1)
-    expect(wrapper.emitted()['input'][0][0]).toBeTruthy()
+    expect(wrapper.emitted().input).toBeTruthy()
+    expect(wrapper.emitted().input.length).toBe(1)
+    expect(wrapper.emitted().input[0][0]).toBeTruthy()
 
     wrapper.find('input').setChecked(false)
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.emitted()['input']).toBeTruthy()
-    expect(wrapper.emitted()['input'].length).toBe(2)
-    expect(wrapper.emitted()['input'][1][0]).toBeFalsy()
+    expect(wrapper.emitted().input).toBeTruthy()
+    expect(wrapper.emitted().input.length).toBe(2)
+    expect(wrapper.emitted().input[1][0]).toBeFalsy()
   })
 
   it('GIVEN standard props, WHEN mounted AND checked AND unchecked, THEN displays text for single file and emits events.', async () => {

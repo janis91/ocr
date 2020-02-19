@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true
   },
-  'extends': [
+  extends: [
     'plugin:vue/essential',
     '@vue/standard',
     '@vue/typescript'
@@ -12,9 +12,12 @@ module.exports = {
     'no-console': process.env.LOCAL === undefined ? 'error' : 'off',
     'no-debugger': process.env.LOCAL === undefined ? 'error' : 'off',
     'space-before-function-paren': ['error', {
-      'anonymous': 'never',
-      'named': 'never',
-      'asyncArrow': 'always' }]
+      anonymous: 'never',
+      named: 'never',
+      asyncArrow: 'always'
+    }],
+    'no-undef': 'off',
+    'no-unused-vars': 'off'
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'
