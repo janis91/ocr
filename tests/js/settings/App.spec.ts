@@ -49,8 +49,8 @@ describe('App.vue', () => {
     expect(actions[LOAD_FAVORITE_LANGUAGES]).toHaveBeenCalledTimes(1)
     expect(wrapper.contains('multi-select-stub')).toBeTruthy()
     expect(wrapper.contains('button')).toBeTruthy()
-    expect(wrapper.find('button').attributes()['disabled']).toBeFalsy()
-    expect(wrapper.find('multi-select-stub').attributes()['disabled']).toBeFalsy()
+    expect(wrapper.find('button').attributes().disabled).toBeFalsy()
+    expect(wrapper.find('multi-select-stub').attributes().disabled).toBeFalsy()
     expect(wrapper.element).toMatchSnapshot()
   })
 
@@ -70,8 +70,8 @@ describe('App.vue', () => {
     expect(actions[LOAD_FAVORITE_LANGUAGES]).toHaveBeenCalledTimes(1)
     expect(wrapper.contains('multi-select-stub')).toBeTruthy()
     expect(wrapper.contains('button')).toBeTruthy()
-    expect(wrapper.find('button').attributes()['disabled']).toBeTruthy()
-    expect(wrapper.find('multi-select-stub').attributes()['disabled']).toBeTruthy()
+    expect(wrapper.find('button').attributes().disabled).toBeTruthy()
+    expect(wrapper.find('multi-select-stub').attributes().disabled).toBeTruthy()
     expect(wrapper.element).toMatchSnapshot()
   })
 

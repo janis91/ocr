@@ -17,7 +17,7 @@ import Vue from 'vue'
 import { LOAD_FAVORITE_LANGUAGES, CLEAR_FAVORITE_LANGUAGES, SET_FAVORITE_LANGUAGES, SAVE_FAVORITE_LANGUAGES } from '@s/store/Store'
 import MultiSelect from '@/common/components/MultiSelect.vue'
 import { MultiSelectEvents } from '@/common/components/MultiSelectEvents'
-import { LanguageOption, Util } from '@/common/Util'
+import { LanguageOption } from '@/common/Util'
 import { Translations } from '@s/configuration/Translations'
 import Hint from '@/common/components/Hint.vue'
 

@@ -193,7 +193,7 @@ describe('OcaService', () => {
 
   describe('putFileContents()', () => {
     it('GIVEN successful put AND addAndFetch, WHEN putFileContents is called with path = "/test.pdf" AND valid body, THEN resolves.', async () => {
-      const jqPromise = { done: (cb: () => void) => { cb(); return jqPromise }, fail: (cb: () => void) => jqPromise };
+      const jqPromise = { done: (cb: () => void) => { cb(); return jqPromise }, fail: (_cb: () => void) => jqPromise };
       (OCA.Files.App.fileList.filesClient.putFileContents as jest.Mock).mockReturnValueOnce(jqPromise);
       (OCA.Files.App.fileList.addAndFetchFileInfo as jest.Mock).mockReturnValueOnce(jqPromise)
       const body = new Uint8Array()
@@ -206,8 +206,8 @@ describe('OcaService', () => {
 
     it('GIVEN successful put AND unsuccessful addAndFetch, WHEN putFileContents is called with path = "/test.pdf" AND valid body, THEN rejects.', async () => {
       const e = new Error('test')
-      const successJqPromise = { done: (cb: () => void) => { cb(); return successJqPromise }, fail: (cb: () => void) => successJqPromise }
-      const failingJqPromise = { done: (cb: () => void) => failingJqPromise, fail: (cb: (e: Error) => void) => { cb(e); return failingJqPromise } };
+      const successJqPromise = { done: (cb: () => void) => { cb(); return successJqPromise }, fail: (_cb: () => void) => successJqPromise }
+      const failingJqPromise = { done: (_cb: () => void) => failingJqPromise, fail: (cb: (e: Error) => void) => { cb(e); return failingJqPromise } };
       (OCA.Files.App.fileList.filesClient.putFileContents as jest.Mock).mockReturnValueOnce(successJqPromise);
       (OCA.Files.App.fileList.addAndFetchFileInfo as jest.Mock).mockReturnValueOnce(failingJqPromise)
       const body = new Uint8Array()
@@ -221,7 +221,7 @@ describe('OcaService', () => {
 
     it('GIVEN unsuccessful put, WHEN putFileContents is called with path = "/test.pdf" AND valid body, THEN rejects.', async () => {
       const e = new Error('test')
-      const failingJqPromise = { done: (cb: () => void) => failingJqPromise, fail: (cb: (e: Error) => void) => { cb(e); return failingJqPromise } };
+      const failingJqPromise = { done: (_cb: () => void) => failingJqPromise, fail: (cb: (e: Error) => void) => { cb(e); return failingJqPromise } };
       (OCA.Files.App.fileList.filesClient.putFileContents as jest.Mock).mockReturnValueOnce(failingJqPromise)
       const body = new Uint8Array()
 
@@ -234,7 +234,7 @@ describe('OcaService', () => {
 
     it('GIVEN unsuccessful put that rejects with 412, WHEN putFileContents is called with path = "/test.pdf" AND valid body, THEN rejects with special message.', async () => {
       const e = 412
-      const failingJqPromise = { done: (cb: () => void) => failingJqPromise, fail: (cb: (e: number) => void) => { cb(e); return failingJqPromise } };
+      const failingJqPromise = { done: (_cb: () => void) => failingJqPromise, fail: (cb: (e: number) => void) => { cb(e); return failingJqPromise } };
       (OCA.Files.App.fileList.filesClient.putFileContents as jest.Mock).mockReturnValueOnce(failingJqPromise)
       const body = new Uint8Array()
 
@@ -248,7 +248,7 @@ describe('OcaService', () => {
 
   describe('deleteFile()', () => {
     it('GIVEN successful remove, WHEN deleteFile is called with filename = "test.pdf", THEN resolves and removes file.', async () => {
-      const successJqPromise = { done: (cb: () => void) => { cb(); return successJqPromise }, fail: (cb: () => void) => successJqPromise };
+      const successJqPromise = { done: (cb: () => void) => { cb(); return successJqPromise }, fail: (_cb: () => void) => successJqPromise };
       (OCA.Files.App.fileList.getCurrentDirectory as jest.Mock).mockReturnValueOnce('/');
       (OCA.Files.App.fileList.filesClient.remove as jest.Mock).mockReturnValueOnce(successJqPromise);
       (OCA.Files.App.fileList.remove as jest.Mock).mockImplementationOnce(() => {})
@@ -262,7 +262,7 @@ describe('OcaService', () => {
 
     it('GIVEN unsuccessful remove, WHEN deleteFile is called with filename = "test.pdf", THEN rejects.', async () => {
       const e = new Error('test')
-      const failingJqPromise = { done: (cb: () => void) => failingJqPromise, fail: (cb: (e: Error) => void) => { cb(e); return failingJqPromise } };
+      const failingJqPromise = { done: (_cb: () => void) => failingJqPromise, fail: (cb: (e: Error) => void) => { cb(e); return failingJqPromise } };
       (OCA.Files.App.fileList.getCurrentDirectory as jest.Mock).mockReturnValueOnce('/');
       (OCA.Files.App.fileList.filesClient.remove as jest.Mock).mockReturnValueOnce(failingJqPromise)
 

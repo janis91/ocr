@@ -24,7 +24,7 @@
 import Vue from 'vue'
 import MultiSelect from '@/common/components/MultiSelect.vue'
 import { MultiSelectEvents } from '@/common/components/MultiSelectEvents'
-import { LanguageOption, Util } from '@/common/Util'
+import { LanguageOption } from '@/common/Util'
 import { UPDATE_SELECTED_LANGUAGES, CLEAR_SELECTED_LANGUAGES, SET_PROCESSING, STOP_PROCESS_AND_RESET_MODAL_STATE } from '@a/store/Store'
 import { Translations } from '@a/configuration/Translations'
 import Loading from '@a/components/Loading.vue'

@@ -55,8 +55,8 @@ describe('ModalContent.vue', () => {
   it('GIVEN standard state, WHEN ModalContent is mounted, THEN matches snapshot with button to trigger process and without loading indicator.', async () => {
     expect(wrapper.contains('button')).toBeTruthy()
     expect(wrapper.contains('loading')).toBeFalsy()
-    expect(wrapper.find('check-stub').attributes()['disabled']).toBeFalsy()
-    expect(wrapper.find('multi-select-stub').attributes()['disabled']).toBeFalsy()
+    expect(wrapper.find('check-stub').attributes().disabled).toBeFalsy()
+    expect(wrapper.find('multi-select-stub').attributes().disabled).toBeFalsy()
     expect(wrapper.element).toMatchSnapshot()
   })
 
@@ -72,8 +72,8 @@ describe('ModalContent.vue', () => {
     wrapper = shallowMount(ModalContent, { store, localVue })
     expect(wrapper.contains('button')).toBeFalsy()
     expect(wrapper.contains('loading-stub')).toBeTruthy()
-    expect(wrapper.find('check-stub').attributes()['disabled']).toBeTruthy()
-    expect(wrapper.find('multi-select-stub').attributes()['disabled']).toBeTruthy()
+    expect(wrapper.find('check-stub').attributes().disabled).toBeTruthy()
+    expect(wrapper.find('multi-select-stub').attributes().disabled).toBeTruthy()
     expect(wrapper.element).toMatchSnapshot()
   })
 

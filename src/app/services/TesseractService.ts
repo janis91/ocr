@@ -7,6 +7,7 @@ export class TesseractService {
     private static LANG_PATH: string = '/apps/ocr/tessdata';
     private static CORE_PATH: string = window.navigator.userAgent.indexOf('Edge') > -1
       ? 'vendor/tesseract.js/tesseract-core.asm.js' : 'vendor/tesseract.js/tesseract-core.wasm.js'; // can be directed to wasm file directly in the future hopefully
+
     private static WORKER_PATH: string = 'vendor/tesseract.js/worker.min.js';
 
     private tesseractWorkerOptions: Partial<WorkerOptions>;
