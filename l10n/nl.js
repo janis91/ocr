@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Optische tekenherkening (OCR)",
-    "Text recognition for your images and pdf files" : "Tekstherkenning voor je afbeeldingen en pdf-bestanden",
     "Target file already exists:" : "Doelbestand bestaat al:",
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Er trad een onverwachte fout op bij het laden van je favoriete taal. Er wordt geen taal ingesteld.",
     "An unexpected error occured during the upload of the processed file." : "Er trad een onverwachte fout op bij het uploaden van het verwerkte bestand.",

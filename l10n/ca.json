@@ -1,7 +1,6 @@
 { "translations": {
     "OCR" : "OCR",
     "Optical character recognition" : "Reconeixement òptic de caràcters",
-    "Text recognition for your images and pdf files" : "Reconeixement de text per a les vostres imatges i fitxers pdf",
     "Target file already exists:" : "El fitxer de destinació ja existeix:",
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "S'ha produït un error inesperat durant la càrrega de les llengües preferides. No s’establirà cap llengua.",
     "An unexpected error occured during the upload of the processed file." : "H hagut un error inesperat mentre es processava la pujada del fitxer.",

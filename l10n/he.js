@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "זיהוי תווים אופטי",
-    "Text recognition for your images and pdf files" : "זיהוי טקסט לקובצי התמונות וה־pdf שלך",
     "OCR processing failed:" : "עיבוד ה־OCR נכשל:",
     "MIME type not supported." : "סוג ה־MIME לא נתמך.",
     "Process" : "עיבוד",

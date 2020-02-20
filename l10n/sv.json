@@ -1,7 +1,6 @@
 { "translations": {
     "OCR" : "OCR",
     "Optical character recognition" : "Optisk teckenigenkänning",
-    "Text recognition for your images and pdf files" : "Textigenkänning för dina bilder och pdf-filer",
     "OCR processing failed:" : "OCR-bearbetning misslyckades:",
     "MIME type not supported." : "MIME-typ stöds inte.",
     "Process" : "Process",

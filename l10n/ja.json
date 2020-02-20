@@ -1,7 +1,6 @@
 { "translations": {
     "OCR" : "OCR",
     "Optical character recognition" : "OCR",
-    "Text recognition for your images and pdf files" : "画像とpdfファイルの文字認識",
     "Target file already exists:" : "目標ファイルは既に存在します。",
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "よく使う言語の読込中に予期しないエラーが発生しました。言語は設定されません。",
     "An unexpected error occured during the upload of the processed file." : "処理済みファイルのアップロード中に予期しないエラーが発生しました",

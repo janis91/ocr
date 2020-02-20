@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Optical character recognition",
-    "Text recognition for your images and pdf files" : "Text recognition for your images and pdf files",
     "OCR processing failed:" : "OCR processing failed:",
     "MIME type not supported." : "MIME type not supported.",
     "Process" : "Process",

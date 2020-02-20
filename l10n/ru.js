@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "OCR" : "ОРС",
     "Optical character recognition" : "Оптическое распознавание символов",
-    "Text recognition for your images and pdf files" : "Распознавание текста для ваших изображений и файлов PDF",
     "OCR processing failed:" : "Сбой при обработке ОРС:",
     "MIME type not supported." : "Тип MIME не поддерживается.",
     "Process" : "Обработка",

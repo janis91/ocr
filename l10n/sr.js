@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Оптичко препознавање знакова",
-    "Text recognition for your images and pdf files" : "Препознавање текста за Ваше слике и pdf фајлове",
     "OCR processing failed:" : "OCR процесирање није успело:",
     "MIME type not supported." : "MIME тип није подржан.",
     "Process" : "Обради",

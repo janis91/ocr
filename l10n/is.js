@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "OCR" : "OCR-ljóslestur",
     "Optical character recognition" : "Ljóslestur (OCR)",
-    "Text recognition for your images and pdf files" : "Greining texta í myndum og PDF-skrám",
     "An unexpected error occured during the deletion of the original file." : "Villa kom upp við að eyða upprunalegu skránni",
     "OCR processing failed:" : "OCR-ljóslestur mistókst:",
     "MIME type not supported." : "MIME-tegund ekki studd.",

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Optikai karakterfelismerés",
-    "Text recognition for your images and pdf files" : "Szövegfelismerő a képeidhez és pdf fájljaidhoz.",
     "OCR processing failed:" : "OCR feldolgozás sikertelen:",
     "MIME type not supported." : "Nem támogatott MIME típus.",
     "Process" : "Feldolgozás",
