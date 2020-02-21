@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Reconnaissance optique des caractères",
+    "Text recognition for your images" : "Reconnaissance de texte pour vos images",
     "Target file already exists:" : "Le fichier cible existe déjà :",
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Une erreur inattendue est survenue pendant le chargement de vos langues favorites. Aucune langue ne sera définie.",
     "An unexpected error occured during the upload of the processed file." : "Une erreur inattendue est survenue durant le téléversement du fichier traité.",
