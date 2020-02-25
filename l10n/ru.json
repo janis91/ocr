@@ -1,6 +1,9 @@
 { "translations": {
     "OCR" : "ОРС",
     "Optical character recognition" : "Оптическое распознавание символов",
+    "Target file already exists:" : "Целевой файл уже существует:",
+    "An unexpected error occured during the upload of the processed file." : "Не удалось передать обработанный файл.",
+    "An unexpected error occured during the deletion of the original file." : "Не удалось удалить исходный файл.",
     "OCR processing failed:" : "Сбой при обработке ОРС:",
     "MIME type not supported." : "Тип MIME не поддерживается.",
     "Process" : "Обработка",

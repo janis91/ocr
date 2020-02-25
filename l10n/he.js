@@ -3,6 +3,9 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "זיהוי תווים אופטי",
+    "Target file already exists:" : "קובץ היעד כבר קיים:",
+    "An unexpected error occured during the upload of the processed file." : "אירעה שגיאה במהלך העלאת הקובץ המעובד.",
+    "An unexpected error occured during the deletion of the original file." : "אירעה שגיאה בלתי צפויה במהלך מחיקת הקובץ המקורי.",
     "OCR processing failed:" : "עיבוד ה־OCR נכשל:",
     "MIME type not supported." : "סוג ה־MIME לא נתמך.",
     "Process" : "עיבוד",
