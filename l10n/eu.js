@@ -3,6 +3,8 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Target file already exists:" : "Helburuko fitxategia lehendik dago:",
+    "An unexpected error occured during the upload of the processed file." : "Errorea gertatu da prozesatu den fitxategia kargatzean.",
+    "An unexpected error occured during the deletion of the original file." : "Errorea gertatu da jatorrizko fitxategia ezabatzean.",
     "MIME type not supported." : "MIME mota ez da onartzen.",
     "Process" : "Prozesua",
     "_%n file_::_%n files_" : ["fitxategi %n","%n fitxategi"],
