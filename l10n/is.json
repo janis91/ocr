@@ -1,6 +1,8 @@
 { "translations": {
     "OCR" : "OCR-ljóslestur",
     "Optical character recognition" : "Ljóslestur (OCR)",
+    "Target file already exists:" : "Úttaksskrá er þegar til staðar:",
+    "An unexpected error occured during the upload of the processed file." : "Óvænt villa kom upp við að senda inn unna skrá.",
     "An unexpected error occured during the deletion of the original file." : "Villa kom upp við að eyða upprunalegu skránni",
     "OCR processing failed:" : "OCR-ljóslestur mistókst:",
     "MIME type not supported." : "MIME-tegund ekki studd.",
