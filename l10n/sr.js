@@ -3,6 +3,9 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Оптичко препознавање знакова",
+    "Target file already exists:" : "Одредишни фајл већ постоји:",
+    "An unexpected error occured during the upload of the processed file." : "Неочекивана грешка за време отпремања обрађеног фајла.",
+    "An unexpected error occured during the deletion of the original file." : "Неочекивана грешка за време брисања оригиналног фајла.",
     "OCR processing failed:" : "OCR процесирање није успело:",
     "MIME type not supported." : "MIME тип није подржан.",
     "Process" : "Обради",
