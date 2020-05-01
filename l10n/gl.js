@@ -93,7 +93,7 @@ OC.L10N.register(
     "An unexpected error occured during save of your favorite languages. Please try again." : "Produciuse un erro inesperado ao gardar o seu idioma preferido. Tenteo de novo.",
     "An unexpected error occured during load of your favorite languages. Please try again." : "Produciuse un erro inesperado durante a carga do seu idioma preferido. Tenteo de novo.",
     "An error occured during save of your favorite languages. Please check your input." : "Produciuse un erro inesperado ao gardar o seu idioma preferido. Verifique a súa entrada.",
-    "Selected languages will be preselected by default in the OCR dialog." : "Os idiomas seleccionados serán preseleccionados de xeito predeterminado no diálogo do OCR.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Os idiomas seleccionados, por omisión, serán preseleccionados no diálogo do OCR.",
     "Favorite languages" : "Idiomas preferidos"
 },
 "nplurals=2; plural=(n != 1);");
