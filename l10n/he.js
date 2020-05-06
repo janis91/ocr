@@ -51,6 +51,7 @@ OC.L10N.register(
     "Russian" : "רוסית",
     "Slovenian" : "סלובנית",
     "Albanian" : "אלבנית",
+    "Serbian (Latin)" : "סרבית (לטינית)",
     "Selected" : "Selected",
     "Select language" : "בחירת שפה",
     "Save" : "שמור"
