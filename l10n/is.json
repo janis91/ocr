@@ -1,12 +1,18 @@
 { "translations": {
     "OCR" : "OCR-ljóslestur",
     "Optical character recognition" : "Ljóslestur (OCR)",
+    "Text recognition for your images" : "Greining texta í myndunum þínum",
     "Target file already exists:" : "Úttaksskrá er þegar til staðar:",
     "An unexpected error occured during the upload of the processed file." : "Óvænt villa kom upp við að senda inn unna skrá.",
     "An unexpected error occured during the deletion of the original file." : "Villa kom upp við að eyða upprunalegu skránni",
+    "An unexpected error occured during Tesseract processing." : "Óvænt villa kom upp við Tesseract-vinnslu.",
     "OCR processing failed:" : "OCR-ljóslestur mistókst:",
     "MIME type not supported." : "MIME-tegund ekki studd.",
     "Process" : "Ferli",
+    "A large number of files may take a very long time." : "Mjög margar skrár gætu tekið mjög langan tíma.",
+    "{file}/{files} Files successfully processed" : "Búið að vinna {file}/{files} skrám",
+    "_%n file is being processed:_::_%n files are being processed:_" : ["%n skrá er í vinnslu:","%n skrár eru í vinnslu:"],
+    "_Delete original file (image)_::_Delete original files (images)_" : ["Eyða upprunalegu skránni (mynd)","Eyða upprunalegu skránum (myndir)"],
     "_%n file_::_%n files_" : ["%n skrá","%n skrár"],
     "Afrikaans" : "Afríkanska",
     "Arabic" : "Arabíska",
@@ -25,6 +31,7 @@
     "English" : "Enska",
     "English (Old)" : "Enska (forn)",
     "Esperanto" : "Esperantó",
+    "Esperanto alternative" : "Esperantó tilbrigði",
     "Math" : "Stærðfræði",
     "Estonian" : "Eistneska",
     "Basque" : "Baskneska",
@@ -72,9 +79,12 @@
     "Turkish" : "Tyrkneska",
     "Ukrainian" : "Úkraínska",
     "Vietnamese" : "Víetnamska",
+    "Press enter to select" : "Ýttu á 'Enter' til að velja",
+    "Press enter to remove" : "Ýttu á 'Enter' til að fjarlægja",
     "Selected" : "Valið",
     "No matches found" : "Engar samsvaranir fundust",
     "Select language" : "Veldu tungumál",
-    "Save" : "Vista"
+    "Save" : "Vista",
+    "Favorite languages" : "Eftirlætis tungumál"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }
