@@ -73,6 +73,7 @@ OC.L10N.register(
     "Turkish" : "Turkiera",
     "Ukrainian" : "Ukrainera",
     "Vietnamese" : "Vietnamera",
+    "Press enter to select" : "Sakatu enter hautatzeko",
     "Selected" : "Hautatua",
     "No matches found" : "Ez dira emaitzarik aurkitu",
     "Select language" : "Hautatu hizkuntza",
