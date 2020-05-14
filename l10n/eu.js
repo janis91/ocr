@@ -74,6 +74,7 @@ OC.L10N.register(
     "Ukrainian" : "Ukrainera",
     "Vietnamese" : "Vietnamera",
     "Press enter to select" : "Sakatu enter hautatzeko",
+    "Press enter to remove" : "Sakatu enter kentzeko",
     "Selected" : "Hautatua",
     "No matches found" : "Ez dira emaitzarik aurkitu",
     "Select language" : "Hautatu hizkuntza",
