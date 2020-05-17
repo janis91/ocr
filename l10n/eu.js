@@ -7,6 +7,7 @@ OC.L10N.register(
     "An unexpected error occured during the deletion of the original file." : "Errorea gertatu da jatorrizko fitxategia ezabatzean.",
     "MIME type not supported." : "MIME mota ez da onartzen.",
     "Process" : "Prozesua",
+    "_Delete original file (image)_::_Delete original files (images)_" : ["Ezabatu jatorrizko fitxategia (irudia)","Ezabatu jatorrizko fitxategiak (irudiak)"],
     "_%n file_::_%n files_" : ["fitxategi %n","%n fitxategi"],
     "Afrikaans" : "Afrikaans",
     "Arabic" : "Arabiera",
