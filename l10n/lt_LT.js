@@ -65,6 +65,7 @@ OC.L10N.register(
     "Spanish" : "Ispanų",
     "Albanian" : "Albanų",
     "Serbian (Latin)" : "Serbų (Lotynų)",
+    "Swahili" : "Svahilių",
     "Swedish" : "Švedų",
     "Tamil" : "Tamilų",
     "Telugu" : "Telugų",
