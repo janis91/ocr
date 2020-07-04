@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Оптичко препознавање на карактери",
+    "Text recognition for your images" : "Препознавање на текст за вашите слики",
     "Target file already exists:" : "Датотеката веќе постои:",
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Настана неочекувана грешка при вчитување на омилениот јазикот. Ве молиме обидете се повторно.",
     "An unexpected error occured during the upload of the processed file." : "Настана неочекувана грешка при прикачување на датотеката за процесоирање.",
