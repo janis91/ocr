@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Optikai karakterfelismerés",
+    "Target file already exists:" : "A célfájl már létezik:",
     "OCR processing failed:" : "OCR feldolgozás sikertelen:",
     "MIME type not supported." : "Nem támogatott MIME típus.",
     "Process" : "Feldolgozás",
