@@ -1,10 +1,18 @@
 { "translations": {
     "OCR" : "OCR",
+    "Optical character recognition" : "Karaktereen errekonozimendu optikoa",
+    "Text recognition for your images" : "Zure irudien testu errekonozimendua",
     "Target file already exists:" : "Helburuko fitxategia lehendik dago:",
+    "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Errorea gertatu da zure gogoko hizkuntzak kargatzen. Horren ordez, ez da hizkuntzarik ezarriko",
     "An unexpected error occured during the upload of the processed file." : "Errorea gertatu da prozesatu den fitxategia kargatzean.",
     "An unexpected error occured during the deletion of the original file." : "Errorea gertatu da jatorrizko fitxategia ezabatzean.",
+    "An unexpected error occured during Tesseract processing." : "Errorea gertatu da Tesseract prozesuan.",
+    "OCR processing failed:" : "OCR prozesuak huts egin du",
     "MIME type not supported." : "MIME mota ez da onartzen.",
     "Process" : "Prozesua",
+    "A large number of files may take a very long time." : "Fitxategi ugarik denbora asko iraun dezakete.",
+    "{file}/{files} Files successfully processed" : "{file}/{files} fitxategi behar bezala prozesatu dira",
+    "_%n file is being processed:_::_%n files are being processed:_" : ["Fitxategi %n prozesatzen ari da:","%n fitxategi prozesatzen ari dira:"],
     "_Delete original file (image)_::_Delete original files (images)_" : ["Ezabatu jatorrizko fitxategia (irudia)","Ezabatu jatorrizko fitxategiak (irudiak)"],
     "_%n file_::_%n files_" : ["fitxategi %n","%n fitxategi"],
     "Afrikaans" : "Afrikaans",
@@ -78,6 +86,10 @@
     "No matches found" : "Ez dira emaitzarik aurkitu",
     "Select language" : "Hautatu hizkuntza",
     "Save" : "Gorde",
+    "An unexpected error occured during save of your favorite languages. Please try again." : "Errorea gertatu da zure gogoko hizkuntzak gordetzean. Saiatu berriro.",
+    "An unexpected error occured during load of your favorite languages. Please try again." : "Errorea gertatu da zure gogoko hizkuntzak kargatzean. Saiatu berriro.",
+    "An error occured during save of your favorite languages. Please check your input." : "Errorea gertatu da zure gogoko hizkuntzak gordetzean. Egiaztatu zure sarrera.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Hautatutako hizkuntzak berez hautatuta agertuko dira OCR elkarrizketan.",
     "Favorite languages" : "Gogoko hizkuntzak"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
