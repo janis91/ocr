@@ -4,6 +4,7 @@
     "OCR processing failed:" : "OCR-bearbetning misslyckades:",
     "MIME type not supported." : "MIME-typ stöds inte.",
     "Process" : "Process",
+    "_%n file_::_%n files_" : ["%n fil","%n filer"],
     "Afrikaans" : "Afrikaans",
     "Arabic" : "Arabic",
     "Azerbaijani" : "Azerbaijani",
@@ -24,6 +25,7 @@
     "Finnish" : "Finsk",
     "French" : "Fransk",
     "Galician" : "Galician",
+    "Ancient Greek" : "Forngrekiska",
     "Hebrew" : "Hebrew",
     "Hindi" : "Hindi",
     "Croatian" : "Croatian",
@@ -46,6 +48,7 @@
     "Portuguese" : "Portuguese",
     "Romanian" : "Romanian",
     "Russian" : "Russian",
+    "Slovakian" : "Slovakiska",
     "Slovenian" : "Slovenian",
     "Spanish" : "Spanish",
     "Albanian" : "Albanian",
@@ -60,6 +63,7 @@
     "Ukrainian" : "Ukrainian",
     "Vietnamese" : "Vietnamese",
     "Selected" : "Vald",
+    "No matches found" : "Inga träffar hittades",
     "Select language" : "Välj språk",
     "Save" : "Spara"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
