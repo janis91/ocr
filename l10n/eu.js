@@ -42,6 +42,7 @@ OC.L10N.register(
     "Persian (Farsi)" : "Persiera (Farsia)",
     "Finnish" : "Finlandiera",
     "French" : "Frantsesa",
+    "Frankish" : "Frankoniera",
     "French (Old)" : "Frantsesa (Zaharra)",
     "Galician" : "Galegoa",
     "Ancient Greek" : "Antzinako Grekoa",
