@@ -7,6 +7,7 @@ OC.L10N.register(
     "MIME type not supported." : "MIME-type ikke støttet.",
     "Process" : "Prosess",
     "Arabic" : "Arabisk",
+    "Czech" : "Tsjekkia",
     "Norwegian" : "Norsk",
     "Albanian" : "Albansk",
     "Selected" : "Valgt",
