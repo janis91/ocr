@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "Prepoznavanje znakov OCR",
     "Optical character recognition" : "Optično prepoznavanje znakov",
+    "Text recognition for your images" : "Optično branje besedila v slikovnih datotekah",
     "Target file already exists:" : "Ciljna datoteka že obstaja:",
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Med brisanjem nalaganjem priljubljenega jezika je prišlo do nepričakovane napake. Jezik ne bo nastavljen.",
     "An unexpected error occured during the upload of the processed file." : "Med pošiljanjem obdelovane datoteke je prišlo do nepričakovane napake.",
