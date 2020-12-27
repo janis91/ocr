@@ -10,6 +10,7 @@
     "MIME type not supported." : "Vrsta MIME ni podprta.",
     "Process" : "Opravilo",
     "A large number of files may take a very long time." : "Veliko število datotek lahko povzroči dolgotrajno izvajanje opravila.",
+    "{file}/{files} Files successfully processed" : "{file}/{files} datotek je uspešno obdelanih",
     "_Delete original file (image)_::_Delete original files (images)_" : ["Izbriši izvorno datoteko (sliko)","Izbriši izvorni datoteki (sliki)","Izbriši izvorne datoteke (slike)","Izbriši izvorne datoteke (slike)"],
     "_%n file_::_%n files_" : ["%n datoteka","%n datoteki","%n datoteke","%n datotek"],
     "Afrikaans" : "Afrikanščina",
@@ -86,6 +87,7 @@
     "An unexpected error occured during save of your favorite languages. Please try again." : "Med shranjevanjem priljubljenih jezikov je prišlo do neznane napake. Poskusite znova.",
     "An unexpected error occured during load of your favorite languages. Please try again." : "Med nalaganjem priljubljenih jezikov je prišlo do neznane napake. Poskusite znova.",
     "An error occured during save of your favorite languages. Please check your input." : "Med shranjevanjem priljubljenih jezikov je prišlo do napake. Poskusite znova.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Izbrani jeziki bodo privzeto določeni za prikaz v pogovornem oknu bralnika OCR.",
     "Favorite languages" : "Priljubljen jeziki"
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
 }
