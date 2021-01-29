@@ -11,6 +11,7 @@
     "Process" : "Opravilo",
     "A large number of files may take a very long time." : "Veliko število datotek lahko povzroči dolgotrajno izvajanje opravila.",
     "{file}/{files} Files successfully processed" : "{file}/{files} datotek je uspešno obdelanih",
+    "_%n file is being processed:_::_%n files are being processed:_" : ["V obdelavi je %n datoteka:","V obdelavi sta %n datoteki:","V obdelavi so%n datoteke:","V obdelavi je %n datotek:"],
     "_Delete original file (image)_::_Delete original files (images)_" : ["Izbriši izvorno datoteko (sliko)","Izbriši izvorni datoteki (sliki)","Izbriši izvorne datoteke (slike)","Izbriši izvorne datoteke (slike)"],
     "_%n file_::_%n files_" : ["%n datoteka","%n datoteki","%n datoteke","%n datotek"],
     "Afrikaans" : "Afrikanščina",
