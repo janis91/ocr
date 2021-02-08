@@ -8,6 +8,7 @@ OC.L10N.register(
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Med brisanjem nalaganjem priljubljenega jezika je prišlo do nepričakovane napake. Jezik ne bo nastavljen.",
     "An unexpected error occured during the upload of the processed file." : "Med pošiljanjem obdelovane datoteke je prišlo do nepričakovane napake.",
     "An unexpected error occured during the deletion of the original file." : "Med brisanjem izvorne datoteke je prišlo do nepričakovane napake.",
+    "An unexpected error occured during Tesseract processing." : "Med obdelovanjem Tesseract je prišlo do nepričakovane napake.",
     "OCR processing failed:" : "Optična obdelava je spodletela:",
     "MIME type not supported." : "Vrsta MIME ni podprta.",
     "Process" : "Opravilo",
