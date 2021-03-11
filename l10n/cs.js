@@ -42,7 +42,7 @@ OC.L10N.register(
     "Persian (Farsi)" : "perština (fârsi)",
     "Finnish" : "finština",
     "French" : "francouzština",
-    "Frankish" : "Frankish",
+    "Frankish" : "Franština",
     "French (Old)" : "francouzština (stará)",
     "Galician" : "galicijština",
     "Ancient Greek" : "starověká řečtina",
