@@ -41,6 +41,7 @@ OC.L10N.register(
     "Persian (Farsi)" : "Perzijščina (farsi)",
     "Finnish" : "Finščina",
     "French" : "Francoščina",
+    "Frankish" : "Starofrankonščina",
     "French (Old)" : "Francoščina (stara)",
     "Galician" : "Galicijščina",
     "Ancient Greek" : "Starogrščina",
@@ -91,7 +92,7 @@ OC.L10N.register(
     "An unexpected error occured during save of your favorite languages. Please try again." : "Med shranjevanjem priljubljenih jezikov je prišlo do neznane napake. Poskusite znova.",
     "An unexpected error occured during load of your favorite languages. Please try again." : "Med nalaganjem priljubljenih jezikov je prišlo do neznane napake. Poskusite znova.",
     "An error occured during save of your favorite languages. Please check your input." : "Med shranjevanjem priljubljenih jezikov je prišlo do napake. Poskusite znova.",
-    "Selected languages will be preselected by default in the OCR dialog." : "Izbrani jeziki bodo privzeto določeni za prikaz v pogovornem oknu bralnika OCR.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Izbrani jeziki bodo privzeto določeni za prikaz v pogovornem oknu optičnega bralnika OCR.",
     "Favorite languages" : "Priljubljen jeziki"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");
