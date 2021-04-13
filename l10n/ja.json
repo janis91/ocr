@@ -7,7 +7,7 @@
     "An unexpected error occured during the deletion of the original file." : "元ファイルの削除中に予期しないエラーが発生しました",
     "An unexpected error occured during Tesseract processing." : "Tesseract処理中に予期しないエラーが発生しました。",
     "OCR processing failed:" : "OCR処理に失敗しました:",
-    "MIME type not supported." : "MIME タイプはサポートしていません",
+    "MIME type not supported." : "MIMEタイプは対応していません",
     "Process" : "プロセス",
     "{file}/{files} Files successfully processed" : "{file}/{files} ファイルは正常に処理されました",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n個のファイルは処理中です:"],
