@@ -54,7 +54,7 @@ export class Common {
       ['slk', t('ocr', 'Slovakian')],
       ['slv', t('ocr', 'Slovenian')],
       ['spa', t('ocr', 'Spanish')],
-      ['spa_old', t('ocr', 'Old Spanish')],
+      ['spa_old', t('ocr', 'Spanish (Old)')],
       ['sqi', t('ocr', 'Albanian')],
       ['srp', t('ocr', 'Serbian (Latin)')],
       ['swa', t('ocr', 'Swahili')],
