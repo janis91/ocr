@@ -21,7 +21,7 @@ OC.L10N.register(
     "Afrikaans" : "Afrikaans",
     "Arabic" : "Arabisch",
     "Azerbaijani" : "Aserbaidschanisch",
-    "Belarusian" : "belarussisch",
+    "Belarusian" : "Belarussisch",
     "Bengali" : "Bengalisch",
     "Bulgarian" : "Bulgarisch",
     "Catalan" : "Katalanisch",
