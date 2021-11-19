@@ -92,7 +92,7 @@ OC.L10N.register(
     "Save" : "Bewaren",
     "An unexpected error occured during save of your favorite languages. Please try again." : "Er trad een onverwachte fout op bij het opslaan van je favoriete taal. probeer het opnieuw.",
     "An unexpected error occured during load of your favorite languages. Please try again." : "Er trad een onverwachte fout op bij het laden van je favoriete taal. Probeer het opnieuw.",
-    "An error occured during save of your favorite languages. Please check your input." : "Er trad een onverwachte fout op bij het opslaan van je favoriete taal. Verifieer de invoer.",
+    "An error occured during save of your favorite languages. Please check your input." : "Er trad een onverwachte fout op bij het opslaan van je favoriete taal. Controleer de invoer.",
     "Selected languages will be preselected by default in the OCR dialog." : "Geselecteerde talen worden standaard in het OCR dialoogvenster voorgeselecteerd.",
     "Favorite languages" : "Favoriete talen"
 },
