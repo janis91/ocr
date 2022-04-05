@@ -96,4 +96,4 @@ OC.L10N.register(
     "Selected languages will be preselected by default in the OCR dialog." : "Sélectionnez les langues qui seront affichées par défaut dans la boite de dialogue OCR.",
     "Favorite languages" : "Langues favorites"
 },
-"nplurals=2; plural=(n > 1);");
+"nplurals=3; plural=(n==0 || n==1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
