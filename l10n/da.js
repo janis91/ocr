@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Text recognition for your images" : "Tekstgenkendelse i dine billeder",
+    "Target file already exists:" : "Filen findes allerede:",
     "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "Der opstod en uventet fejl i forbindelse med at indlæse dine favoritsprog. Intet sprog vil blive valgt i stedet.",
     "An unexpected error occured during the upload of the processed file." : "Der opstod en uventet fejl i forbindelse med upload af den behandlede fil.",
     "An unexpected error occured during the deletion of the original file." : "Der opstod en uventet fejl i forbindelse med sletningen af den originale fil.",
