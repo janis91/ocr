@@ -15,9 +15,9 @@ OC.L10N.register(
     "Process" : "Elabora",
     "A large number of files may take a very long time." : "Un gran numero di file potrebbe richiedere molto tempo.",
     "{file}/{files} Files successfully processed" : "{file}/{files} file elaborati correttamente",
-    "_%n file is being processed:_::_%n files are being processed:_" : ["%n file è stato elaborato:","%n file sono stati elaborati:"],
-    "_Delete original file (image)_::_Delete original files (images)_" : ["Elimina il file originale (immagine)","Elimina i file originali (immagini)"],
-    "_%n file_::_%n files_" : ["%n file","%n file"],
+    "_%n file is being processed:_::_%n files are being processed:_" : ["%n file è stato elaborato:","%n file sono stati elaborati:","%n file sono stati elaborati:"],
+    "_Delete original file (image)_::_Delete original files (images)_" : ["Elimina il file originale (immagine)","Elimina i file originali (immagini)","Elimina i file originali (immagini)"],
+    "_%n file_::_%n files_" : ["%n file","%n file","%n file"],
     "Afrikaans" : "Afrikaans",
     "Arabic" : "Arabo",
     "Azerbaijani" : "Azero",
@@ -96,4 +96,4 @@ OC.L10N.register(
     "Selected languages will be preselected by default in the OCR dialog." : "Le lingue selezionate saranno preselezionate in modo predefinito nella finestra OCR.",
     "Favorite languages" : "Lingue preferite"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
