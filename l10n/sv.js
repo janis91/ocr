@@ -53,6 +53,7 @@ OC.L10N.register(
     "Slovakian" : "Slovakiska",
     "Slovenian" : "Slovenian",
     "Spanish" : "Spanish",
+    "Old Spanish" : "Gammal spanska",
     "Albanian" : "Albanian",
     "Serbian (Latin)" : "Serbian (Latin)",
     "Swahili" : "Swahili",
@@ -67,6 +68,7 @@ OC.L10N.register(
     "Selected" : "Vald",
     "No matches found" : "Inga träffar hittades",
     "Select language" : "Välj språk",
-    "Save" : "Spara"
+    "Save" : "Spara",
+    "Favorite languages" : "Favoritspråk"
 },
 "nplurals=2; plural=(n != 1);");

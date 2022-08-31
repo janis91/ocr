@@ -51,6 +51,7 @@
     "Slovakian" : "Slovakiska",
     "Slovenian" : "Slovenian",
     "Spanish" : "Spanish",
+    "Old Spanish" : "Gammal spanska",
     "Albanian" : "Albanian",
     "Serbian (Latin)" : "Serbian (Latin)",
     "Swahili" : "Swahili",
@@ -65,6 +66,7 @@
     "Selected" : "Vald",
     "No matches found" : "Inga träffar hittades",
     "Select language" : "Välj språk",
-    "Save" : "Spara"
+    "Save" : "Spara",
+    "Favorite languages" : "Favoritspråk"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
