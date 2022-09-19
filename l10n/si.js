@@ -25,7 +25,6 @@ OC.L10N.register(
     "Portuguese" : "පෘතුගීසි",
     "Russian" : "රුසියානු",
     "Spanish" : "ස්පාඤ්ඤ",
-    "Old Spanish" : "පැරණි ස්පාඤ්ඤ",
     "Tamil" : "දෙමළ",
     "Telugu" : "තෙළිඟු",
     "Thai" : "තායි",

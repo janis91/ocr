@@ -1,10 +1,6 @@
 { "translations": {
     "OCR" : "OCR",
     "Target file already exists:" : "پرونده هدف از قبل موجود است:",
-    "An unexpected error occured during the load of your favorite languages. No language will be set instead." : "خطایی غیرمنتظره در طول بار زبانهای مورد علاقه شما روی داد. به جای آن هیچ زبانی تنظیم نمی شود.",
-    "An unexpected error occured during the upload of the processed file." : "هنگام آپلود پرونده پردازش شده ، یک خطای غیرمنتظره رخ داده است.",
-    "An unexpected error occured during the deletion of the original file." : "هنگام حذف پرونده اصلی خطایی غیرمنتظره رخ داده است.",
-    "An unexpected error occured during Tesseract processing." : "یک خطای غیر منتظره در طول پردازش Tesseract روی داد.",
     "OCR processing failed:" : "پردازش OCR انجام نشد:",
     "MIME type not supported." : "نوع MIME پشتیبانی نمی شود.",
     "Process" : "فرایند",
@@ -63,7 +59,6 @@
     "Slovakian" : "اسلواکی",
     "Slovenian" : "اسلوونیایی",
     "Spanish" : "اسپانیایی",
-    "Old Spanish" : "اسپانیایی قدیمی",
     "Albanian" : "آلبانیایی",
     "Serbian (Latin)" : "صربی (لاتین)",
     "Swahili" : "Telugu (India)",

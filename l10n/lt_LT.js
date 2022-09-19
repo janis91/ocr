@@ -4,8 +4,6 @@ OC.L10N.register(
     "OCR" : "OCR (Optinis ženklų atpažinimas)",
     "Optical character recognition" : "Optinis ženklų atpažinimas",
     "Target file already exists:" : "Paskirties failas jau yra:",
-    "An unexpected error occured during the deletion of the original file." : "Ištrinant pradinį failą, įvyko netikėta klaida.",
-    "An unexpected error occured during Tesseract processing." : "Tesseract apdorojimo metu įvyko netikėta klaida.",
     "OCR processing failed:" : "OCR apdorojimas patyrė nesėkmę:",
     "MIME type not supported." : "Nepalaikomas MIME tipas.",
     "Process" : "Procesas",

@@ -56,7 +56,6 @@ OC.L10N.register(
     "Russian" : "Rus",
     "Slovenian" : "Eslovèn",
     "Spanish" : "Espanhòl",
-    "Old Spanish" : "Castelhan ancian",
     "Albanian" : "Albanés",
     "Swahili" : "Swahili",
     "Swedish" : "Suedés",

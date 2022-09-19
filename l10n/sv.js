@@ -53,7 +53,6 @@ OC.L10N.register(
     "Slovakian" : "Slovakiska",
     "Slovenian" : "Slovenian",
     "Spanish" : "Spanish",
-    "Old Spanish" : "Gammal spanska",
     "Albanian" : "Albanian",
     "Serbian (Latin)" : "Serbian (Latin)",
     "Swahili" : "Swahili",

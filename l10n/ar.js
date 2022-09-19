@@ -16,7 +16,6 @@ OC.L10N.register(
     "Dutch" : "الهولندية",
     "Russian" : "الروسية",
     "Spanish" : "الإسبانية",
-    "Old Spanish" : "الإسبانية القديمة",
     "Selected" : "Selected",
     "Select language" : "اختر لغة",
     "Save" : "حفظ"
