@@ -67,6 +67,7 @@ OC.L10N.register(
     "Slovakian" : "Eslovakiera",
     "Slovenian" : "Esloveniera",
     "Spanish" : "Espainiera",
+    "Spanish (Old)" : "Gaztelania (Zaharra)",
     "Albanian" : "Albaniera",
     "Serbian (Latin)" : "Serbiera (Latin)",
     "Swahili" : "Swahili",

@@ -21,7 +21,7 @@ OC.L10N.register(
     "Catalan" : "Katalonų",
     "Czech" : "Čekų",
     "Chinese" : "Kinų",
-    "Traditional Chinese" : "Tradicinė kinų",
+    "Traditional Chinese" : "Kinų tradicinė",
     "Cherokee" : "Čerokų",
     "Danish" : "Danų",
     "German" : "Vokiečių",
