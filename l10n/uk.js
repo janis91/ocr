@@ -4,6 +4,7 @@ OC.L10N.register(
     "OCR" : "OCR (Оптичне розпізнавання тексту)",
     "Target file already exists:" : "Файл призначення вже існує:",
     "MIME type not supported." : "Такий тип файлу (MIME) не підтримується.",
+    "Czech" : "Чехія",
     "Ukrainian" : "Українська",
     "Selected" : "Selected",
     "Save" : "Зберегти"
