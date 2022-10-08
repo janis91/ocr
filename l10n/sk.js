@@ -67,6 +67,7 @@ OC.L10N.register(
     "Slovakian" : "slovenčina",
     "Slovenian" : "slovinčina",
     "Spanish" : "španielčina",
+    "Spanish (Old)" : "Španielčina (Stará)",
     "Albanian" : "albánčina",
     "Serbian (Latin)" : "srbština (latin)",
     "Swahili" : "svahilčina",
