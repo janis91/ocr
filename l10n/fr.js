@@ -5,6 +5,7 @@ OC.L10N.register(
     "Optical character recognition" : "Reconnaissance optique des caractères",
     "Text recognition for your images" : "Reconnaissance de texte pour vos images",
     "Target file already exists:" : "Le fichier cible existe déjà :",
+    "An unexpected error occurred during the load of your favorite languages. No language will be set instead." : "Une erreur inattendue est survenue pendant le chargement de vos langues préférées. Aucune langue sera définie à la place.",
     "OCR processing failed:" : "Le traitement OCR a échoué :",
     "MIME type not supported." : "Type de fichier non supporté.",
     "Process" : "Exécuter",
