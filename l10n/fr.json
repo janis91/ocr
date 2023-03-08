@@ -91,7 +91,7 @@
     "An unexpected error occured during save of your favorite languages. Please try again." : "Une erreur inattendue est survenue pendant l’enregistrement de vos langues favorites. Veuillez réessayer plus tard.",
     "An unexpected error occured during load of your favorite languages. Please try again." : "Une erreur inattendue est survenue pendant le chargement de vos langues favorites. Veuillez réessayer plus tard.",
     "An error occured during save of your favorite languages. Please check your input." : "Une erreur est survenue pendant l'enregistrement de vos langues favorites. Veuillez vérifier votre saisie.",
-    "Selected languages will be preselected by default in the OCR dialog." : "Sélectionnez les langues qui seront affichées par défaut dans la boite de dialogue OCR.",
+    "Selected languages will be preselected by default in the OCR dialog." : "Sélectionnez les langues qui seront cochées par défaut dans la boite de dialogue OCR.",
     "Favorite languages" : "Langues favorites"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
