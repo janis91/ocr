@@ -2,6 +2,7 @@ OC.L10N.register(
     "ocr",
     {
     "Afrikaans" : "Afrika",
+    "Czech" : "Czech",
     "English" : "Inggris",
     "Indonesian" : "Bahasa Indonesia",
     "Icelandic" : "Islandia",
