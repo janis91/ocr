@@ -15,7 +15,7 @@ OC.L10N.register(
     "_%n file_::_%n files_" : ["%n ficheiro","%n ficheiros"],
     "Afrikaans" : "Africáner",
     "Arabic" : "Árabe",
-    "Azerbaijani" : "Azerí",
+    "Azerbaijani" : "Acerbaixano",
     "Belarusian" : "Bieloruso",
     "Bengali" : "Bengalí",
     "Bulgarian" : "Búlgaro",
