@@ -1,6 +1,8 @@
 OC.L10N.register(
     "ocr",
     {
+    "Target file already exists:" : "الملف الهدف موجود أصلاً:",
+    "MIME type not supported." : "نوع ملف MIME غير مدعوم.",
     "Arabic" : "العربية",
     "Bulgarian" : "البلغارية",
     "Catalan" : "الكتالونية",
