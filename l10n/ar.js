@@ -15,6 +15,7 @@ OC.L10N.register(
     "Process" : "معالجة",
     "A large number of files may take a very long time." : "عدد كبير من الملفات ربما يستغرق وقتاً طويلاً جداً.",
     "{file}/{files} Files successfully processed" : "{file}/{files} ملفات تمتّ معالجتها بنجاحٍ",
+    "_%n file_::_%n files_" : ["لا يوجد ملفات %n","ملف %n","ملف %n","قليل من ملفات %n","الكثير من ملفات %n"," ملفات %n"],
     "Afrikaans" : "Afrikaans",
     "Arabic" : "العربية",
     "Azerbaijani" : "Azerbaijani",
