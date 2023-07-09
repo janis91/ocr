@@ -15,6 +15,8 @@ OC.L10N.register(
     "Process" : "معالجة",
     "A large number of files may take a very long time." : "عدد كبير من الملفات ربما يستغرق وقتاً طويلاً جداً.",
     "{file}/{files} Files successfully processed" : "{file}/{files} ملفات تمتّ معالجتها بنجاحٍ",
+    "_%n file is being processed:_::_%n files are being processed:_" : ["يجري معالجة ملفات:","يجري معالجة %n ملف:","يجري معالجة %nملفات:","يجري معالجة%n ملفات:","يجري معالجة %nملفات:","يجري معالجة%n ملفات:"],
+    "_Delete original file (image)_::_Delete original files (images)_" : ["حذف الملفات الأصلية (الصور)","حذف الملف الأصلي (الصورة)","حذف الملفات الأصلية (الصور)","حذف الملفات الأصلية (الصور)","حذف الملفات الأصلية (الصور)","حذف الملفات الأصلية (الصور)"],
     "_%n file_::_%n files_" : ["لا يوجد ملفات %n","ملف %n","ملف %n","قليل من ملفات %n","الكثير من ملفات %n"," ملفات %n"],
     "Afrikaans" : "Afrikaans",
     "Arabic" : "العربية",
