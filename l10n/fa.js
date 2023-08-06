@@ -7,6 +7,7 @@ OC.L10N.register(
     "MIME type not supported." : "نوع MIME پشتیبانی نمی شود.",
     "Process" : "فرایند",
     "{file}/{files} Files successfully processed" : "پرونده {پرونده} / {پرونده ها با موفقیت پردازش شدند",
+    "_%n file_::_%n files_" : ["%n فایل ها","%n فایل ها"],
     "Afrikaans" : "افریقایی",
     "Arabic" : "عربی",
     "Azerbaijani" : "آذربایجانی",
