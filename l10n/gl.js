@@ -55,7 +55,7 @@ OC.L10N.register(
     "Italian" : "Italiano",
     "Italian (Old)" : "Italiano (antigo)",
     "Japanese" : "Xaponés",
-    "Kannada" : "Canarés",
+    "Kannada" : "Kanarés",
     "Korean" : "Coreano",
     "Latvian" : "Letón",
     "Lithuanian" : "Lituano",
