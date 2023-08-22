@@ -55,6 +55,7 @@ OC.L10N.register(
     "Ukrainian" : "우크라이나어",
     "Vietnamese" : "베트남어",
     "Selected" : "선택",
+    "No matches found" : "일치하는 항목 없음",
     "Select language" : "언어 선택",
     "Save" : "저장"
 },
