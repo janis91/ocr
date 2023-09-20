@@ -6,6 +6,8 @@ OC.L10N.register(
     "OCR processing failed:" : "OCR 처리 실패:",
     "MIME type not supported." : "MIME 형식을 지원하지 않습니다.",
     "Process" : "진행",
+    "_%n file is being processed:_::_%n files are being processed:_" : ["%n개 파일이 처리되었습니다."],
+    "_%n file_::_%n files_" : ["파일 %n개"],
     "Afrikaans" : "아프리칸스어",
     "Arabic" : "아랍어",
     "Azerbaijani" : "아제르바이잔어",
