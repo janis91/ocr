@@ -9,6 +9,7 @@ OC.L10N.register(
     "Czech" : "Чехія",
     "Ukrainian" : "Українська",
     "Selected" : "Selected",
+    "Select language" : "Виберіть мову",
     "Save" : "Зберегти",
     "Selected languages will be preselected by default in the OCR dialog." : "Вибрані мови буде типово визначено у діалозі оптичного розпізнавання тексту."
 },
