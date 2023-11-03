@@ -87,7 +87,7 @@ OC.L10N.register(
     "Press enter to select" : "Vyberte stlačením klávesy Enter",
     "Press enter to remove" : "Odstráňte stlačením klávesu Enter",
     "Selected" : "Vybrané",
-    "No matches found" : "Žiadne zhody nenájdené",
+    "No matches found" : "Nebola nájdená žiadna zhoda",
     "Select language" : "Vybrať jazyk",
     "Save" : "Uložiť",
     "An unexpected error occured during save of your favorite languages. Please try again." : "Pri ukladaní obľúbených jazykov sa vyskytla neočakávaná chyba. Prosím skúste znova.",
