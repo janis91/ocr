@@ -52,6 +52,7 @@ OC.L10N.register(
     "Ukrainian" : "Ukrainian",
     "Vietnamese" : "Vietnamese",
     "Selected" : "Selected",
+    "No matches found" : "Nicio potrivire",
     "Save" : "Salvează"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
