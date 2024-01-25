@@ -55,6 +55,7 @@ OC.L10N.register(
     "Ukrainian" : "Ukrainsk",
     "Vietnamese" : "Vietnamesisk",
     "Selected" : "Valgt",
+    "No matches found" : "Ingen treff funnet",
     "Select language" : "Velg språk",
     "Save" : "Lagre"
 },
