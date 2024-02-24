@@ -10,7 +10,7 @@ OC.L10N.register(
     "Process" : "עיבוד",
     "A large number of files may take a very long time." : "עיבוד כמות גדולה של קבצים עשוי לארוך זמן רב.",
     "{file}/{files} Files successfully processed" : "{file}/{files} עברו עיבוד בהצלחה",
-    "_%n file_::_%n files_" : ["קובץ אחד","שני קבצים","%n קבצים","%n קבצים"],
+    "_%n file_::_%n files_" : ["קובץ אחד","שני קבצים","%n קבצים"],
     "Afrikaans" : "אפריקאנס",
     "Arabic" : "ערבית",
     "Azerbaijani" : "אזרית",
@@ -83,4 +83,4 @@ OC.L10N.register(
     "Save" : "שמור",
     "Favorite languages" : "שפות מועדפות"
 },
-"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");
+"nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");
