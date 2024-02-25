@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "OCR" : "OCR",
     "Optical character recognition" : "Reconnoschimentu òticu de si caràteres",
-    "Text recognition for your images" : "Reconnoschimentu de su testu pro is imàgines tuas",
+    "Text recognition for your images" : "Reconnoschimentu de su testu pro is immàgines tuas",
     "Target file already exists:" : "Su documentu de destinatzione esistit giai:",
     "OCR processing failed:" : "No at fatu a elaborare s'OCR:",
     "MIME type not supported." : "Genia de MIME non suportadu.",
@@ -11,7 +11,7 @@ OC.L10N.register(
     "A large number of files may take a very long time." : "Unu nùmeru mannu de archìvios podet istentare meda.",
     "{file}/{files} Files successfully processed" : "{file}/{files} Archìvios elaborados",
     "_%n file is being processed:_::_%n files are being processed:_" : ["elaboratzione de s'archìviu %n in cursu:","elaboratzione de is archìvios %n in cursu:"],
-    "_Delete original file (image)_::_Delete original files (images)_" : ["Cantzella s'archìviu originale (imàgine)","Cantzella is archìvios originales (imàgines)"],
+    "_Delete original file (image)_::_Delete original files (images)_" : ["Cantzella s'archìviu originale (imàgine)","Cantzella is archìvios originales (immàgines)"],
     "_%n file_::_%n files_" : ["%n archìviu","%n archìvios"],
     "Afrikaans" : "Afrikaans",
     "Arabic" : "Àrabu",
