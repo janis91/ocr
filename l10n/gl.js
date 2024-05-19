@@ -63,7 +63,7 @@ OC.L10N.register(
     "Macedonian" : "Macedonio",
     "Maltese" : "Maltés",
     "Malay" : "Malaio",
-    "Dutch" : "Holandés",
+    "Dutch" : "Neerlandés",
     "Norwegian" : "Noruegués",
     "Polish" : "Polaco",
     "Portuguese" : "Portugués",
