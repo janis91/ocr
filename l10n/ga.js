@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "_%n file_::_%n files_" : ["%n comhad","%n comhaid","%n comhaid","%n comhaid","%n comhaid"],
     "Czech" : "Seiceach",
+    "Selected" : "Roghnaithe",
     "No matches found" : "Níor aimsíodh aon mheaitseáil",
     "Select language" : "Roghnaigh teanga",
     "Save" : "Sábháil"
