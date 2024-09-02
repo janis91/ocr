@@ -13,7 +13,7 @@
     "Process" : "Proceso",
     "A large number of files may take a very long time." : "Un gran número de ficheiros poden levar moito tempo.",
     "{file}/{files} Files successfully processed" : "{file}/{files} ficheiros procesados satisfactoriamente",
-    "_%n file is being processed:_::_%n files are being processed:_" : ["%n ficheiro está a ser procesado:","%n ficheiros están a ser procesados:"],
+    "_%n file is being processed:_::_%n files are being processed:_" : ["%n ficheiro está a ser procesado:","%n ficheiros están a seren procesados:"],
     "_Delete original file (image)_::_Delete original files (images)_" : ["Eliminar o ficheiro orixinal (imaxe)","Eliminar os ficheiros orixinais (imaxes)"],
     "_%n file_::_%n files_" : ["%n ficheiro","%n ficheiros"],
     "Afrikaans" : "Africáner",
