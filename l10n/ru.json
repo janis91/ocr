@@ -7,7 +7,7 @@
     "An unexpected error occurred during the load of your favorite languages. No language will be set instead." : "Не удалось загрузить список избранных языков, язык для распознавания не установлен.",
     "An unexpected error occurred during the upload of the processed file." : "Не удалось передать обработанный файл.",
     "An unexpected error occurred during the deletion of the original file." : "Не удалось удалить исходный файл.",
-    "An unexpected error occurred during Tesseract processing." : "Неожиданная ошибка во время работы программы Tesseract",
+    "An unexpected error occurred during Tesseract processing." : "Произошла неожиданная ошибка во время работы программы Tesseract.",
     "OCR processing failed:" : "Сбой при обработке ОРС:",
     "MIME type not supported." : "Тип MIME не поддерживается.",
     "Process" : "Обработка",
