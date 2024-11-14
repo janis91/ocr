@@ -14,7 +14,6 @@ OC.L10N.register(
     "MIME type not supported." : "نوع MIME پشتیبانی نمی شود.",
     "Process" : "فرایند",
     "A large number of files may take a very long time." : "A large number of files may take a very long time.",
-    "{file}/{files} Files successfully processed" : "پرونده {پرونده} / {پرونده ها با موفقیت پردازش شدند",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n file is being processed:","%n files are being processed:"],
     "_Delete original file (image)_::_Delete original files (images)_" : ["Delete original file (image)","Delete original files (images)"],
     "_%n file_::_%n files_" : ["%n فایل ها","%n فایل ها"],
