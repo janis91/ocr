@@ -2,9 +2,9 @@ OC.L10N.register(
     "ocr",
     {
     "OCR" : "OCR",
-    "Text recognition for your images" : "Tekstgenkendelse i dine billeder",
+    "Text recognition for your images" : "Tekstgenkendelse til dine billeder",
     "Target file already exists:" : "Filen findes allerede:",
-    "OCR processing failed:" : "OCR bearbejdningen fejlede",
+    "OCR processing failed:" : "OCR bearbejdningen fejlede:",
     "MIME type not supported." : "MIME-type er ikke understøttet.",
     "Process" : "Proces",
     "A large number of files may take a very long time." : "Et stort antal filer kan tage meget lang tid.",
