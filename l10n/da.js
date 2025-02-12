@@ -17,6 +17,7 @@ OC.L10N.register(
     "Bulgarian" : "bulgarsk",
     "Czech" : "tjekkisk",
     "Chinese" : "Kinesisk",
+    "Cherokee" : "Cherokee",
     "Danish" : "Dansk",
     "German" : "Tysk",
     "English" : "Engelsk",
