@@ -12,7 +12,7 @@
     "MIME type not supported." : "MIME-Typ nicht unterstützt.",
     "Process" : "Verarbeiten",
     "A large number of files may take a very long time." : "Eine große Anzahl an Dateien kann sehr viel Zeit in Anspruch nehmen.",
-    "{file}/{files} Files successfully processed" : "{file}/{files} Dateien erfolgreich verarbeitet",
+    "{file}/{files} Files successfully processed" : "{file}/{files} Dateien verarbeitet",
     "_%n file is being processed:_::_%n files are being processed:_" : ["%n Datei wird verarbeitet:","%n Dateien werden verarbeitet:"],
     "_Delete original file (image)_::_Delete original files (images)_" : ["Originaldatei (Bild) löschen","Originaldateien (Bilder) löschen"],
     "_%n file_::_%n files_" : ["%n Datei","%n Dateien"],
