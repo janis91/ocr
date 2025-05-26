@@ -1,0 +1,8 @@
+{ "translations": {
+    "OCR" : "OCR",
+    "_%n file_::_%n files_" : ["%n fail","%n faili"],
+    "Selected" : "Valitud",
+    "No matches found" : "Vasteid ei leidu",
+    "Save" : "Salvesta"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
