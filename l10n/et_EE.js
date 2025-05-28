@@ -53,6 +53,7 @@ OC.L10N.register(
     "Vietnamese" : "vietnami keel",
     "Selected" : "Valitud",
     "No matches found" : "Vasteid ei leidu",
+    "Select language" : "Vali keel",
     "Save" : "Salvesta"
 },
 "nplurals=2; plural=(n != 1);");
