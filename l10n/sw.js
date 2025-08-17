@@ -6,6 +6,7 @@ OC.L10N.register(
     "_%n file_::_%n files_" : ["%n file","%n files"],
     "Czech" : "Czech",
     "Selected" : "Iliyochaguliwa",
+    "No matches found" : "No matches found",
     "Save" : "Hifadhi"
 },
 "nplurals=2; plural=(n != 1);");
