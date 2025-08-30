@@ -2,6 +2,9 @@ OC.L10N.register(
     "ocr",
     {
     "OCR" : "OCR",
+    "An unexpected error occurred during the load of your favorite languages. No language will be set instead." : "Tavu iecienīto valodu ielādēšanas laikā atgadījās neparedzēta kļūda. Netiks iestatīta neviena valoda.",
+    "An unexpected error occurred during the upload of the processed file." : "Apstrādātās datnes augšupielādēšanas laikā atgadījās neparedzēta kļūda.",
+    "An unexpected error occurred during the deletion of the original file." : "Sākotnējās datnes izdzēšanas laikā atgadījās neparedzēta kļūda.",
     "OCR processing failed:" : "OCR apstrāde neizdevās:",
     "Process" : "Process",
     "_Delete original file (image)_::_Delete original files (images)_" : ["Izdzēst sākotnējās datnes (attēlus)","Izdzēst sākotnējo datni (attēlu)","Izdzēst sākotnējās datnes (attēlus)"],
